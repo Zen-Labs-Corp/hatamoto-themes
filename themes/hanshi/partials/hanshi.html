@@ -1,0 +1,86 @@
+{{/* Hanshi building blocks. Every partial takes a dict, so layouts stay small. */}}
+
+{{/* hs-cover: Item (a RelatedItem or entity), No (post number), Auto (draw a pattern when there is no image) */}}
+{{define "hs-cover"}}{{$i := .Item}}{{if $i.Image}}<div class="hs-cover hs-cover--img"><img src="{{imgsrc $i.Image}}"{{with srcset $i.Image}} srcset="{{.}}" sizes="(min-width: 60rem) 40rem, 100vw"{{end}} alt="" loading="lazy"></div>{{else if .Auto}}<div class="hs-cover" data-hs-cover data-cat="{{.Cat}}" data-key="{{$i.Title}}" data-seed="{{.No}}" data-no="{{.No}}" aria-hidden="true"></div>{{end}}{{end}}
+
+{{/* hs-lead: the first post on the homepage. Item, No, Auto */}}
+{{define "hs-lead"}}{{$i := .Item}}<a class="hs-lead hs-frame hs-ticks{{if not (or $i.Image .Auto)}} hs-lead--text{{end}}" href="{{$i.URL}}">
+{{template "hs-cover" dict "Item" $i "No" .No "Auto" .Auto "Cat" $i.Category}}
+<div class="hs-lead__body">
+<div class="hs-lead__tags"><span class="hs-badge"><i></i>Latest</span>{{with $i.Category}}<span class="hs-eyebrow">{{.}}</span>{{end}}</div>
+<h2 class="hs-lead__title">{{$i.Title}}</h2>
+{{with $i.Excerpt}}<p class="hs-lead__ex">{{.}}</p>{{end}}
+<div class="hs-lead__foot">
+<div class="hs-byline">{{with $i.Author}}<span class="hs-avatar" aria-hidden="true">{{printf "%.1s" .}}</span>{{end}}<span>{{with $i.Author}}<strong>{{.}}</strong><br>{{end}}<span class="hs-mono">{{formatDate $i.PublishedAt "2 Jan 2006"}}{{with $i.ReadingTime}} · {{.}} min read{{end}}</span></span></div>
+<span class="hs-lead__read">Read the post <span class="hs-arrow" aria-hidden="true">→</span></span>
+</div>
+</div>
+</a>{{end}}
+
+{{/* hs-row: one post in an index list. Item, No, Auto, Short (month-grouped dates) */}}
+{{define "hs-row"}}{{$i := .Item}}<li class="hs-row"><a href="{{$i.URL}}">
+{{if .No}}<span class="hs-num">No. {{printf "%03d" .No}}</span>{{else}}<span class="hs-num" aria-hidden="true"></span>{{end}}<span class="hs-row__cat" aria-hidden="true">{{$i.Category}}</span>
+<div class="hs-row__text"><h3>{{$i.Title}}</h3>{{with $i.Excerpt}}<p>{{.}}</p>{{end}}</div>
+<div class="hs-row__meta">{{with $i.Category}}<span>{{.}}</span>{{end}}<span class="hs-mono">{{if .Short}}{{formatDate $i.PublishedAt "2 Jan"}}{{else}}{{formatDate $i.PublishedAt "2 Jan 2006"}}{{end}}{{with $i.ReadingTime}} · {{.}} min{{end}}</span></div>
+{{template "hs-cover" dict "Item" $i "No" .No "Auto" .Auto "Cat" $i.Category}}
+</a></li>{{end}}
+
+{{/* hs-chips: category links. Terms, Cur (URL of the current term), All (archive URL) */}}
+{{define "hs-chips"}}{{if .Terms}}<nav class="hs-filter" aria-label="Topics">
+<a class="hs-chip" href="{{cta .All}}"{{if not .Cur}} aria-current="page"{{end}}>All</a>
+{{range .Terms}}<a class="hs-chip" href="{{.URL}}"{{if eq .URL $.Cur}} aria-current="page"{{end}}>{{.Name}} <em>{{.Count}}</em></a>
+{{end}}{{if .Toggle}}<div class="hs-filter__end" data-hs-js hidden><div class="hs-seg" role="group" aria-label="Layout">
+<button type="button" data-hs-layout-btn="list" aria-label="Index list"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg></button>
+<button type="button" data-hs-layout-btn="grid" aria-label="Card grid"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></button>
+</div></div>{{end}}
+</nav>{{end}}{{end}}
+
+{{/* hs-page-url: N, Pg (a *Pagination, or nil on the homepage) */}}
+{{define "hs-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+
+{{/* hs-pager: the ruler. Page, Pages, Total, Per, Count, Pg, Noun */}}
+{{define "hs-pager"}}{{$p := .Page}}{{$n := .Pages}}{{$pg := .Pg}}{{if gt $n 1}}{{$from := add (mul (sub $p 1) .Per) 1}}<nav class="hs-pager hs-frame" aria-label="Pagination">
+<div class="hs-pager__top"><span>Showing <strong>{{.Noun}} {{$from}}–{{add $from (sub .Count 1)}}</strong> of {{.Total}}</span><span>Page <strong>{{$p}}</strong> of {{$n}}</span></div>
+{{if le $n 60}}<div>
+<div class="hs-ruler" style="--n:{{$n}}">{{range $i := seq $n}}{{$k := add $i 1}}<a href="{{template "hs-page-url" dict "N" $k "Pg" $pg}}" data-label="Page {{$k}}" aria-label="Page {{$k}}"{{if eq $k $p}} aria-current="page"{{end}}></a>{{end}}</div>
+<div class="hs-ruler__scale"><span>Newest</span><span>Oldest</span></div>
+</div>{{end}}
+<div class="hs-pager__nav">
+{{if gt $p 1}}<a class="hs-pager__dir" href="{{template "hs-page-url" dict "N" (sub $p 1) "Pg" $pg}}" rel="prev" data-hs-prev><small>← Newer</small><span>Page {{sub $p 1}}</span></a>{{else}}<span class="hs-pager__dir" aria-disabled="true"><small>← Newer</small><span>You are on the newest page</span></span>{{end}}
+<ul class="hs-pages">{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a href="{{template "hs-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<li><span aria-hidden="true">…</span></li>{{end}}{{end}}</ul>
+{{if lt $p $n}}<a class="hs-pager__dir hs-pager__dir--next" href="{{template "hs-page-url" dict "N" (add $p 1) "Pg" $pg}}" rel="next" data-hs-next><small>Older →</small><span>Page {{add $p 1}}</span></a>{{else}}<span class="hs-pager__dir hs-pager__dir--next" aria-disabled="true"><small>Older →</small><span>You are on the oldest page</span></span>{{end}}
+</div>
+{{if or (not $pg) (not $pg.Query)}}<div class="hs-pager__foot">
+<form class="hs-jump" action="{{if $pg}}{{$pg.Path}}{{else}}/{{end}}" method="get"><label for="hs-jump">Go to page</label><input id="hs-jump" name="page" type="number" min="1" max="{{$n}}" inputmode="numeric" placeholder="1–{{$n}}"><button class="hs-btn hs-btn--sm" type="submit">Go</button></form>
+<span class="hs-keys" data-hs-js hidden><span class="hs-kbd">←</span> <span class="hs-kbd">→</span> change page · <span class="hs-kbd">j</span> <span class="hs-kbd">k</span> move between posts</span>
+</div>{{end}}
+</nav>{{end}}{{end}}
+
+{{/* hs-list: a listing body. Root (the view), Group (group by month), Noun */}}
+{{define "hs-list"}}{{$v := .Root}}{{$pg := $v.Pagination}}{{$auto := ne $v.Settings.covers "image-only"}}{{if $v.Items}}{{$base := 0}}{{$total := len $v.Items}}{{with $pg}}{{$base = mul (sub .Page 1) .PerPage}}{{$total = .Total}}{{end}}
+{{if .Group}}{{$m := ""}}{{range $i, $it := $v.Items}}{{$cur := formatDate $it.PublishedAt "January 2006"}}{{if ne $cur $m}}{{if ne $m ""}}</ol></div>{{end}}<div class="hs-month"><div class="hs-month__label"><b>{{$cur}}</b></div><ol class="hs-index">{{$m = $cur}}{{end}}
+{{template "hs-row" dict "Item" $it "No" (sub $total (add $base $i)) "Auto" $auto "Short" true}}{{end}}{{if ne $m ""}}</ol></div>{{end}}
+{{else}}<ol class="hs-index">{{range $i, $it := $v.Items}}{{template "hs-row" dict "Item" $it "No" (0) "Auto" $auto}}{{end}}</ol>{{end}}
+{{with $pg}}{{template "hs-pager" dict "Page" .Page "Pages" .TotalPages "Total" .Total "Per" .PerPage "Count" (len $v.Items) "Pg" . "Noun" $.Noun}}{{end}}
+{{else}}<p class="hs-empty">{{if $v.Query}}No results for &ldquo;{{$v.Query}}&rdquo;. Try fewer words.{{else}}Nothing here yet. Check back soon.{{end}}</p>{{end}}{{end}}
+
+{{/* hs-search-dialog: the ⌘K palette. Works as a plain search form without JavaScript. */}}
+{{define "hs-search-dialog"}}<dialog class="hs-dialog" id="hs-search" aria-label="Search">
+<form class="hs-pal" action="/search" method="get" role="search">
+<div class="hs-pal__in"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="7" cy="7" r="4.75"/><path d="M10.5 10.5L14 14"/></svg><input type="search" name="q" placeholder="Search posts" aria-label="Search posts" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="hs-pal-list"><span class="hs-kbd">Esc</span></div>
+<ul id="hs-pal-list" role="listbox"></ul>
+<div class="hs-pal__foot"><span><span class="hs-kbd">↑</span> <span class="hs-kbd">↓</span> move</span><span><span class="hs-kbd">↵</span> open</span><span style="margin-left:auto">Recent posts from the feed; <span class="hs-kbd">↵</span> on nothing searches everything</span></div>
+</form>
+</dialog>{{end}}
+
+{{/* hs-panel: visitor preset panel (settings.visitor_panel). Values saved in the browser only. */}}
+{{define "hs-panel"}}<button class="hs-tp-btn" type="button" aria-controls="hs-tp" aria-expanded="false" data-hs-js hidden><i><b></b><b></b></i>Theme</button>
+<div class="hs-tp" id="hs-tp" hidden role="dialog" aria-label="Theme presets">
+<div class="hs-tp__head"><strong>Theme presets</strong><button class="hs-btn hs-btn--sm" type="button" data-hs-reset>Reset</button></div>
+<div class="hs-tp__grp"><div class="hs-tp__lab"><span>Accent</span><code>--hm-primary</code></div>
+<div class="hs-swatches"><button type="button" data-hs-pref="accent" data-value="brand" style="--c:var(--hm-shu)"><i></i>Brand</button><button type="button" data-hs-pref="accent" data-value="indigo" style="--c:#2c4f86"><i></i>Indigo</button><button type="button" data-hs-pref="accent" data-value="moss" style="--c:#5f7d36"><i></i>Moss</button><button type="button" data-hs-pref="accent" data-value="ink" style="--c:#141417"><i></i>Ink</button></div></div>
+<div class="hs-tp__grp"><div class="hs-tp__lab"><span>Headings</span><code>--hm-font-heading</code></div><div class="hs-seg"><button type="button" data-hs-pref="type" data-value="sans">Sans</button><button type="button" data-hs-pref="type" data-value="serif">Serif</button></div></div>
+<div class="hs-tp__grp"><div class="hs-tp__lab"><span>Spacing</span><code>--hm-space-*</code></div><div class="hs-seg"><button type="button" data-hs-pref="density" data-value="comfortable">Comfortable</button><button type="button" data-hs-pref="density" data-value="compact">Compact</button></div></div>
+<div class="hs-tp__grp"><div class="hs-tp__lab"><span>Corners</span><code>--hm-radius-*</code></div><div class="hs-seg"><button type="button" data-hs-pref="radius" data-value="soft">Soft</button><button type="button" data-hs-pref="radius" data-value="sharp">Sharp</button></div></div>
+<p class="hs-tp__note">Saved in this browser only. The site owner sets the real values in Theme settings.</p>
+</div>{{end}}

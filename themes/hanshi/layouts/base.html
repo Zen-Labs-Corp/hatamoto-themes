@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{default "en" .Site.Language}}" data-hm-contract="1"{{if .Preview}} data-hm-preview="true"{{end}} data-hs-accent="{{default "brand" .Settings.accent}}" data-hs-type="{{default "sans" .Settings.heading_font}}" data-hs-density="{{default "comfortable" .Settings.density}}" data-hs-radius="{{default "soft" .Settings.corners}}" data-hs-mode="{{default "light" .Settings.color_mode}}" data-hs-layout="{{default "list" .Settings.home_layout}}"{{if .Settings.visitor_panel}} data-hs-panel{{end}}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{template "head" .Head}}
+<link rel="stylesheet" href="{{.CSSHref}}">
+{{if .Tokens.Any}}<style>:root{ {{with .Tokens.Primary}}--hm-primary:{{.}};{{end}}{{with .Tokens.Background}}--hm-bg:{{.}};{{end}}{{with .Tokens.Text}}--hm-text:{{.}};{{end}}{{with .Tokens.Font}}--hm-font:{{.}};{{end}}{{with .Tokens.FontHeading}}--hm-font-heading:{{.}};{{end}}{{with .Tokens.RadiusSm}}--hm-radius-sm:{{.}};{{end}}{{with .Tokens.RadiusMd}}--hm-radius-md:{{.}};{{end}}{{with .Tokens.RadiusLg}}--hm-radius-lg:{{.}};{{end}} }</style>
+{{end}}<script src="/theme/assets/js/hanshi-head.js"></script>
+{{template "plugin-head" .}}</head>
+<body class="hs-body hs-kind-{{.Kind}}">
+<a class="hs-skip" href="#main-content">Skip to content</a>
+{{template "header" .}}
+<main id="main-content" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>
+{{template "content" .}}
+</main>
+{{template "footer" .}}
+{{template "hs-search-dialog" .}}
+{{if .Settings.visitor_panel}}{{template "hs-panel" .}}{{end}}
+{{template "scripts" .}}
+{{template "plugin-body" .}}</body>
+</html>

@@ -1,0 +1,19 @@
+{{define "footer"}}<footer class="hs-footer">
+<div class="hs-wrap">
+<div class="hs-footer__grid">
+<div>
+<a class="hs-brand" href="/">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="30">{{else}}<span class="hs-seal" aria-hidden="true">{{printf "%.1s" .Site.Name}}</span><span class="hs-brand__word">{{.Site.Name}}</span>{{end}}</a>
+{{with .Site.Tagline}}<p class="hs-footer__tag">{{.}}</p>{{end}}
+</div>
+{{$flat := false}}{{range .Site.FooterNav}}{{if not .Children}}{{$flat = true}}{{end}}{{end}}{{if $flat}}<div><h4>Site</h4><ul>{{range .Site.FooterNav}}{{if not .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}</ul></div>
+{{end}}{{range .Site.FooterNav}}{{if .Children}}<div><h4>{{.Label}}</h4>
+<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul></div>
+{{end}}{{end}}<div><h4>Follow</h4>
+<ul><li><a class="hs-mono" href="/feed.xml">RSS</a></li><li><a class="hs-mono" href="/atom.xml">Atom</a></li><li><a class="hs-mono" href="/llms.txt">llms.txt</a></li>{{with .Settings.subscribe_url}}<li><a href="{{cta .}}">Email</a></li>{{end}}</ul></div>
+</div>
+<div class="hs-footer__base">
+<span>&copy; {{year}} {{.Site.Name}}</span>
+<span>{{if .Site.SocialLinks}}{{range .Site.SocialLinks}}<a href="{{cta .URL}}" rel="noopener noreferrer">{{.Label}}</a> · {{end}}{{end}}Built with <a href="https://hatamoto.dev">Hatamoto</a> · Theme Hanshi</span>
+</div>
+</div>
+</footer>{{end}}

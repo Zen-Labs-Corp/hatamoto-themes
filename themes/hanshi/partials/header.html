@@ -1,0 +1,15 @@
+{{define "header"}}<header class="hs-header">
+<div class="hs-wrap">
+<a class="hs-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="30">{{else}}<span class="hs-seal" aria-hidden="true">{{printf "%.1s" .Site.Name}}</span><span class="hs-brand__word">{{.Site.Name}}</span>{{end}}</a>
+{{if .Site.Nav}}<nav class="hs-nav" aria-label="Primary">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav>
+{{end}}<div class="hs-header__end">
+<a class="hs-search-btn" href="/search" data-hs-search aria-label="Search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="7" cy="7" r="4.75"/><path d="M10.5 10.5L14 14"/></svg><span>Search</span><span class="hs-kbd" data-hs-js hidden>/</span></a>
+<button type="button" class="hs-btn hs-btn--icon hs-mode" data-hm-theme-toggle aria-label="Switch to dark mode" aria-pressed="false" hidden><svg class="hs-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.5 5.5 0 016.4 2.5a5.5 5.5 0 107.1 7.1z"/></svg><svg class="hs-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg></button>
+{{with .Site.HeaderCTA}}<a class="hs-btn hs-btn--cta" href="{{cta .URL}}">{{.Label}}</a>
+{{else}}{{with $.Settings.subscribe_url}}<a class="hs-btn hs-btn--cta" href="{{cta .}}">Subscribe</a>
+{{end}}{{end}}{{if .Site.Nav}}<details class="hs-menu"><summary class="hs-btn hs-btn--icon" aria-label="Menu"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 4.5h12M2 8h12M2 11.5h12"/></svg></summary>
+<ul>{{range .Site.Nav}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul></details>
+{{end}}</div>
+</div>
+<div class="hs-progress" aria-hidden="true"></div>
+</header>{{end}}

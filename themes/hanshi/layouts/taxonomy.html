@@ -1,0 +1,13 @@
+{{define "content"}}<div class="hs-wrap">
+<header class="hs-listhead">
+<div>
+<nav class="hs-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="{{cta .Settings.archive_url}}">Archive</a><span aria-hidden="true">/</span><span aria-current="page">{{.Term.Name}}</span></nav>
+<span class="hs-eyebrow">{{if eq .Term.Kind "tag"}}Tag{{else if eq .Term.Kind "category"}}Topic{{else}}{{.Term.Kind}}{{end}}</span>
+<h1 class="hs-display">{{.Term.Name}}</h1>
+<p class="hs-lede">{{with .Term.Description}}{{.}}{{else}}{{with .Pagination}}{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}}.{{end}}{{end}}</p>
+</div>
+{{with .Pagination}}{{if gt .TotalPages 1}}<div class="hs-pagebig" aria-hidden="true">{{printf "%02d" .Page}}<small>/ {{printf "%02d" .TotalPages}}</small></div>{{end}}{{end}}
+</header>
+{{if eq .Term.Kind "category"}}{{template "hs-chips" dict "Terms" (terms "category" 12) "All" .Settings.archive_url "Cur" .Path}}{{end}}
+{{template "hs-list" dict "Root" . "Group" true "Noun" "posts"}}
+</div>{{end}}
