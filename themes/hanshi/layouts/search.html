@@ -1,0 +1,16 @@
+{{define "content"}}<div class="hs-wrap">
+<header class="hs-listhead">
+<div>
+<span class="hs-eyebrow">Search</span>
+<h1 class="hs-display">{{if .Query}}&ldquo;{{.Query}}&rdquo;{{else}}Search{{end}}</h1>
+<form class="hs-searchform" role="search" action="/search" method="get">
+<label class="hs-sr" for="hs-q">Search the site</label>
+<input id="hs-q" class="hs-input" type="search" name="q" value="{{.Query}}" placeholder="Search posts and pages" autocomplete="off">
+{{with .SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}
+<button class="hs-btn hs-btn--ink" type="submit">Search</button>
+</form>
+{{if .Query}}{{with .Pagination}}<p class="hs-lede" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}}</p>{{end}}{{end}}
+</div>
+</header>
+{{if .Query}}{{template "hs-list" dict "Root" . "Group" false "Noun" "results"}}{{else}}<p class="hs-empty">Type a word or phrase to search.</p>{{end}}
+</div>{{end}}

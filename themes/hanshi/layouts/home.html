@@ -1,0 +1,50 @@
+{{define "content"}}{{$per := atoi .Settings.posts_on_home}}{{if or (lt $per 1) (gt $per 12)}}{{$per = 5}}{{end}}{{$auto := ne .Settings.covers "image-only"}}
+{{$r := query (dict "schema" "post" "limit" $per "page" (pageNum .))}}{{$cats := terms "category" 8}}
+<div class="hs-wrap">
+<section class="hs-mast">
+<div>
+{{with .Settings.masthead_eyebrow}}<span class="hs-eyebrow">{{.}}</span>{{end}}
+<h1 class="hs-display">{{with .Settings.masthead_title}}{{.}}{{else}}{{$.Site.Name}}{{end}}</h1>
+{{with .Settings.masthead_lede}}<p class="hs-lede hs-mast__lede">{{.}}</p>{{else}}{{with $.Site.Tagline}}<p class="hs-lede hs-mast__lede">{{.}}</p>{{end}}{{end}}
+</div>
+<div class="hs-mast__aside">
+<dl class="hs-mast__facts">
+{{with recent "post" 1}}{{with index . 0}}<div><dt>Latest</dt><dd><a href="{{.URL}}">No. {{printf "%03d" $r.Total}} · {{formatDate .PublishedAt "2 Jan 2006"}}</a></dd></div>{{end}}{{end}}
+<div><dt>Archive</dt><dd><a href="{{cta $.Settings.archive_url}}">{{$r.Total}} {{if eq $r.Total 1}}post{{else}}posts{{end}}{{with $cats}} · {{len .}} topics{{end}}</a></dd></div>
+<div><dt>Follow</dt><dd><a href="/feed.xml">RSS</a> · <a href="/atom.xml">Atom</a>{{with $.Settings.subscribe_url}} · <a href="{{cta .}}">Email</a>{{end}}</dd></div>
+</dl>
+{{with .Settings.masthead_side}}<div class="hs-tate" aria-hidden="true">{{.}}<small>{{year}}</small></div>{{end}}
+</div>
+</section>
+{{template "hs-chips" dict "Terms" $cats "All" .Settings.archive_url "Cur" "" "Toggle" true}}
+<section aria-labelledby="hs-latest" class="hs-latest">
+<h2 id="hs-latest" class="hs-sr">{{if eq $r.Page 1}}Latest posts{{else}}Posts, page {{$r.Page}}{{end}}</h2>
+{{if $r.Items}}{{$base := mul (sub $r.Page 1) $per}}
+{{if eq $r.Page 1}}{{with index $r.Items 0}}<div class="hs-reveal">{{template "hs-lead" dict "Item" . "No" $r.Total "Auto" $auto}}</div>{{end}}{{end}}
+<ol class="hs-index" data-layoutable>{{range $i, $it := $r.Items}}{{if or (gt $r.Page 1) (gt $i 0)}}{{template "hs-row" dict "Item" $it "No" (sub $r.Total (add $base $i)) "Auto" $auto}}{{end}}{{end}}</ol>
+{{template "hs-pager" dict "Page" $r.Page "Pages" $r.Pages "Total" $r.Total "Per" $per "Count" (len $r.Items) "Noun" "posts"}}
+{{else}}<p class="hs-empty">No posts yet. Publish a post and it shows here.</p>{{end}}
+</section>
+</div>
+{{if .Settings.home_sections}}<div class="hs-blocks">{{template "page-body" .}}</div>{{end}}
+{{if gt (len $cats) 0}}<section class="hs-section" id="topics"><div class="hs-wrap">
+<div class="hs-sechead"><div><span class="hs-eyebrow">Topics</span><h2 class="hs-h2">Read by what you are working on</h2></div><a class="hs-btn" href="{{cta .Settings.archive_url}}">Full archive <span class="hs-arrow" aria-hidden="true">→</span></a></div>
+<div class="hs-topics hs-reveal">{{range $i, $t := $cats}}<a class="hs-topic" href="{{$t.URL}}"><span class="hs-num">{{printf "%02d" $t.Count}} {{if eq $t.Count 1}}post{{else}}posts{{end}}</span><span class="k">{{printf "%02d" (add $i 1)}}</span><h3>{{$t.Name}}</h3>{{with $t.Description}}<p>{{.}}</p>{{end}}</a>{{end}}</div>
+</div></section>{{end}}
+<section class="hs-follow" id="follow"><div class="hs-wrap">
+<div class="hs-cta hs-frame hs-ticks hs-reveal">
+<div class="hs-cta__body">
+<span class="hs-eyebrow">Follow along</span>
+<h2 class="hs-h2">{{if .Settings.subscribe_url}}One email when a post goes out. Nothing else.{{else}}New posts, in your reader.{{end}}</h2>
+<p class="hs-cta__text">The feeds list the 20 newest posts with their full text.</p>
+{{with .Settings.subscribe_url}}<p><a class="hs-btn hs-btn--cta" href="{{cta .}}">Subscribe</a></p>{{end}}
+</div>
+<div class="hs-cta__side">
+<a href="/feed.xml">RSS 2.0 <span class="hs-mono">/feed.xml</span></a>
+<a href="/atom.xml">Atom 1.0 <span class="hs-mono">/atom.xml</span></a>
+<a href="/llms.txt">For AI readers <span class="hs-mono">/llms.txt</span></a>
+<a href="/feed.xml" data-hs-copy="feed" data-hs-js hidden>Copy feed address <span class="hs-mono">⧉</span></a>
+</div>
+</div>
+</div></section>
+{{end}}

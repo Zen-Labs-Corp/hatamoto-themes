@@ -1,0 +1,15 @@
+{{define "content"}}<div class="hs-wrap">
+<header class="hs-listhead">
+<div class="hs-authorhead">
+{{with .Author.Avatar}}<img src="{{imgsrc .}}" alt="" width="72" height="72">{{end}}
+<div>
+<span class="hs-eyebrow">Author</span>
+<h1 class="hs-display">{{.Author.Name}}</h1>
+{{with .Author.JobTitle}}<p class="hs-lede">{{.}}</p>{{end}}
+{{with .Author.Bio}}<p class="hs-lede">{{.}}</p>{{end}}
+{{with .Author.Links}}<p class="hs-tags">{{range .}}<a class="hs-chip" href="{{.URL}}" rel="me noopener">{{.Label}}</a>{{end}}</p>{{end}}
+</div>
+</div>
+</header>
+{{template "hs-list" dict "Root" . "Group" true "Noun" "posts"}}
+</div>{{end}}
