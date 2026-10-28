@@ -1,0 +1,390 @@
+{
+ "owner": {
+  "email": "owner@example.com",
+  "name": "Ana Ferreira",
+  "password": "theme-dev-password"
+ },
+ "site": {
+  "name": "Ledgerly",
+  "tagline": "Invoices that chase themselves",
+  "colour": "#4f46e5"
+ },
+ "media": [
+  {
+   "name": "app.png",
+   "w": 1600,
+   "h": 1000,
+   "colours": [
+    "#4f46e5",
+    "#e0e7ff",
+    "#1e1b4b"
+   ],
+   "style": "grid"
+  },
+  {
+   "name": "logo-1.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#1f2937",
+    "#9ca3af",
+    "#111827"
+   ],
+   "style": "stripes"
+  },
+  {
+   "name": "logo-2.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#374151",
+    "#d1d5db",
+    "#1f2937"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "logo-3.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#4b5563",
+    "#e5e7eb",
+    "#111827"
+   ],
+   "style": "grid"
+  },
+  {
+   "name": "logo-4.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#27272a",
+    "#a1a1aa",
+    "#18181b"
+   ],
+   "style": "arcs"
+  },
+  {
+   "name": "logo-5.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#3f3f46",
+    "#d4d4d8",
+    "#09090b"
+   ],
+   "style": "stripes"
+  },
+  {
+   "name": "logo-6.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#52525b",
+    "#e4e4e7",
+    "#18181b"
+   ],
+   "style": "dots"
+  }
+ ],
+ "pages": [
+  {
+   "home": true,
+   "name": "Home",
+   "sections": [
+    {
+     "id": "hero",
+     "type": "hero",
+     "content": {
+      "eyebrow": "New: automatic reminders",
+      "headline": "Invoices that chase themselves.",
+      "subheadline": "<p>Send an invoice, and Ledgerly sends the polite reminders, takes the card payment and tells your accountant. You get paid 11 days sooner on average.</p>",
+      "primaryCta": "Start free",
+      "ctaUrl": "#pricing",
+      "secondaryCta": "See how it works",
+      "secondaryCtaUrl": "#how",
+      "layout": "split",
+      "heroImage": "{{media:app.png}}",
+      "imageAlt": "Abstract illustration of the invoice screen",
+      "stripLabel": "Works with",
+      "stripItems": [
+       "Stripe",
+       "Xero",
+       "QuickBooks",
+       "Sage"
+      ]
+     }
+    },
+    {
+     "id": "logos",
+     "type": "logo_strip",
+     "content": {
+      "heading": "4,000 small businesses get paid with Ledgerly",
+      "logos": [
+       {
+        "name": "Copper Kettle",
+        "image": "{{media:logo-1.png}}"
+       },
+       {
+        "name": "Northbeam",
+        "image": "{{media:logo-2.png}}"
+       },
+       {
+        "name": "Fieldwork",
+        "image": "{{media:logo-3.png}}"
+       },
+       {
+        "name": "Oak & Ivy",
+        "image": "{{media:logo-4.png}}"
+       },
+       {
+        "name": "Bramble",
+        "image": "{{media:logo-5.png}}"
+       },
+       {
+        "name": "Pinecrest",
+        "image": "{{media:logo-6.png}}"
+       }
+      ]
+     }
+    },
+    {
+     "id": "features",
+     "type": "features",
+     "content": {
+      "eyebrow": "Features",
+      "heading": "Everything between invoice and paid",
+      "variant": "bento",
+      "features": [
+       {
+        "number": "01",
+        "title": "Reminders",
+        "description": "Three polite emails on a schedule you set, stopped the moment they pay."
+       },
+       {
+        "number": "02",
+        "title": "Card and bank payments",
+        "description": "A pay button on every invoice."
+       },
+       {
+        "number": "03",
+        "title": "Accountant sync",
+        "description": "Every payment lands in your books."
+       },
+       {
+        "number": "04",
+        "title": "Late fees",
+        "description": "Optional, automatic and legal in 30 countries."
+       }
+      ]
+     }
+    },
+    {
+     "id": "how",
+     "type": "process_steps",
+     "content": {
+      "eyebrow": "How it works",
+      "heading": "Three steps, once",
+      "layout": "cards",
+      "steps": [
+       {
+        "number": "1",
+        "title": "Connect",
+        "description": "Link your payment account in two minutes."
+       },
+       {
+        "number": "2",
+        "title": "Send",
+        "description": "Create an invoice or import one."
+       },
+       {
+        "number": "3",
+        "title": "Relax",
+        "description": "Ledgerly follows up until it is paid."
+       }
+      ]
+     }
+    },
+    {
+     "id": "stats",
+     "type": "stats",
+     "content": {
+      "variant": "cards",
+      "columns": 3,
+      "stats": [
+       {
+        "value": "11",
+        "suffix": " days",
+        "label": "sooner, on average"
+       },
+       {
+        "value": "94",
+        "suffix": "%",
+        "label": "of invoices paid within terms"
+       },
+       {
+        "value": "4,000",
+        "label": "businesses"
+       }
+      ]
+     }
+    },
+    {
+     "id": "pricing",
+     "type": "pricing",
+     "content": {
+      "heading": "Simple pricing",
+      "subheading": "Free for your first ten invoices a month.",
+      "variant": "cards",
+      "tiers": [
+       {
+        "name": "Free",
+        "price": "0",
+        "currency": "$",
+        "billingPeriod": "month",
+        "features": [
+         "10 invoices a month",
+         "Reminders",
+         "Card payments"
+        ],
+        "ctaText": "Start free",
+        "ctaLink": "#"
+       },
+       {
+        "name": "Pro",
+        "price": "19",
+        "currency": "$",
+        "billingPeriod": "month",
+        "features": [
+         "Unlimited invoices",
+         "Accountant sync",
+         "Late fees",
+         "Your logo"
+        ],
+        "ctaText": "Try Pro free",
+        "ctaLink": "#",
+        "isPopular": true,
+        "badgeText": "Popular"
+       },
+       {
+        "name": "Team",
+        "price": "49",
+        "currency": "$",
+        "billingPeriod": "month",
+        "features": [
+         "Everything in Pro",
+         "5 users",
+         "Approval flows"
+        ],
+        "ctaText": "Contact sales",
+        "ctaLink": "#"
+       }
+      ]
+     }
+    },
+    {
+     "id": "quotes",
+     "type": "testimonials",
+     "content": {
+      "heading": "Loved by people who hate chasing",
+      "variant": "grid",
+      "testimonials": [
+       {
+        "quote": "I used to spend Fridays on the phone asking for money. Now I do not.",
+        "name": "Sam Ortiz",
+        "title": "Owner",
+        "company": "Copper Kettle",
+        "rating": 5
+       },
+       {
+        "quote": "Paid in four days instead of forty.",
+        "name": "Jo Lindqvist",
+        "title": "Founder",
+        "company": "Fieldwork",
+        "rating": 5
+       }
+      ]
+     }
+    },
+    {
+     "id": "faq",
+     "type": "faq",
+     "content": {
+      "heading": "Questions",
+      "variant": "cards",
+      "faqs": [
+       {
+        "question": "Is there a contract?",
+        "answer": "<p>No. Pay monthly, cancel any time.</p>"
+       },
+       {
+        "question": "Do my clients need an account?",
+        "answer": "<p>No. They pay from the invoice email.</p>"
+       },
+       {
+        "question": "Where is my data?",
+        "answer": "<p>In the EU, encrypted at rest.</p>"
+       }
+      ]
+     }
+    },
+    {
+     "id": "cta",
+     "type": "cta",
+     "content": {
+      "headline": "Get paid sooner, starting today.",
+      "subheadline": "<p>Free for ten invoices a month. No card needed.</p>",
+      "buttonText": "Start free",
+      "buttonUrl": "#pricing",
+      "backgroundStyle": "dark"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "privacy",
+   "name": "Privacy",
+   "description": "How Ledgerly handles your data.",
+   "content": "<p>We keep the minimum, in the EU, for as long as you have an account.</p><h2>What we keep</h2><p>Your invoices and the email addresses you send them to.</p>"
+  }
+ ],
+ "menus": {
+  "header": [
+   {
+    "label": "Features",
+    "url": "/#features"
+   },
+   {
+    "label": "Pricing",
+    "url": "/#pricing"
+   },
+   {
+    "label": "FAQ",
+    "url": "/#faq"
+   }
+  ],
+  "footer": [
+   {
+    "label": "Privacy",
+    "page": "privacy"
+   }
+  ]
+ },
+ "screenshot": "/",
+ "shots": [
+  {
+   "name": "home",
+   "path": "/"
+  },
+  {
+   "name": "privacy",
+   "path": "/privacy"
+  },
+  {
+   "name": "not-found",
+   "path": "/no-such-page",
+   "status": 404
+  }
+ ]
+}

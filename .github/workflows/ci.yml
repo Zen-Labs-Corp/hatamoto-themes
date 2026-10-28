@@ -1,0 +1,95 @@
+# Checks every theme a change touches (a change outside themes/ touches all of
+# them) with the script developers run: scripts/check.sh. That is the engine's
+# own package rules, a seeded site on a throwaway Postgres and browser checks
+# at desktop and mobile size. Also proves template/ still scaffolds a theme
+# that passes. The hatamoto binary is built from the public core commit pinned
+# in .hatamoto-core. No secrets: publishing happens in hatamoto-plugins.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  changed:
+    runs-on: ubuntu-latest
+    outputs:
+      themes: ${{ steps.list.outputs.themes }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: list
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" = pull_request ]; then
+            themes=$(scripts/changed-themes.sh --json "$BASE_SHA" HEAD)
+          else
+            themes=$(scripts/changed-themes.sh --json)
+          fi
+          echo "themes=$themes" >>"$GITHUB_OUTPUT"
+          echo "themes: $themes"
+
+  check:
+    needs: changed
+    if: needs.changed.outputs.themes != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        theme: ${{ fromJSON(needs.changed.outputs.themes) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: '1.27.3'
+          cache: false
+      - name: Tools
+        run: |
+          set -euo pipefail
+          echo "HATAMOTO_BIN=$(scripts/hatamoto-bin.sh)" >>"$GITHUB_ENV"
+          (cd scripts && npm ci --no-audit --no-fund)
+      - name: Check ${{ matrix.theme }}
+        env:
+          THEME: ${{ matrix.theme }}
+        run: scripts/check.sh "$THEME" --shots "build/shots"
+      - name: Shots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: shots-${{ strategy.job-index }}
+          path: build/shots
+          if-no-files-found: ignore
+          retention-days: 7
+
+  template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: '1.27.3'
+          cache: false
+      - name: Scaffold a theme from template/ and check it on every site type
+        run: |
+          set -euo pipefail
+          export HATAMOTO_BIN=$(scripts/hatamoto-bin.sh) NEW_THEME_OFFLINE=1
+          (cd scripts && npm ci --no-audit --no-fund)
+          git config user.email ci@example.com && git config user.name ci
+          scripts/new-theme.sh template-check business "Template check."
+          for t in $(ls site-types | grep -v README); do
+            echo "$t" > themes/template-check/dev/site-type
+            scripts/check.sh themes/template-check --screenshot --shots "build/shots/$t"
+          done

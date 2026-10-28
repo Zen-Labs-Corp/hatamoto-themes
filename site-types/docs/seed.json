@@ -1,0 +1,234 @@
+{
+ "owner": {
+  "email": "owner@example.com",
+  "name": "Ana Ferreira",
+  "password": "theme-dev-password"
+ },
+ "site": {
+  "name": "Tidewater Docs",
+  "tagline": "Documentation for the Tidewater file sync tool",
+  "colour": "#0f766e"
+ },
+ "schemas": [
+  {
+   "slug": "doc",
+   "name": "Doc",
+   "like": "page",
+   "settings": {
+    "url_pattern": "/docs/{slug}",
+    "archive_path": "/docs"
+   }
+  }
+ ],
+ "pages": [
+  {
+   "home": true,
+   "name": "Home",
+   "sections": [
+    {
+     "id": "hero",
+     "type": "hero",
+     "content": {
+      "eyebrow": "Tidewater 2.4",
+      "headline": "Keep two folders the same, everywhere.",
+      "subheadline": "<p>A small, fast command line tool for syncing folders between machines. No account, no cloud.</p>",
+      "primaryCta": "Get started",
+      "ctaUrl": "/docs/getting-started",
+      "secondaryCta": "CLI reference",
+      "secondaryCtaUrl": "/docs/cli",
+      "commandChip": "brew install tidewater"
+     }
+    },
+    {
+     "id": "cards",
+     "type": "features",
+     "content": {
+      "heading": "Find your way",
+      "variant": "cards",
+      "columns": 3,
+      "features": [
+       {
+        "title": "Getting started",
+        "description": "Install and run your first sync.",
+        "link": "/docs/getting-started",
+        "linkText": "Start"
+       },
+       {
+        "title": "Guides",
+        "description": "Configuration, conflicts and everyday tasks.",
+        "link": "/docs/guides",
+        "linkText": "Read"
+       },
+       {
+        "title": "Reference",
+        "description": "Every command, flag and setting.",
+        "link": "/docs/reference",
+        "linkText": "Look up"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "entries": {
+  "doc": [
+   {
+    "name": "Overview",
+    "slug": "overview",
+    "description": "What Tidewater is and what it is for.",
+    "content": "<p>What Tidewater is and what it is for.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   },
+   {
+    "name": "Install",
+    "slug": "install",
+    "description": "Install the command line tool on macOS, Linux or Windows.",
+    "content": "<p>Install the command line tool on macOS, Linux or Windows.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   },
+   {
+    "name": "Quick start",
+    "slug": "quick-start",
+    "description": "Sync your first two folders in five minutes.",
+    "content": "<p>Sync your first two folders in five minutes.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   },
+   {
+    "name": "Getting started",
+    "slug": "getting-started",
+    "description": "Install Tidewater and run your first sync.",
+    "content": "<p>Install Tidewater and run your first sync.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   },
+   {
+    "name": "Configuration",
+    "slug": "configuration",
+    "description": "Every setting in tidewater.toml, with its default.",
+    "content": "<p>Every setting in tidewater.toml, with its default.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   },
+   {
+    "name": "Conflicts",
+    "slug": "conflicts",
+    "description": "What happens when the same file changes in two places.",
+    "content": "<p>What happens when the same file changes in two places.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   },
+   {
+    "name": "Guides",
+    "slug": "guides",
+    "description": "Task-based guides for everyday use.",
+    "content": "<p>Task-based guides for everyday use.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   },
+   {
+    "name": "CLI reference",
+    "slug": "cli",
+    "description": "Every command and flag of the tidewater command.",
+    "content": "<p>Every command and flag of the tidewater command.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   },
+   {
+    "name": "Reference",
+    "slug": "reference",
+    "description": "The complete reference.",
+    "content": "<p>The complete reference.</p><h2>Before you begin</h2><p>You need Tidewater 2.0 or later. Check with <code>tidewater --version</code>.</p><h2>Steps</h2><ol><li>Open a terminal.</li><li>Run the command below.</li><li>Check the output.</li></ol><pre><code>tidewater sync ~/Documents /mnt/backup --watch</code></pre><h3>Options</h3><table><thead><tr><th>Flag</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--watch</code></td><td>off</td><td>keep running and sync on every change</td></tr><tr><td><code>--dry-run</code></td><td>off</td><td>show what would change</td></tr></tbody></table><blockquote><p>Note: a sync never deletes a file that changed on both sides; see Conflicts.</p></blockquote><h2 id=\"next-steps\">Next steps</h2><ul class=\"hm-next-steps\"><li><a href=\"/docs/configuration\">Configuration</a></li><li><a href=\"/docs/conflicts\">Conflicts</a></li></ul>"
+   }
+  ]
+ },
+ "menus": {
+  "header": [
+   {
+    "label": "Docs",
+    "page": "overview"
+   },
+   {
+    "label": "CLI",
+    "page": "cli"
+   },
+   {
+    "label": "Changelog",
+    "url": "/changelog"
+   }
+  ],
+  "sidebar": [
+   {
+    "label": "Overview",
+    "page": "overview"
+   },
+   {
+    "label": "Getting started",
+    "page": "getting-started",
+    "children": [
+     {
+      "label": "Install",
+      "page": "install"
+     },
+     {
+      "label": "Quick start",
+      "page": "quick-start"
+     }
+    ]
+   },
+   {
+    "label": "Guides",
+    "page": "guides",
+    "children": [
+     {
+      "label": "Configuration",
+      "page": "configuration"
+     },
+     {
+      "label": "Conflicts",
+      "page": "conflicts"
+     }
+    ]
+   },
+   {
+    "label": "Reference",
+    "page": "reference",
+    "children": [
+     {
+      "label": "CLI reference",
+      "page": "cli"
+     }
+    ]
+   }
+  ],
+  "footer": [
+   {
+    "label": "Overview",
+    "page": "overview"
+   },
+   {
+    "label": "CLI",
+    "page": "cli"
+   }
+  ]
+ },
+ "screenshot": "/docs/quick-start",
+ "shots": [
+  {
+   "name": "home",
+   "path": "/"
+  },
+  {
+   "name": "overview",
+   "path": "/docs/overview"
+  },
+  {
+   "name": "section",
+   "path": "/docs/getting-started"
+  },
+  {
+   "name": "article",
+   "path": "/docs/quick-start"
+  },
+  {
+   "name": "reference",
+   "path": "/docs/cli"
+  },
+  {
+   "name": "search",
+   "path": "/search?q=sync&type=doc"
+  },
+  {
+   "name": "not-found",
+   "path": "/docs/no-such-page",
+   "status": 404
+  }
+ ]
+}

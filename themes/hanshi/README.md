@@ -74,20 +74,18 @@ working.
 
 ## Develop
 
-You need a Hatamoto binary and a development site (any `ENVIRONMENT` other than
-`production`).
+From the root of the [hatamoto-themes](https://github.com/Zen-Labs-Corp/hatamoto-themes)
+repository:
 
 ```sh
-export DATABASE_URL=postgres://...      # a local, throwaway database
-hatamoto serve &                         # the site
-python3 dev/seed.py                      # an owner, 16 posts with bodies, 7 categories
-hatamoto theme dev . --dev               # push on every save
-node dev/smoke.mjs http://127.0.0.1:8080 # browser checks (needs playwright-core and Chrome)
-hatamoto theme check . --registry --expect-name hanshi
+scripts/dev-site.sh blog themes/hanshi --serve   # a seeded local blog with Hanshi, live reload
+scripts/check.sh themes/hanshi                   # the full check CI runs
 ```
 
-`dev/` is not part of the package. The package holds `theme.json`, `layouts/`,
-`partials/`, `assets/`, `README.md`, `LICENSE` and `CHANGELOG.md`.
+`dev/` is not part of the package. It also keeps the theme's own seed and smoke test
+(`dev/seed.py`, 16 posts in 7 categories, and `dev/smoke.mjs`) for a site you run yourself.
+The package holds `theme.json`, `layouts/`, `partials/`, `assets/`, `README.md`, `LICENSE`
+and `CHANGELOG.md`.
 
 ## License
 

@@ -1,0 +1,629 @@
+{
+ "owner": {
+  "email": "owner@example.com",
+  "name": "Ana Ferreira",
+  "password": "theme-dev-password"
+ },
+ "site": {
+  "name": "Northline Advisory",
+  "tagline": "Finance and operations advice for growing companies",
+  "colour": "#1f5f8b"
+ },
+ "media": [
+  {
+   "name": "office.png",
+   "w": 1600,
+   "h": 1000,
+   "colours": [
+    "#1f5f8b",
+    "#9cc3dd",
+    "#0d2a3d"
+   ],
+   "style": "arcs"
+  },
+  {
+   "name": "team-1.png",
+   "w": 480,
+   "h": 480,
+   "colours": [
+    "#c9a27e",
+    "#f3e3d3",
+    "#7a5235"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "team-2.png",
+   "w": 480,
+   "h": 480,
+   "colours": [
+    "#6b8f71",
+    "#dbe8dc",
+    "#2f4a33"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "team-3.png",
+   "w": 480,
+   "h": 480,
+   "colours": [
+    "#8a6fa8",
+    "#e6def0",
+    "#3f2d55"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "case.png",
+   "w": 1200,
+   "h": 800,
+   "colours": [
+    "#0d2a3d",
+    "#1f5f8b",
+    "#9cc3dd"
+   ],
+   "style": "grid"
+  },
+  {
+   "name": "logo-1.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#1f2937",
+    "#9ca3af",
+    "#111827"
+   ],
+   "style": "stripes"
+  },
+  {
+   "name": "logo-2.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#374151",
+    "#d1d5db",
+    "#1f2937"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "logo-3.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#4b5563",
+    "#e5e7eb",
+    "#111827"
+   ],
+   "style": "grid"
+  },
+  {
+   "name": "logo-4.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#27272a",
+    "#a1a1aa",
+    "#18181b"
+   ],
+   "style": "arcs"
+  },
+  {
+   "name": "logo-5.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#3f3f46",
+    "#d4d4d8",
+    "#09090b"
+   ],
+   "style": "stripes"
+  }
+ ],
+ "categories": [
+  {
+   "slug": "insights",
+   "name": "Insights"
+  },
+  {
+   "slug": "news",
+   "name": "News"
+  }
+ ],
+ "pages": [
+  {
+   "home": true,
+   "name": "Home",
+   "sections": [
+    {
+     "id": "hero",
+     "type": "hero",
+     "content": {
+      "eyebrow": "Advisory for companies of 20 to 200 people",
+      "headline": "Clear numbers. Calm operations. Better decisions.",
+      "subheadline": "<p>We set up the finance and operations a growing company needs, then hand it back to your team in a shape it can run.</p>",
+      "primaryCta": "Book a first call",
+      "ctaUrl": "/contact",
+      "secondaryCta": "See our services",
+      "secondaryCtaUrl": "/services",
+      "layout": "split",
+      "heroImage": "{{media:office.png}}",
+      "imageAlt": "Abstract illustration of a calm office"
+     }
+    },
+    {
+     "id": "logos",
+     "type": "logo_strip",
+     "content": {
+      "heading": "Trusted by teams at",
+      "logos": [
+       {
+        "name": "Kestrel Foods",
+        "image": "{{media:logo-1.png}}"
+       },
+       {
+        "name": "Brightwater Labs",
+        "image": "{{media:logo-2.png}}"
+       },
+       {
+        "name": "Oakfield Health",
+        "image": "{{media:logo-3.png}}"
+       },
+       {
+        "name": "Meridian Freight",
+        "image": "{{media:logo-4.png}}"
+       },
+       {
+        "name": "Tallis & Co",
+        "image": "{{media:logo-5.png}}"
+       }
+      ]
+     }
+    },
+    {
+     "id": "services",
+     "type": "features",
+     "content": {
+      "eyebrow": "What we do",
+      "heading": "Three ways we work with you",
+      "variant": "cards",
+      "columns": 3,
+      "features": [
+       {
+        "title": "Finance foundations",
+        "description": "Month-end close in five days, a chart of accounts that fits, and reports the board reads.",
+        "link": "/services",
+        "linkText": "Finance"
+       },
+       {
+        "title": "Operations review",
+        "description": "A two-week look at how work moves through the company, with a short list of fixes ranked by payoff.",
+        "link": "/services",
+        "linkText": "Operations"
+       },
+       {
+        "title": "Interim CFO",
+        "description": "A senior finance lead two days a week, for a fundraise, an acquisition or the months before a hire.",
+        "link": "/services",
+        "linkText": "Interim CFO"
+       }
+      ]
+     }
+    },
+    {
+     "id": "stats",
+     "type": "stats",
+     "content": {
+      "heading": "Results our clients measured",
+      "variant": "bordered",
+      "columns": 3,
+      "stats": [
+       {
+        "value": "5",
+        "suffix": " days",
+        "label": "average month-end close"
+       },
+       {
+        "value": "38",
+        "suffix": "%",
+        "label": "less time on manual reporting"
+       },
+       {
+        "value": "120",
+        "suffix": "+",
+        "label": "companies advised since 2014"
+       }
+      ]
+     }
+    },
+    {
+     "id": "process",
+     "type": "process_steps",
+     "content": {
+      "eyebrow": "How it works",
+      "heading": "From first call to hand-over",
+      "layout": "list",
+      "steps": [
+       {
+        "number": "01",
+        "title": "Listen",
+        "description": "A free hour to understand where the company is and where it is going."
+       },
+       {
+        "number": "02",
+        "title": "Plan",
+        "description": "A written plan with a fixed price, a timeline and what you will own at the end."
+       },
+       {
+        "number": "03",
+        "title": "Build",
+        "description": "We do the work alongside your team, with a short weekly update."
+       },
+       {
+        "number": "04",
+        "title": "Hand over",
+        "description": "Documentation, training and a check-in three months later."
+       }
+      ]
+     }
+    },
+    {
+     "id": "quotes",
+     "type": "testimonials",
+     "content": {
+      "heading": "What clients say",
+      "variant": "grid",
+      "testimonials": [
+       {
+        "quote": "Our board pack used to take two weeks. It now takes two days, and people actually read it.",
+        "name": "Priya Raman",
+        "title": "CEO",
+        "company": "Brightwater Labs",
+        "rating": 5
+       },
+       {
+        "quote": "They found the three things that mattered and left the rest alone. Exactly what we needed.",
+        "name": "Tom Okafor",
+        "title": "COO",
+        "company": "Meridian Freight",
+        "rating": 5
+       },
+       {
+        "quote": "An interim CFO who got us through the raise and then hired their own replacement.",
+        "name": "Lena Brandt",
+        "title": "Founder",
+        "company": "Oakfield Health",
+        "rating": 5
+       }
+      ]
+     }
+    },
+    {
+     "id": "faq",
+     "type": "faq",
+     "content": {
+      "heading": "Questions we hear often",
+      "variant": "accordion",
+      "faqs": [
+       {
+        "question": "Do you work with companies outside our city?",
+        "answer": "<p>Yes. Most of our work is remote, with a visit at the start and at the hand-over.</p>"
+       },
+       {
+        "question": "How do you price a project?",
+        "answer": "<p>A fixed price agreed in the written plan. No hourly billing and no surprises.</p>"
+       },
+       {
+        "question": "Will we depend on you afterwards?",
+        "answer": "<p>No. The goal of every engagement is a team that runs it without us.</p>"
+       }
+      ]
+     }
+    },
+    {
+     "id": "cta",
+     "type": "cta",
+     "content": {
+      "headline": "Ready for numbers you trust?",
+      "subheadline": "<p>Book a free first call. We will tell you honestly whether we can help.</p>",
+      "buttonText": "Book a first call",
+      "buttonUrl": "/contact",
+      "backgroundStyle": "dark"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "services",
+   "name": "Services",
+   "description": "Finance foundations, operations reviews and interim CFO work.",
+   "sections": [
+    {
+     "id": "intro",
+     "type": "content",
+     "content": {
+      "layout": "stack",
+      "eyebrow": "Services",
+      "headline": "Work sized to where you are",
+      "body": "<p>Every engagement starts with a written plan and a fixed price. Pick one service or combine them.</p>"
+     }
+    },
+    {
+     "id": "list",
+     "type": "card_columns",
+     "content": {
+      "heading": "Our services",
+      "columnCount": 3,
+      "columns": [
+       {
+        "label": "6 to 10 weeks",
+        "title": "Finance foundations",
+        "description": "The basics done properly.",
+        "items": [
+         "Chart of accounts",
+         "Five-day close",
+         "Board reporting",
+         "Cash forecast"
+        ]
+       },
+       {
+        "label": "2 weeks",
+        "title": "Operations review",
+        "description": "Where time and money leak.",
+        "items": [
+         "Interviews",
+         "Process maps",
+         "Ranked fixes",
+         "Read-out to leadership"
+        ]
+       },
+       {
+        "label": "3 to 12 months",
+        "title": "Interim CFO",
+        "description": "Senior cover, part time.",
+        "items": [
+         "Fundraise support",
+         "Investor relations",
+         "Hiring your CFO",
+         "Hand-over"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "pricing",
+     "type": "pricing",
+     "content": {
+      "heading": "Typical prices",
+      "subheading": "Fixed per engagement, agreed before we start.",
+      "variant": "cards",
+      "tiers": [
+       {
+        "name": "Review",
+        "price": "6,500",
+        "currency": "$",
+        "billingPeriod": "one-off",
+        "description": "Two-week operations review.",
+        "features": [
+         "Interviews with 8 people",
+         "Written report",
+         "Leadership read-out"
+        ],
+        "ctaText": "Ask about a review",
+        "ctaLink": "/contact"
+       },
+       {
+        "name": "Foundations",
+        "price": "24,000",
+        "currency": "$",
+        "billingPeriod": "per project",
+        "description": "Finance set up end to end.",
+        "features": [
+         "Everything in Review",
+         "Five-day close",
+         "Board pack template",
+         "Team training"
+        ],
+        "ctaText": "Plan a project",
+        "ctaLink": "/contact",
+        "isPopular": true,
+        "badgeText": "Most chosen"
+       },
+       {
+        "name": "Interim CFO",
+        "price": "7,800",
+        "currency": "$",
+        "billingPeriod": "per month",
+        "description": "Two days a week.",
+        "features": [
+         "Board meetings",
+         "Investor updates",
+         "Recruiting support"
+        ],
+        "ctaText": "Talk to us",
+        "ctaLink": "/contact"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "slug": "about",
+   "name": "About",
+   "description": "Who we are.",
+   "sections": [
+    {
+     "id": "story",
+     "type": "content",
+     "content": {
+      "layout": "essay",
+      "eyebrow": "About",
+      "headline": "Small on purpose",
+      "asideText": "Founded 2014",
+      "body": "<p>Northline is three partners and a handful of specialists. We keep it small so the people you meet are the people who do the work.</p><p>We have run finance teams, built operations from scratch and sat on both sides of a fundraise. Now we help companies do the same, faster and with fewer mistakes.</p>"
+     }
+    },
+    {
+     "id": "team",
+     "type": "team",
+     "content": {
+      "heading": "The partners",
+      "variant": "cards",
+      "columns": 3,
+      "showBios": true,
+      "members": [
+       {
+        "name": "Ana Ferreira",
+        "title": "Managing partner",
+        "photo": "{{media:team-1.png}}",
+        "bio": "Former finance director in food and retail."
+       },
+       {
+        "name": "Jonas Weber",
+        "title": "Partner, operations",
+        "photo": "{{media:team-2.png}}",
+        "bio": "Built operations teams at two logistics companies."
+       },
+       {
+        "name": "Mei Tanaka",
+        "title": "Partner, interim CFO",
+        "photo": "{{media:team-3.png}}",
+        "bio": "Three fundraises and one acquisition as CFO."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "slug": "contact",
+   "name": "Contact",
+   "description": "Book a first call.",
+   "sections": [
+    {
+     "id": "contact",
+     "type": "contact_info",
+     "content": {
+      "heading": "Book a first call",
+      "variant": "card",
+      "address": {
+       "street": "12 Harbour Street",
+       "city": "Portsmouth",
+       "postcode": "PO1 3AA",
+       "country": "United Kingdom"
+      },
+      "phone": "+44 20 7946 0000",
+      "email": "hello@example.com",
+      "hours": [
+       {
+        "day": "Monday to Friday",
+        "open": "09:00",
+        "close": "17:30"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "posts": [
+  {
+   "name": "Five signs your month-end close is too slow",
+   "category": "Insights",
+   "category_slug": "insights",
+   "days_ago": 3,
+   "excerpt": "If the numbers arrive after the decisions, the close is too slow. Here is how to tell, and what to fix first.",
+   "featured_image": "{{media:case.png}}",
+   "content": "<p>A close that takes three weeks means every decision in that month is made on old numbers.</p><h2>1. Reports arrive after the meeting</h2><p>If the board pack is late, the close is the bottleneck.</p><h2>2. The same corrections every month</h2><p>Recurring journals are a sign the process, not the people, needs work.</p><h2>3. One person holds it together</h2><p>A close that depends on one person is a risk, not a process.</p>"
+  },
+  {
+   "name": "What an operations review actually looks at",
+   "category": "Insights",
+   "category_slug": "insights",
+   "days_ago": 12,
+   "excerpt": "Two weeks, eight interviews and a ranked list. A look inside the review we run most often.",
+   "content": "<p>An operations review is not an audit. It follows the work, not the org chart.</p><h2>The interviews</h2><p>We talk to the people who do the work, not only the people who manage it.</p><h2>The list</h2><p>Every finding gets a cost, a fix and an owner.</p>"
+  },
+  {
+   "name": "Northline joins the regional growth programme",
+   "category": "News",
+   "category_slug": "news",
+   "days_ago": 30,
+   "excerpt": "We are one of six advisers chosen to support companies in the programme this year.",
+   "content": "<p>This year we will advise twelve companies in the programme, at no cost to them.</p>"
+  }
+ ],
+ "menus": {
+  "header": [
+   {
+    "label": "Services",
+    "page": "services"
+   },
+   {
+    "label": "About",
+    "page": "about"
+   },
+   {
+    "label": "Insights",
+    "archive": "post"
+   },
+   {
+    "label": "Contact",
+    "page": "contact"
+   }
+  ],
+  "footer": [
+   {
+    "label": "About",
+    "page": "about"
+   },
+   {
+    "label": "Contact",
+    "page": "contact"
+   },
+   {
+    "label": "Privacy",
+    "url": "/privacy"
+   }
+  ]
+ },
+ "screenshot": "/",
+ "shots": [
+  {
+   "name": "home",
+   "path": "/"
+  },
+  {
+   "name": "services",
+   "path": "/services"
+  },
+  {
+   "name": "about",
+   "path": "/about"
+  },
+  {
+   "name": "contact",
+   "path": "/contact"
+  },
+  {
+   "name": "archive",
+   "path": "/blog"
+  },
+  {
+   "name": "post",
+   "path": "/blog/five-signs-your-month-end-close-is-too-slow"
+  },
+  {
+   "name": "search",
+   "path": "/search?q=close"
+  },
+  {
+   "name": "not-found",
+   "path": "/this-page-does-not-exist",
+   "status": 404
+  }
+ ]
+}

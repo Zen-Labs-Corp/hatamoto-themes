@@ -1,0 +1,9 @@
+{
+  "name": "hatamoto-themes-tools",
+  "private": true,
+  "description": "Browser checks and screenshots for scripts/shoot.mjs",
+  "type": "module",
+  "dependencies": {
+    "playwright-core": "^1.49.0"
+  }
+}

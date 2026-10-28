@@ -1,0 +1,490 @@
+{
+ "owner": {
+  "email": "owner@example.com",
+  "name": "Iris Calder",
+  "password": "theme-dev-password"
+ },
+ "site": {
+  "name": "Iris Calder",
+  "tagline": "Graphic designer working on identities, maps and books",
+  "colour": "#c23b22"
+ },
+ "media": [
+  {
+   "name": "portrait.png",
+   "w": 900,
+   "h": 1100,
+   "colours": [
+    "#c9a27e",
+    "#f3e3d3",
+    "#7a5235"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "harbour-museum.png",
+   "w": 1600,
+   "h": 1200,
+   "colours": [
+    "#2d4b73",
+    "#d4dfee",
+    "#14243a"
+   ],
+   "style": "arcs"
+  },
+  {
+   "name": "fern-and-field.png",
+   "w": 1600,
+   "h": 1200,
+   "colours": [
+    "#6b8f71",
+    "#dbe8dc",
+    "#2f4a33"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "city-cycling-map.png",
+   "w": 1600,
+   "h": 1200,
+   "colours": [
+    "#c23b22",
+    "#f6d5cc",
+    "#5c1a0e"
+   ],
+   "style": "grid"
+  },
+  {
+   "name": "quiet-hours.png",
+   "w": 1600,
+   "h": 1200,
+   "colours": [
+    "#8a6fa8",
+    "#e6def0",
+    "#3f2d55"
+   ],
+   "style": "stripes"
+  },
+  {
+   "name": "annual-report.png",
+   "w": 1600,
+   "h": 1200,
+   "colours": [
+    "#c99a5b",
+    "#f6ead8",
+    "#6b4a20"
+   ],
+   "style": "arcs"
+  },
+  {
+   "name": "lumen-specimen.png",
+   "w": 1600,
+   "h": 1200,
+   "colours": [
+    "#333333",
+    "#eeeeee",
+    "#000000"
+   ],
+   "style": "stripes"
+  },
+  {
+   "name": "logo-1.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#1f2937",
+    "#9ca3af",
+    "#111827"
+   ],
+   "style": "stripes"
+  },
+  {
+   "name": "logo-2.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#374151",
+    "#d1d5db",
+    "#1f2937"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "logo-3.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#4b5563",
+    "#e5e7eb",
+    "#111827"
+   ],
+   "style": "grid"
+  },
+  {
+   "name": "logo-4.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#27272a",
+    "#a1a1aa",
+    "#18181b"
+   ],
+   "style": "arcs"
+  },
+  {
+   "name": "logo-5.png",
+   "w": 240,
+   "h": 80,
+   "colours": [
+    "#3f3f46",
+    "#d4d4d8",
+    "#09090b"
+   ],
+   "style": "stripes"
+  }
+ ],
+ "schemas": [
+  {
+   "slug": "project",
+   "name": "Project",
+   "like": "post",
+   "settings": {
+    "url_pattern": "/work/{slug}",
+    "archive_path": "/work"
+   }
+  }
+ ],
+ "categories": [
+  {
+   "slug": "identity",
+   "name": "Identity"
+  },
+  {
+   "slug": "print",
+   "name": "Print"
+  },
+  {
+   "slug": "digital",
+   "name": "Digital"
+  }
+ ],
+ "pages": [
+  {
+   "home": true,
+   "name": "Home",
+   "sections": [
+    {
+     "id": "intro",
+     "type": "hero",
+     "content": {
+      "eyebrow": "Graphic designer",
+      "headline": "I design identities, maps and books that people keep.",
+      "subheadline": "<p>Independent since 2016. Working with museums, publishers and small companies who care about the details.</p>",
+      "primaryCta": "See the work",
+      "ctaUrl": "/work",
+      "secondaryCta": "Get in touch",
+      "secondaryCtaUrl": "/contact",
+      "layout": "split",
+      "heroImage": "{{media:portrait.png}}",
+      "imageAlt": "Abstract portrait illustration"
+     }
+    },
+    {
+     "id": "selected",
+     "type": "features",
+     "content": {
+      "eyebrow": "Selected work",
+      "heading": "Recent projects",
+      "variant": "cards",
+      "columns": 3,
+      "features": [
+       {
+        "title": "Harbour Museum identity",
+        "description": "A new identity and wayfinding system for a small maritime museum.",
+        "link": "/work/harbour-museum",
+        "linkText": "View project"
+       },
+       {
+        "title": "Fern & Field packaging",
+        "description": "Packaging for a range of eleven teas, printed with two inks.",
+        "link": "/work/fern-and-field",
+        "linkText": "View project"
+       },
+       {
+        "title": "City cycling map",
+        "description": "A folding map of every protected bike lane in the city.",
+        "link": "/work/city-cycling-map",
+        "linkText": "View project"
+       }
+      ]
+     }
+    },
+    {
+     "id": "clients",
+     "type": "logo_strip",
+     "content": {
+      "heading": "Clients",
+      "logos": [
+       {
+        "name": "Harbour Museum",
+        "image": "{{media:logo-1.png}}"
+       },
+       {
+        "name": "Fern & Field",
+        "image": "{{media:logo-2.png}}"
+       },
+       {
+        "name": "City Transport",
+        "image": "{{media:logo-3.png}}"
+       },
+       {
+        "name": "North Press",
+        "image": "{{media:logo-4.png}}"
+       },
+       {
+        "name": "Lumen Type",
+        "image": "{{media:logo-5.png}}"
+       }
+      ]
+     }
+    },
+    {
+     "id": "quote",
+     "type": "testimonials",
+     "content": {
+      "heading": "Kind words",
+      "variant": "featured",
+      "testimonials": [
+       {
+        "quote": "Iris understood the museum before she drew a single line. Visitors find their way now.",
+        "name": "Hannah Moss",
+        "title": "Director",
+        "company": "Harbour Museum"
+       }
+      ]
+     }
+    },
+    {
+     "id": "cta",
+     "type": "cta",
+     "content": {
+      "headline": "Have a project in mind?",
+      "subheadline": "<p>I take on four or five projects a year. Tell me about yours.</p>",
+      "buttonText": "Write to me",
+      "buttonUrl": "/contact",
+      "backgroundStyle": "tinted"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "about",
+   "name": "About",
+   "description": "About Iris Calder.",
+   "sections": [
+    {
+     "id": "bio",
+     "type": "overview",
+     "content": {
+      "eyebrow": "About",
+      "headline": "Hello, I am Iris.",
+      "body": "<p>I studied typography in Reading and worked at two studios before starting on my own. I like projects with a lot of information and not much space.</p>",
+      "items": [
+       {
+        "bold": "Based in",
+        "text": "Bristol, working everywhere"
+       },
+       {
+        "bold": "Focus",
+        "text": "Identity, wayfinding, editorial"
+       },
+       {
+        "bold": "Tools",
+        "text": "Pencil first, then the computer"
+       }
+      ],
+      "image": "{{media:portrait.png}}"
+     }
+    },
+    {
+     "id": "cv",
+     "type": "card_columns",
+     "content": {
+      "heading": "Experience",
+      "columnCount": 3,
+      "columns": [
+       {
+        "label": "2016 to now",
+        "title": "Independent",
+        "items": [
+         "Identity",
+         "Wayfinding",
+         "Books"
+        ]
+       },
+       {
+        "label": "2012 to 2016",
+        "title": "North Studio",
+        "items": [
+         "Senior designer",
+         "Editorial"
+        ]
+       },
+       {
+        "label": "2010 to 2012",
+        "title": "Press & Co",
+        "items": [
+         "Junior designer",
+         "Packaging"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "slug": "contact",
+   "name": "Contact",
+   "description": "Get in touch.",
+   "sections": [
+    {
+     "id": "contact",
+     "type": "contact_info",
+     "content": {
+      "heading": "Write to me",
+      "variant": "stacked",
+      "email": "hello@example.com",
+      "phone": "+44 117 496 0000",
+      "address": {
+       "city": "Bristol",
+       "country": "United Kingdom"
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "entries": {
+  "project": [
+   {
+    "name": "Harbour Museum identity",
+    "slug": "harbour-museum",
+    "days_ago": 4,
+    "excerpt": "A new identity and wayfinding system for a small maritime museum.",
+    "featured_image": "{{media:harbour-museum.png}}",
+    "content": "<p>A new identity and wayfinding system for a small maritime museum.</p><h2>The brief</h2><p>The client needed something that would last ten years and work in one colour.</p><h2>What we made</h2><p>A system, not a logo: rules for type, colour and layout that the team can use without me.</p><p><img src=\"{{media:harbour-museum.png}}\" alt=\"Project illustration\"></p><h2>Result</h2><p>Launched on time, and still in use.</p>"
+   },
+   {
+    "name": "Fern & Field packaging",
+    "slug": "fern-and-field",
+    "days_ago": 40,
+    "excerpt": "Packaging for a range of eleven teas, printed with two inks.",
+    "featured_image": "{{media:fern-and-field.png}}",
+    "content": "<p>Packaging for a range of eleven teas, printed with two inks.</p><h2>The brief</h2><p>The client needed something that would last ten years and work in one colour.</p><h2>What we made</h2><p>A system, not a logo: rules for type, colour and layout that the team can use without me.</p><p><img src=\"{{media:fern-and-field.png}}\" alt=\"Project illustration\"></p><h2>Result</h2><p>Launched on time, and still in use.</p>"
+   },
+   {
+    "name": "City cycling map",
+    "slug": "city-cycling-map",
+    "days_ago": 90,
+    "excerpt": "A folding map of every protected bike lane in the city.",
+    "featured_image": "{{media:city-cycling-map.png}}",
+    "content": "<p>A folding map of every protected bike lane in the city.</p><h2>The brief</h2><p>The client needed something that would last ten years and work in one colour.</p><h2>What we made</h2><p>A system, not a logo: rules for type, colour and layout that the team can use without me.</p><p><img src=\"{{media:city-cycling-map.png}}\" alt=\"Project illustration\"></p><h2>Result</h2><p>Launched on time, and still in use.</p>"
+   },
+   {
+    "name": "Quiet Hours app",
+    "slug": "quiet-hours",
+    "days_ago": 150,
+    "excerpt": "Interface design for an app that schedules time without notifications.",
+    "featured_image": "{{media:quiet-hours.png}}",
+    "content": "<p>Interface design for an app that schedules time without notifications.</p><h2>The brief</h2><p>The client needed something that would last ten years and work in one colour.</p><h2>What we made</h2><p>A system, not a logo: rules for type, colour and layout that the team can use without me.</p><p><img src=\"{{media:quiet-hours.png}}\" alt=\"Project illustration\"></p><h2>Result</h2><p>Launched on time, and still in use.</p>"
+   },
+   {
+    "name": "Annual report 2025",
+    "slug": "annual-report",
+    "days_ago": 210,
+    "excerpt": "A 64-page annual report for a housing charity, in print and on the web.",
+    "featured_image": "{{media:annual-report.png}}",
+    "content": "<p>A 64-page annual report for a housing charity, in print and on the web.</p><h2>The brief</h2><p>The client needed something that would last ten years and work in one colour.</p><h2>What we made</h2><p>A system, not a logo: rules for type, colour and layout that the team can use without me.</p><p><img src=\"{{media:annual-report.png}}\" alt=\"Project illustration\"></p><h2>Result</h2><p>Launched on time, and still in use.</p>"
+   },
+   {
+    "name": "Type specimen: Lumen",
+    "slug": "lumen-specimen",
+    "days_ago": 300,
+    "excerpt": "A specimen book for a variable serif typeface.",
+    "featured_image": "{{media:lumen-specimen.png}}",
+    "content": "<p>A specimen book for a variable serif typeface.</p><h2>The brief</h2><p>The client needed something that would last ten years and work in one colour.</p><h2>What we made</h2><p>A system, not a logo: rules for type, colour and layout that the team can use without me.</p><p><img src=\"{{media:lumen-specimen.png}}\" alt=\"Project illustration\"></p><h2>Result</h2><p>Launched on time, and still in use.</p>"
+   }
+  ]
+ },
+ "posts": [
+  {
+   "name": "How I price a design project",
+   "days_ago": 20,
+   "excerpt": "Fixed prices, three rounds and a kill fee. Why it works for both sides.",
+   "content": "<p>I price by project, never by hour.</p><h2>Why</h2><p>Clients know the cost before we start, and I am paid for the result, not the time.</p>"
+  }
+ ],
+ "menus": {
+  "header": [
+   {
+    "label": "Work",
+    "archive": "project"
+   },
+   {
+    "label": "About",
+    "page": "about"
+   },
+   {
+    "label": "Notes",
+    "archive": "post"
+   },
+   {
+    "label": "Contact",
+    "page": "contact"
+   }
+  ],
+  "footer": [
+   {
+    "label": "Work",
+    "archive": "project"
+   },
+   {
+    "label": "Contact",
+    "page": "contact"
+   }
+  ]
+ },
+ "screenshot": "/",
+ "shots": [
+  {
+   "name": "home",
+   "path": "/"
+  },
+  {
+   "name": "work",
+   "path": "/work"
+  },
+  {
+   "name": "project",
+   "path": "/work/harbour-museum"
+  },
+  {
+   "name": "about",
+   "path": "/about"
+  },
+  {
+   "name": "contact",
+   "path": "/contact"
+  },
+  {
+   "name": "notes",
+   "path": "/blog"
+  },
+  {
+   "name": "not-found",
+   "path": "/no-such-page",
+   "status": 404
+  }
+ ]
+}

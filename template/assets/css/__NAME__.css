@@ -1,0 +1,83 @@
+/* __TITLE__: the theme's own stylesheet.
+   The engine bundles assets/css/base.css, then every other assets/css/*.css
+   (sorted), then assets/css/sections/*.css, across the theme AND the built-in
+   default theme it falls back to. So this file restyles the default's markup
+   (hm-* classes) and styles this theme's own (__P__-* classes).
+   Rules: only --hm-* tokens for colour, type and radius, so Theme > Colours and
+   fonts keeps working; no request to another host (fonts live in
+   assets/fonts/, added with scripts/add-font.sh). */
+
+:root {
+  /* ---- palette (light) ---- */
+  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
+  --hm-bg: #ffffff;
+  --hm-text: #16181d;
+  --__P__-muted: #5d636e;
+  --__P__-line: #e4e6ea;
+  --__P__-surface: #f6f7f9;
+  /* the default theme's names, so its sections follow this palette */
+  --hm-sumi: var(--hm-text);
+  --hm-hai: var(--__P__-muted);
+  --hm-label: var(--__P__-muted);
+  --hm-hair: var(--__P__-line);
+  --hm-shiro: var(--__P__-surface);
+  --hm-kasumi: var(--__P__-surface);
+  --hm-shu: var(--hm-primary);
+
+  /* ---- type ---- */
+  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --hm-font-heading: var(--hm-font);
+
+  /* ---- shape and rhythm ---- */
+  --hm-radius-sm: 6px;
+  --hm-radius-md: 10px;
+  --hm-radius-lg: 16px;
+  --hm-container: 72rem;
+  --__P__-gap: clamp(1rem, 3vw, 2rem);
+  --__P__-section: clamp(4rem, 9vw, 7rem);
+}
+
+:root[data-theme="dark"] {
+  --hm-bg: #0f1115;
+  --hm-text: #e8eaee;
+  --__P__-muted: #9aa1ad;
+  --__P__-line: #262a31;
+  --__P__-surface: #161920;
+  color-scheme: dark;
+}
+
+[data-__P__-density="compact"] { --__P__-section: clamp(2.5rem, 6vw, 4.5rem); }
+.hm-section { padding-block: var(--__P__-section); }
+
+/* ---- shell ---- */
+.__P__-wrap { width: min(100% - 2 * var(--__P__-gap), var(--hm-container)); margin-inline: auto; }
+
+.__P__-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--__P__-line); }
+.__P__-header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
+.__P__-brand { display: inline-flex; align-items: center; gap: .5rem; color: var(--hm-text); text-decoration: none; font-weight: 650; letter-spacing: -.01em; }
+.__P__-nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin-inline-start: auto; }
+.__P__-nav a { color: var(--__P__-muted); text-decoration: none; font-size: .95rem; }
+.__P__-nav a:hover, .__P__-nav a[aria-current="page"] { color: var(--hm-text); }
+.__P__-header__end { display: flex; align-items: center; gap: .75rem; }
+.__P__-mode { display: inline-grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border: 1px solid var(--__P__-line); border-radius: 999px; background: none; color: var(--hm-text); cursor: pointer; }
+.__P__-mode svg { inline-size: 1rem; block-size: 1rem; }
+.__P__-sun, [data-theme="dark"] .__P__-moon { display: none; }
+[data-theme="dark"] .__P__-sun { display: block; }
+
+.__P__-footer { margin-block-start: var(--__P__-section); padding-block: 3rem 2rem; border-top: 1px solid var(--__P__-line); color: var(--__P__-muted); font-size: .9rem; }
+.__P__-footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
+.__P__-footer__brand { margin: 0; color: var(--hm-text); font-weight: 650; }
+.__P__-footer__brand span { display: block; margin-top: .25rem; color: var(--__P__-muted); font-weight: 400; }
+.__P__-footer__nav { display: flex; flex-wrap: wrap; gap: 2rem 3rem; }
+.__P__-footer__nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.__P__-footer__title { margin: 0 0 .5rem; color: var(--hm-text); font-weight: 600; }
+.__P__-footer a { color: inherit; text-decoration: none; }
+.__P__-footer a:hover { color: var(--hm-text); }
+.__P__-social { display: flex; gap: 1rem; list-style: none; padding: 0; margin: 2rem 0 0; }
+.__P__-footer__legal { margin: 2rem 0 0; }
+
+@media (max-width: 720px) {
+  .__P__-header__inner { flex-wrap: wrap; padding-block: .75rem; gap: .75rem; }
+  .__P__-nav { order: 3; inline-size: 100%; margin: 0; overflow-x: auto; flex-wrap: nowrap; padding-bottom: .25rem; }
+  .__P__-header__end { margin-inline-start: auto; }
+}

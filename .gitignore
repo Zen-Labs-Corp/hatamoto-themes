@@ -1,0 +1,4 @@
+build/
+scripts/node_modules/
+*.hmp
+.DS_Store

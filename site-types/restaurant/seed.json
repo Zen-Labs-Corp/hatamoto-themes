@@ -1,0 +1,436 @@
+{
+ "owner": {
+  "email": "owner@example.com",
+  "name": "Ana Ferreira",
+  "password": "theme-dev-password"
+ },
+ "site": {
+  "name": "Osteria Marea",
+  "tagline": "Seasonal Italian cooking by the harbour",
+  "colour": "#9a3412"
+ },
+ "media": [
+  {
+   "name": "dining-room.png",
+   "w": 1600,
+   "h": 1000,
+   "colours": [
+    "#9a3412",
+    "#fde6d3",
+    "#431407"
+   ],
+   "style": "arcs"
+  },
+  {
+   "name": "pasta.png",
+   "w": 1200,
+   "h": 900,
+   "colours": [
+    "#d97706",
+    "#fef3c7",
+    "#78350f"
+   ],
+   "style": "dots"
+  },
+  {
+   "name": "fish.png",
+   "w": 1200,
+   "h": 900,
+   "colours": [
+    "#0e7490",
+    "#cffafe",
+    "#164e63"
+   ],
+   "style": "stripes"
+  },
+  {
+   "name": "chef.png",
+   "w": 800,
+   "h": 1000,
+   "colours": [
+    "#57534e",
+    "#f5f5f4",
+    "#1c1917"
+   ],
+   "style": "dots"
+  }
+ ],
+ "categories": [
+  {
+   "slug": "news",
+   "name": "News"
+  }
+ ],
+ "pages": [
+  {
+   "home": true,
+   "name": "Home",
+   "sections": [
+    {
+     "id": "hero",
+     "type": "hero",
+     "content": {
+      "eyebrow": "Open Tuesday to Sunday",
+      "headline": "Fish from the morning boats, pasta made at noon.",
+      "subheadline": "<p>A small osteria on the harbour wall. Thirty seats inside, twelve on the terrace in summer.</p>",
+      "primaryCta": "Book a table",
+      "ctaUrl": "/book",
+      "secondaryCta": "See the menu",
+      "secondaryCtaUrl": "/menu",
+      "layout": "split",
+      "heroImage": "{{media:dining-room.png}}",
+      "imageAlt": "Abstract illustration of the dining room"
+     }
+    },
+    {
+     "id": "intro",
+     "type": "overview",
+     "content": {
+      "eyebrow": "The kitchen",
+      "headline": "Short menu, changed every week",
+      "body": "<p>Chef Giulia Ferri writes the menu on Monday from what the boats and the farms bring. When something runs out, it is gone until next week.</p>",
+      "items": [
+       {
+        "bold": "Lunch",
+        "text": "12:00 to 14:30"
+       },
+       {
+        "bold": "Dinner",
+        "text": "18:30 to 22:00"
+       },
+       {
+        "bold": "Closed",
+        "text": "Mondays"
+       }
+      ],
+      "image": "{{media:chef.png}}"
+     }
+    },
+    {
+     "id": "dishes",
+     "type": "features",
+     "content": {
+      "heading": "This week",
+      "variant": "cards",
+      "columns": 3,
+      "features": [
+       {
+        "title": "Tagliolini, crab and lemon",
+        "description": "Hand-cut pasta, brown crab, a lot of lemon.",
+        "badge": "18"
+       },
+       {
+        "title": "Whole bream from the grill",
+        "description": "With salsa verde and potatoes.",
+        "badge": "26"
+       },
+       {
+        "title": "Olive oil cake",
+        "description": "With poached rhubarb.",
+        "badge": "8"
+       }
+      ]
+     }
+    },
+    {
+     "id": "quotes",
+     "type": "testimonials",
+     "content": {
+      "heading": "Guests",
+      "variant": "grid",
+      "testimonials": [
+       {
+        "quote": "The best plate of pasta I have eaten outside Italy.",
+        "name": "A guest",
+        "company": "Google review",
+        "rating": 5
+       },
+       {
+        "quote": "Book the terrace at sunset. Trust me.",
+        "name": "M. Laurent",
+        "company": "Guestbook",
+        "rating": 5
+       }
+      ]
+     }
+    },
+    {
+     "id": "visit",
+     "type": "contact_info",
+     "content": {
+      "heading": "Visit us",
+      "variant": "inline",
+      "address": {
+       "street": "3 Harbour Wall",
+       "city": "Falmouth",
+       "postcode": "TR11 3AA",
+       "country": "United Kingdom"
+      },
+      "phone": "+44 1326 960000",
+      "email": "tavoli@example.com",
+      "hours": [
+       {
+        "day": "Tuesday to Saturday",
+        "open": "12:00",
+        "close": "22:00"
+       },
+       {
+        "day": "Sunday",
+        "open": "12:00",
+        "close": "16:00"
+       },
+       {
+        "day": "Monday",
+        "open": "closed",
+        "close": ""
+       }
+      ]
+     }
+    },
+    {
+     "id": "cta",
+     "type": "cta",
+     "content": {
+      "headline": "Saturday fills up by Wednesday.",
+      "buttonText": "Book a table",
+      "buttonUrl": "/book",
+      "backgroundStyle": "tinted"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "menu",
+   "name": "Menu",
+   "description": "This week's menu.",
+   "sections": [
+    {
+     "id": "menu",
+     "type": "card_columns",
+     "content": {
+      "eyebrow": "Week 43",
+      "heading": "Menu",
+      "subheading": "Prices in pounds. Tell us about allergies when you book.",
+      "columnCount": 3,
+      "columns": [
+       {
+        "label": "To start",
+        "title": "Antipasti",
+        "items": [
+         "Focaccia and olive oil, 4",
+         "Anchovies, butter, toast, 9",
+         "Burrata, peas, mint, 11"
+        ]
+       },
+       {
+        "label": "Pasta",
+        "title": "Primi",
+        "items": [
+         "Tagliolini, crab, lemon, 18",
+         "Ravioli, ricotta, sage, 15",
+         "Pici, pork ragù, 16"
+        ]
+       },
+       {
+        "label": "Mains",
+        "title": "Secondi",
+        "items": [
+         "Grilled bream, salsa verde, 26",
+         "Lamb shoulder, beans, 24",
+         "Aubergine parmigiana, 17"
+        ]
+       }
+      ],
+      "notes": [
+       {
+        "title": "Set lunch",
+        "text": "Two courses and a glass of wine, 24, Tuesday to Friday."
+       }
+      ]
+     }
+    },
+    {
+     "id": "dishes",
+     "type": "features",
+     "content": {
+      "heading": "From the kitchen",
+      "variant": "minimal",
+      "columns": 2,
+      "features": [
+       {
+        "title": "Pasta made at noon",
+        "description": "Every shape is made in the morning for that day."
+       },
+       {
+        "title": "Fish from the boats",
+        "description": "Bought on the quay at seven."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "slug": "about",
+   "name": "About",
+   "description": "Our story.",
+   "sections": [
+    {
+     "id": "story",
+     "type": "content",
+     "content": {
+      "layout": "essay",
+      "eyebrow": "Since 2019",
+      "headline": "A harbour, a kitchen and a short menu",
+      "asideText": "30 seats",
+      "body": "<p>Giulia grew up in Liguria and cooked in London for ten years before opening Marea in a former net loft. The menu follows the sea and the season.</p>"
+     }
+    },
+    {
+     "id": "team",
+     "type": "team",
+     "content": {
+      "heading": "The people",
+      "variant": "simple",
+      "columns": 2,
+      "members": [
+       {
+        "name": "Giulia Ferri",
+        "title": "Chef and owner",
+        "photo": "{{media:chef.png}}"
+       },
+       {
+        "name": "Tom Penrose",
+        "title": "Front of house"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "slug": "book",
+   "name": "Book a table",
+   "description": "Reservations.",
+   "sections": [
+    {
+     "id": "book",
+     "type": "contact_info",
+     "content": {
+      "heading": "Book a table",
+      "variant": "card",
+      "phone": "+44 1326 960000",
+      "email": "tavoli@example.com",
+      "hours": [
+       {
+        "day": "Bookings by phone",
+        "open": "10:00",
+        "close": "18:00"
+       }
+      ]
+     }
+    },
+    {
+     "id": "faq",
+     "type": "faq",
+     "content": {
+      "heading": "Good to know",
+      "variant": "accordion",
+      "faqs": [
+       {
+        "question": "Do you take walk-ins?",
+        "answer": "<p>Yes, at the bar, when there is room.</p>"
+       },
+       {
+        "question": "Are children welcome?",
+        "answer": "<p>Yes, and there is a small menu for them.</p>"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "posts": [
+  {
+   "name": "The terrace opens on 1 May",
+   "category": "News",
+   "category_slug": "news",
+   "days_ago": 5,
+   "excerpt": "Twelve seats outside, sunset bookings from 19:30.",
+   "featured_image": "{{media:fish.png}}",
+   "content": "<p>The terrace opens for the season on 1 May.</p>"
+  },
+  {
+   "name": "A new pasta shape every month",
+   "category": "News",
+   "category_slug": "news",
+   "days_ago": 25,
+   "excerpt": "This month: corzetti, stamped by hand.",
+   "featured_image": "{{media:pasta.png}}",
+   "content": "<p>Corzetti are coins of pasta stamped with a wooden mould.</p>"
+  }
+ ],
+ "menus": {
+  "header": [
+   {
+    "label": "Menu",
+    "page": "menu"
+   },
+   {
+    "label": "About",
+    "page": "about"
+   },
+   {
+    "label": "News",
+    "archive": "post"
+   },
+   {
+    "label": "Book a table",
+    "page": "book"
+   }
+  ],
+  "footer": [
+   {
+    "label": "Menu",
+    "page": "menu"
+   },
+   {
+    "label": "Book",
+    "page": "book"
+   }
+  ]
+ },
+ "screenshot": "/",
+ "shots": [
+  {
+   "name": "home",
+   "path": "/"
+  },
+  {
+   "name": "menu",
+   "path": "/menu"
+  },
+  {
+   "name": "about",
+   "path": "/about"
+  },
+  {
+   "name": "book",
+   "path": "/book"
+  },
+  {
+   "name": "news",
+   "path": "/blog"
+  },
+  {
+   "name": "post",
+   "path": "/blog/the-terrace-opens-on-1-may"
+  },
+  {
+   "name": "not-found",
+   "path": "/no-such-page",
+   "status": 404
+  }
+ ]
+}

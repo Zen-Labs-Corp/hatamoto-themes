@@ -1,0 +1,17 @@
+{{define "footer"}}<footer class="__P__-footer">
+<div class="__P__-wrap">
+<div class="__P__-footer__top">
+<p class="__P__-footer__brand">{{.Site.Name}}{{with .Site.Tagline}}<span>{{.}}</span>{{end}}</p>
+{{if .Site.FooterNav}}<nav class="__P__-footer__nav" aria-label="Footer">
+{{range .Site.FooterNav}}<div class="__P__-footer__col">
+{{if .Children}}<p class="__P__-footer__title">{{.Label}}</p>
+<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{else}}<ul><li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li></ul>{{end}}
+</div>
+{{end}}</nav>
+{{end}}</div>
+{{if .Site.SocialLinks}}<ul class="__P__-social">
+{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
+{{end}}</ul>
+{{end}}<p class="__P__-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
+</div>
+</footer>{{end}}
