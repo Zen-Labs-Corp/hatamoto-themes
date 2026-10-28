@@ -1,0 +1,50 @@
+{{define "content"}}{{$e := .Entity}}{{$b := docBody .Body}}{{$toc := and .Settings.toc (gt (len $b.TOC) 1)}}{{$mins := readingTime .Body}}
+{{if $toc}}<div class="hs-tocm" id="hs-tocm">
+<button type="button" aria-expanded="false" aria-controls="hs-tocm-panel"><span class="hs-num" id="hs-tocm-n">01</span><span id="hs-tocm-t">On this page</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></button>
+<div class="hs-tocm__panel" id="hs-tocm-panel" hidden>{{template "hs-toc-list" $b.TOC}}</div>
+</div>{{end}}
+<article class="hs-wrap hs-article">
+<header class="hs-post-head">
+<nav class="hs-crumbs" aria-label="Breadcrumb"><a href="{{cta .Settings.archive_url}}">Journal</a>{{with $e.Categories}}{{with index . 0}}<span aria-hidden="true">/</span><a href="{{.URL}}">{{.Name}}</a>{{end}}{{end}}</nav>
+{{with $e.Categories}}<span class="hs-eyebrow">{{range $i, $c := .}}{{if $i}} · {{end}}{{$c.Name}}{{end}}</span>{{end}}
+<h1 class="hs-display">{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="hs-lede">{{.}}</p>{{end}}
+<div class="hs-metabar">
+{{with $e.Author}}<div class="hs-byline">{{with .Avatar}}<img class="hs-avatar" src="{{imgsrc .}}" alt="" width="28" height="28">{{else}}<span class="hs-avatar" aria-hidden="true">{{printf "%.1s" .Name}}</span>{{end}}<strong>{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</strong></div>{{end}}
+<dl>
+{{if not $e.PublishedAt.IsZero}}<div><dt>Published</dt><dd><time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 Jan 2006"}}</time></dd></div>{{end}}
+{{if and (not $e.UpdatedAt.IsZero) (ne (formatDate $e.UpdatedAt "2006-01-02") (formatDate $e.PublishedAt "2006-01-02"))}}<div><dt>Updated</dt><dd><time datetime="{{formatDate $e.UpdatedAt "2006-01-02"}}">{{formatDate $e.UpdatedAt "2 Jan 2006"}}</time></dd></div>{{end}}
+{{if $mins}}<div><dt>Reading</dt><dd>{{$mins}} min</dd></div>{{end}}
+</dl>
+<div class="hs-metabar__act"><a class="hs-btn hs-btn--sm" href="{{$e.URL}}" data-hs-copy="url" data-hs-js hidden><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.8 2.8 0 014 4l-1 1M9 11.5l-1 1a2.8 2.8 0 01-4-4l1-1"/></svg>Copy link</a></div>
+</div>
+</header>
+{{if or $e.Image (ne .Settings.covers "image-only")}}<figure class="hs-post-cover">{{if $e.Image}}<div class="hs-cover hs-cover--img hs-cover--post"><img src="{{imgsrc $e.Image}}"{{with srcset $e.Image}} srcset="{{.}}" sizes="(min-width: 75rem) 75rem, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></div>{{else}}<div class="hs-cover hs-cover--post" data-hs-cover data-cat="{{with $e.Categories}}{{(index . 0).Name}}{{end}}" data-key="{{$e.Title}}" data-seed="{{len $e.Title}}" aria-hidden="true"></div>{{end}}</figure>{{end}}
+<div class="hs-post{{if not $toc}} hs-post--solo{{end}}">
+{{if $toc}}<nav class="hs-toc" id="hs-toc" aria-label="On this page">
+<div class="hs-toc__head"><span class="hs-eyebrow">Index</span><span class="hs-mono" id="hs-toc-count"></span></div>
+{{template "hs-toc-list" $b.TOC}}
+<div class="hs-toc__foot" data-hs-js hidden>
+<div class="hs-toc__left"><span id="hs-toc-left">{{$mins}} min left</span><span class="hs-mono" id="hs-toc-pct">0%</span></div>
+<div class="hs-toc__bar"><i id="hs-toc-bar"></i></div>
+<div class="hs-toc__links"><a href="#main-content">Back to top ↑</a><button type="button" id="hs-toc-copy">Copy section link</button></div>
+</div>
+</nav>{{end}}
+<div class="hs-prose-wrap">
+<div class="hm-prose hs-prose" id="hs-prose" data-hs-minutes="{{$mins}}">{{$b.HTML}}</div>
+{{with .Blocks}}<div class="hs-blocks">{{range .}}{{template "section" .}}
+{{end}}</div>{{end}}
+<footer class="hs-end">
+{{with $e.Tags}}<div class="hs-tags"><span class="hs-eyebrow">Tags</span>{{range .}}<a class="hs-chip" href="{{.URL}}">{{.Name}}</a>{{end}}</div>{{end}}
+{{with $e.Author}}<aside class="hs-authorbox" aria-label="About the author">{{with .Avatar}}<img class="hs-avatar" src="{{imgsrc .}}" alt="" width="48" height="48">{{else}}<span class="hs-avatar" aria-hidden="true">{{printf "%.1s" .Name}}</span>{{end}}<div><p>Written by {{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>{{with .JobTitle}}<p>{{.}}</p>{{end}}{{with .Bio}}<p>{{.}}</p>{{end}}</div></aside>{{end}}
+</footer>
+</div>
+</div>
+</article>
+{{with call .Related 3}}<section class="hs-section hs-section--related" aria-labelledby="hs-rel-h"><div class="hs-wrap">
+<div class="hs-sechead"><div><span class="hs-eyebrow">Keep reading</span><h2 class="hs-h2" id="hs-rel-h">Related posts</h2></div></div>
+<div class="hs-related">{{range $i, $it := .}}<a href="{{$it.URL}}">{{if $it.Image}}{{template "hs-cover" dict "Item" $it "No" 0 "Auto" false}}{{else if ne $.Settings.covers "image-only"}}<div class="hs-cover" data-hs-cover data-cat="{{$it.Category}}" data-key="{{$it.Title}}" data-seed="{{len $it.Title}}" aria-hidden="true"></div>{{end}}{{with $it.Category}}<span class="hs-eyebrow">{{.}}</span>{{end}}<b>{{$it.Title}}</b><span class="hs-meta"><span>{{formatDate $it.PublishedAt "2 Jan 2006"}}</span>{{with $it.ReadingTime}}<span>{{.}} min</span>{{end}}</span></a>{{end}}</div>
+</div></section>{{end}}
+{{end}}
+
+{{define "hs-toc-list"}}<ol class="hs-toc__list">{{$n := 0}}{{range .}}{{if eq .Level 2}}{{$n = add $n 1}}<li><a href="#{{.ID}}" data-t="{{.ID}}"><span class="hs-num">{{printf "%02d" $n}}</span><span>{{.Text}}</span></a></li>{{else}}<li class="hs-toc__sub"><a href="#{{.ID}}" data-t="{{.ID}}"><span>{{.Text}}</span></a></li>{{end}}{{end}}</ol>{{end}}

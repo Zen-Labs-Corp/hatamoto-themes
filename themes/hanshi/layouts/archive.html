@@ -1,0 +1,13 @@
+{{define "content"}}<div class="hs-wrap">
+<header class="hs-listhead">
+<div>
+<nav class="hs-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">{{.Page.Name}}</span></nav>
+<span class="hs-eyebrow">Archive</span>
+<h1 class="hs-display">{{.Page.Name}}</h1>
+<p class="hs-lede">{{with .Page.Description}}{{.}}{{else}}{{with .Pagination}}{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}}, newest first.{{end}}{{end}}</p>
+</div>
+{{with .Pagination}}{{if gt .TotalPages 1}}<div class="hs-pagebig" aria-hidden="true">{{printf "%02d" .Page}}<small>/ {{printf "%02d" .TotalPages}}</small></div>{{end}}{{end}}
+</header>
+{{template "hs-chips" dict "Terms" (terms "category" 12) "All" .Path "Cur" ""}}
+{{template "hs-list" dict "Root" . "Group" true "Noun" "posts"}}
+</div>{{end}}

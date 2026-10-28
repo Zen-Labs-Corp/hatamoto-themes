@@ -1,0 +1,58 @@
+{
+  "name": "hanshi",
+  "version": "1.0.0",
+  "description": "A blog theme: hairline frames, generated pattern covers, a page ruler for pagination and an index that follows you through every post.",
+  "screenshot": "assets/screenshot.png",
+  "csp": { "strictScripts": true },
+  "builder": { "tokens": true, "parts": ["header", "footer", "single", "archive"] },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "accent": {
+        "type": "string",
+        "title": "Accent colour",
+        "description": "Brand uses the colour from Theme > Colours and fonts. The others are presets with their own dark-mode pair.",
+        "enum": ["brand", "indigo", "moss", "ink"],
+        "default": "brand"
+      },
+      "heading_font": { "type": "string", "title": "Heading font", "enum": ["sans", "serif"], "default": "sans" },
+      "density": { "type": "string", "title": "Spacing", "enum": ["comfortable", "compact"], "default": "comfortable" },
+      "corners": { "type": "string", "title": "Corners", "enum": ["soft", "sharp"], "default": "soft" },
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "light"
+      },
+      "posts_on_home": { "type": "integer", "title": "Posts per homepage page", "minimum": 1, "maximum": 12, "default": 5 },
+      "home_layout": { "type": "string", "title": "Homepage list", "enum": ["list", "grid"], "default": "list" },
+      "home_sections": {
+        "type": "boolean",
+        "title": "Show the homepage's own sections",
+        "description": "Render the sections of the page set as the homepage below the posts.",
+        "default": false
+      },
+      "archive_url": { "type": "string", "title": "Address of the post archive", "default": "/blog" },
+      "masthead_eyebrow": { "type": "string", "title": "Masthead label", "default": "The journal" },
+      "masthead_title": { "type": "string", "title": "Masthead headline", "description": "Empty uses the site name.", "default": "" },
+      "masthead_lede": { "type": "string", "title": "Masthead text", "description": "Empty uses the site tagline.", "default": "" },
+      "masthead_side": { "type": "string", "title": "Vertical masthead word", "description": "Empty hides it.", "default": "Journal" },
+      "covers": {
+        "type": "string",
+        "title": "Covers",
+        "description": "auto draws a pattern cover for posts without a featured image.",
+        "enum": ["auto", "image-only"],
+        "default": "auto"
+      },
+      "toc": { "type": "boolean", "title": "Post index sidebar", "default": true },
+      "subscribe_url": { "type": "string", "title": "Newsletter address", "description": "Adds an Email link and a Subscribe button. Empty shows feeds only.", "default": "" },
+      "visitor_panel": {
+        "type": "boolean",
+        "title": "Let visitors try the presets",
+        "description": "Shows a small Theme panel with the accent, font, spacing and corner presets, saved in the visitor's browser. Meant for demo sites.",
+        "default": false
+      }
+    }
+  }
+}
