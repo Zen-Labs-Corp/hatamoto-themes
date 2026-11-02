@@ -20,7 +20,7 @@ covers, a page ruler for pagination and an index that follows you through every 
 - **Design tokens**: every value is a `--hm-*` token, so **Theme > Colours and fonts**
   and **Theme > Design system** restyle it. The theme opts in to `builder.tokens` and to
   the `header`, `footer`, `single` and `archive` layout parts.
-- **Light and dark** with the engine's own toggle.
+- **Light and dark** with the engine's own toggle, in the footer.
 
 Everything works without JavaScript. The scripts only add the covers, the palette, the
 post index and the keyboard shortcuts. They are served from the site itself, so the
