@@ -1,6 +1,6 @@
 {
   "name": "hanshi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A blog theme: hairline frames, generated pattern covers, a page ruler for pagination and an index that follows you through every post.",
   "screenshot": "assets/screenshot.png",
   "csp": { "strictScripts": true },
@@ -21,7 +21,7 @@
       "color_mode": {
         "type": "string",
         "title": "Colour mode",
-        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "description": "What a first-time visitor sees. Visitors can still switch with the toggle in the footer.",
         "enum": ["light", "dark", "auto"],
         "default": "light"
       },

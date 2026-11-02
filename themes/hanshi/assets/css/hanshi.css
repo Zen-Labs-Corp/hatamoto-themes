@@ -272,6 +272,9 @@ a:hover .hs-cover .sun,.hs-cover:hover .sun{background:var(--hm-accent);transfor
 .hs-footer a:hover{color:var(--hm-sumi)}
 .hs-footer__base{margin-top:var(--hm-space-10);padding-top:var(--hm-space-6);border-top:1px solid var(--hm-hair);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--hm-label);font-size:12px}
 .hs-footer__base .hs-mono{font-size:12px}
+.hs-footer__base{align-items:center}
+.hs-footer__start{display:inline-flex;align-items:center;gap:12px}
+.hs-footer__base .hs-mode{width:30px;height:30px}
 .hs-status{display:inline-flex;align-items:center;gap:8px}
 .hs-status i{width:7px;height:7px;border-radius:50%;background:#3aa35b;box-shadow:0 0 0 3px color-mix(in srgb,#3aa35b 20%,transparent)}
 @media (max-width:760px){.hs-footer__grid{grid-template-columns:1fr 1fr}}

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- The light and dark toggle moved from the header to the footer, next to the copyright line.
+
 ## 1.0.0
 
 First release.
