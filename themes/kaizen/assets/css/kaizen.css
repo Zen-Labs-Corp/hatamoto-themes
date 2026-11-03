@@ -457,3 +457,6 @@ img { max-width: 100%; height: auto; }
   .kz-lost { padding-top: 1.5rem; }
   .kz-search { gap: .5rem; }
 }
+
+/* long words and URLs wrap instead of being cut off at the viewport edge */
+.kz-hero h1, .kz-title, .kz-feat__title, .kz-t, .kz-prose { overflow-wrap: anywhere; min-width: 0; }
