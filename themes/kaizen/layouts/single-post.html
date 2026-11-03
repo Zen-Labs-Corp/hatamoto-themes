@@ -1,0 +1,35 @@
+{{define "content"}}{{$e := .Entity}}{{$b := docBody .Body}}{{$toc := gt (len $b.TOC) 1}}{{$mins := readingTime .Body}}
+{{$q := query (dict "schema" "post" "limit" 100)}}{{$num := 0}}{{$words := 0}}{{range $i, $it := $q.Items}}{{if eq $it.URL $e.URL}}{{$num = sub $q.Total $i}}{{$words = $it.WordCount}}{{end}}{{end}}
+<article class="kz-article">
+<div class="kz-wrap">
+<header class="kz-head">
+<nav class="kz-crumbs kz-mono" aria-label="Breadcrumb">{{if gt (len .Breadcrumb) 2}}{{with index .Breadcrumb 1}}<a href="{{.URL}}">{{.Name}}</a><span aria-hidden="true">/</span>{{end}}{{end}}{{with $e.Categories}}{{with index . 0}}<a href="{{.URL}}">{{.Name}}</a><span aria-hidden="true">/</span>{{end}}{{end}}<span aria-current="page">{{if $num}}{{printf "%03d" $num}}{{else}}{{$e.Title}}{{end}}</span></nav>
+<h1 class="kz-title"{{if $num}} style="view-transition-name:kz-p-{{$num}}"{{end}}>{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="kz-excerpt">{{.}}</p>{{end}}
+<dl class="kz-facts kz-mono">
+{{if not $e.PublishedAt.IsZero}}<div><dt>Published</dt><dd><time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "02 Jan 2006"}}</time></dd></div>{{end}}
+{{if $mins}}<div><dt>Reading</dt><dd>{{$mins}} min</dd></div>{{end}}
+{{if gt $words 0}}<div><dt>Words</dt><dd>{{$words}}</dd></div>{{end}}
+</dl>
+</header>
+{{if $e.Image}}<figure class="kz-figure"><img src="{{imgsrc $e.Image}}"{{with srcset $e.Image}} srcset="{{.}}" sizes="(min-width: 75rem) 75rem, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
+<div class="kz-cols{{if not $toc}} kz-cols--solo{{end}}">
+<div class="kz-main">
+<div class="hm-prose kz-prose" id="kz-prose">{{$b.HTML}}</div>
+{{with .Blocks}}<div class="kz-blocks">{{range .}}{{template "section" .}}
+{{end}}</div>{{end}}
+{{if or $e.Categories $e.Tags}}<div class="kz-chips">{{range $e.Categories}}<a class="kz-chip" href="{{.URL}}">{{.Name}}</a>{{end}}{{range $e.Tags}}<a class="kz-chip kz-chip--tag" href="{{.URL}}">{{.Name}}</a>{{end}}</div>{{end}}
+</div>
+{{if $toc}}<aside class="kz-aside"><nav class="kz-toc" id="kz-toc" aria-label="On this page">
+<h2 class="kz-mono">On this page <b id="kz-toc-pct">0%</b></h2>
+<ol>{{$n := 0}}{{range $b.TOC}}{{if eq .Level 2}}{{$n = add $n 1}}<li><a href="#{{.ID}}" data-t="{{.ID}}"><span class="kz-mono">{{printf "%02d" $n}}</span><span>{{.Text}}</span></a></li>{{else}}<li class="kz-toc__sub"><a href="#{{.ID}}" data-t="{{.ID}}"><span></span><span>{{.Text}}</span></a></li>{{end}}{{end}}</ol>
+<div class="kz-toc__bar" aria-hidden="true"><i id="kz-toc-bar"></i></div>
+</nav></aside>{{end}}
+</div>
+{{with call .Related 3}}<section class="kz-more" aria-labelledby="kz-more-h">
+<div class="kz-sec-h"><h2 id="kz-more-h">Keep reading</h2><span class="kz-mono">More from the journal</span></div>
+<ol class="kz-list">{{range .}}{{template "kz-row" dict "Item" . "No" 0 "Short" true}}{{end}}</ol>
+</section>{{end}}
+</div>
+</article>
+{{end}}

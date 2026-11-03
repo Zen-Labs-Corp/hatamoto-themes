@@ -1,0 +1,13 @@
+{{define "content"}}{{$pg := .Pagination}}
+<div class="kz-page">
+<div class="kz-wrap">
+<header class="kz-head">
+<nav class="kz-crumbs kz-mono" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Search</span></nav>
+<h1 class="kz-title">{{if .Query}}Results for &ldquo;{{.Query}}&rdquo;{{else}}Search{{end}}</h1>
+{{template "kz-search-form" dict "Id" "kz-q" "Root" . "Label" "Search the journal"}}
+{{if .Query}}{{with $pg}}{{if gt .Total 0}}<p class="kz-count kz-mono" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}}</p>{{end}}{{end}}{{end}}
+</header>
+{{if .Query}}{{template "kz-listing" dict "Root" . "Group" false "Numbers" false "Noun" "results" "Empty" "Nothing matched. Try a shorter word or a different spelling."}}{{else}}<p class="kz-empty">Type a word or phrase to search.</p>{{end}}
+</div>
+</div>
+{{end}}

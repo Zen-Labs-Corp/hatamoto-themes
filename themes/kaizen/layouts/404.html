@@ -1,0 +1,17 @@
+{{define "content"}}
+<div class="kz-page kz-lost">
+<div class="kz-wrap">
+<p class="kz-404 kz-mono" aria-hidden="true">404</p>
+<header class="kz-head kz-head--bare">
+<h1 class="kz-title">This page wandered off</h1>
+<p class="kz-excerpt">The link may be old, or the entry moved. Search the journal, or start again from the latest entries.</p>
+{{template "kz-search-form" dict "Id" "kz-q404" "Root" . "Label" "Search the journal"}}
+<a class="kz-btn" href="/">Back to the homepage <span aria-hidden="true">→</span></a>
+</header>
+{{with recent "post" 3}}<section class="kz-more" aria-labelledby="kz-lost-h">
+<div class="kz-sec-h"><h2 id="kz-lost-h">Latest entries</h2><span class="kz-mono">Start here</span></div>
+<ol class="kz-list">{{range .}}{{template "kz-row" dict "Item" . "No" 0 "Short" true}}{{end}}</ol>
+</section>{{end}}
+</div>
+</div>
+{{end}}

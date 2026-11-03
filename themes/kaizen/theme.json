@@ -1,0 +1,49 @@
+{
+  "name": "kaizen",
+  "version": "0.1.0",
+  "description": "A dark-first blog theme: a glowing horizon hero, a numbered index with sticky months, smooth page transitions and a live status strip in the footer.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the toggle in the header or footer.",
+        "enum": [
+          "dark",
+          "light",
+          "auto"
+        ],
+        "default": "dark"
+      },
+      "show_latest": {
+        "type": "boolean",
+        "title": "Show the latest entry card",
+        "default": true
+      },
+      "show_status": {
+        "type": "boolean",
+        "title": "Show the footer status strip",
+        "default": true
+      },
+      "show_wordmark": {
+        "type": "boolean",
+        "title": "Show the large footer wordmark",
+        "default": true
+      }
+    }
+  }
+}

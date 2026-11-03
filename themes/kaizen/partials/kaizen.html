@@ -1,0 +1,54 @@
+{{/* Kaizen building blocks. Every partial takes a dict and is prefixed kz-. */}}
+
+{{/* kz-cover: Item (a RelatedItem). Prints nothing without an image; only used by the latest entry card, so it loads eagerly. */}}
+{{define "kz-cover"}}{{$i := .Item}}{{if $i.Image}}<div class="kz-cover"><img src="{{imgsrc $i.Image}}"{{with srcset $i.Image}} srcset="{{.}}" sizes="(min-width: 60rem) 40rem, 100vw"{{end}} alt="{{with $i.Attrs.featured_image_alt}}{{.}}{{end}}" loading="eager" decoding="async"></div>{{end}}{{end}}
+
+{{/* kz-feat: the latest entry card. Item, No (entry number, 0 for none) */}}
+{{define "kz-feat"}}{{$i := .Item}}<a class="kz-feat{{if not $i.Image}} kz-feat--text{{end}}" href="{{$i.URL}}">
+{{template "kz-cover" dict "Item" $i}}
+<div class="kz-feat__body">
+<span class="kz-mono kz-feat__tag">{{if .No}}{{printf "%03d" .No}}{{with $i.Category}} · {{end}}{{end}}{{$i.Category}}</span>
+<h2 class="kz-feat__title"{{if .No}} style="view-transition-name:kz-p-{{.No}}"{{end}}>{{$i.Title}}</h2>
+{{with $i.Excerpt}}<p>{{.}}</p>{{end}}
+<div class="kz-feat__meta"><span class="kz-mono">{{formatDate $i.PublishedAt "02 Jan 2006"}}{{with $i.ReadingTime}} · {{.}} min{{end}}</span><span class="kz-go">Read entry <i aria-hidden="true">→</i></span></div>
+</div>
+</a>{{end}}
+
+{{/* kz-row: one entry in an index. Item, No (0 = no number cell), Short (day and month only) */}}
+{{define "kz-row"}}{{$i := .Item}}<li class="kz-row{{if not .No}} kz-row--plain{{end}}"><a href="{{$i.URL}}">
+{{if .No}}<span class="kz-n kz-mono">{{printf "%03d" .No}}</span>{{end}}<span class="kz-t"{{if .No}} style="view-transition-name:kz-p-{{.No}}"{{end}}>{{$i.Title}}</span>{{with $i.Category}}<span class="kz-c kz-mono">{{.}}</span>{{else}}<span></span>{{end}}<time class="kz-mono" datetime="{{formatDate $i.PublishedAt "2006-01-02"}}">{{if .Short}}{{formatDate $i.PublishedAt "02 Jan"}}{{else}}{{formatDate $i.PublishedAt "02 Jan 2006"}}{{end}}</time>
+</a></li>{{end}}
+
+{{/* kz-month-list: entries grouped by month. Items, Base (items before this page), Total, Skip (leave out the first), Numbers (false: no entry numbers) */}}
+{{define "kz-month-list"}}{{$m := ""}}{{$base := .Base}}{{$total := .Total}}{{$nums := .Numbers}}{{$skip := .Skip}}{{range $i, $it := .Items}}{{if or (not $skip) (gt $i 0)}}{{$cur := formatDate $it.PublishedAt "January 2006"}}{{if ne $cur $m}}{{if ne $m ""}}</ol></section>{{end}}<section class="kz-group"><h3 class="kz-mo"><span class="kz-mo__m">{{formatDate $it.PublishedAt "January"}}</span><span class="kz-mo__y kz-mono">{{formatDate $it.PublishedAt "2006"}}</span></h3><ol class="kz-list">{{$m = $cur}}{{end}}
+{{$no := 0}}{{if $nums}}{{$no = sub $total (add $base $i)}}{{end}}{{template "kz-row" dict "Item" $it "No" $no "Short" true}}{{end}}{{end}}{{if ne $m ""}}</ol></section>{{end}}{{end}}
+
+{{/* kz-page-url: N, Pg (a *Pagination, or nil on the homepage) */}}
+{{define "kz-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+
+{{/* kz-pager: Page, Pages, Total, Per, Count, Pg, Noun */}}
+{{define "kz-pager"}}{{$p := .Page}}{{$n := .Pages}}{{$pg := .Pg}}{{if gt $n 1}}{{$from := add (mul (sub $p 1) .Per) 1}}<nav class="kz-pager" aria-label="Pagination">
+<p class="kz-mono">Showing {{.Noun}} {{$from}}–{{add $from (sub .Count 1)}} of {{.Total}}</p>
+<div class="kz-pager__nav">
+{{if gt $p 1}}<a class="kz-pager__dir" href="{{template "kz-page-url" dict "N" (sub $p 1) "Pg" $pg}}" rel="prev"><span aria-hidden="true">←</span> Newer</a>{{else}}<span class="kz-pager__dir" aria-disabled="true"><span aria-hidden="true">←</span> Newer</span>{{end}}
+<ul>{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a class="kz-mono" href="{{template "kz-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<li><span aria-hidden="true">…</span></li>{{end}}{{end}}</ul>
+{{if lt $p $n}}<a class="kz-pager__dir" href="{{template "kz-page-url" dict "N" (add $p 1) "Pg" $pg}}" rel="next">Older <span aria-hidden="true">→</span></a>{{else}}<span class="kz-pager__dir" aria-disabled="true">Older <span aria-hidden="true">→</span></span>{{end}}
+</div>
+</nav>{{end}}{{end}}
+
+{{/* kz-listing: a listing body. Root (the view), Group (by month), Numbers (entry numbers: only right on the whole archive), Noun, Empty (text when there are no items) */}}
+{{define "kz-listing"}}{{$v := .Root}}{{$pg := $v.Pagination}}{{if $v.Items}}{{$base := 0}}{{$total := len $v.Items}}{{with $pg}}{{$base = mul (sub .Page 1) .PerPage}}{{$total = .Total}}{{end}}
+{{if .Group}}{{template "kz-month-list" dict "Items" $v.Items "Base" $base "Total" $total "Numbers" .Numbers}}{{else}}<ol class="kz-list">{{range $v.Items}}{{template "kz-row" dict "Item" . "No" 0 "Short" true}}{{end}}</ol>{{end}}
+{{with $pg}}{{template "kz-pager" dict "Page" .Page "Pages" .TotalPages "Total" .Total "Per" .PerPage "Count" (len $v.Items) "Pg" . "Noun" $.Noun}}{{end}}
+{{else}}<p class="kz-empty">{{.Empty}}</p>{{end}}{{end}}
+
+{{/* kz-search-form: Id, Root (the view), Label */}}
+{{define "kz-search-form"}}<form class="kz-search" role="search" action="/search" method="get">
+<label class="kz-sr" for="{{.Id}}">{{.Label}}</label>
+<input id="{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search the journal" autocomplete="off">
+{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}
+<button type="submit">Search</button>
+</form>{{end}}
+
+{{/* kz-term-chips: Terms, Label, Cur (URL of the current term, or "" for All), All (URL of All) */}}
+{{define "kz-term-chips"}}{{if .Terms}}<nav class="kz-chips kz-chips--head" aria-label="{{.Label}}">{{with .All}}<a class="kz-chip" href="{{.}}"{{if not $.Cur}} aria-current="page"{{end}}>All</a>{{end}}{{range .Terms}}<a class="kz-chip" href="{{.URL}}"{{if eq .URL $.Cur}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{end}}{{end}}

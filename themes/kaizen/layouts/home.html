@@ -1,0 +1,22 @@
+{{define "content"}}{{$per := 12}}{{$r := query (dict "schema" "post" "limit" $per "page" (pageNum .))}}{{$base := mul (sub $r.Page 1) $per}}{{$card := and .Settings.show_latest (eq $r.Page 1) $r.Items}}{{/* the untouched first-boot home carries one "welcome" hero with core's placeholder text: the hero below stands in for it, but never in the editor canvas/preview and never once the owner has edited it */}}{{$w := and .Blocks (eq (len .Blocks) 1) (eq (index .Blocks 0).ID "welcome") (eq (printf "%v" (index .Blocks 0).Content.subheadline) "Your site is running. Sign in to the admin to edit this page.")}}{{$own := and .Blocks (or .Canvas .Preview (not $w))}}
+{{if $own}}{{template "page-body" .}}{{else}}<section class="kz-hero">
+<div class="kz-dots" aria-hidden="true"></div><div class="kz-sun" aria-hidden="true"></div><div class="kz-horizon" aria-hidden="true"></div>
+<div class="kz-wrap">
+{{with recent "post" 1}}{{with index . 0}}<span class="kz-eyebrow kz-mono"><span class="kz-live"></span>Entry {{printf "%03d" $r.Total}} · {{formatDate .PublishedAt "02 Jan 2006"}}</span>{{end}}{{end}}
+<h1>{{.Site.Name}}<span class="kz-dot">.</span></h1>
+<div class="kz-hero__row">
+{{with .Site.Tagline}}<p class="kz-lede">{{.}}</p>{{end}}
+{{with .Body}}<div class="kz-intro">{{.}}</div>{{end}}
+</div>
+</div>
+</section>{{end}}
+<div class="kz-wrap">
+{{if $r.Items}}
+{{if $card}}<div class="kz-sec-h"><h2>Latest entry</h2>{{with (index $r.Items 0).Category}}<span class="kz-mono">{{.}}</span>{{end}}</div>
+{{with index $r.Items 0}}{{template "kz-feat" dict "Item" . "No" $r.Total}}{{end}}{{end}}
+<div class="kz-sec-h"><h2>Index</h2><span class="kz-mono">{{$r.Total}} {{if eq $r.Total 1}}entry{{else}}entries{{end}}</span></div>
+{{template "kz-month-list" dict "Items" $r.Items "Base" $base "Total" $r.Total "Skip" (and $card true) "Numbers" true}}
+{{template "kz-pager" dict "Page" $r.Page "Pages" $r.Pages "Total" $r.Total "Per" $per "Count" (len $r.Items) "Noun" "entries"}}
+{{end}}
+</div>
+{{end}}

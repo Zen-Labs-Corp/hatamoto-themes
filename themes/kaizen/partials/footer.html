@@ -1,0 +1,31 @@
+{{define "footer"}}<footer class="kz-footer">
+<div class="kz-wrap">
+<div class="kz-footer__grid">
+<div class="kz-footer__about">
+{{template "kz-brand" .}}
+{{with .Site.Tagline}}<p>{{.}}</p>{{end}}
+<a class="kz-chip" href="/feed.xml"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 3.5a9.5 9.5 0 0 1 9.5 9.5M3 7.5A5.5 5.5 0 0 1 8.5 13"/><circle cx="3.8" cy="12.2" r=".9" fill="currentColor"/></svg>RSS feed</a>
+</div>
+{{if .Site.FooterNav}}{{$flat := false}}{{range .Site.FooterNav}}{{if not .Children}}{{$flat = true}}{{end}}{{end}}{{if $flat}}<nav class="kz-footer__col" aria-label="Explore"><h2 class="kz-mono">Explore</h2>
+<ul>{{range .Site.FooterNav}}{{if not .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}</ul></nav>
+{{end}}{{range .Site.FooterNav}}{{if .Children}}<nav class="kz-footer__col" aria-label="{{.Label}}"><h2 class="kz-mono">{{.Label}}</h2>
+<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul></nav>
+{{end}}{{end}}{{end}}{{with terms "category" 6}}<nav class="kz-footer__col" aria-label="Topics"><h2 class="kz-mono">Topics</h2>
+<ul>{{range .}}<li><a href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul></nav>
+{{end}}</div>
+{{if .Settings.show_status}}<div class="kz-status" role="group" aria-label="Site status">
+<div class="kz-cell"><span class="kz-mono">Status</span><b><i class="kz-live" aria-hidden="true"></i>Online</b></div>
+<div class="kz-cell" data-kz-js hidden><span class="kz-mono">Local time</span><b><time data-kz-clock>--:--:--</time></b></div>
+<div class="kz-cell kz-cell--vp" data-kz-js hidden><span class="kz-mono">Viewport</span><b data-kz-vp>--</b></div>
+{{$r := query (dict "schema" "post" "limit" 1)}}{{if $r.Total}}<div class="kz-cell"><span class="kz-mono">Entries</span><b>{{$r.Total}}</b></div>
+{{end}}{{with recent "post" 1}}{{with index . 0}}<div class="kz-cell"><span class="kz-mono">Last entry</span><b>{{formatDate .PublishedAt "02 Jan 2006"}}</b></div>
+{{end}}{{end}}<div class="kz-cell kz-cell--end">{{template "kz-mode"}}</div>
+</div>
+{{else}}<div class="kz-status kz-status--bare">{{template "kz-mode"}}</div>
+{{end}}</div>
+{{if .Settings.show_wordmark}}{{$n := len .Site.Name}}<div class="kz-wordmark{{if gt $n 28}} kz-wordmark--4{{else if gt $n 20}} kz-wordmark--3{{else if gt $n 15}} kz-wordmark--2{{else if gt $n 11}} kz-wordmark--1{{end}}" aria-hidden="true"><span>{{.Site.Name}}</span></div>
+{{end}}<div class="kz-wrap kz-footer__base">
+<span class="kz-mono">&copy; {{year}} {{.Site.Name}}</span>
+<span class="kz-footer__end">{{range .Site.SocialLinks}}<a class="kz-mono" href="{{cta .URL}}" rel="noopener noreferrer">{{.Label}}</a>{{end}}<span class="kz-mono">Built with <a href="https://hatamoto.dev">Hatamoto</a></span></span>
+</div>
+</footer>{{end}}
