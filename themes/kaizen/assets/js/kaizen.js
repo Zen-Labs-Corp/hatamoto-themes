@@ -72,6 +72,33 @@
   function size() { if (vp) vp.textContent = window.innerWidth + '\u00d7' + window.innerHeight; }
   if (vp) { size(); window.addEventListener('resize', size); }
 
+  /* ------------------------------------------------ post: contents and read % */
+  var prose = $('#kz-prose'), tocNav = $('#kz-toc');
+  if (prose && tocNav) {
+    var heads = $$('h2[id], h3[id]', prose), links = $$('a[data-t]', tocNav);
+    var pct = $('#kz-toc-pct'), fill = $('#kz-toc-bar'), cur = null, tick2 = 0;
+    var spy = function () {
+      tick2 = 0;
+      var r = prose.getBoundingClientRect();
+      var v = Math.min(1, Math.max(0, (window.innerHeight * 0.4 - r.top) / r.height));
+      if (pct) pct.textContent = Math.round(v * 100) + '%';
+      if (fill) fill.style.setProperty('--rp', v);
+      var id = null;
+      heads.forEach(function (h) { if (h.getBoundingClientRect().top < window.innerHeight * 0.3) id = h.id; });
+      if (id === cur) return;
+      cur = id;
+      links.forEach(function (l) {
+        var on = l.getAttribute('data-t') === id;
+        l.classList.toggle('is-active', on);
+        if (on) l.setAttribute('aria-current', 'location'); else l.removeAttribute('aria-current');
+      });
+    };
+    var queue = function () { if (!tick2) tick2 = requestAnimationFrame(spy); };
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
+    spy();
+  }
+
   /* ------------------------------------------------------------------ reveal
      Armed on the first scroll, and only for rows still below the fold, so a page
      that is printed, captured or never scrolled shows every row. */
