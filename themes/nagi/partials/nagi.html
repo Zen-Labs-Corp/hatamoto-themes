@@ -20,3 +20,5 @@
 <div class="ng-row__body">{{with $it.Category}}<span class="ng-tag">{{.}}</span>{{end}}{{if eq $.Level 2}}<h2 class="ng-row__title">{{$it.Title}}</h2>{{else}}<h3 class="ng-row__title">{{$it.Title}}</h3>{{end}}
 {{with $it.Excerpt}}<p class="ng-row__excerpt">{{.}}</p>{{end}}{{with $it.ReadingTime}}<p class="ng-row__meta">{{.}} min read</p>{{end}}</div>
 </a></li>{{end}}
+{{/* ng-meta: author, date and reading time of a post. dict "Entity" . "Body" html */}}
+{{define "ng-meta"}}{{$e := .Entity}}{{$m := readingTime .Body}}<p class="ng-meta">{{with $e.Author}}<span>{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</span>{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 January 2006"}}</time>{{end}}{{if $m}}<span>{{$m}} min read</span>{{end}}</p>{{end}}
