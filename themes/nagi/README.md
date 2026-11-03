@@ -46,6 +46,7 @@ page keeps rendering.
 | Show Further reading (`show_most_read`) | on | A sidebar list of the posts after the latest ones. It is not based on views. |
 | Footer sentence (`footer_line`) | empty | The sentence in the footer band. Empty uses the site tagline; no tagline means no sentence. |
 | Footer sentence, italic half (`footer_line_italic`) | empty | Shown after the sentence in a muted italic. |
+| Show the homepage's own sections (`home_sections`) | off | Renders the sections of the page set as the homepage (for example ones built in the Page Builder) between the headline and the topic index. Off keeps the automatic journal only. |
 | Address of the post archive (`archive_url`) | `/blog` | Where "More writing" and "All posts" lead. Set it to the archive address of your posts. |
 | Colour mode (`color_mode`) | `light` | What a first visit shows: `light`, `dark` or `auto` (follows the system). Visitors can still switch with the header toggle. |
 

@@ -84,6 +84,12 @@
         "description": "Shown after the sentence in a muted italic.",
         "default": ""
       },
+      "home_sections": {
+        "type": "boolean",
+        "title": "Show the homepage's own sections",
+        "description": "Render the sections of the page set as the homepage, between the headline and the topic index.",
+        "default": false
+      },
       "archive_url": {
         "type": "string",
         "title": "Address of the post archive",
