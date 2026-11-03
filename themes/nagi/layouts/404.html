@@ -1,0 +1,8 @@
+{{define "content"}}<section class="ng-wrap ng-lost">
+<p class="ng-kicker">Error 404</p>
+<h1 class="ng-lost__title">Page not found <i>for now</i></h1>
+<p class="ng-lede">The address may have changed, or it has a typo. Search the journal, or start again from the front page.</p>
+{{template "ng-search-form" dict "Root" . "Id" "lost"}}
+<p class="ng-lost__home"><a class="ng-btn" href="/">Back to the front page {{template "ng-arrow"}}</a></p>
+{{template "ng-still" dict "Class" "ng-lost__sea"}}
+</section>{{end}}
