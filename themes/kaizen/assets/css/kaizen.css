@@ -142,7 +142,7 @@ img { max-width: 100%; height: auto; }
 /* top bar: wordmark left, numbered menu right; condenses to a glass capsule */
 .kz-header { position: sticky; top: 0; z-index: 50; height: 4.5rem; }
 .kz-bar { position: relative; display: flex; align-items: center; gap: 1.5rem; width: min(100% - 2 * var(--kz-gap), var(--hm-container)); height: 3.5rem; margin: .5rem auto 0; padding-inline: .25rem; border: 1px solid transparent; border-radius: 999px; }
-.kz-bar.is-condensed { width: min(100% - 1.5rem, 45rem); padding-inline: .75rem; background: var(--kz-glass); border-color: var(--kz-line-2); box-shadow: var(--hm-shadow-md); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); }
+.kz-bar.is-condensed { width: fit-content; min-width: min(100% - 1.5rem, 45rem); max-width: min(100% - 1.5rem, var(--hm-container)); padding-inline: .75rem; background: var(--kz-glass); border-color: var(--kz-line-2); box-shadow: var(--hm-shadow-md); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); }
 .kz-brand { display: inline-flex; align-items: center; gap: .65rem; color: var(--kz-ink); text-decoration: none; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
 .kz-brand img { display: block; max-height: 28px; width: auto; }
 .kz-mark { display: inline-grid; place-items: center; inline-size: 1.65rem; block-size: 1.65rem; border: 1px solid var(--kz-line-2); border-radius: 8px; color: var(--kz-ink); }
@@ -177,8 +177,15 @@ img { max-width: 100%; height: auto; }
 .kz-menu summary svg { inline-size: 1.05rem; block-size: 1.05rem; }
 .kz-menu ul { position: absolute; right: 0; top: calc(100% + .75rem); min-width: 12rem; padding: .4rem; background: var(--kz-surface); border: 1px solid var(--kz-line-2); border-radius: var(--hm-radius-md); box-shadow: var(--hm-shadow-lg); }
 .kz-menu li a { display: block; padding: .55rem .75rem; border-radius: var(--hm-radius-sm); text-decoration: none; color: var(--kz-ink-2); }
+.kz-menu li ul { position: static; min-width: 0; padding: 0 0 0 .75rem; background: none; border: 0; box-shadow: none; }
 .kz-menu li a:hover { background: var(--kz-surface-2); color: var(--kz-ink); }
 
+.kz-bar--many .kz-nav { display: none; }
+.kz-bar--many .kz-menu { display: block; }
+@media (max-width: 56rem) {
+  .kz-nav { display: none; }
+  .kz-menu { display: block; }
+}
 @media (max-width: 640px) {
   .kz-brand__name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .kz-bar { gap: .5rem; }
@@ -186,8 +193,7 @@ img { max-width: 100%; height: auto; }
   .kz-nav a { padding-inline: .6rem; }
   .kz-nav a span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .kz-nav a svg { margin: 0; }
-  .kz-bar--many .kz-nav { display: none; }
-  .kz-bar--many .kz-menu { display: block; }
+  .kz-cta { max-inline-size: 9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .kz-bar__end { padding-inline-start: .5rem; gap: .25rem; }
 }
 
