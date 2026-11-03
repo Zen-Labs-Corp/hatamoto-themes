@@ -23,7 +23,7 @@
 </div>
 {{else}}<div class="kz-status kz-status--bare">{{template "kz-mode"}}</div>
 {{end}}</div>
-{{if .Settings.show_wordmark}}<div class="kz-wordmark" aria-hidden="true"><span>{{.Site.Name}}</span></div>
+{{if .Settings.show_wordmark}}{{$n := len .Site.Name}}<div class="kz-wordmark{{if gt $n 28}} kz-wordmark--4{{else if gt $n 20}} kz-wordmark--3{{else if gt $n 15}} kz-wordmark--2{{else if gt $n 11}} kz-wordmark--1{{end}}" aria-hidden="true"><span>{{.Site.Name}}</span></div>
 {{end}}<div class="kz-wrap kz-footer__base">
 <span class="kz-mono">&copy; {{year}} {{.Site.Name}}</span>
 <span class="kz-footer__end">{{range .Site.SocialLinks}}<a class="kz-mono" href="{{cta .URL}}" rel="noopener noreferrer">{{.Label}}</a>{{end}}<span class="kz-mono">Built with <a href="https://hatamoto.dev">Hatamoto</a></span></span>

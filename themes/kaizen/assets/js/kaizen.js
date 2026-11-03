@@ -25,8 +25,11 @@
     b.hidden = false;
     b.addEventListener('click', function () {
       var dark = root.getAttribute('data-theme') === 'light';
-      if (doc.startViewTransition && !calm) doc.startViewTransition(function () { setMode(dark); });
-      else setMode(dark);
+      if (doc.startViewTransition && !calm) {
+        root.classList.add('kz-switching');
+        var done = function () { root.classList.remove('kz-switching'); };
+        doc.startViewTransition(function () { setMode(dark); }).finished.then(done, done);
+      } else setMode(dark);
     });
   });
   sync();
