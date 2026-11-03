@@ -8,7 +8,12 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
@@ -16,15 +21,28 @@
       "color_mode": {
         "type": "string",
         "title": "Colour mode",
-        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
-        "default": "light"
+        "description": "What a first-time visitor sees. Visitors can still switch with the toggle in the header or footer.",
+        "enum": [
+          "dark",
+          "light",
+          "auto"
+        ],
+        "default": "dark"
       },
-      "density": {
-        "type": "string",
-        "title": "Spacing",
-        "enum": ["comfortable", "compact"],
-        "default": "comfortable"
+      "show_latest": {
+        "type": "boolean",
+        "title": "Show the latest entry card",
+        "default": true
+      },
+      "show_status": {
+        "type": "boolean",
+        "title": "Show the footer status strip",
+        "default": true
+      },
+      "show_wordmark": {
+        "type": "boolean",
+        "title": "Show the large footer wordmark",
+        "default": true
       }
     }
   }
