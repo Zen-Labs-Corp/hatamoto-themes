@@ -38,7 +38,7 @@
 
 {{/* kz-listing: a listing body. Root (the view), Group (by month), Numbers (entry numbers: only right on the whole archive), Noun, Empty (text when there are no items) */}}
 {{define "kz-listing"}}{{$v := .Root}}{{$pg := $v.Pagination}}{{if $v.Items}}{{$base := 0}}{{$total := len $v.Items}}{{with $pg}}{{$base = mul (sub .Page 1) .PerPage}}{{$total = .Total}}{{end}}
-{{if .Group}}{{template "kz-month-list" dict "Items" $v.Items "Base" $base "Total" $total "Numbers" .Numbers}}{{else}}<ol class="kz-list">{{range $v.Items}}{{template "kz-row" dict "Item" . "No" 0}}{{end}}</ol>{{end}}
+{{if .Group}}{{template "kz-month-list" dict "Items" $v.Items "Base" $base "Total" $total "Numbers" .Numbers}}{{else}}<ol class="kz-list">{{range $v.Items}}{{template "kz-row" dict "Item" . "No" 0 "Short" true}}{{end}}</ol>{{end}}
 {{with $pg}}{{template "kz-pager" dict "Page" .Page "Pages" .TotalPages "Total" .Total "Per" .PerPage "Count" (len $v.Items) "Pg" . "Noun" $.Noun}}{{end}}
 {{else}}<p class="kz-empty">{{.Empty}}</p>{{end}}{{end}}
 

@@ -396,3 +396,24 @@ img { max-width: 100%; height: auto; }
   .kz-author { align-items: flex-start; gap: 1rem; }
   .kz-avatar { inline-size: 64px; block-size: 64px; }
 }
+
+/* ---- search, 404 ---- */
+.kz-search { display: flex; align-items: center; gap: .75rem; max-inline-size: 42.5rem; margin-top: 1.875rem; padding-bottom: .5rem; border-bottom: 1px solid var(--kz-line-2); transition: border-color .2s; }
+.kz-search:focus-within { border-color: var(--hm-primary); }
+.kz-search input { flex: 1; min-inline-size: 0; padding: .5rem 0; border: 0; border-radius: 0; background: none; color: var(--kz-ink); font: inherit; font-size: clamp(1.25rem, 3.5vw, 1.5rem); letter-spacing: -.01em; outline: none; }
+.kz-search input::placeholder { color: var(--kz-muted); }
+.kz-search button, .kz-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1rem; border: 0; border-radius: 10px; background: var(--kz-ink); color: var(--hm-bg); font: inherit; font-size: .875rem; font-weight: 500; line-height: 1.2; text-decoration: none; cursor: pointer; }
+.kz-search button:hover, .kz-btn:hover { opacity: .88; }
+.kz-search button:focus-visible, .kz-btn:focus-visible { outline: 2px solid var(--hm-primary); outline-offset: 3px; }
+.kz-count { margin: 1.25rem 0 0; color: var(--kz-muted); }
+.kz-btn { margin-top: 1.625rem; }
+.kz-head--bare { border: 0; }
+.kz-lost { padding-top: 3rem; }
+.kz-404 { margin: 0 0 1.25rem; font-size: clamp(7rem, 22vw, 16rem); font-weight: 500; line-height: .85; letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 1px var(--kz-line-2); }
+.kz-lost .kz-more { margin-top: 3rem; }
+.kz-lost .kz-search { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .kz-lost { padding-top: 1.5rem; }
+  .kz-search { gap: .5rem; }
+}
