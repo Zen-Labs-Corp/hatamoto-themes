@@ -95,6 +95,10 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
 .ng-menu a:hover, .ng-menu a[aria-current] { background: var(--ng-soft); color: var(--hm-text); }
 .ng-menu ul ul { position: static; min-width: 0; padding: 0 0 0 14px; border: 0; }
 .ng-menu .ng-nav__label { display: block; padding: 10px 12px; font-size: 14px; }
+.ng-menu .ng-menu__cta { margin-top: 4px; padding-top: 6px; border-top: 1px solid var(--ng-line); }
+.ng-menu .ng-menu__cta:empty { display: none; }
+.ng-menu .ng-menu__cta a { display: inline-flex; color: var(--ng-ink); }
+.ng-menu .ng-menu__cta a:hover { background: var(--ng-ink); color: var(--ng-paper); }
 @media (max-width: 900px) {
   .ng-header__inner { height: 64px; gap: 16px; }
   .ng-nav, .ng-header__cta { display: none; }
