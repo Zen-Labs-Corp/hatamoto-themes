@@ -72,11 +72,19 @@
   function size() { if (vp) vp.textContent = window.innerWidth + '\u00d7' + window.innerHeight; }
   if (vp) { size(); window.addEventListener('resize', size); }
 
-  /* ------------------------------------------------------------------ reveal */
+  /* ------------------------------------------------------------------ reveal
+     Armed on the first scroll, and only for rows still below the fold, so a page
+     that is printed, captured or never scrolled shows every row. */
   if ('IntersectionObserver' in window && !calm) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
-    $$('.kz-row').forEach(function (x) { x.classList.add('kz-reveal'); io.observe(x); });
+    var arm = function () {
+      window.removeEventListener('scroll', arm);
+      $$('.kz-row').forEach(function (x) {
+        if (x.getBoundingClientRect().top > window.innerHeight) { x.classList.add('kz-reveal'); io.observe(x); }
+      });
+    };
+    window.addEventListener('scroll', arm, { passive: true });
   }
 })();
