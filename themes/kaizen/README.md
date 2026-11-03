@@ -32,6 +32,8 @@ page keeps rendering.
 
 Colours, fonts and corners follow **Theme > Colours and fonts**.
 
+In dark mode (the default) the Background and Text colours from that page do not apply: the theme keeps its own palette so text stays readable. Primary colour, fonts and corners apply in both modes; Background and Text apply in light mode.
+
 ## Develop
 
 From the root of the `hatamoto-themes` repository:
