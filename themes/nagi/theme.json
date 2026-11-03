@@ -1,6 +1,6 @@
 {
   "name": "nagi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A calm blog theme with light serif headlines, a featured cover, numbered topics, a picture mosaic and a ledger of posts with large dates. Light and dark.",
   "screenshot": "assets/screenshot.png",
   "csp": {
@@ -39,7 +39,7 @@
       "hero_lede": {
         "type": "string",
         "title": "Hero text",
-        "description": "Empty uses the organisation description, then the tagline.",
+        "description": "Empty uses the site tagline.",
         "default": ""
       },
       "signup_form": {
