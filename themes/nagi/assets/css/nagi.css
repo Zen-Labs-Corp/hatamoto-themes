@@ -67,7 +67,16 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
 .ng-brand { display: flex; align-items: center; gap: 10px; color: var(--hm-text); text-decoration: none; font: 500 21px/1 var(--hm-font-heading); letter-spacing: -.01em; }
 .ng-brand__mark { width: 26px; height: 14px; stroke: var(--hm-primary); stroke-width: 3; flex: none; }
 .ng-brand img { display: block; height: 28px; width: auto; }
-.ng-nav { display: flex; gap: 28px; align-self: stretch; }
+.ng-nav { align-self: stretch; }
+.ng-nav ul { margin: 0; padding: 0; list-style: none; }
+.ng-nav__list { display: flex; gap: 28px; height: 100%; }
+.ng-nav__list > li { position: relative; display: flex; }
+.ng-nav__label { display: flex; align-items: center; margin-bottom: -1px; border-bottom: 2px solid transparent; color: var(--ng-muted); font: 500 14px/1 var(--hm-font); }
+/* children stay in the tab order and open on hover or focus, no script needed */
+.ng-nav__sub { position: absolute; left: -14px; top: 100%; z-index: 45; min-width: 200px; padding: 6px; background: var(--hm-bg); border: 1px solid var(--ng-line); border-radius: var(--hm-radius-md); opacity: 0; pointer-events: none; }
+.ng-nav__list > li:hover > .ng-nav__sub, .ng-nav__list > li:focus-within > .ng-nav__sub { opacity: 1; pointer-events: auto; }
+.ng-nav__sub a { display: block; padding: 10px 12px; border-bottom: 0; border-radius: var(--hm-radius-sm); }
+.ng-nav__sub a:hover, .ng-nav__sub a[aria-current] { background: var(--ng-soft); }
 .ng-nav a { display: flex; align-items: center; margin-bottom: -1px; border-bottom: 2px solid transparent; color: var(--ng-muted); font: 500 14px/1 var(--hm-font); text-decoration: none; }
 .ng-nav a:hover { color: var(--hm-text); }
 .ng-nav a[aria-current] { color: var(--hm-text); border-bottom-color: var(--hm-primary); }
@@ -84,6 +93,8 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
 .ng-menu ul { position: absolute; right: 0; top: calc(100% + 8px); z-index: 45; min-width: 200px; margin: 0; padding: 6px; list-style: none; background: var(--hm-bg); border: 1px solid var(--ng-line); border-radius: var(--hm-radius-md); }
 .ng-menu a { display: block; padding: 10px 12px; border-radius: var(--hm-radius-sm); color: var(--ng-muted); font-size: 14px; text-decoration: none; }
 .ng-menu a:hover, .ng-menu a[aria-current] { background: var(--ng-soft); color: var(--hm-text); }
+.ng-menu ul ul { position: static; min-width: 0; padding: 0 0 0 14px; border: 0; }
+.ng-menu .ng-nav__label { display: block; padding: 10px 12px; font-size: 14px; }
 @media (max-width: 900px) {
   .ng-header__inner { height: 64px; gap: 16px; }
   .ng-nav, .ng-header__cta { display: none; }
