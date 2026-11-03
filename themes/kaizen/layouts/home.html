@@ -1,5 +1,5 @@
-{{define "content"}}{{$per := 12}}{{$r := query (dict "schema" "post" "limit" $per "page" (pageNum .))}}{{$base := mul (sub $r.Page 1) $per}}{{$card := and .Settings.show_latest (eq $r.Page 1) $r.Items}}
-{{if .Blocks}}{{template "page-body" .}}{{else}}<section class="kz-hero">
+{{define "content"}}{{$per := 12}}{{$r := query (dict "schema" "post" "limit" $per "page" (pageNum .))}}{{$base := mul (sub $r.Page 1) $per}}{{$card := and .Settings.show_latest (eq $r.Page 1) $r.Items}}{{/* the starter home carries one "welcome" hero: it is a placeholder, so the hero below stands in for it */}}{{$own := and .Blocks (not (and (eq (len .Blocks) 1) (eq (index .Blocks 0).ID "welcome")))}}
+{{if $own}}{{template "page-body" .}}{{else}}<section class="kz-hero">
 <div class="kz-dots" aria-hidden="true"></div><div class="kz-sun" aria-hidden="true"></div><div class="kz-horizon" aria-hidden="true"></div>
 <div class="kz-wrap">
 {{with recent "post" 1}}{{with index . 0}}<span class="kz-eyebrow kz-mono"><span class="kz-live"></span>Entry {{printf "%03d" $r.Total}} · {{formatDate .PublishedAt "02 Jan 2006"}}</span>{{end}}{{end}}
