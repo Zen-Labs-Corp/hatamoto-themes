@@ -1,7 +1,10 @@
 /* Kaizen: the theme's own stylesheet. Dark is the default palette; light is
    :root[data-theme="light"]. Colour, type and radius go through --hm-* tokens so
-   Theme > Colours and fonts keeps working (the owner's values are printed after
-   this file at the same specificity, so they win). Own classes use kz-. */
+   Theme > Colours and fonts keeps working: the owner's values are printed after
+   this file at the same specificity, so they win in light mode. Dark mode pins
+   the background and text (see the dark block below) so a text colour chosen
+   for a light site never lands on the dark page; the owner's primary, fonts
+   and radius still apply. Own classes use kz-. */
 
 /* Geist, OFL-1.1, self-hosted (assets/fonts/geist/LICENSE.txt) */
 @font-face { font-family: "Geist"; src: url("/theme/assets/fonts/geist/geist-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
@@ -86,6 +89,24 @@
   --hm-shadow-sm: 0 1px 2px rgba(16, 17, 20, .06);
   --hm-shadow-md: 0 6px 18px -6px rgba(16, 17, 20, .12);
   --hm-shadow-lg: 0 28px 70px -22px rgba(16, 17, 20, .22);
+}
+
+/* Dark pins its own surface and text. The selector matches the built-in
+   :root[data-theme="dark"] block (0,2,0) and comes after it, so kaizen's palette
+   wins over it and over the owner's inline Text and Background tokens. */
+:root:not([data-theme="light"]) {
+  --hm-bg: var(--kz-paper);
+  --hm-text: var(--kz-ink);
+  --hm-sumi: var(--kz-ink);
+  --hm-sumi-soft: var(--kz-ink-2);
+  --hm-hai: var(--kz-muted);
+  --hm-label: var(--kz-muted);
+  --hm-hair: var(--kz-line);
+  --hm-kinu: var(--kz-line-2);
+  --hm-shiro: var(--kz-surface);
+  --hm-kasumi: var(--kz-surface);
+  --hm-focus: var(--kz-ink);
+  --ht-surface-2: var(--kz-surface);
 }
 
 /* ---- base ---- */
