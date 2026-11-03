@@ -459,4 +459,5 @@ img { max-width: 100%; height: auto; }
 }
 
 /* long words and URLs wrap instead of being cut off at the viewport edge */
-.kz-hero h1, .kz-title, .kz-feat__title, .kz-t, .kz-prose { overflow-wrap: anywhere; min-width: 0; }
+.kz-hero h1, .kz-title, .kz-feat__title, .kz-t { overflow-wrap: anywhere; min-width: 0; }
+.kz-prose { overflow-wrap: break-word; min-width: 0; }
