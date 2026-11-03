@@ -64,9 +64,9 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
 /* ---- header ---- */
 .ng-header { border-bottom: 1px solid var(--ng-line); background: var(--hm-bg); }
 .ng-header__inner { display: flex; align-items: center; gap: 48px; height: 76px; }
-.ng-brand { display: flex; align-items: center; gap: 10px; color: var(--hm-text); text-decoration: none; font: 500 21px/1 var(--hm-font-heading); letter-spacing: -.01em; }
+.ng-brand { display: flex; min-width: 0; align-items: center; gap: 10px; color: var(--hm-text); text-decoration: none; font: 500 21px/1 var(--hm-font-heading); letter-spacing: -.01em; }
 .ng-brand__mark { width: 26px; height: 14px; stroke: var(--hm-primary); stroke-width: 3; flex: none; }
-.ng-brand img { display: block; height: 28px; width: auto; }
+.ng-brand img { display: block; min-width: 0; max-width: 100%; max-height: 28px; height: auto; width: auto; }
 .ng-nav { align-self: stretch; }
 .ng-nav ul { margin: 0; padding: 0; list-style: none; }
 .ng-nav__list { display: flex; gap: 28px; height: 100%; }
