@@ -1,0 +1,16 @@
+{{/* Nagi library: dict-taking defines, all named ng-*. */}}
+{{/* ng-still: the still-water mark, three lines, the middle one barely rippling. dict "Class" "..." */}}
+{{define "ng-still"}}<svg class="ng-still {{.Class}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8h400"/><path d="M0 20c50 0 50-3 100-3s50 3 100 3 50-3 100-3 50 3 100 3"/><path d="M0 32h400"/></svg>{{end}}
+{{/* ng-arrow: small right arrow */}}
+{{define "ng-arrow"}}<svg class="ng-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>{{end}}
+{{/* ng-subscribe: outlined link to the owner's CTA, else to the signup on the home page; nothing when neither exists. dict "Root" . "Class" "..." */}}
+{{define "ng-subscribe"}}{{with $.Root.Site.HeaderCTA}}<a class="{{$.Class}}" href="{{cta .URL}}">{{.Label}}</a>{{else}}{{if $.Root.Settings.signup_form}}<a class="{{$.Class}}" href="{{if eq $.Root.Kind "home"}}#ng-signup{{else}}/#ng-signup{{end}}">Subscribe</a>{{end}}{{end}}{{end}}
+{{/* ng-signup: hand-written email signup posting to the form named in settings. Nothing when signup_form is empty. dict "Root" . "Id" "hero" */}}
+{{define "ng-signup"}}{{with $.Root.Settings.signup_form}}{{if $.Root.Submitted}}<p class="ng-notice" role="status">Thanks, you are on the list.</p>{{else if $.Root.FormError}}<p class="ng-notice ng-notice--error" role="alert">Something went wrong. Try again.</p>{{end}}
+<form class="ng-signup" method="post" action="/forms/{{.}}/submit">
+<input type="hidden" name="_redirect" value="{{$.Root.Path}}">
+<input type="hidden" name="page_url" value="{{$.Root.Path}}">
+<div class="ng-hp" aria-hidden="true"><label>Leave this empty<input type="text" name="hm_website" tabindex="-1" autocomplete="off"></label></div>
+<label class="ng-signup__label" for="ng-email-{{$.Id}}">Get new posts by email</label>
+<div class="ng-signup__row"><input id="ng-email-{{$.Id}}" type="email" name="email" required autocomplete="email" placeholder="you@example.com"><button type="submit">Subscribe {{template "ng-arrow"}}</button></div>
+</form>{{end}}{{end}}
