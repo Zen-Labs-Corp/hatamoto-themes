@@ -277,3 +277,45 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
   .ng-prose.hm-prose h2 { font-size: 27px; }
   .ng-prose.hm-prose blockquote { font-size: 20px; padding-left: 18px; }
 }
+
+/* ---- listings: archive, category, author, search ---- */
+.ng-list { padding-top: 72px; padding-bottom: 96px; }
+.ng-pagehead { max-width: 760px; margin-bottom: 36px; }
+.ng-pagehead__title { margin: 0 0 20px; font: 360 52px/1.06 var(--hm-font-heading); letter-spacing: -.026em; text-wrap: balance; overflow-wrap: break-word; }
+.ng-pagehead .ng-lede { max-width: 560px; }
+.ng-count { margin: 0 0 24px; color: var(--ng-muted); font: 500 13px/1.4 var(--hm-font); }
+.ng-chips--bar { margin-bottom: 36px; }
+.ng-chips a[aria-current] { background: var(--ng-ink); color: var(--ng-paper); }
+.ng-chips a[aria-current] span { color: inherit; }
+.ng-authorhead { display: flex; gap: 32px; align-items: flex-start; }
+.ng-authorhead img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; flex: none; }
+.ng-authorhead > div { min-width: 0; }
+.ng-authorhead__job { margin: 0 0 14px; color: var(--ng-muted); font: italic 300 20px/1.4 var(--hm-font-heading); }
+.ng-authorhead .ng-chips { margin-top: 20px; }
+.ng-list .ng-ledger { max-width: 940px; }
+.ng-row--thumb { grid-template-columns: 72px minmax(0, 1fr) 180px; }
+.ng-row__img { align-self: start; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--hm-radius-sm); background: var(--ng-soft); }
+.ng-row__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ng-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ng-searchform { display: flex; align-items: center; max-width: 560px; margin: 0 0 32px; border-bottom: 1.5px solid var(--ng-ink); padding-bottom: 6px; }
+.ng-searchform:focus-within { outline: 2px solid var(--hm-primary); outline-offset: 4px; }
+.ng-searchform input[type="search"] { flex: 1; min-width: 0; padding: 8px 0; border: 0; background: none; color: var(--hm-text); font: 400 19px var(--hm-font); -webkit-appearance: none; appearance: none; }
+.ng-searchform input[type="search"]:focus-visible { outline: 0; }
+.ng-searchform input::placeholder { color: var(--ng-muted); }
+.ng-searchform button { display: flex; align-items: center; gap: 6px; padding: 8px 0 8px 12px; border: 0; background: none; color: var(--hm-primary); font: 600 14px/1 var(--hm-font); cursor: pointer; }
+.ng-pager { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 940px; margin-top: 40px; font: 500 14px/1 var(--hm-font); }
+.ng-pager ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.ng-pager a, .ng-pager li > span { display: inline-grid; place-items: center; min-width: 38px; height: 38px; padding: 0 10px; border-radius: var(--hm-radius-sm); color: inherit; text-decoration: none; }
+.ng-pager a:hover { background: var(--ng-soft); }
+.ng-pager a[aria-current] { background: var(--ng-ink); color: var(--ng-paper); }
+.ng-pager .ng-pager__dir { padding: 0; color: var(--hm-primary); white-space: nowrap; }
+.ng-pager a.ng-pager__dir:hover { background: none; text-decoration: underline; text-underline-offset: 3px; }
+span.ng-pager__dir { visibility: hidden; }
+@media (max-width: 900px) {
+  .ng-list { padding-top: 40px; padding-bottom: 56px; }
+  .ng-pagehead__title { font-size: 36px; }
+  .ng-authorhead { flex-direction: column; gap: 20px; }
+  .ng-row--thumb { grid-template-columns: 52px minmax(0, 1fr); }
+  .ng-row--thumb .ng-row__img { grid-column: 2; grid-row: 2; width: 100%; max-width: 160px; }
+  .ng-pager ul li:not(:has([aria-current])) { display: none; }
+}

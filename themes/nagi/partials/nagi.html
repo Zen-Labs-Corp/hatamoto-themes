@@ -14,11 +14,29 @@
 <label class="ng-signup__label" for="ng-email-{{$.Id}}">Get new posts by email</label>
 <div class="ng-signup__row"><input id="ng-email-{{$.Id}}" type="email" name="email" required autocomplete="email" placeholder="you@example.com"><button type="submit">Subscribe {{template "ng-arrow"}}</button></div>
 </form>{{end}}{{end}}
-{{/* ng-row: one ledger row (day and month, category, title, excerpt, reading time). dict "Item" . "Level" 2|3 */}}
-{{define "ng-row"}}{{$it := $.Item}}<li><a class="ng-row" href="{{$it.URL}}">
+{{/* ng-row: one ledger row (day and month, category, title, excerpt, reading time). dict "Item" . "Level" 2|3 "Thumb" bool */}}
+{{define "ng-row"}}{{$it := $.Item}}<li><a class="ng-row{{if and $.Thumb $it.Image}} ng-row--thumb{{end}}" href="{{$it.URL}}">
 <div class="ng-row__date">{{if not $it.PublishedAt.IsZero}}<b>{{formatDate $it.PublishedAt "02"}}</b><span>{{formatDate $it.PublishedAt "Jan"}}</span>{{end}}</div>
 <div class="ng-row__body">{{with $it.Category}}<span class="ng-tag">{{.}}</span>{{end}}{{if eq $.Level 2}}<h2 class="ng-row__title">{{$it.Title}}</h2>{{else}}<h3 class="ng-row__title">{{$it.Title}}</h3>{{end}}
 {{with $it.Excerpt}}<p class="ng-row__excerpt">{{.}}</p>{{end}}{{with $it.ReadingTime}}<p class="ng-row__meta">{{.}} min read</p>{{end}}</div>
+{{if and $.Thumb $it.Image}}<div class="ng-row__img"><img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="200px"{{end}} alt="" decoding="async"></div>{{end}}
 </a></li>{{end}}
 {{/* ng-meta: author, date and reading time of a post. dict "Entity" . "Body" html */}}
 {{define "ng-meta"}}{{$e := .Entity}}{{$m := readingTime .Body}}<p class="ng-meta">{{with $e.Author}}<span>{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</span>{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 January 2006"}}</time>{{end}}{{if $m}}<span>{{$m}} min read</span>{{end}}</p>{{end}}
+{{/* ng-pagehead: kicker, the page's one h1, optional lede and count. dict "Kicker" "" "Title" "" "Lede" "" */}}
+{{define "ng-pagehead"}}<header class="ng-pagehead">{{with .Kicker}}<p class="ng-kicker">{{.}}</p>{{end}}<h1 class="ng-pagehead__title">{{.Title}}</h1>{{with .Lede}}<p class="ng-lede">{{.}}</p>{{end}}{{with .Extra}}{{.}}{{end}}</header>{{end}}
+{{/* ng-chips: category links, the current one marked. dict "Terms" . "Cur" path "All" url */}}
+{{define "ng-chips"}}{{if .Terms}}<nav class="ng-chips ng-chips--bar" aria-label="Categories">{{with .All}}<a href="{{cta .}}"{{if eq $.Cur "all"}} aria-current="page"{{end}}>All</a>{{end}}{{range .Terms}}<a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}<span>{{.Count}}</span></a>{{end}}</nav>{{end}}{{end}}
+{{/* ng-search-form: GET search form. dict "Root" . "Id" "x" */}}
+{{define "ng-search-form"}}<form class="ng-searchform" role="search" action="/search" method="get"><label class="ng-sr" for="ng-q-{{.Id}}">Search the site</label><input id="ng-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button type="submit">Search {{template "ng-arrow"}}</button></form>{{end}}
+{{/* ng-page-url: N, Pg */}}
+{{define "ng-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+{{/* ng-pager: numbered pages with newer/older, only when there is more than one page. dict "Pg" .Pagination */}}
+{{define "ng-pager"}}{{with .Pg}}{{if gt .TotalPages 1}}{{$p := .Page}}{{$n := .TotalPages}}{{$pg := .}}<nav class="ng-pager" aria-label="Pagination">
+{{if gt $p 1}}<a class="ng-pager__dir" rel="prev" href="{{template "ng-page-url" dict "N" (sub $p 1) "Pg" $pg}}">&larr; Newer</a>{{else}}<span class="ng-pager__dir" aria-hidden="true">&larr; Newer</span>{{end}}
+<ul>{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a href="{{template "ng-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<li><span aria-hidden="true">&hellip;</span></li>{{end}}{{end}}</ul>
+{{if lt $p $n}}<a class="ng-pager__dir" rel="next" href="{{template "ng-page-url" dict "N" (add $p 1) "Pg" $pg}}">Older &rarr;</a>{{else}}<span class="ng-pager__dir" aria-hidden="true">Older &rarr;</span>{{end}}
+</nav>{{end}}{{end}}{{end}}
+{{/* ng-ledger: a listing body (rows, pager, empty state). dict "Root" . */}}
+{{define "ng-ledger"}}{{$v := .Root}}{{if $v.Items}}<ol class="ng-ledger">{{range $v.Items}}{{template "ng-row" dict "Item" . "Level" 2 "Thumb" true}}{{end}}</ol>
+{{template "ng-pager" dict "Pg" $v.Pagination}}{{else}}<p class="ng-empty">{{if $v.Query}}No results for &ldquo;{{$v.Query}}&rdquo;. Try fewer words.{{else}}Nothing here yet. Check back soon.{{end}}</p>{{end}}{{end}}

@@ -1,0 +1,6 @@
+{{define "content"}}<div class="ng-wrap ng-list">
+{{template "ng-pagehead" dict "Kicker" "Journal" "Title" .Page.Name "Lede" .Page.Description "Extra" ""}}
+{{with .Pagination}}{{if .Total}}<p class="ng-count">{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}}, newest first</p>{{end}}{{end}}
+{{template "ng-chips" dict "Terms" (terms "category" 12) "Cur" "all" "All" .Path}}
+{{template "ng-ledger" dict "Root" .}}
+</div>{{end}}

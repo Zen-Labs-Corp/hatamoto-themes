@@ -1,0 +1,6 @@
+{{define "content"}}{{$k := "Category"}}{{if eq .Term.Kind "tag"}}{{$k = "Tag"}}{{end}}<div class="ng-wrap ng-list">
+{{template "ng-pagehead" dict "Kicker" $k "Title" .Term.Name "Lede" .Term.Description "Extra" ""}}
+{{with .Pagination}}{{if .Total}}<p class="ng-count">{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}}</p>{{end}}{{end}}
+{{if eq .Term.Kind "category"}}{{template "ng-chips" dict "Terms" (terms "category" 12) "Cur" .Term.URL "All" (default "/blog" .Settings.archive_url)}}{{end}}
+{{template "ng-ledger" dict "Root" .}}
+</div>{{end}}

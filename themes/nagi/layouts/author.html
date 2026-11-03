@@ -1,0 +1,12 @@
+{{define "content"}}<div class="ng-wrap ng-list">
+<header class="ng-pagehead ng-authorhead">
+{{with .Author.Avatar}}<img src="{{imgsrc .}}" alt="" width="96" height="96">{{end}}
+<div><p class="ng-kicker">Author</p>
+<h1 class="ng-pagehead__title">{{.Author.Name}}</h1>
+{{with .Author.JobTitle}}<p class="ng-authorhead__job">{{.}}</p>{{end}}
+{{with .Author.Bio}}<p class="ng-lede">{{.}}</p>{{end}}
+{{with .Author.Links}}<div class="ng-chips">{{range .}}<a href="{{cta .URL}}" rel="me noopener">{{.Label}}</a>{{end}}</div>{{end}}</div>
+</header>
+{{with .Pagination}}{{if .Total}}<p class="ng-count">{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}}</p>{{end}}{{end}}
+{{template "ng-ledger" dict "Root" .}}
+</div>{{end}}

@@ -1,0 +1,6 @@
+{{define "content"}}<div class="ng-wrap ng-list">
+{{template "ng-pagehead" dict "Kicker" "Search" "Title" "Search" "Lede" "" "Extra" ""}}
+{{template "ng-search-form" dict "Root" . "Id" "page"}}
+{{if .Query}}{{with .Pagination}}<p class="ng-count" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;</p>{{end}}
+{{template "ng-ledger" dict "Root" .}}{{else}}<p class="ng-empty">Type a word or phrase to search.</p>{{end}}
+</div>{{end}}
