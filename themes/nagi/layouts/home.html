@@ -22,7 +22,7 @@
 {{with .Excerpt}}<p class="ng-feat__excerpt">{{.}}</p>{{end}}
 </a>{{end}}
 </div></section>
-<div class="ng-wrap">{{template "ng-still" dict "Class" "ng-divider"}}</div>
+<div class="ng-wrap ng-divwrap">{{template "ng-still" dict "Class" "ng-divider"}}</div>
 {{if and .Settings.show_topics $cats}}<section class="ng-sec ng-topics" aria-labelledby="ng-topics-h"><div class="ng-wrap">
 <div class="ng-sh"><h2 id="ng-topics-h">What we write about</h2><a href="{{cta $arch}}">All posts {{template "ng-arrow"}}</a></div>
 <ol class="ng-rows">{{range $i, $t := $cats}}{{if lt $i 4}}{{$q := query (dict "schema" "post" "term" (print "category:" $t.Slug) "limit" 1)}}{{$ex := ""}}{{$dt := ""}}{{range $q.Items}}{{$ex = .Excerpt}}{{if not .PublishedAt.IsZero}}{{$dt = formatDate .PublishedAt "02 Jan"}}{{end}}{{end}}

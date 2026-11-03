@@ -103,6 +103,8 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
 .ng-footer a { color: inherit; text-decoration: none; overflow-wrap: anywhere; }
 .ng-footer a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 .ng-footer .ng-btn { text-decoration: none; }
+.ng-footer .ng-btn--light { color: var(--ng-deep); }
+.ng-footer .ng-btn--light:hover { color: #fff; text-decoration: none; }
 .ng-footer__sea { width: 100%; height: 56px; margin: 64px 0 24px; color: color-mix(in srgb, var(--ng-on-deep) 14%, transparent); }
 .ng-footer__legal { margin: 0; color: var(--ng-deep-muted); font-size: 12.5px; }
 @media (max-width: 900px) {
@@ -193,6 +195,7 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
 
 /* ---- home: journal and open sidebar ---- */
 .ng-journal .ng-wrap { padding-top: 0; }
+.ng-divwrap + .ng-journal .ng-wrap { padding-top: 56px; }
 .ng-journal__grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 80px; padding-bottom: 96px; }
 .ng-journal__grid--solo { grid-template-columns: minmax(0, 1fr); }
 .ng-aside { position: sticky; top: 32px; align-self: start; display: flex; flex-direction: column; gap: 44px; padding-left: 36px; border-left: 1px solid var(--ng-line); min-width: 0; }
@@ -223,6 +226,7 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
   .ng-mosaic--4 .ng-tile:nth-child(4) { grid-column: auto; }
   .ng-tile:nth-child(n+4) { display: none; }
   .ng-journal__grid { grid-template-columns: minmax(0, 1fr); gap: 56px; padding-bottom: 64px; }
+  .ng-divwrap + .ng-journal .ng-wrap { padding-top: 40px; }
   .ng-row { grid-template-columns: 52px minmax(0, 1fr); gap: 16px; }
   .ng-row__date b { font-size: 28px; }
   .ng-aside { position: static; padding-left: 0; border-left: 0; }
