@@ -8,23 +8,98 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
     "properties": {
+      "hero_kicker": {
+        "type": "string",
+        "title": "Hero label",
+        "description": "Small line above the headline. Empty shows A journal by, then the newest author or the site name.",
+        "default": ""
+      },
+      "hero_title": {
+        "type": "string",
+        "title": "Hero headline",
+        "description": "Empty uses the site tagline.",
+        "default": ""
+      },
+      "hero_title_italic": {
+        "type": "string",
+        "title": "Hero headline, italic half",
+        "description": "Shown after the headline in a muted italic.",
+        "default": ""
+      },
+      "hero_lede": {
+        "type": "string",
+        "title": "Hero text",
+        "description": "Empty uses the organisation description, then the tagline.",
+        "default": ""
+      },
+      "signup_form": {
+        "type": "string",
+        "title": "Signup form",
+        "description": "Slug of a form that has a field named email and no captcha. Empty hides every signup and Subscribe link.",
+        "default": ""
+      },
+      "show_featured": {
+        "type": "boolean",
+        "title": "Show the featured post",
+        "description": "The newest post with an image, next to the headline.",
+        "default": true
+      },
+      "show_topics": {
+        "type": "boolean",
+        "title": "Show the topic index",
+        "description": "The four categories with the most posts.",
+        "default": true
+      },
+      "show_mosaic": {
+        "type": "boolean",
+        "title": "Show the picture mosaic",
+        "description": "Needs at least three posts with images.",
+        "default": true
+      },
+      "show_most_read": {
+        "type": "boolean",
+        "title": "Show Further reading",
+        "description": "The sidebar list of posts after the latest ones. It is not based on views.",
+        "default": true
+      },
+      "footer_line": {
+        "type": "string",
+        "title": "Footer sentence",
+        "description": "Empty uses the site tagline; no tagline means no sentence.",
+        "default": ""
+      },
+      "footer_line_italic": {
+        "type": "string",
+        "title": "Footer sentence, italic half",
+        "description": "Shown after the sentence in a muted italic.",
+        "default": ""
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "description": "Where More writing leads.",
+        "default": "/blog"
+      },
       "color_mode": {
         "type": "string",
         "title": "Colour mode",
         "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
         "default": "light"
-      },
-      "density": {
-        "type": "string",
-        "title": "Spacing",
-        "enum": ["comfortable", "compact"],
-        "default": "comfortable"
       }
     }
   }

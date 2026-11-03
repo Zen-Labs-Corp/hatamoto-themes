@@ -14,3 +14,9 @@
 <label class="ng-signup__label" for="ng-email-{{$.Id}}">Get new posts by email</label>
 <div class="ng-signup__row"><input id="ng-email-{{$.Id}}" type="email" name="email" required autocomplete="email" placeholder="you@example.com"><button type="submit">Subscribe {{template "ng-arrow"}}</button></div>
 </form>{{end}}{{end}}
+{{/* ng-row: one ledger row (day and month, category, title, excerpt, reading time). dict "Item" . "Level" 2|3 */}}
+{{define "ng-row"}}{{$it := $.Item}}<li><a class="ng-row" href="{{$it.URL}}">
+<div class="ng-row__date">{{if not $it.PublishedAt.IsZero}}<b>{{formatDate $it.PublishedAt "02"}}</b><span>{{formatDate $it.PublishedAt "Jan"}}</span>{{end}}</div>
+<div class="ng-row__body">{{with $it.Category}}<span class="ng-tag">{{.}}</span>{{end}}{{if eq $.Level 2}}<h2 class="ng-row__title">{{$it.Title}}</h2>{{else}}<h3 class="ng-row__title">{{$it.Title}}</h3>{{end}}
+{{with $it.Excerpt}}<p class="ng-row__excerpt">{{.}}</p>{{end}}{{with $it.ReadingTime}}<p class="ng-row__meta">{{.}} min read</p>{{end}}</div>
+</a></li>{{end}}
