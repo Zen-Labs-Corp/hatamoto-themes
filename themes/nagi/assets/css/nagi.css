@@ -138,7 +138,7 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
 .ng-signup button { display: flex; align-items: center; gap: 6px; padding: 8px 0; border: 0; background: none; color: var(--ng-accent); font: 600 14px/1 var(--hm-font); cursor: pointer; }
 
 /* ---- home: hero ---- */
-.ng-hero__grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 72px; align-items: end; padding-top: 88px; padding-bottom: 80px; }
+.ng-hero__grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 72px; align-items: center; padding-top: 88px; padding-bottom: 80px; }
 .ng-hero--solo .ng-hero__grid { grid-template-columns: minmax(0, 1fr); padding-bottom: 64px; }
 .ng-hero__main, .ng-feat { min-width: 0; }
 .ng-hero__title { margin: 0 0 28px; font: 360 58px/1.04 var(--hm-font-heading); letter-spacing: -.028em; text-wrap: balance; overflow-wrap: break-word; }

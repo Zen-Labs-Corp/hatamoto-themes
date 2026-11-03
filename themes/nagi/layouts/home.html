@@ -5,7 +5,7 @@
 {{$feat := ""}}{{$furl := ""}}{{if .Settings.show_featured}}{{range $r.Items}}{{if and (not $feat) .Image}}{{$feat = .}}{{$furl = .URL}}{{end}}{{end}}{{end}}
 {{$mc := 0}}{{if .Settings.show_mosaic}}{{range $r.Items}}{{if and .Image (ne .URL $furl) (lt $mc 5)}}{{$mc = add $mc 1}}{{end}}{{end}}{{end}}
 {{$ht := default .Site.Tagline .Settings.hero_title}}{{$hi := .Settings.hero_title_italic}}
-{{$lede := default .Site.Tagline .Settings.hero_lede}}
+{{$lede := default .Site.Tagline .Settings.hero_lede}}{{if or (not $lede) (eq $lede $ht)}}{{$lede = "New writing from this journal, newest first."}}{{end}}
 {{$about := .Site.Tagline}}
 {{$further := and .Settings.show_most_read (gt (len $r.Items) 6)}}
 {{$aside := or (and $about (ne $about $lede) (ne $about $ht)) $cats $further}}
@@ -13,7 +13,7 @@
 <div class="ng-hero__main">
 <p class="ng-kicker">{{if .Settings.hero_kicker}}{{.Settings.hero_kicker}}{{else}}A journal by {{$owner}}{{end}}</p>
 <h1 class="ng-hero__title">{{if or $ht $hi}}{{$ht}}{{with $hi}} <i>{{.}}</i>{{end}}{{else}}{{.Site.Name}}{{end}}</h1>
-{{if and $lede (ne $lede $ht)}}<p class="ng-lede">{{$lede}}</p>{{end}}
+{{if $lede}}<p class="ng-lede">{{$lede}}</p>{{end}}
 {{with .Settings.signup_form}}<div class="ng-hero__signup" id="ng-signup">{{template "ng-signup" dict "Root" $ "Id" "hero"}}</div>{{end}}
 </div>
 {{with $feat}}<a class="ng-feat" href="{{.URL}}">
