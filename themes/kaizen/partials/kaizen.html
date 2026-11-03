@@ -1,7 +1,7 @@
 {{/* Kaizen building blocks. Every partial takes a dict and is prefixed kz-. */}}
 
-{{/* kz-cover: Item (a RelatedItem). Prints nothing without an image. */}}
-{{define "kz-cover"}}{{$i := .Item}}{{if $i.Image}}<div class="kz-cover"><img src="{{imgsrc $i.Image}}"{{with srcset $i.Image}} srcset="{{.}}" sizes="(min-width: 60rem) 40rem, 100vw"{{end}} alt="{{with $i.Attrs.featured_image_alt}}{{.}}{{end}}" loading="lazy"></div>{{end}}{{end}}
+{{/* kz-cover: Item (a RelatedItem). Prints nothing without an image; only used by the latest entry card, so it loads eagerly. */}}
+{{define "kz-cover"}}{{$i := .Item}}{{if $i.Image}}<div class="kz-cover"><img src="{{imgsrc $i.Image}}"{{with srcset $i.Image}} srcset="{{.}}" sizes="(min-width: 60rem) 40rem, 100vw"{{end}} alt="{{with $i.Attrs.featured_image_alt}}{{.}}{{end}}" loading="eager" decoding="async"></div>{{end}}{{end}}
 
 {{/* kz-feat: the latest entry card. Item, No (entry number, 0 for none) */}}
 {{define "kz-feat"}}{{$i := .Item}}<a class="kz-feat{{if not $i.Image}} kz-feat--text{{end}}" href="{{$i.URL}}">
