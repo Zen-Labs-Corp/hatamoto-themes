@@ -1,0 +1,20 @@
+{{define "footer"}}{{$line := .Settings.footer_line}}{{if not $line}}{{$line = .Site.Tagline}}{{end}}{{$italic := .Settings.footer_line_italic}}<footer class="ng-footer">
+<div class="ng-wrap">
+<div class="ng-footer__top">
+{{if or $line $italic}}<div class="ng-footer__lead"><p class="ng-footer__say">{{$line}}{{if $italic}} <i>{{$italic}}</i>{{end}}</p>
+{{template "ng-subscribe" dict "Root" . "Class" "ng-btn ng-btn--light"}}</div>
+{{end}}<div class="ng-footer__cols">
+{{if .Site.FooterNav}}{{$flat := false}}{{range .Site.FooterNav}}{{if not .Children}}{{$flat = true}}{{end}}{{end}}{{if $flat}}<div><h2 class="ng-footer__title">Navigate</h2>
+<ul>{{range .Site.FooterNav}}{{if not .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}</ul></div>
+{{end}}{{range .Site.FooterNav}}{{if .Children}}<div><h2 class="ng-footer__title">{{.Label}}</h2>
+<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul></div>
+{{end}}{{end}}{{end}}{{if .Site.SocialLinks}}<div><h2 class="ng-footer__title">Elsewhere</h2>
+<ul>{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>{{end}}</ul></div>
+{{end}}<div><h2 class="ng-footer__title">Feeds</h2>
+<ul><li><a href="/feed.xml">RSS feed</a></li><li><a href="/atom.xml">Atom feed</a></li></ul></div>
+</div>
+</div>
+{{template "ng-still" dict "Class" "ng-footer__sea"}}
+<p class="ng-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
+</div>
+</footer>{{end}}

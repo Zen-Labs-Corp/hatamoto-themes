@@ -1,0 +1,23 @@
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}
+<article class="ng-wrap ng-article">
+<header class="ng-article__head">
+{{with $e.Categories}}<p class="ng-kicker">{{range $i, $c := .}}{{if $i}}<span class="ng-kicker__sep" aria-hidden="true">/</span>{{end}}<a href="{{$c.URL}}">{{$c.Name}}</a>{{end}}</p>{{end}}
+<h1 class="ng-article__title">{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="ng-article__lede">{{.}}</p>{{end}}
+{{if $post}}{{template "ng-meta" dict "Entity" $e "Body" $.Body}}{{end}}
+</header>
+{{with $e.Image}}<figure class="ng-article__cover"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1100px) 1100px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
+{{if .Body}}<div class="ng-prose hm-prose">{{$b.HTML}}</div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+{{with $e.Tags}}<footer class="ng-article__foot"><h2 class="ng-aside__h">Tags</h2><div class="ng-chips">{{range .}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</div></footer>{{end}}
+{{if and $post $e.Author}}<aside class="ng-author" aria-label="About the author">
+{{with $e.Author.Avatar}}<img src="{{imgsrc .}}" alt="" width="56" height="56">{{end}}
+<div><p class="ng-author__name">Written by {{if $e.Author.URL}}<a href="{{$e.Author.URL}}">{{$e.Author.Name}}</a>{{else}}{{$e.Author.Name}}{{end}}</p>
+{{with $e.Author.JobTitle}}<p class="ng-author__job">{{.}}</p>{{end}}{{with $e.Author.Bio}}<p class="ng-author__bio">{{.}}</p>{{end}}</div>
+</aside>{{end}}
+</article>
+{{if $post}}{{with call .Related 3}}<section class="ng-sec ng-related" aria-labelledby="ng-related-h"><div class="ng-wrap">
+<div class="ng-sh"><h2 id="ng-related-h">Keep reading</h2></div>
+<ol class="ng-ledger">{{range .}}{{template "ng-row" dict "Item" . "Level" 3}}{{end}}</ol>
+</div></section>{{end}}{{end}}
+{{else}}{{template "page-body" .}}{{end}}{{end}}

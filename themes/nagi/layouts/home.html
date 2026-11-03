@@ -1,0 +1,50 @@
+{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+{{/* owner for the kicker: the newest post's author, else the site name */}}
+{{$owner := .Site.Name}}{{range $i, $it := $r.Items}}{{if and (eq $i 0) $it.Author}}{{$owner = $it.Author}}{{end}}{{end}}
+{{/* featured = newest post with an image; mosaic = the next posts with images (max 5) */}}
+{{$feat := ""}}{{$furl := ""}}{{if .Settings.show_featured}}{{range $r.Items}}{{if and (not $feat) .Image}}{{$feat = .}}{{$furl = .URL}}{{end}}{{end}}{{end}}
+{{$mc := 0}}{{if .Settings.show_mosaic}}{{range $r.Items}}{{if and .Image (ne .URL $furl) (lt $mc 5)}}{{$mc = add $mc 1}}{{end}}{{end}}{{end}}
+{{$ht := default .Site.Tagline .Settings.hero_title}}{{$hi := .Settings.hero_title_italic}}
+{{$lede := default .Site.Tagline .Settings.hero_lede}}{{if or (not $lede) (eq $lede $ht)}}{{$lede = "New writing from this journal, newest first."}}{{end}}
+{{$about := .Site.Tagline}}
+{{$further := and .Settings.show_most_read (gt (len $r.Items) 6)}}
+{{$aside := or (and $about (ne $about $lede) (ne $about $ht)) $cats $further}}
+<section class="ng-hero{{if not $feat}} ng-hero--solo{{end}}"><div class="ng-wrap ng-hero__grid">
+<div class="ng-hero__main">
+<p class="ng-kicker">{{if .Settings.hero_kicker}}{{.Settings.hero_kicker}}{{else}}A journal by {{$owner}}{{end}}</p>
+<h1 class="ng-hero__title">{{if or $ht $hi}}{{$ht}}{{with $hi}} <i>{{.}}</i>{{end}}{{else}}{{.Site.Name}}{{end}}</h1>
+{{if $lede}}<p class="ng-lede">{{$lede}}</p>{{end}}
+{{with .Settings.signup_form}}<div class="ng-hero__signup" id="ng-signup">{{template "ng-signup" dict "Root" $ "Id" "hero"}}</div>{{end}}
+</div>
+{{with $feat}}<a class="ng-feat" href="{{.URL}}">
+<div class="ng-feat__cv"><img src="{{imgsrc .Image}}"{{with srcset .Image}} srcset="{{.}}" sizes="(max-width: 900px) 100vw, 40vw"{{end}} alt="" fetchpriority="high" decoding="async"></div>
+<div class="ng-feat__cap"><div>{{with .Category}}<span class="ng-tag">{{.}}</span>{{end}}<h2 class="ng-feat__title">{{.Title}}</h2></div>{{if not .PublishedAt.IsZero}}<span>{{formatDate .PublishedAt "02 Jan"}}{{with .ReadingTime}} · {{.}} min{{end}}</span>{{end}}</div>
+{{with .Excerpt}}<p class="ng-feat__excerpt">{{.}}</p>{{end}}
+</a>{{end}}
+</div></section>
+<div class="ng-wrap ng-divwrap">{{template "ng-still" dict "Class" "ng-divider"}}</div>
+{{if .Settings.home_sections}}<div class="ng-blocks">{{template "page-body" .}}</div>{{end}}
+{{if and .Settings.show_topics $cats}}<section class="ng-sec ng-topics" aria-labelledby="ng-topics-h"><div class="ng-wrap">
+<div class="ng-sh"><h2 id="ng-topics-h">What we write about</h2><a href="{{cta $arch}}">All posts {{template "ng-arrow"}}</a></div>
+<ol class="ng-rows">{{range $i, $t := $cats}}{{if lt $i 4}}{{$q := query (dict "schema" "post" "term" (print "category:" $t.Slug) "limit" 1)}}{{$ex := ""}}{{$dt := ""}}{{range $q.Items}}{{$ex = .Excerpt}}{{if not .PublishedAt.IsZero}}{{$dt = formatDate .PublishedAt "02 Jan"}}{{end}}{{end}}
+<li><a href="{{$t.URL}}"><span class="ng-rows__no">{{printf "%02d" (add $i 1)}}</span><h3 class="ng-rows__name">{{$t.Name}}</h3><p class="ng-rows__text">{{$ex}}</p><em class="ng-rows__count">{{$t.Count}} {{if eq $t.Count 1}}post{{else}}posts{{end}}{{with $dt}} · {{.}}{{end}}</em>{{template "ng-arrow"}}</a></li>
+{{end}}{{end}}</ol>
+</div></section>{{end}}
+{{if ge $mc 3}}<section class="ng-sec ng-mos" aria-labelledby="ng-mos-h"><div class="ng-wrap">
+<div class="ng-sh"><h2 id="ng-mos-h">In pictures</h2><a href="{{cta $arch}}">All posts {{template "ng-arrow"}}</a></div>
+<div class="ng-mosaic ng-mosaic--{{$mc}}">{{$mi := 0}}{{range $r.Items}}{{if and .Image (ne .URL $furl) (lt $mi $mc)}}{{$mi = add $mi 1}}<a class="ng-tile" href="{{.URL}}"><img src="{{imgsrc .Image}}"{{with srcset .Image}} srcset="{{.}}" sizes="(max-width: 900px) 50vw, 40vw"{{end}} alt=""><div class="ng-tile__t">{{with .Category}}<span>{{.}}</span>{{end}}<h3>{{.Title}}</h3></div></a>{{end}}{{end}}</div>
+</div></section>{{end}}
+<section class="ng-sec ng-journal" aria-labelledby="ng-journal-h"><div class="ng-wrap ng-journal__grid{{if not $aside}} ng-journal__grid--solo{{end}}">
+<div class="ng-journal__main">
+<div class="ng-sh"><h2 id="ng-journal-h">Latest writing</h2><a href="{{cta $arch}}">Everything {{template "ng-arrow"}}</a></div>
+{{if $r.Items}}<ol class="ng-ledger">{{range $i, $it := $r.Items}}{{if lt $i 6}}{{template "ng-row" dict "Item" $it "Level" 3}}{{end}}{{end}}</ol>
+{{if gt $r.Total 6}}<p class="ng-more"><a class="ng-btn" href="{{cta $arch}}">More writing {{template "ng-arrow"}}</a></p>{{end}}
+{{else}}<p class="ng-empty">No posts yet.</p>{{end}}
+</div>
+{{if $aside}}<aside class="ng-aside" aria-label="About and further reading">
+{{if and $about (ne $about $lede) (ne $about $ht)}}<div><h2 class="ng-aside__h">About</h2><p class="ng-aside__about">{{$about}}</p></div>{{end}}
+{{if $cats}}<div><h2 class="ng-aside__h">Categories</h2><div class="ng-chips">{{range $cats}}<a href="{{.URL}}">{{.Name}}<span>{{.Count}}</span></a>{{end}}</div></div>{{end}}
+{{if $further}}<div><h2 class="ng-aside__h">Further reading</h2><ol class="ng-mini">{{range $i, $it := $r.Items}}{{if and (ge $i 6) (lt $i 10)}}<li><a href="{{$it.URL}}">{{$it.Title}}</a></li>{{end}}{{end}}</ol></div>{{end}}
+</aside>{{end}}
+</div></section>
+{{end}}
