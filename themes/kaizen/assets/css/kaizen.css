@@ -433,7 +433,7 @@ img { max-width: 100%; height: auto; }
 
 /* ---- search, 404 ---- */
 .kz-search { display: flex; align-items: center; gap: .75rem; max-inline-size: 42.5rem; margin-top: 1.875rem; padding-bottom: .5rem; border-bottom: 1px solid var(--kz-muted); transition: border-color .2s; }
-.kz-search:focus-within { border-color: var(--hm-primary); }
+.kz-search:focus-within { border-color: var(--hm-primary); outline: 2px solid var(--kz-accent); outline-offset: 6px; border-radius: 2px; }
 .kz-search input { flex: 1; min-inline-size: 0; padding: .5rem 0; border: 0; border-radius: 0; background: none; color: var(--kz-ink); font: inherit; font-size: clamp(1.25rem, 3.5vw, 1.5rem); letter-spacing: -.01em; outline: none; }
 .kz-search input::placeholder { color: var(--kz-muted); }
 .kz-search button, .kz-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1rem; border: 0; border-radius: 10px; background: var(--kz-ink); color: var(--hm-bg); font: inherit; font-size: .875rem; font-weight: 500; line-height: 1.2; text-decoration: none; cursor: pointer; }
