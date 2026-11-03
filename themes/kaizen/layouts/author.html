@@ -1,0 +1,20 @@
+{{define "content"}}{{$pg := .Pagination}}
+<div class="kz-page">
+<div class="kz-wrap">
+<header class="kz-head">
+<nav class="kz-crumbs kz-mono" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Author</span><span aria-hidden="true">/</span><span aria-current="page">{{.Author.Name}}</span></nav>
+<div class="kz-author">
+{{with .Author.Avatar}}<img class="kz-avatar" src="{{imgsrc .}}" alt="" width="88" height="88">{{end}}
+<div>
+<h1 class="kz-title">{{.Author.Name}}</h1>
+{{with .Author.JobTitle}}<p class="kz-job kz-mono">{{.}}</p>{{end}}
+{{with .Author.Bio}}<p class="kz-excerpt">{{.}}</p>{{end}}
+</div>
+</div>
+{{with .Author.Links}}<ul class="kz-chips kz-chips--head kz-links" aria-label="Find {{$.Author.Name}} elsewhere">{{range .}}<li><a class="kz-chip" href="{{cta .URL}}" rel="me noopener noreferrer">{{.Label}}</a></li>{{end}}</ul>{{end}}
+{{with $pg}}{{if .Total}}<dl class="kz-facts kz-mono"><div><dt>Entries</dt><dd>{{.Total}}</dd></div></dl>{{end}}{{end}}
+</header>
+{{template "kz-listing" dict "Root" . "Group" true "Numbers" false "Noun" "entries" "Empty" "No entries by this author yet."}}
+</div>
+</div>
+{{end}}

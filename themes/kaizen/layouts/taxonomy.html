@@ -1,0 +1,13 @@
+{{define "content"}}{{$pg := .Pagination}}
+<div class="kz-page">
+<div class="kz-wrap">
+<header class="kz-head">
+<nav class="kz-crumbs kz-mono" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{{if eq .Term.Kind "tag"}}Tag{{else}}Category{{end}}</span><span aria-hidden="true">/</span><span aria-current="page">{{.Term.Name}}</span></nav>
+<h1 class="kz-title">{{.Term.Name}}</h1>
+{{with .Term.Description}}<p class="kz-excerpt">{{.}}</p>{{else}}{{with $pg}}{{if .Total}}<p class="kz-excerpt">{{.Total}} {{if eq .Total 1}}entry{{else}}entries{{end}}, newest first.</p>{{end}}{{end}}{{end}}
+{{if ne .Term.Kind "tag"}}{{template "kz-term-chips" dict "Terms" (terms "category" 12) "Label" "Topics" "Cur" .Term.URL}}{{end}}
+</header>
+{{template "kz-listing" dict "Root" . "Group" true "Numbers" false "Noun" "entries" "Empty" "No entries filed here yet."}}
+</div>
+</div>
+{{end}}

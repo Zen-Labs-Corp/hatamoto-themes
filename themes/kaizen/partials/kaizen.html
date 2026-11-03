@@ -35,3 +35,20 @@
 {{if lt $p $n}}<a class="kz-pager__dir" href="{{template "kz-page-url" dict "N" (add $p 1) "Pg" $pg}}" rel="next">Older <span aria-hidden="true">→</span></a>{{else}}<span class="kz-pager__dir" aria-disabled="true">Older <span aria-hidden="true">→</span></span>{{end}}
 </div>
 </nav>{{end}}{{end}}
+
+{{/* kz-listing: a listing body. Root (the view), Group (by month), Numbers (entry numbers: only right on the whole archive), Noun, Empty (text when there are no items) */}}
+{{define "kz-listing"}}{{$v := .Root}}{{$pg := $v.Pagination}}{{if $v.Items}}{{$base := 0}}{{$total := len $v.Items}}{{with $pg}}{{$base = mul (sub .Page 1) .PerPage}}{{$total = .Total}}{{end}}
+{{if .Group}}{{template "kz-month-list" dict "Items" $v.Items "Base" $base "Total" $total "Numbers" .Numbers}}{{else}}<ol class="kz-list">{{range $v.Items}}{{template "kz-row" dict "Item" . "No" 0}}{{end}}</ol>{{end}}
+{{with $pg}}{{template "kz-pager" dict "Page" .Page "Pages" .TotalPages "Total" .Total "Per" .PerPage "Count" (len $v.Items) "Pg" . "Noun" $.Noun}}{{end}}
+{{else}}<p class="kz-empty">{{.Empty}}</p>{{end}}{{end}}
+
+{{/* kz-search-form: Id, Root (the view), Label */}}
+{{define "kz-search-form"}}<form class="kz-search" role="search" action="/search" method="get">
+<label class="kz-sr" for="{{.Id}}">{{.Label}}</label>
+<input id="{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search the journal" autocomplete="off">
+{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}
+<button type="submit">Search</button>
+</form>{{end}}
+
+{{/* kz-term-chips: Terms, Label, Cur (URL of the current term, or "" for All), All (URL of All) */}}
+{{define "kz-term-chips"}}{{if .Terms}}<nav class="kz-chips kz-chips--head" aria-label="{{.Label}}">{{with .All}}<a class="kz-chip" href="{{.}}"{{if not $.Cur}} aria-current="page"{{end}}>All</a>{{end}}{{range .Terms}}<a class="kz-chip" href="{{.URL}}"{{if eq .URL $.Cur}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{end}}{{end}}
