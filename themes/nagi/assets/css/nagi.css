@@ -102,7 +102,7 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 300; }
 }
 
 /* ---- footer ---- */
-.ng-footer { background: var(--ng-deep); color: var(--ng-on-deep); }
+.ng-footer { --hm-focus: var(--ng-on-deep); background: var(--ng-deep); color: var(--ng-on-deep); } /* the engine ring is ink, invisible on the dark band */
 .ng-footer .ng-wrap { padding-top: 72px; padding-bottom: 36px; }
 .ng-footer__top { display: flex; gap: 48px; }
 .ng-footer__lead { flex: 1.3 1 0; min-width: 0; }
