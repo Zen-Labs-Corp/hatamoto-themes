@@ -1,0 +1,13 @@
+{
+  "x-hm-section": {"title": "Call to action", "description": "Closing banner with a headline and one button, optionally over a photo"},
+  "type": "object",
+  "properties": {
+    "eyebrow": {"type": "string", "title": "Kicker", "x-hm-field": "plaintext"},
+    "headline": {"type": "string", "title": "Headline", "x-hm-field": "plaintext"},
+    "subheadline": {"type": "string", "title": "Subheadline", "x-hm-field": "richtext"},
+    "buttonText": {"type": "string", "title": "Button text", "x-hm-field": "plaintext"},
+    "buttonUrl": {"type": "string", "title": "Button URL", "x-hm-field": "url"},
+    "backgroundImage": {"type": "string", "title": "Background photo", "x-hm-field": "image"},
+    "backgroundStyle": {"type": "string", "title": "Background", "enum": ["plain", "tinted", "dark", "photo"], "default": "plain"}
+  }
+}

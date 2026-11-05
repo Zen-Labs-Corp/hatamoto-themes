@@ -119,6 +119,17 @@
         "#09090b"
       ],
       "style": "stripes"
+    },
+    {
+      "name": "band.png",
+      "w": 1800,
+      "h": 900,
+      "colours": [
+        "#8a6f55",
+        "#e9d3b4",
+        "#2e2218"
+      ],
+      "style": "stripes"
     }
   ],
   "categories": [
@@ -329,7 +340,9 @@
             "subheadline": "<p>Book a free first call. We will tell you honestly whether we can help.</p>",
             "buttonText": "Book a first call",
             "buttonUrl": "/contact",
-            "backgroundStyle": "dark"
+            "backgroundStyle": "photo",
+            "eyebrow": "Finished engagements",
+            "backgroundImage": "{{media:band.png}}"
           }
         }
       ]
