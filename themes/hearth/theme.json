@@ -1,0 +1,85 @@
+{
+  "name": "hearth",
+  "version": "1.0.0",
+  "description": "Warm, photo-led theme for home builders and trades: split heroes, full-bleed photo bands, a step-by-step process list and a terracotta footer.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees: auto follows the visitor's system. Visitors can still switch with the header toggle.",
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
+        "default": "auto"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
+        "default": "comfortable"
+      },
+      "header_cta_label": {
+        "type": "string",
+        "title": "Header button label",
+        "description": "Used only when the site has no header button of its own (Theme settings). Needs an address too; empty hides it.",
+        "default": ""
+      },
+      "header_cta_url": {
+        "type": "string",
+        "title": "Header button address",
+        "description": "Where the fallback button leads, in the header, the menu and the footer.",
+        "default": ""
+      },
+      "footer_headline": {
+        "type": "string",
+        "title": "Footer headline",
+        "description": "The large line in the terracotta footer band.",
+        "default": "Let's talk."
+      },
+      "footer_lead": {
+        "type": "string",
+        "title": "Footer text",
+        "description": "The short line under the footer headline.",
+        "default": "Tell us what you need and we will get back to you."
+      },
+      "footer_grain": {
+        "type": "boolean",
+        "title": "Footer grain",
+        "description": "A fine film grain over the footer band.",
+        "default": true
+      },
+      "hero_house_mark": {
+        "type": "boolean",
+        "title": "House outline on the hero",
+        "description": "A thin house outline drawn across the split hero on wide screens.",
+        "default": true
+      },
+      "footer_email": {
+        "type": "string",
+        "title": "Footer email",
+        "description": "An email address shown next to the phone number in the footer. Empty hides it.",
+        "default": ""
+      }
+    }
+  }
+}

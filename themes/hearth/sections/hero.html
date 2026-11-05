@@ -1,0 +1,18 @@
+{{define "ht-hero-down"}}<a class="ht-arrow ht-hero__down" href="#hm-after-{{.ID}}" aria-label="Scroll to the next section"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></a>{{end}}
+{{define "section-hero"}}{{$c := .Content}}{{$layout := default "centered" $c.layout}}
+<div class="hm-container hm-hero hm-hero--{{if eq $layout "split"}}split{{else}}centered{{end}}">
+  <div class="hm-hero__body">
+    {{with $c.eyebrow}}<p class="hm-hero__eyebrow" {{hmf "eyebrow"}}>{{.}}</p>{{end}}
+    <h1 class="hm-hero__headline" {{hmf "headline"}}>{{$c.headline}}</h1>
+    {{with $c.subheadline}}<div class="hm-hero__subheadline" {{hmf "subheadline"}} data-hm-kind="richtext">{{.}}</div>{{end}}
+    {{if $c.ctas}}<div class="hm-hero__actions">{{if eq $layout "split"}}{{template "ht-hero-down" .}}{{end}}{{range $i, $b := $c.ctas}}{{with $b.text}}<a class="hm-btn{{if ne $i 0}} hm-btn--secondary{{end}}" href="{{cta $b.url}}" {{hmf "ctas" $i "text"}}>{{.}}</a>{{end}}{{end}}</div>
+    {{else if or $c.primaryCta $c.secondaryCta}}<div class="hm-hero__actions">{{if eq $layout "split"}}{{template "ht-hero-down" .}}{{end}}
+      {{with $c.primaryCta}}<a class="hm-btn" href="{{cta $c.ctaUrl}}" {{hmf "primaryCta"}}>{{.}}</a>{{end}}
+      {{with $c.secondaryCta}}<a class="hm-btn hm-btn--secondary" href="{{cta $c.secondaryCtaUrl}}" {{hmf "secondaryCta"}}>{{.}}</a>{{end}}
+    </div>{{end}}{{with $c.commandChip}}<code class="hm-hero__chip" {{hmf "commandChip"}}>{{.}}</code>{{end}}{{if $c.stripItems}}
+    <div class="hm-hero__strip">{{with $c.stripLabel}}<span class="hm-hero__strip-label" id="{{$.ID}}-strip-label" {{hmf "stripLabel"}}>{{.}}</span>{{end}}<ul class="hm-hero__strip-items"{{if $c.stripLabel}} aria-labelledby="{{.ID}}-strip-label"{{end}}>{{range $i, $t := $c.stripItems}}<li {{hmf "stripItems" $i}}>{{$t}}</li>{{end}}</ul></div>{{end}}
+  </div>
+  {{with $c.heroImage}}{{with imgsrc .}}<div class="hm-hero__media"><img class="hm-hero__image" src="{{.}}" alt="{{$c.imageAlt}}" loading="eager" decoding="async"></div>{{end}}{{end}}{{if and (eq $layout "split") (not $c.heroImage) $c.panel}}<div class="hm-hero__media hm-hero__media--panel">{{template "code-panel" $c}}</div>{{end}}
+{{if and (eq $layout "split") $.Settings.hero_house_mark}}<svg class="ht-house" viewBox="0 0 400 240" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M10 230V110L150 20L290 110V230M150 20L390 150V230"/></svg>{{end}}<span class="ht-hero__end" id="hm-after-{{$.ID}}"></span>
+</div>
+{{end}}
