@@ -81,6 +81,7 @@
 [data-ht-density="compact"] { --ht-section: clamp(2.5rem, 6vw, 4.5rem); }
 
 /* ---- base type ---- */
+html { scroll-padding-top: 5rem; }
 body { font-size: 1.0625rem; font-weight: 400; }
 .ht-body .hm-prose, .ht-body .hm-html-body { color: var(--ht-muted); font-weight: 300; }
 h1, h2, h3, h4 { font-weight: 500; line-height: 1.08; letter-spacing: -.02em; }
