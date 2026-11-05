@@ -370,6 +370,10 @@ a:hover > .ht-arrow, a.ht-arrow:hover { background: var(--hm-primary); border-co
 .ht-body .hm-search__input { border-color: var(--ht-muted); background: transparent; }
 .ht-body .hm-search__input:focus-visible { border-color: var(--hm-primary); outline: 2px solid var(--hm-primary); outline-offset: 2px; }
 
+/* ---- dark mode specifics ---- */
+[data-theme="dark"] .ht-body .hm-section--cta:has(.hm-cta--has-photo) { background: #2e2823; }
+[data-theme="dark"] .ht-body .hm-logo-strip__item img { opacity: .6; }
+
 /* ---- shell ---- */
 .ht-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 92%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--ht-line); }
 .ht-header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4.75rem; }
