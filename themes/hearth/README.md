@@ -29,8 +29,8 @@ page keeps rendering.
 | Spacing | `comfortable` | `compact` tightens the space between sections |
 | Header button label | empty | used only when the site has no header button of its own; needs an address too |
 | Header button address | empty | where that fallback button leads, in the header, menu and footer |
-| Footer headline | `Every project starts with a conversation.` | the large line in the terracotta footer band |
-| Footer text | `Tell us about your block and what you want to build.` | the line under the headline |
+| Footer headline | `Let's talk.` | the large line in the terracotta footer band |
+| Footer text | `Tell us what you need and we will get back to you.` | the line under the headline |
 | Footer grain | on | a fine film grain over the footer band |
 | House outline on the hero | on | a thin house outline across the split hero on wide screens |
 | Footer email | empty | an email address next to the phone number in the footer |

@@ -27,8 +27,8 @@
   `card_columns`, `testimonials`, `stats`, `faq`, `team`, `pricing`, `logo_strip`. No own sections.
 - Settings (`settings_schema`, beyond the template's colour mode and spacing):
   - `header_cta_label` and `header_cta_url` (text and url, default empty; fallback when the site has no header button).
-  - `footer_headline` (text, default "Every project starts with a conversation.").
-  - `footer_lead` (text, default "Tell us about your block and what you want to build.").
+  - `footer_headline` (text, default "Let's talk.").
+  - `footer_lead` (text, default "Tell us what you need and we will get back to you.").
   - `footer_grain` (boolean, default true).
   - `hero_house_mark` (boolean, default true).
 - Out of scope: sliders, scroll animations, own section types, any client content.
