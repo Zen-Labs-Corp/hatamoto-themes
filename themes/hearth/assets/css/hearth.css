@@ -2,52 +2,110 @@
    The engine bundles assets/css/base.css, then every other assets/css/*.css
    (sorted), then assets/css/sections/*.css, across the theme AND the built-in
    default theme it falls back to. So this file restyles the default's markup
-   (hm-* classes) and styles this theme's own (ht-* classes).
-   Rules: only --hm-* tokens for colour, type and radius, so Theme > Colours and
-   fonts keeps working; no request to another host (fonts live in
-   assets/fonts/, added with scripts/add-font.sh). */
+   (hm-* classes) and styles this theme's own (ht-* classes). Section rules are
+   prefixed with .ht-body so they win over the default's later-loading section
+   sheets. Only --hm-* tokens for colour, type and radius, so Theme > Colours and
+   fonts keeps working; fonts are self-hosted in assets/fonts/. */
+
+/* Figtree, OFL-1.1, self-hosted (assets/fonts/figtree/LICENSE.txt) */
+@font-face { font-family: "Figtree"; src: url("/theme/assets/fonts/figtree/figtree-latin-300-italic.woff2") format("woff2"); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("/theme/assets/fonts/figtree/figtree-latin-300-normal.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("/theme/assets/fonts/figtree/figtree-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("/theme/assets/fonts/figtree/figtree-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("/theme/assets/fonts/figtree/figtree-latin-500-italic.woff2") format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("/theme/assets/fonts/figtree/figtree-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("/theme/assets/fonts/figtree/figtree-latin-600-italic.woff2") format("woff2"); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("/theme/assets/fonts/figtree/figtree-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 
 :root {
   /* ---- palette (light) ---- */
-  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
-  --hm-bg: #ffffff;
-  --hm-text: #16181d;
-  --ht-muted: #5d636e;
-  --ht-line: #e4e6ea;
-  --ht-surface: #f6f7f9;
+  --hm-primary: #bb432a;          /* terracotta, 4.6:1 on the paper; the owner's primary replaces it */
+  --hm-bg: #f2eee7;               /* paper */
+  --hm-text: #2f2f2f;
+  --ht-muted: #5c5852;
+  --ht-line: #d9d2c7;
+  --ht-surface: #fbf9f5;
+  --ht-on-primary: #ffffff;
+  --ht-foot-a: #c44b2c;
+  --ht-foot-b: #a63a25;
+  --ht-band: #2a2724;             /* dark feature band */
+  --ht-band-ink: #f4efe7;
+  --ht-band-kicker: #f0a48f;
+  --ht-overlay: rgba(20, 18, 16, .62);
   /* the default theme's names, so its sections follow this palette */
   --hm-sumi: var(--hm-text);
+  --hm-sumi-soft: var(--ht-muted);
   --hm-hai: var(--ht-muted);
   --hm-label: var(--ht-muted);
   --hm-hair: var(--ht-line);
   --hm-shiro: var(--ht-surface);
   --hm-kasumi: var(--ht-surface);
+  --hm-kinu: var(--ht-line);
   --hm-shu: var(--hm-primary);
+  --hm-shu-dark: var(--hm-primary);
+  --hm-focus: var(--hm-primary);
 
   /* ---- type ---- */
-  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --hm-font: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --hm-font-heading: var(--hm-font);
+  --ht-fs-display: clamp(2.6rem, 6vw, 4rem);
+  --ht-fs-h2: clamp(1.9rem, 3.6vw, 2.75rem);
+  --ht-fs-lead: 1.25rem;
 
   /* ---- shape and rhythm ---- */
   --hm-radius-sm: 6px;
-  --hm-radius-md: 10px;
-  --hm-radius-lg: 16px;
-  --hm-container: 72rem;
-  --ht-gap: clamp(1rem, 3vw, 2rem);
+  --hm-radius-md: 12px;
+  --hm-radius-lg: 20px;
+  --ht-pill: 999px;
+  --hm-container: 76rem;
+  --ht-gap: clamp(1.25rem, 4vw, 3rem);
   --ht-section: clamp(4rem, 9vw, 7rem);
 }
 
 :root[data-theme="dark"] {
-  --hm-bg: #0f1115;
-  --hm-text: #e8eaee;
-  --ht-muted: #9aa1ad;
-  --ht-line: #262a31;
-  --ht-surface: #161920;
+  --hm-bg: #1c1a18;
+  --hm-text: #f0ebe3;
+  --hm-primary: #e9785a;
+  --ht-muted: #b3aca2;
+  --ht-line: #3b3632;
+  --ht-surface: #262320;
+  --ht-on-primary: #1c1a18;
+  --ht-band: #131110;
+  --ht-foot-a: #8f3322;
+  --ht-foot-b: #6e271a;
+  --ht-overlay: rgba(10, 9, 8, .68);
   color-scheme: dark;
 }
 
 [data-ht-density="compact"] { --ht-section: clamp(2.5rem, 6vw, 4.5rem); }
-.hm-section { padding-block: var(--ht-section); }
+
+/* ---- base type ---- */
+body { font-size: 1.0625rem; font-weight: 400; }
+.ht-body .hm-prose, .ht-body .hm-html-body { color: var(--ht-muted); font-weight: 300; }
+h1, h2, h3, h4 { font-weight: 500; line-height: 1.08; letter-spacing: -.02em; }
+h1 { font-size: var(--ht-fs-display); line-height: 1.08; letter-spacing: -.02em; }
+h2 { font-size: var(--ht-fs-h2); line-height: 1.08; }
+h3 { font-size: 1.5rem; line-height: 1.15; letter-spacing: -.015em; }
+a { text-underline-offset: .25em; }
+.hm-section { padding-block: var(--ht-section); border-top: 0; }
+
+/* ---- shared helpers ---- */
+.ht-wrap { width: min(100% - 2 * var(--ht-gap), var(--hm-container)); margin-inline: auto; }
+.ht-pill, .ht-body .hm-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 2.5rem; padding: .35rem 1.35rem;
+  border: 1px solid var(--hm-primary); border-radius: var(--ht-pill); background: transparent; color: var(--hm-primary);
+  font: 500 .8125rem/1.2 var(--hm-font); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.ht-pill:hover, .ht-body .hm-btn:hover { background: var(--hm-primary); color: var(--ht-on-primary); filter: none; }
+.ht-body .hm-btn--secondary { border-color: var(--ht-line); color: var(--hm-text); }
+.ht-body .hm-btn--secondary:hover { background: var(--hm-text); border-color: var(--hm-text); color: var(--hm-bg); }
+.ht-arrow {
+  display: inline-grid; place-items: center; flex: none; inline-size: 2.5rem; block-size: 2.5rem; border: 1px solid currentColor;
+  border-radius: 50%; color: inherit; font-size: 1rem; line-height: 1; text-decoration: none; transition: background .15s, color .15s;
+}
+.ht-arrow svg { inline-size: 1rem; block-size: 1rem; }
+a:hover > .ht-arrow, a.ht-arrow:hover { background: var(--hm-primary); border-color: var(--hm-primary); color: var(--ht-on-primary); }
 
 /* ---- shell ---- */
 .ht-wrap { width: min(100% - 2 * var(--ht-gap), var(--hm-container)); margin-inline: auto; }
