@@ -406,6 +406,74 @@
           }
         },
         {
+          "id": "rhythm",
+          "type": "split",
+          "content": {
+            "layout": "text-left",
+            "eyebrow": "Month-end",
+            "heading": "A close you can set your watch by",
+            "lede": "<p>Every engagement starts with a calendar: who delivers what, and by which working day.</p>",
+            "rows": [
+              {
+                "term": "Day 1",
+                "description": "Bank and card feeds reconciled."
+              },
+              {
+                "term": "Day 3",
+                "description": "Accruals and payroll posted."
+              },
+              {
+                "term": "Day 5",
+                "description": "Reports to the board, with commentary."
+              }
+            ],
+            "outputs": [
+              {
+                "label": "Close time",
+                "value": "5 days"
+              },
+              {
+                "label": "Manual entries",
+                "value": "-38%"
+              },
+              {
+                "label": "Adjustments",
+                "value": "2 per month"
+              }
+            ]
+          }
+        },
+        {
+          "id": "handover",
+          "type": "split",
+          "content": {
+            "layout": "text-right",
+            "eyebrow": "Hand-over",
+            "heading": "Documentation that survives staff turnover",
+            "lede": "<p>We write the playbook with your team, then run one month alongside them before stepping back.</p>",
+            "rows": [
+              {
+                "term": "Playbook",
+                "description": "Step-by-step, with screenshots."
+              },
+              {
+                "term": "Training",
+                "description": "Two half-day sessions."
+              }
+            ],
+            "outputs": [
+              {
+                "label": "Check-in",
+                "value": "after 3 months"
+              },
+              {
+                "label": "Support",
+                "value": "email, same day"
+              }
+            ]
+          }
+        },
+        {
           "id": "pricing",
           "type": "pricing",
           "content": {
