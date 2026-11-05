@@ -1,17 +1,30 @@
 {{define "footer"}}<footer class="ht-footer">
+<div class="ht-footer__band{{if .Settings.footer_grain}} ht-footer__band--grain{{end}}">
 <div class="ht-wrap">
-<div class="ht-footer__top">
-<p class="ht-footer__brand">{{.Site.Name}}{{with .Site.Tagline}}<span>{{.}}</span>{{end}}</p>
+<div class="ht-footer__grid">
+<div class="ht-footer__pitch">
+{{with .Settings.footer_headline}}<h2 class="ht-footer__headline">{{.}}</h2>
+{{end}}{{with .Settings.footer_lead}}<p class="ht-footer__lead">{{.}}</p>
+{{end}}{{template "ht-cta" dict "Settings" .Settings "Class" "ht-footer__cta"}}
+</div>
+<div class="ht-footer__contact">
+{{with .Site.Phone}}<p><a href="{{telHref .}}">{{.}}</a></p>
+{{end}}{{with .Settings.footer_email}}<p><a href="mailto:{{.}}">{{.}}</a></p>
+{{end}}{{if .Site.SocialLinks}}<ul class="ht-social">
+{{range .Site.SocialLinks}}<li><a class="ht-arrow" href="{{cta .URL}}" target="_blank" rel="noopener noreferrer" aria-label="{{.Label}}"><span aria-hidden="true">{{printf "%.2s" .Label}}</span></a></li>
+{{end}}</ul>
+{{end}}</div>
+</div>
 {{if .Site.FooterNav}}<nav class="ht-footer__nav" aria-label="Footer">
 {{range .Site.FooterNav}}<div class="ht-footer__col">
 {{if .Children}}<p class="ht-footer__title">{{.Label}}</p>
 <ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{else}}<ul><li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li></ul>{{end}}
 </div>
 {{end}}</nav>
-{{end}}</div>
-{{if .Site.SocialLinks}}<ul class="ht-social">
-{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
-{{end}}</ul>
-{{end}}<p class="ht-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
+{{end}}<div class="ht-footer__bottom">
+<p class="ht-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
+<a class="ht-top" href="#main-content">Back to top <span class="ht-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></span></a>
+</div>
+</div>
 </div>
 </footer>{{end}}
