@@ -1,0 +1,31 @@
+{
+  "name": "hearth",
+  "version": "0.1.0",
+  "description": "Warm, photo-led theme for home builders and trades: split heroes, full-bleed photo bands, a step-by-step process list and a terracotta footer.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "light"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      }
+    }
+  }
+}
