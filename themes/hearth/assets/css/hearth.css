@@ -131,7 +131,7 @@ a:hover > .ht-arrow, a.ht-arrow:hover { background: var(--hm-primary); border-co
 .ht-body .hm-hero--split .hm-hero__image { inline-size: 100%; block-size: 100%; object-fit: cover; border-radius: 0; }
 .ht-body .hm-hero--split .hm-hero__body { align-self: center; padding: clamp(3rem, 7vw, 6rem) var(--ht-gap); max-width: 44rem; }
 .ht-body .hm-hero--centered { padding-block: clamp(4rem, 9vw, 7rem); }
-.ht-house { position: absolute; z-index: 2; left: 36%; bottom: -4rem; inline-size: auto; block-size: 9.5rem; color: var(--hm-primary); opacity: .8; pointer-events: none; }
+.ht-house { position: absolute; z-index: 2; left: 36%; bottom: 0; inline-size: auto; block-size: 9.5rem; color: var(--hm-primary); opacity: .8; pointer-events: none; }
 @media (max-width: 60rem) {
   .ht-body .hm-hero--split { grid-template-columns: 1fr; min-height: 0; }
   .ht-body .hm-hero--split .hm-hero__image { aspect-ratio: 16 / 10; block-size: auto; }
