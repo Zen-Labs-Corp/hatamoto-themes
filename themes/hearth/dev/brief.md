@@ -26,7 +26,7 @@
   `process_steps` (hairline rows with icon), `cta` (photo band), `contact_info`, `contact_form`,
   `card_columns`, `testimonials`, `stats`, `faq`, `team`, `pricing`, `logo_strip`. No own sections.
 - Settings (`settings_schema`, beyond the template's colour mode and spacing):
-  - `header_cta_label` (text, default "Get in touch") and `header_cta_url` (url, default "/contact").
+  - `header_cta_label` and `header_cta_url` (text and url, default empty; fallback when the site has no header button).
   - `footer_headline` (text, default "Every project starts with a conversation.").
   - `footer_lead` (text, default "Tell us about your block and what you want to build.").
   - `footer_grain` (boolean, default true).

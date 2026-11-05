@@ -27,8 +27,8 @@ page keeps rendering.
 | --- | --- | --- |
 | Colour mode | `auto` | what a first visit shows: `light`, `dark` or `auto` (follows the system); visitors can still switch |
 | Spacing | `comfortable` | `compact` tightens the space between sections |
-| Header button label | `Get in touch` | the outlined button in the header; empty hides it |
-| Header button address | `/contact` | where the header and footer buttons lead |
+| Header button label | empty | used only when the site has no header button of its own; needs an address too |
+| Header button address | empty | where that fallback button leads, in the header, menu and footer |
 | Footer headline | `Every project starts with a conversation.` | the large line in the terracotta footer band |
 | Footer text | `Tell us about your block and what you want to build.` | the line under the headline |
 | Footer grain | on | a fine film grain over the footer band |

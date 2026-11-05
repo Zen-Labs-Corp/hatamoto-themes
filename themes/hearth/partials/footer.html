@@ -5,7 +5,7 @@
 <div class="ht-footer__pitch">
 {{with .Settings.footer_headline}}<h2 class="ht-footer__headline">{{.}}</h2>
 {{end}}{{with .Settings.footer_lead}}<p class="ht-footer__lead">{{.}}</p>
-{{end}}{{template "ht-cta" dict "Settings" .Settings "Class" "ht-footer__cta"}}
+{{end}}{{template "ht-cta" dict "Site" .Site "Settings" .Settings "Class" "ht-footer__cta"}}
 </div>
 <div class="ht-footer__contact">
 {{with .Site.Phone}}<p><a href="{{telHref .}}">{{.}}</a></p>

@@ -41,14 +41,14 @@
       "header_cta_label": {
         "type": "string",
         "title": "Header button label",
-        "description": "The outlined button at the right of the header. Empty hides it.",
-        "default": "Get in touch"
+        "description": "Used only when the site has no header button of its own (Theme settings). Needs an address too; empty hides it.",
+        "default": ""
       },
       "header_cta_url": {
         "type": "string",
         "title": "Header button address",
-        "description": "Where the header and footer buttons lead.",
-        "default": "/contact"
+        "description": "Where the fallback button leads, in the header, the menu and the footer.",
+        "default": ""
       },
       "footer_headline": {
         "type": "string",
