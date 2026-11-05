@@ -383,11 +383,11 @@ a:hover > .ht-arrow, a.ht-arrow:hover { background: var(--hm-primary); border-co
 .ht-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 92%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--ht-line); }
 .ht-header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4.75rem; }
 .ht-brand { display: inline-flex; align-items: center; flex: 0 1 auto; min-width: 0; color: var(--hm-text); text-decoration: none; font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; }
-.ht-brand img { display: block; max-height: 2.5rem; width: auto; }
+.ht-brand img { display: block; max-height: 2.5rem; max-width: min(100%, 14rem); width: auto; }
 .ht-brand__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ht-nav { margin-inline-start: auto; }
 .ht-nav ul, .ht-menu__panel ul { list-style: none; margin: 0; padding: 0; }
-.ht-nav > ul { display: flex; align-items: center; gap: 2rem; }
+.ht-nav > ul { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2rem); }
 .ht-nav li { position: relative; }
 .ht-nav a { display: inline-block; padding: .5rem 0; border-bottom: 2px solid transparent; color: var(--hm-text); font-size: .75rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
 .ht-nav a:hover, .ht-nav a[aria-current="page"] { color: var(--hm-primary); }
@@ -415,7 +415,8 @@ a:hover > .ht-arrow, a.ht-arrow:hover { background: var(--hm-primary); border-co
 .ht-menu__panel a[aria-current="page"] { color: var(--hm-primary); }
 .ht-menu__cta { margin-top: 1.25rem; }
 
-@media (max-width: 60rem) {
+/* the full nav needs about 72rem with six items, a logo and the button */
+@media (max-width: 72rem) {
   .ht-nav, .ht-header__cta { display: none; }
   .ht-menu { display: block; }
   .ht-header__inner { gap: .75rem; min-height: 4rem; }
