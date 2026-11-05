@@ -227,11 +227,11 @@ a:hover > .ht-arrow, a.ht-arrow:hover { background: var(--hm-primary); border-co
 .ht-body .hm-cta__actions .hm-btn::after { content: "\2192"; display: grid; place-items: center; flex: none; inline-size: 2.5rem; block-size: 2.5rem; border: 1px solid currentColor; border-radius: 50%; font-size: 1rem; line-height: 1; text-transform: none; transition: background .15s, color .15s; }
 .ht-body .hm-cta__actions .hm-btn:hover { background: none; color: inherit; text-decoration: underline; }
 .ht-body .hm-cta--plain, .ht-body .hm-cta--tinted { padding-block: 0; border: 0; background: none; }
-.ht-body .hm-section--cta:has(.hm-cta--tinted) { background: var(--ht-surface); }
-.ht-body .hm-section--cta:has(.hm-cta--dark, .hm-cta--photo) { padding-block: clamp(5rem, 11vw, 9rem); background: linear-gradient(var(--ht-scrim), var(--ht-scrim)), radial-gradient(circle at 25% 30%, rgba(224, 201, 166, .35), transparent 40%), linear-gradient(135deg, #6c7a82, #3c352e); color: #fff; }
-.ht-body .hm-cta--dark, .ht-body .hm-cta--photo { background: none; border-radius: 0; color: #fff; }
-.ht-body .hm-cta--dark h2, .ht-body .hm-cta--photo h2 { color: #fff; }
-.ht-body .hm-cta--dark .hm-cta__subheadline, .ht-body .hm-cta--photo .hm-cta__subheadline { color: rgba(255, 255, 255, .92); }
+.ht-body .hm-section--cta:has(.hm-cta--tinted:not(.hm-cta--has-photo)) { background: var(--ht-surface); }
+.ht-body .hm-section--cta:has(.hm-cta--dark, .hm-cta--photo, .hm-cta--has-photo) { padding-block: clamp(5rem, 11vw, 9rem); background: linear-gradient(var(--ht-scrim), var(--ht-scrim)), radial-gradient(circle at 25% 30%, rgba(224, 201, 166, .35), transparent 40%), linear-gradient(135deg, #6c7a82, #3c352e); color: #fff; }
+.ht-body .hm-cta--dark, .ht-body .hm-cta--photo, .ht-body .hm-cta--has-photo { background: none; border-radius: 0; color: #fff; }
+.ht-body .hm-cta--dark h2, .ht-body .hm-cta--photo h2, .ht-body .hm-cta--has-photo h2 { color: #fff; }
+.ht-body .hm-cta--dark .hm-cta__subheadline, .ht-body .hm-cta--photo .hm-cta__subheadline, .ht-body .hm-cta--has-photo .hm-cta__subheadline { color: rgba(255, 255, 255, .92); }
 .ht-band__img { position: absolute; inset: 0; z-index: -2; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .ht-body .hm-section--cta:has(.hm-cta--has-photo)::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--ht-scrim); }
 .ht-body .hm-section--cta:has(.hm-cta--has-photo) { background: #3c352e; }
