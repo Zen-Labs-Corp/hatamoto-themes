@@ -43,7 +43,7 @@
   --hm-kinu: var(--ht-line);
   --hm-shu: var(--hm-primary);
   --hm-shu-dark: var(--hm-primary);
-  --hm-focus: var(--hm-primary);
+  --hm-focus: var(--hm-text);       /* ink on paper; the dark bands and footer override it below */
 
   /* ---- type ---- */
   --hm-font: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -70,6 +70,7 @@
   --ht-line: #3b3632;
   --ht-surface: #262320;
   --ht-on-primary: #1c1a18;
+  --hm-focus: var(--hm-text);
   --ht-band: #131110;
   --ht-foot-a: #8f3322;
   --ht-foot-b: #6e271a;
@@ -159,6 +160,7 @@ a:hover > .ht-arrow, a.ht-arrow:hover { background: var(--hm-primary); border-co
 .ht-body .hm-features__link { position: absolute; inset-inline-end: 0; top: 50%; translate: 0 -50%; display: grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border: 1px solid currentColor; border-radius: 50%; color: var(--ht-band-ink); font-size: 0; line-height: 0; text-decoration: none; transition: background .15s, color .15s; }
 .ht-body .hm-features__link::before { content: "\2192"; font-size: 1rem; line-height: 1; }
 .ht-body .hm-features__link::after { content: ""; position: absolute; inset: -2rem -60rem -2rem -60rem; }
+.ht-body .hm-features__link:focus-visible { outline-offset: -2px; }
 .ht-body .hm-features__link:hover { background: var(--ht-band-ink); color: var(--ht-band); }
 .ht-body .hm-features__item:has(.hm-features__link) { overflow: hidden; }
 .ht-body .hm-features--bento .hm-features__item { display: block; }
@@ -235,6 +237,9 @@ a:hover > .ht-arrow, a.ht-arrow:hover { background: var(--hm-primary); border-co
 .ht-band__img { position: absolute; inset: 0; z-index: -2; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .ht-body .hm-section--cta:has(.hm-cta--has-photo)::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--ht-scrim); }
 .ht-body .hm-section--cta:has(.hm-cta--has-photo) { background: #3c352e; }
+
+/* focus ring on the dark and terracotta surfaces: white keeps 3:1 or more on all of them */
+.ht-footer, .ht-body .hm-section--features, .ht-body .hm-split__panel, .ht-body .hm-section--cta:has(.hm-cta--dark, .hm-cta--photo, .hm-cta--has-photo) { --hm-focus: #fff; }
 
 /* ---- content ---- */
 .ht-body .hm-content__headline { max-width: 20em; margin-bottom: .6em; font-size: var(--ht-fs-h2); }
