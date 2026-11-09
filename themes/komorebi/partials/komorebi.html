@@ -6,10 +6,10 @@
 {{/* kb-cta-label, kb-cta-url: the header button and the footer line share one setting pair */}}
 {{define "kb-cta-label"}}{{default "Write to us" .Settings.header_cta_label}}{{end}}
 {{define "kb-cta-url"}}{{cta (default "/about" .Settings.header_cta_url)}}{{end}}
-{{/* kb-nav-item: a top-level link. A parent without a URL is a plain label. dict "Item" . "Path" ... */}}
-{{define "kb-nav-item"}}{{$i := (navlink .).Item}}{{if and (not $i.Href) $i.Children}}<span class="kb-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
+{{/* kb-nav-item: a top-level link. A parent without a link (empty or "#" address, which is what a no-link parent arrives as) is a plain label, never a dead button; its children open on hover or focus. dict "Item" . "Path" ... */}}
+{{define "kb-nav-item"}}{{$i := (navlink .).Item}}{{if and (or (not $i.Href) (eq $i.Href "#")) $i.Children}}<span class="kb-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
 {{/* kb-flink: a footer link with the arrow. dict "Item" . "Path" ... */}}
-{{define "kb-flink"}}{{$l := navlink .}}{{$i := $l.Item}}{{if $i.Href}}<a href="{{cta $i.Href}}"{{if eq $i.Target "_blank"}} target="_blank" rel="noopener noreferrer"{{end}}{{if and $l.Path (eq $i.Href $l.Path)}} aria-current="page"{{end}}>{{$i.Label}} {{template "kb-arrow"}}</a>{{end}}{{end}}
+{{define "kb-flink"}}{{$l := navlink .}}{{$i := $l.Item}}{{if and $i.Href (ne $i.Href "#")}}<a href="{{cta $i.Href}}"{{if eq $i.Target "_blank"}} target="_blank" rel="noopener noreferrer"{{end}}{{if and $l.Path (eq $i.Href $l.Path)}} aria-current="page"{{end}}>{{$i.Label}} {{template "kb-arrow"}}</a>{{end}}{{end}}
 {{/* kb-sh: a section header, title left and an underlined link or a mono note right. dict "Title" "" "Id" "" "Href" "" "Label" "" "Meta" "" */}}
 {{define "kb-sh"}}<div class="kb-sh"><h2{{with .Id}} id="{{.}}"{{end}}>{{.Title}}</h2>{{if .Href}}<a href="{{cta .Href}}">{{.Label}} {{template "kb-arrow"}}</a>{{else}}{{with .Meta}}<span class="kb-mono kb-sh__meta">{{.}}</span>{{end}}{{end}}</div>{{end}}
 {{/* kb-row: one hairline post row (category and reading time, title, excerpt, date). dict "Item" . "Level" 2|3 */}}
