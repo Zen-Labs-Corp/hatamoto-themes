@@ -26,6 +26,7 @@
   --kb-line: #d8dbe2;
   --kb-accent: #ffc9a8;
   --kb-on-primary: #ffffff;
+  color-scheme: light;
   /* generated art: ground, quiet cells, highlight cells, caption */
   --kb-art-bg: var(--hm-primary);
   --kb-art-soft: color-mix(in srgb, var(--kb-on-primary) 30%, var(--hm-primary));
