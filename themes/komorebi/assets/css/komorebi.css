@@ -139,7 +139,7 @@ a { color: inherit; }
 
 @media (max-width: 860px) {
   .kb-brand { min-inline-size: 0; white-space: normal; overflow-wrap: anywhere; line-height: 1.05; }
-  .kb-nav, .kb-cta { display: none; }
+  .kb-nav, .kb-header .kb-cta { display: none; }
   .kb-menu { display: block; }
 }
 @media (max-width: 700px) {
