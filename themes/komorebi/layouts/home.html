@@ -38,4 +38,5 @@
 <div><p class="kb-mono kb-about__kick">About</p><h2 class="kb-about__title" id="kb-about-h">{{$stmt}}</h2></div>
 {{with $about}}<div class="kb-about__text">{{with .Excerpt}}<p>{{.}}</p>{{end}}<a href="{{.URL}}">More about us {{template "kb-arrow"}}</a></div>{{end}}
 </div></section>{{end}}
+{{if .Settings.home_sections}}{{template "page-body" .}}{{end}}
 {{end}}

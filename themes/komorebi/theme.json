@@ -79,6 +79,12 @@
         "title": "Address of the post archive",
         "description": "Where the \"All posts\" links lead.",
         "default": "/blog"
+      },
+      "home_sections": {
+        "type": "boolean",
+        "title": "Show home page sections",
+        "description": "Prints the blocks of the home page built in the editor below the about band.",
+        "default": false
       }
     }
   }
