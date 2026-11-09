@@ -277,7 +277,7 @@ a { color: inherit; }
 .kb-prose.hm-prose code { padding: .12em .35em; border-radius: var(--hm-radius-sm); background: var(--kb-panel); font-family: var(--kb-mono); font-size: .88em; }
 .kb-prose.hm-prose pre { margin: 1.6em 0; padding: 1rem 1.25rem; overflow-x: auto; border: 1px solid var(--kb-line); border-radius: var(--hm-radius-sm); background: var(--kb-panel); font-size: .875rem; line-height: 1.6; }
 .kb-prose.hm-prose pre code { padding: 0; background: none; }
-.kb-prose.hm-prose table { inline-size: 100%; border-collapse: collapse; font-size: .9375rem; }
+.kb-prose.hm-prose table { display: block; max-inline-size: 100%; overflow-x: auto; inline-size: 100%; border-collapse: collapse; font-size: .9375rem; }
 .kb-prose.hm-prose th, .kb-prose.hm-prose td { padding: .6rem .75rem; border-bottom: 1px solid var(--kb-line); text-align: start; }
 
 .kb-article__foot { max-inline-size: 42rem; margin-block-start: 3rem; }
