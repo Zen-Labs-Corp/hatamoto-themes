@@ -126,7 +126,7 @@ a { color: inherit; }
 .kb-menu__panel ul { list-style: none; margin: 0; padding: 0; }
 .kb-menu__panel ul ul { padding-inline-start: 1rem; }
 .kb-menu__panel a, .kb-menu__panel .kb-nav__label { display: block; padding: .85rem 0; border-bottom: 1px solid var(--kb-line); font-size: 1.25rem; font-weight: 500; text-decoration: none; }
-.kb-menu__panel a[aria-current="page"] { color: var(--kb-primary); }
+.kb-menu__panel a[aria-current="page"] { color: var(--kb-primary-text); }
 .kb-menu__cta { display: flex !important; align-items: center; gap: .5rem; color: var(--kb-primary-text); }
 
 .kb-footer { margin-block-start: var(--kb-section); }
