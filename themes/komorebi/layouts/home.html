@@ -33,7 +33,7 @@
 <h3 class="kb-tc__name">{{$t.Name}}</h3>{{with $ex}}<p class="kb-tc__text">{{.}}</p>{{end}}<span class="kb-mono kb-tc__go">Explore topic {{template "kb-arrow"}}</span></a></li>
 {{end}}{{end}}{{end}}</ol></section>{{end}}
 {{$aurl := default "/about" .Settings.header_cta_url}}{{$about := ""}}{{$ap := query (dict "schema" "page" "limit" 50)}}{{range $ap.Items}}{{if eq .URL $aurl}}{{$about = .}}{{end}}{{end}}
-{{$stmt := .Site.Tagline}}{{if and (not $stmt) $about}}{{$stmt = print "About " .Site.Name}}{{end}}
+{{$stmt := trim .Settings.about_statement}}{{if and (not $stmt) $about}}{{$stmt = print "About " .Site.Name}}{{end}}
 {{if $stmt}}<section class="kb-wrap kb-about" aria-labelledby="kb-about-h"><div class="kb-about__grid">
 <div><p class="kb-mono kb-about__kick">About</p><h2 class="kb-about__title" id="kb-about-h">{{$stmt}}</h2></div>
 {{with $about}}<div class="kb-about__text">{{with .Excerpt}}<p>{{.}}</p>{{end}}<a href="{{.URL}}">More about us {{template "kb-arrow"}}</a></div>{{end}}

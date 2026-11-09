@@ -44,6 +44,7 @@ page keeps rendering.
 | Header button address (`header_cta_url`) | URL | `/about` | Where both lead; empty hides the button and the footer line. The about band on the home page reads the page at this address. |
 | Address of the post archive (`archive_url`) | URL | `/blog` | Where the "All posts" links and the "All" category chip lead. |
 | Home page sections (`home_sections`) | on/off | off | Prints the blocks of the home page built in the editor below the about band. |
+| About statement (`about_statement`) | text | empty | The large line in the home page about band. Empty uses "About" and the site name. |
 | Show topics (`show_topics`) | on/off | on | The three categories with the most posts on the home page. |
 | Generated art (`generated_art`) | on/off | on | Pattern art for posts and topics without an image. Off gives text-only cards. |
 
@@ -51,8 +52,7 @@ page keeps rendering.
 
 **Theme > Colours and fonts** restyles the primary colour, background, text, fonts and
 corners. The paper, panel, rule and muted tones are the theme's own, set for contrast on
-the default palette. The home page uses your site tagline for the lead and the about
-statement; add one in **Settings** for the full effect.
+the default palette. The home page uses your site tagline for the hero lead; add one in **Settings** for the full effect.
 
 ## Fonts
 

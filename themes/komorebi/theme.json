@@ -85,6 +85,12 @@
         "title": "Show home page sections",
         "description": "Prints the blocks of the home page built in the editor below the about band.",
         "default": false
+      },
+      "about_statement": {
+        "type": "string",
+        "title": "About statement",
+        "description": "The large line in the home page about band. Empty uses \"About\" and the site name.",
+        "default": ""
       }
     }
   }
