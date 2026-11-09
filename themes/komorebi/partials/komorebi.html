@@ -1,0 +1,12 @@
+{{/* Komorebi library: dict-taking defines, all named kb-*. */}}
+{{/* kb-arrow: small up-right arrow, drawn (no font glyph) */}}
+{{define "kb-arrow"}}<svg class="kb-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>{{end}}
+{{/* kb-star: thin six-spoke asterisk */}}
+{{define "kb-star"}}<svg class="kb-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>{{end}}
+{{/* kb-cta-label, kb-cta-url: the header button and the footer line share one setting pair */}}
+{{define "kb-cta-label"}}{{default "Write to us" .Settings.header_cta_label}}{{end}}
+{{define "kb-cta-url"}}{{cta (default "/about" .Settings.header_cta_url)}}{{end}}
+{{/* kb-nav-item: a top-level link. A parent without a URL is a plain label. dict "Item" . "Path" ... */}}
+{{define "kb-nav-item"}}{{$i := (navlink .).Item}}{{if and (not $i.Href) $i.Children}}<span class="kb-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
+{{/* kb-flink: a footer link with the arrow. dict "Item" . "Path" ... */}}
+{{define "kb-flink"}}{{$l := navlink .}}{{$i := $l.Item}}{{if $i.Href}}<a href="{{cta $i.Href}}"{{if eq $i.Target "_blank"}} target="_blank" rel="noopener noreferrer"{{end}}{{if and $l.Path (eq $i.Href $l.Path)}} aria-current="page"{{end}}>{{$i.Label}} {{template "kb-arrow"}}</a>{{end}}{{end}}
