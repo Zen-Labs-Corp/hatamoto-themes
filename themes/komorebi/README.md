@@ -42,6 +42,7 @@ page keeps rendering.
 | Hero line 2 (`hero_line_2`) | text | `worth noticing.` | Second line, in the primary colour. |
 | Header button label (`header_cta_label`) | text | `Write to us` | The outlined header button and the large line in the footer. |
 | Header button address (`header_cta_url`) | URL | `/about` | Where both lead. The about band on the home page reads the page at this address. |
+| Address of the post archive (`archive_url`) | URL | `/blog` | Where the "All posts" links and the "All" category chip lead. |
 | Show topics (`show_topics`) | on/off | on | The three categories with the most posts on the home page. |
 | Generated art (`generated_art`) | on/off | on | Pattern art for posts and topics without an image. Off gives text-only cards. |
 

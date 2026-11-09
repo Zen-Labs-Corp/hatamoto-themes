@@ -73,6 +73,12 @@
         "title": "Generated art",
         "description": "Pattern art for posts and topics without an image. Off gives text-only cards.",
         "default": true
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "description": "Where the \"All posts\" links lead.",
+        "default": "/blog"
       }
     }
   }
