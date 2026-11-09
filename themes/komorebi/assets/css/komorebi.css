@@ -144,7 +144,7 @@ a { color: inherit; }
 .kb-footer__bar a:hover { color: var(--kb-primary); }
 .kb-footer__bar a[aria-current="page"] { text-decoration: underline; }
 
-@media (max-width: 860px) {
+@media (max-width: 860px), (hover: none) {
   .kb-nav, .kb-header .kb-cta { display: none; }
   .kb-menu { display: block; }
 }
