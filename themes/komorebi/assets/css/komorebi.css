@@ -107,9 +107,10 @@ a { color: inherit; }
 .kb-nav a, .kb-nav__label { color: var(--hm-text); text-decoration: none; font-size: .875rem; }
 .kb-nav a:hover { color: var(--kb-primary); }
 .kb-nav__list > li { position: relative; }
-.kb-nav__sub { position: absolute; inset-inline-start: -1rem; inset-block-start: 100%; z-index: 40; min-inline-size: 12rem; margin: 0; padding: .5rem 1rem; list-style: none; background: var(--hm-bg); border: 1px solid var(--kb-line); visibility: hidden; }
-.kb-nav__list > li:hover > .kb-nav__sub, .kb-nav__list > li:focus-within > .kb-nav__sub { visibility: visible; }
-.kb-nav__sub a { display: block; padding: .4rem 0; white-space: nowrap; }
+.kb-nav__sub { position: absolute; inset-inline-start: -1rem; inset-block-start: 100%; z-index: 40; min-inline-size: 12rem; margin: 0; padding: .5rem 1rem; list-style: none; background: var(--hm-bg); border: 1px solid var(--kb-line); max-inline-size: min(20rem, 90vw); overflow-wrap: anywhere; opacity: 0; transform: translateY(-.25rem); pointer-events: none; transition: opacity .15s, transform .15s; }
+.kb-nav__list > li:last-child > .kb-nav__sub { inset-inline-start: auto; inset-inline-end: -1rem; }
+.kb-nav__list > li:hover > .kb-nav__sub, .kb-nav__list > li:focus-within > .kb-nav__sub { opacity: 1; transform: none; pointer-events: auto; }
+.kb-nav__sub a { display: block; padding: .4rem 0; }
 .kb-nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: .35em; text-decoration-thickness: 1px; }
 .kb-header__end { flex: none; display: flex; align-items: center; gap: .75rem; }
 .kb-mode { position: relative; inline-size: 2.75rem; block-size: 1.625rem; padding: 0; border: 1px solid var(--kb-line); border-radius: var(--hm-radius-lg); background: var(--kb-surface); cursor: pointer; }
