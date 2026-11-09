@@ -4,6 +4,7 @@
    the system's dark preference need this script. */
 (function () {
   var r = document.documentElement;
+  r.setAttribute('data-kb-js', ''); /* from here the engine toggle owns data-theme; the CSS no-JS fallback stands down */
   var mode = r.getAttribute('data-kb-mode');
   var m = null;
   try { m = localStorage.getItem('hm-theme'); } catch (e) { /* storage blocked: no saved choice */ } /* the engine toggle's key (hm.js) */
