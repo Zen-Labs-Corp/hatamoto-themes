@@ -186,6 +186,7 @@ a { color: inherit; }
 .kb-hero__name em { font-style: normal; color: var(--hm-primary); }
 .kb-hero__kick { margin: 1.6rem 0 .75rem; color: var(--kb-muted); }
 .kb-hero__lead { margin: 0; max-inline-size: 24em; }
+.kb-hero__name + .kb-hero__lead { margin-block-start: 1.6rem; }
 
 /* ---- home: journal ---- */
 .kb-journal { padding-block-end: clamp(3rem, 6vw, 5rem); }

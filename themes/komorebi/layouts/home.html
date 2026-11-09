@@ -18,12 +18,12 @@
 {{$feat := ""}}{{range $r.Items}}{{if and (not $feat) .Image}}{{$feat = .}}{{end}}{{end}}{{if not $feat}}{{range $r.Items}}{{if not $feat}}{{$feat = .}}{{end}}{{end}}{{end}}
 {{if $feat}}{{template "kb-feature" dict "Item" $feat "Art" $art "Level" 3}}{{else}}<p class="kb-empty">No posts yet.</p>{{end}}
 </div>
-<div class="kb-journal__recent">
+{{$fu := ""}}{{with $feat}}{{$fu = .URL}}{{end}}{{$c := 0}}{{range $r.Items}}{{if ne .URL $fu}}{{$c = add $c 1}}{{end}}{{end}}
+{{if $c}}<div class="kb-journal__recent">
 {{template "kb-sh" dict "Title" "Recent" "Href" $arch "Label" "All posts"}}
-{{$fu := ""}}{{with $feat}}{{$fu = .URL}}{{end}}{{$c := 0}}
-<ol class="kb-rows">{{range $r.Items}}{{if and (ne .URL $fu) (lt $c 5)}}{{$c = add $c 1}}{{template "kb-row" dict "Item" . "Level" 3}}{{end}}{{end}}</ol>
-{{if $c}}<a class="kb-more" href="{{cta $arch}}"><span>Read all posts</span>{{template "kb-arrow"}}</a>{{end}}
-</div>
+{{$c = 0}}<ol class="kb-rows">{{range $r.Items}}{{if and (ne .URL $fu) (lt $c 5)}}{{$c = add $c 1}}{{template "kb-row" dict "Item" . "Level" 3}}{{end}}{{end}}</ol>
+<a class="kb-more" href="{{cta $arch}}"><span>Read all posts</span>{{template "kb-arrow"}}</a>
+</div>{{end}}
 </div></section>
 {{if and .Settings.show_topics (ne $picked "|")}}{{$tw := "topics"}}{{if eq (len $cats) 1}}{{$tw = "topic"}}{{end}}<section class="kb-wrap kb-topics" aria-labelledby="kb-topics-h">
 {{template "kb-sh" dict "Title" "Topics" "Id" "kb-topics-h" "Meta" (print (len $cats) " " $tw)}}
