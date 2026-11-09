@@ -12,11 +12,11 @@
 <div class="kb-hero__side"><p class="kb-hero__name">{{with $name1}}{{.}}<br>{{end}}<em>{{$name2}}</em></p>
 {{with $kick}}<p class="kb-mono kb-hero__kick">{{.}}</p>{{end}}{{with .Site.Tagline}}<p class="kb-hero__lead">{{.}}</p>{{end}}</div>
 </div></section>
-<section class="kb-wrap kb-journal" aria-labelledby="kb-journal-h"><div class="kb-journal__grid">
+<section class="kb-wrap kb-journal" aria-labelledby="hm-kb-journal-h"><div class="kb-journal__grid">
 <div class="kb-journal__feat">
-{{template "kb-sh" dict "Title" "Journal" "Id" "kb-journal-h"}}
-{{$feat := ""}}{{range $r.Items}}{{if and (not $feat) .Image}}{{$feat = .}}{{end}}{{end}}{{if not $feat}}{{range $r.Items}}{{if not $feat}}{{$feat = .}}{{end}}{{end}}{{end}}
-{{if $feat}}{{template "kb-feature" dict "Item" $feat "Art" $art "Level" 3}}{{else}}<p class="kb-empty">No posts yet.</p>{{end}}
+{{template "kb-sh" dict "Title" "Journal" "Id" "hm-kb-journal-h"}}
+{{$newest := ""}}{{range $r.Items}}{{if not $newest}}{{$newest = .URL}}{{end}}{{end}}{{$feat := ""}}{{range $r.Items}}{{if and (not $feat) .Image}}{{$feat = .}}{{end}}{{end}}{{if not $feat}}{{range $r.Items}}{{if not $feat}}{{$feat = .}}{{end}}{{end}}{{end}}
+{{if $feat}}{{template "kb-feature" dict "Item" $feat "Art" $art "Level" 3 "Newest" (eq $feat.URL $newest)}}{{else}}<p class="kb-empty">No posts yet.</p>{{end}}
 </div>
 {{$fu := ""}}{{with $feat}}{{$fu = .URL}}{{end}}{{$c := 0}}{{range $r.Items}}{{if ne .URL $fu}}{{$c = add $c 1}}{{end}}{{end}}
 {{if $c}}<div class="kb-journal__recent">
@@ -25,8 +25,8 @@
 <a class="kb-more" href="{{cta $arch}}"><span>Read all posts</span>{{template "kb-arrow"}}</a>
 </div>{{end}}
 </div></section>
-{{if and .Settings.show_topics (ne $picked "|")}}{{$tw := "topics"}}{{if eq (len $cats) 1}}{{$tw = "topic"}}{{end}}<section class="kb-wrap kb-topics" aria-labelledby="kb-topics-h">
-{{template "kb-sh" dict "Title" "Topics" "Id" "kb-topics-h" "Meta" (print (len $cats) " " $tw)}}
+{{if and .Settings.show_topics (ne $picked "|")}}{{$tmeta := ""}}{{if lt (len $cats) 12}}{{$tw := "topics"}}{{if eq (len $cats) 1}}{{$tw = "topic"}}{{end}}{{$tmeta = print (len $cats) " " $tw}}{{end}}<section class="kb-wrap kb-topics" aria-labelledby="hm-kb-topics-h">
+{{template "kb-sh" dict "Title" "Topics" "Id" "hm-kb-topics-h" "Meta" $tmeta}}
 <ol class="kb-tri">{{range $i, $slug := split (trimPrefix (trimSuffix $picked "|") "|") "|"}}{{range $cats}}{{if eq .Slug $slug}}{{$t := .}}{{$q := query (dict "schema" "post" "term" (print "category:" $t.Slug) "limit" 1)}}{{$ex := ""}}{{range $q.Items}}{{$ex = .Excerpt}}{{end}}
 <li><a class="kb-tc" href="{{$t.URL}}"><span class="kb-mono kb-tc__top"><span>{{$t.Count}} {{if eq $t.Count 1}}post{{else}}posts{{end}}</span><span class="kb-k">{{template "kb-arrow"}}</span></span>
 {{if $art}}<span class="kb-tc__art">{{template "kb-art" dict "Seed" (add (len $t.Name) $i) "Ground" false}}</span>{{end}}
@@ -34,8 +34,8 @@
 {{end}}{{end}}{{end}}</ol></section>{{end}}
 {{$aurl := default "/about" .Settings.header_cta_url}}{{$about := ""}}{{$ap := query (dict "schema" "page" "limit" 50)}}{{range $ap.Items}}{{if eq .URL $aurl}}{{$about = .}}{{end}}{{end}}
 {{$stmt := trim .Settings.about_statement}}{{if and (not $stmt) $about}}{{$stmt = print "About " .Site.Name}}{{end}}
-{{if $stmt}}<section class="kb-wrap kb-about" aria-labelledby="kb-about-h"><div class="kb-about__grid">
-<div><p class="kb-mono kb-about__kick">About</p><h2 class="kb-about__title" id="kb-about-h">{{$stmt}}</h2></div>
+{{if $stmt}}<section class="kb-wrap kb-about" aria-labelledby="hm-kb-about-h"><div class="kb-about__grid">
+<div><p class="kb-mono kb-about__kick">About</p><h2 class="kb-about__title" id="hm-kb-about-h">{{$stmt}}</h2></div>
 {{with $about}}<div class="kb-about__text">{{with .Excerpt}}<p>{{.}}</p>{{end}}<a href="{{.URL}}">More about us {{template "kb-arrow"}}</a></div>{{end}}
 </div></section>{{end}}
 {{if .Settings.home_sections}}{{template "page-body" .}}{{end}}

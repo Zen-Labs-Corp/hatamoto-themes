@@ -17,8 +17,8 @@
 {{with $e.Author.JobTitle}}<p class="kb-author__job kb-mono">{{.}}</p>{{end}}{{with $e.Author.Bio}}<p class="kb-author__bio">{{.}}</p>{{end}}</div>
 </aside>{{end}}
 </article>
-{{if $post}}{{with call .Related 3}}<section class="kb-wrap kb-related" aria-labelledby="kb-related-h">
-{{template "kb-sh" dict "Title" "Keep reading" "Id" "kb-related-h"}}
+{{if $post}}{{with call .Related 3}}<section class="kb-wrap kb-related" aria-labelledby="hm-kb-related-h">
+{{template "kb-sh" dict "Title" "Keep reading" "Id" "hm-kb-related-h"}}
 <ol class="kb-rows">{{range .}}{{template "kb-row" dict "Item" . "Level" 3}}{{end}}</ol>
 </section>{{end}}{{end}}
 {{else}}{{template "page-body" .}}{{end}}{{end}}
