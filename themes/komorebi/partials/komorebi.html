@@ -18,3 +18,5 @@
 {{if eq $.Level 2}}<h2 class="kb-row__title">{{$it.Title}}</h2>{{else}}<h3 class="kb-row__title">{{$it.Title}}</h3>{{end}}
 {{with $it.Excerpt}}<p class="kb-row__excerpt">{{.}}</p>{{end}}{{if not $it.PublishedAt.IsZero}}<span class="kb-mono kb-row__date">{{formatDate $it.PublishedAt "2 Jan 2006"}}</span>{{end}}
 </a></li>{{end}}
+{{/* kb-meta: author, date and reading time of a post. dict "Entity" . "Body" html */}}
+{{define "kb-meta"}}{{$e := .Entity}}{{$m := readingTime .Body}}<p class="kb-mono kb-meta">{{with $e.Author}}<span>{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</span>{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 Jan 2006"}}</time>{{end}}{{if $m}}<span>{{$m}} min read</span>{{end}}</p>{{end}}
