@@ -40,8 +40,8 @@ page keeps rendering.
 | Spacing (`density`) | `comfortable`, `compact` | `comfortable` | `compact` tightens the space between sections. |
 | Hero line 1 (`hero_line_1`) | text | `Small things,` | First headline line. When both lines are empty the site name is split in two. |
 | Hero line 2 (`hero_line_2`) | text | `worth noticing.` | Second line, in the primary colour. |
-| Header button label (`header_cta_label`) | text | `Write to us` | The outlined header button and the large line in the footer. |
-| Header button address (`header_cta_url`) | URL | `/about` | Where both lead. The about band on the home page reads the page at this address. |
+| Header button label (`header_cta_label`) | text | `Write to us` | The outlined header button and the large line in the footer. The site's own header button (Site settings) wins when set. |
+| Header button address (`header_cta_url`) | URL | `/about` | Where both lead; empty hides the button and the footer line. The about band on the home page reads the page at this address. |
 | Address of the post archive (`archive_url`) | URL | `/blog` | Where the "All posts" links and the "All" category chip lead. |
 | Home page sections (`home_sections`) | on/off | off | Prints the blocks of the home page built in the editor below the about band. |
 | Show topics (`show_topics`) | on/off | on | The three categories with the most posts on the home page. |

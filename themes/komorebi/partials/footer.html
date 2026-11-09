@@ -1,7 +1,6 @@
 {{define "footer"}}<footer class="kb-footer">
 <div class="kb-wrap"><div class="kb-footer__inner">
-<p class="kb-mono kb-footer__kicker">Get in touch</p>
-<a class="kb-footer__cta" href="{{template "kb-cta-url" .}}">{{template "kb-cta-label" .}} {{template "kb-arrow"}}</a>
+{{template "kb-cta" dict "Root" . "Class" "kb-footer__cta" "Kicker" true}}
 <a class="kb-top" href="#main-content" aria-label="Back to top"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
 <div class="kb-footer__bar kb-mono">
 <span>&copy; {{year}} {{.Site.Name}}</span>

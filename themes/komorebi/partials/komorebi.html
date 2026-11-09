@@ -3,9 +3,10 @@
 {{define "kb-arrow"}}<svg class="kb-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>{{end}}
 {{/* kb-star: thin six-spoke asterisk */}}
 {{define "kb-star"}}<svg class="kb-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>{{end}}
-{{/* kb-cta-label, kb-cta-url: the header button and the footer line share one setting pair */}}
-{{define "kb-cta-label"}}{{default "Write to us" .Settings.header_cta_label}}{{end}}
-{{define "kb-cta-url"}}{{cta (default "/about" .Settings.header_cta_url)}}{{end}}
+{{/* kb-cta: the header button, the menu button and the footer line. The site's own header button wins, else the two
+   theme settings; with no address nothing is printed. dict "Root" . "Class" "" "Span" bool "Kicker" bool */}}
+{{define "kb-cta"}}{{$l := ""}}{{$u := ""}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if not $u}}{{$l = .Root.Settings.header_cta_label}}{{$u = .Root.Settings.header_cta_url}}{{end}}{{if $u}}{{if .Kicker}}<p class="kb-mono kb-footer__kicker">Get in touch</p>
+{{end}}<a class="{{.Class}}" href="{{cta $u}}">{{if .Span}}<span>{{default "Write to us" $l}}</span>{{else}}{{default "Write to us" $l}} {{end}}{{template "kb-arrow"}}</a>{{end}}{{end}}
 {{/* kb-nav-item: a top-level link. A parent without a link (empty or "#" address, which is what a no-link parent arrives as) is a plain label, never a dead button; its children open on hover or focus. dict "Item" . "Path" ... */}}
 {{define "kb-nav-item"}}{{$i := (navlink .).Item}}{{if and (or (not $i.Href) (eq $i.Href "#")) $i.Children}}<span class="kb-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
 {{/* kb-flink: a footer link with the arrow. dict "Item" . "Path" ... */}}

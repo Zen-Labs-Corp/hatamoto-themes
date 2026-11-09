@@ -4,10 +4,9 @@
 {{if .Site.Nav}}<nav class="kb-nav" aria-label="Primary"><ul class="kb-nav__list">{{range .Site.Nav}}<li>{{template "kb-nav-item" dict "Item" . "Path" $.Path}}{{if .Children}}<ul class="kb-nav__sub">{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>
 {{end}}<div class="kb-header__end">
 <button type="button" class="kb-mode" data-hm-theme-toggle aria-label="Switch to dark mode" aria-pressed="false" hidden><span class="kb-mode__dot" aria-hidden="true"></span></button>
-<a class="kb-cta" href="{{template "kb-cta-url" .}}"><span>{{template "kb-cta-label" .}}</span>{{template "kb-arrow"}}</a>
+{{template "kb-cta" dict "Root" . "Class" "kb-cta" "Span" true}}
 <details class="kb-menu"><summary>Menu</summary>
-<div class="kb-menu__panel">{{if .Site.Nav}}<nav aria-label="Menu"><ul>{{range .Site.Nav}}<li>{{template "kb-nav-item" dict "Item" . "Path" $.Path}}{{if .Children}}<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>{{end}}
-<a class="kb-menu__cta" href="{{template "kb-cta-url" .}}">{{template "kb-cta-label" .}} {{template "kb-arrow"}}</a></div></details>
+<div class="kb-menu__panel">{{if .Site.Nav}}<nav aria-label="Menu"><ul>{{range .Site.Nav}}<li>{{template "kb-nav-item" dict "Item" . "Path" $.Path}}{{if .Children}}<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>{{end}}{{template "kb-cta" dict "Root" . "Class" "kb-menu__cta"}}</div></details>
 </div>
 </div></div>
 </header>{{end}}
