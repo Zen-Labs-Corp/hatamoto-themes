@@ -1,0 +1,48 @@
+{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$art := .Settings.generated_art}}
+{{/* hero lines: the two settings, else the site name split in two */}}
+{{$words := split (trim .Site.Name) " "}}{{$n := len $words}}{{$half := div $n 2}}
+{{$l1 := trim .Settings.hero_line_1}}{{$l2 := trim .Settings.hero_line_2}}
+{{if and (not $l1) (not $l2)}}{{range $i, $w := $words}}{{if lt $i $half}}{{$l1 = print $l1 " " $w}}{{else}}{{$l2 = print $l2 " " $w}}{{end}}{{end}}{{$l1 = trim $l1}}{{$l2 = trim $l2}}{{if not $l1}}{{$l1 = $l2}}{{$l2 = ""}}{{end}}{{end}}
+{{/* site name in two tones: all but the last word, then the last word */}}
+{{$name1 := ""}}{{$name2 := ""}}{{range $i, $w := $words}}{{if lt $i (sub $n 1)}}{{$name1 = print $name1 " " $w}}{{else}}{{$name2 = $w}}{{end}}{{end}}{{$name1 = trim $name1}}
+{{/* the three categories with the most posts */}}
+{{$picked := "|"}}{{$kick := ""}}{{range $k := seq 3}}{{$best := ""}}{{range $cats}}{{if not (contains $picked (print "|" .Slug "|"))}}{{if or (not $best) (gt .Count $best.Count)}}{{$best = .}}{{end}}{{end}}{{end}}{{if $best}}{{$picked = print $picked $best.Slug "|"}}{{if $k}}{{$kick = print $kick ", "}}{{end}}{{$kick = print $kick $best.Name}}{{end}}{{end}}
+<section class="kb-wrap kb-hero"><div class="kb-hero__grid">
+<h1 class="kb-hero__title">{{if or $l1 $l2}}{{$l1}}{{with $l2}}<span class="kb-hero__l2">{{.}}{{template "kb-star"}}</span>{{end}}{{else}}{{.Site.Name}}{{end}}</h1>
+<div class="kb-hero__side"><p class="kb-hero__name">{{with $name1}}{{.}}<br>{{end}}<em>{{$name2}}</em></p>
+{{with $kick}}<p class="kb-mono kb-hero__kick">{{.}}</p>{{end}}{{with .Site.Tagline}}<p class="kb-hero__lead">{{.}}</p>{{end}}</div>
+</div></section>
+<section class="kb-wrap kb-journal" aria-labelledby="kb-journal-h"><div class="kb-journal__grid">
+<div class="kb-journal__feat">
+{{template "kb-sh" dict "Title" "Journal" "Id" "kb-journal-h"}}
+{{$feat := ""}}{{range $r.Items}}{{if and (not $feat) .Image}}{{$feat = .}}{{end}}{{end}}{{if not $feat}}{{range $r.Items}}{{if not $feat}}{{$feat = .}}{{end}}{{end}}{{end}}
+{{with $feat}}{{$f := .}}<a class="kb-feat" href="{{.URL}}">
+{{if or .Image $art}}<div class="kb-feat__media">{{if .Image}}<img src="{{imgsrc .Image}}"{{with srcset .Image}} srcset="{{.}}" sizes="(max-width: 900px) 100vw, 45vw"{{end}} alt="" fetchpriority="high" decoding="async">{{else}}{{template "kb-art-item" dict "Item" . "Ground" true}}{{end}}
+<span class="kb-mono kb-feat__cap kb-feat__cap--top"><span>No. 01</span><span>Newest</span></span>
+<span class="kb-mono kb-feat__cap kb-feat__cap--bottom">{{with .Author}}<span>{{.}}</span>{{else}}<i></i>{{end}}{{if not .PublishedAt.IsZero}}<span>{{formatDate .PublishedAt "2 Jan 2006"}}</span>{{end}}</span></div>{{end}}
+<div class="kb-feat__body"><div><p class="kb-mono kb-row__kick">{{with .Category}}<span class="kb-k">{{.}}</span>{{end}}{{with .ReadingTime}}<span>{{.}} min read</span>{{end}}</p>
+<h3 class="kb-feat__title">{{.Title}}</h3>{{with .Excerpt}}<p class="kb-feat__excerpt">{{.}}</p>{{end}}</div>
+<span class="kb-feat__go">{{template "kb-arrow"}}</span></div>
+</a>{{else}}<p class="kb-empty">No posts yet.</p>{{end}}
+</div>
+<div class="kb-journal__recent">
+{{template "kb-sh" dict "Title" "Recent" "Href" $arch "Label" "All posts"}}
+{{$fu := ""}}{{with $feat}}{{$fu = .URL}}{{end}}{{$c := 0}}
+<ol class="kb-rows">{{range $r.Items}}{{if and (ne .URL $fu) (lt $c 5)}}{{$c = add $c 1}}{{template "kb-row" dict "Item" . "Level" 3}}{{end}}{{end}}</ol>
+{{if $c}}<a class="kb-more" href="{{cta $arch}}"><span>Read all posts</span>{{template "kb-arrow"}}</a>{{end}}
+</div>
+</div></section>
+{{if and .Settings.show_topics (ne $picked "|")}}{{$tw := "topics"}}{{if eq (len $cats) 1}}{{$tw = "topic"}}{{end}}<section class="kb-wrap kb-topics" aria-labelledby="kb-topics-h">
+{{template "kb-sh" dict "Title" "Topics" "Id" "kb-topics-h" "Meta" (print (len $cats) " " $tw)}}
+<ol class="kb-tri">{{range $i, $slug := split (trimPrefix (trimSuffix $picked "|") "|") "|"}}{{range $cats}}{{if eq .Slug $slug}}{{$t := .}}{{$q := query (dict "schema" "post" "term" (print "category:" $t.Slug) "limit" 1)}}{{$ex := ""}}{{range $q.Items}}{{$ex = .Excerpt}}{{end}}
+<li><a class="kb-tc" href="{{$t.URL}}"><span class="kb-mono kb-tc__top"><span>{{$t.Count}} {{if eq $t.Count 1}}post{{else}}posts{{end}}</span><span class="kb-k">{{template "kb-arrow"}}</span></span>
+{{if $art}}<span class="kb-tc__art">{{template "kb-art" dict "Seed" (add (len $t.Name) $i) "Ground" false}}</span>{{end}}
+<h3 class="kb-tc__name">{{$t.Name}}</h3>{{with $ex}}<p class="kb-tc__text">{{.}}</p>{{end}}<span class="kb-mono kb-tc__go">Explore topic {{template "kb-arrow"}}</span></a></li>
+{{end}}{{end}}{{end}}</ol></section>{{end}}
+{{$aurl := default "/about" .Settings.header_cta_url}}{{$about := ""}}{{$ap := query (dict "schema" "page" "limit" 50)}}{{range $ap.Items}}{{if eq .URL $aurl}}{{$about = .}}{{end}}{{end}}
+{{$stmt := .Site.Tagline}}{{if and (not $stmt) $about}}{{$stmt = print "About " .Site.Name}}{{end}}
+{{if $stmt}}<section class="kb-wrap kb-about" aria-labelledby="kb-about-h"><div class="kb-about__grid">
+<div><p class="kb-mono kb-about__kick">About</p><h2 class="kb-about__title" id="kb-about-h">{{$stmt}}</h2></div>
+{{with $about}}<div class="kb-about__text">{{with .Excerpt}}<p>{{.}}</p>{{end}}<a href="{{.URL}}">More about us {{template "kb-arrow"}}</a></div>{{end}}
+</div></section>{{end}}
+{{end}}

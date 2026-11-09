@@ -8,7 +8,12 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
@@ -17,14 +22,57 @@
         "type": "string",
         "title": "Colour mode",
         "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
         "default": "light"
       },
       "density": {
         "type": "string",
         "title": "Spacing",
-        "enum": ["comfortable", "compact"],
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
         "default": "comfortable"
+      },
+      "hero_line_1": {
+        "type": "string",
+        "title": "Hero line 1",
+        "description": "First headline line. Empty (with line 2) uses the site name split in two.",
+        "default": "Small things,"
+      },
+      "hero_line_2": {
+        "type": "string",
+        "title": "Hero line 2",
+        "description": "Second line, shown in the primary colour.",
+        "default": "worth noticing."
+      },
+      "header_cta_label": {
+        "type": "string",
+        "title": "Header button label",
+        "description": "Also the big line in the footer.",
+        "default": "Write to us"
+      },
+      "header_cta_url": {
+        "type": "string",
+        "title": "Header button address",
+        "description": "Where the header button and the footer line lead.",
+        "default": "/about"
+      },
+      "show_topics": {
+        "type": "boolean",
+        "title": "Show topics",
+        "description": "The three categories with the most posts on the home page.",
+        "default": true
+      },
+      "generated_art": {
+        "type": "boolean",
+        "title": "Generated art",
+        "description": "Pattern art for posts and topics without an image. Off gives text-only cards.",
+        "default": true
       }
     }
   }

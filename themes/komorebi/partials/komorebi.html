@@ -10,3 +10,11 @@
 {{define "kb-nav-item"}}{{$i := (navlink .).Item}}{{if and (not $i.Href) $i.Children}}<span class="kb-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
 {{/* kb-flink: a footer link with the arrow. dict "Item" . "Path" ... */}}
 {{define "kb-flink"}}{{$l := navlink .}}{{$i := $l.Item}}{{if $i.Href}}<a href="{{cta $i.Href}}"{{if eq $i.Target "_blank"}} target="_blank" rel="noopener noreferrer"{{end}}{{if and $l.Path (eq $i.Href $l.Path)}} aria-current="page"{{end}}>{{$i.Label}} {{template "kb-arrow"}}</a>{{end}}{{end}}
+{{/* kb-sh: a section header, title left and an underlined link or a mono note right. dict "Title" "" "Id" "" "Href" "" "Label" "" "Meta" "" */}}
+{{define "kb-sh"}}<div class="kb-sh"><h2{{with .Id}} id="{{.}}"{{end}}>{{.Title}}</h2>{{if .Href}}<a href="{{cta .Href}}">{{.Label}} {{template "kb-arrow"}}</a>{{else}}{{with .Meta}}<span class="kb-mono kb-sh__meta">{{.}}</span>{{end}}{{end}}</div>{{end}}
+{{/* kb-row: one hairline post row (category and reading time, title, excerpt, date). dict "Item" . "Level" 2|3 */}}
+{{define "kb-row"}}{{$it := $.Item}}<li><a class="kb-row" href="{{$it.URL}}">
+<span class="kb-mono kb-row__kick">{{with $it.Category}}<span class="kb-k">{{.}}</span>{{end}}{{with $it.ReadingTime}}<span>{{.}} min read</span>{{end}}</span>
+{{if eq $.Level 2}}<h2 class="kb-row__title">{{$it.Title}}</h2>{{else}}<h3 class="kb-row__title">{{$it.Title}}</h3>{{end}}
+{{with $it.Excerpt}}<p class="kb-row__excerpt">{{.}}</p>{{end}}{{if not $it.PublishedAt.IsZero}}<span class="kb-mono kb-row__date">{{formatDate $it.PublishedAt "2 Jan 2006"}}</span>{{end}}
+</a></li>{{end}}
