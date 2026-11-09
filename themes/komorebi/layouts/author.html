@@ -1,0 +1,12 @@
+{{define "content"}}<div class="kb-wrap kb-list">
+<header class="kb-pagehead kb-authorhead">
+{{with .Author.Avatar}}<img src="{{imgsrc .}}" alt="" width="96" height="96">{{end}}
+<div><p class="kb-mono kb-pagehead__kick">Author</p>
+<h1 class="kb-pagehead__title">{{.Author.Name}}</h1>
+{{with .Author.JobTitle}}<p class="kb-mono kb-authorhead__job">{{.}}</p>{{end}}
+{{with .Author.Bio}}<p class="kb-pagehead__lede">{{.}}</p>{{end}}
+{{with .Author.Links}}<div class="kb-chips">{{range .}}<a href="{{cta .URL}}" rel="me noopener">{{.Label}}</a>{{end}}</div>{{end}}</div>
+</header>
+{{with .Pagination}}{{if .Total}}<p class="kb-mono kb-count">{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}}</p>{{end}}{{end}}
+{{template "kb-ledger" dict "Root" .}}
+</div>{{end}}

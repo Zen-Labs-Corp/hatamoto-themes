@@ -20,3 +20,31 @@
 </a></li>{{end}}
 {{/* kb-meta: author, date and reading time of a post. dict "Entity" . "Body" html */}}
 {{define "kb-meta"}}{{$e := .Entity}}{{$m := readingTime .Body}}<p class="kb-mono kb-meta">{{with $e.Author}}<span>{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</span>{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 Jan 2006"}}</time>{{end}}{{if $m}}<span>{{$m}} min read</span>{{end}}</p>{{end}}
+{{/* kb-feature: the big card for a post (image or generated art, mono labels, pale panel). dict "Item" . "Art" bool "Level" 2|3 */}}
+{{define "kb-feature"}}{{$it := .Item}}<a class="kb-feat" href="{{$it.URL}}">
+{{if or $it.Image .Art}}<div class="kb-feat__media">{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 900px) 100vw, 45vw"{{end}} alt="" fetchpriority="high" decoding="async">{{else}}{{template "kb-art-item" dict "Item" $it "Ground" true}}{{end}}
+<span class="kb-mono kb-feat__cap kb-feat__cap--top"><span>No. 01</span><span>Newest</span></span>
+<span class="kb-mono kb-feat__cap kb-feat__cap--bottom">{{with $it.Author}}<span>{{.}}</span>{{else}}<i></i>{{end}}{{if not $it.PublishedAt.IsZero}}<span>{{formatDate $it.PublishedAt "2 Jan 2006"}}</span>{{end}}</span></div>{{end}}
+<div class="kb-feat__body"><div><p class="kb-mono kb-row__kick">{{with $it.Category}}<span class="kb-k">{{.}}</span>{{end}}{{with $it.ReadingTime}}<span>{{.}} min read</span>{{end}}</p>
+{{if eq .Level 2}}<h2 class="kb-feat__title">{{$it.Title}}</h2>{{else}}<h3 class="kb-feat__title">{{$it.Title}}</h3>{{end}}{{with $it.Excerpt}}<p class="kb-feat__excerpt">{{.}}</p>{{end}}</div>
+<span class="kb-feat__go">{{template "kb-arrow"}}</span></div>
+</a>{{end}}
+{{/* kb-pagehead: kicker, the page's one h1, optional lede. dict "Kicker" "" "Title" "" "Lede" "" */}}
+{{define "kb-pagehead"}}<header class="kb-pagehead">{{with .Kicker}}<p class="kb-mono kb-pagehead__kick">{{.}}</p>{{end}}<h1 class="kb-pagehead__title">{{.Title}}</h1>{{with .Lede}}<p class="kb-pagehead__lede">{{.}}</p>{{end}}</header>{{end}}
+{{/* kb-chips: category links, the current one marked. dict "Terms" . "Cur" path "All" url */}}
+{{define "kb-chips"}}{{if .Terms}}<nav class="kb-chips kb-chips--bar" aria-label="Categories">{{with .All}}<a href="{{cta .}}"{{if eq $.Cur "all"}} aria-current="page"{{end}}>All</a>{{end}}{{range .Terms}}<a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}<span>{{.Count}}</span></a>{{end}}</nav>{{end}}{{end}}
+{{/* kb-search-form: GET search form. dict "Root" . "Id" "x" */}}
+{{define "kb-search-form"}}<form class="kb-searchform" role="search" action="/search" method="get"><label class="kb-sr" for="kb-q-{{.Id}}">Search the site</label><input id="kb-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button type="submit">Search {{template "kb-arrow"}}</button></form>{{end}}
+{{/* kb-page-url: N, Pg */}}
+{{define "kb-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+{{/* kb-pager: numbered pages with newer/older, only when there is more than one page. dict "Pg" .Pagination */}}
+{{define "kb-pager"}}{{with .Pg}}{{if gt .TotalPages 1}}{{$p := .Page}}{{$n := .TotalPages}}{{$pg := .}}<nav class="kb-pager kb-mono" aria-label="Pagination">
+{{if gt $p 1}}<a class="kb-pager__dir" rel="prev" href="{{template "kb-page-url" dict "N" (sub $p 1) "Pg" $pg}}">&larr; Newer</a>{{else}}<span class="kb-pager__dir" aria-hidden="true">&larr; Newer</span>{{end}}
+<ul>{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a href="{{template "kb-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<li><span aria-hidden="true">&hellip;</span></li>{{end}}{{end}}</ul>
+{{if lt $p $n}}<a class="kb-pager__dir" rel="next" href="{{template "kb-page-url" dict "N" (add $p 1) "Pg" $pg}}">Older &rarr;</a>{{else}}<span class="kb-pager__dir" aria-hidden="true">Older &rarr;</span>{{end}}
+</nav>{{end}}{{end}}{{end}}
+{{/* kb-ledger: a listing body (optional featured first post on page 1, rows, pager, empty state). dict "Root" . "Feature" bool */}}
+{{define "kb-ledger"}}{{$v := .Root}}{{$page := 1}}{{with $v.Pagination}}{{$page = .Page}}{{end}}{{$feat := and .Feature (eq $page 1)}}{{if $v.Items}}
+{{if $feat}}{{range $i, $it := $v.Items}}{{if eq $i 0}}<div class="kb-feat--wide">{{template "kb-feature" dict "Item" $it "Art" $.Root.Settings.generated_art "Level" 2}}</div>{{end}}{{end}}{{end}}
+<ol class="kb-rows kb-ledger">{{range $i, $it := $v.Items}}{{if not (and $feat (eq $i 0))}}{{template "kb-row" dict "Item" $it "Level" 2}}{{end}}{{end}}</ol>
+{{template "kb-pager" dict "Pg" $v.Pagination}}{{else}}<p class="kb-empty">{{if $v.Query}}No results for &ldquo;{{$v.Query}}&rdquo;. Try fewer words.{{else}}Nothing here yet. Check back soon.{{end}}</p>{{end}}{{end}}

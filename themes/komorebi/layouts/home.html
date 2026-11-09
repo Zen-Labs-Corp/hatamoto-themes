@@ -16,14 +16,7 @@
 <div class="kb-journal__feat">
 {{template "kb-sh" dict "Title" "Journal" "Id" "kb-journal-h"}}
 {{$feat := ""}}{{range $r.Items}}{{if and (not $feat) .Image}}{{$feat = .}}{{end}}{{end}}{{if not $feat}}{{range $r.Items}}{{if not $feat}}{{$feat = .}}{{end}}{{end}}{{end}}
-{{with $feat}}{{$f := .}}<a class="kb-feat" href="{{.URL}}">
-{{if or .Image $art}}<div class="kb-feat__media">{{if .Image}}<img src="{{imgsrc .Image}}"{{with srcset .Image}} srcset="{{.}}" sizes="(max-width: 900px) 100vw, 45vw"{{end}} alt="" fetchpriority="high" decoding="async">{{else}}{{template "kb-art-item" dict "Item" . "Ground" true}}{{end}}
-<span class="kb-mono kb-feat__cap kb-feat__cap--top"><span>No. 01</span><span>Newest</span></span>
-<span class="kb-mono kb-feat__cap kb-feat__cap--bottom">{{with .Author}}<span>{{.}}</span>{{else}}<i></i>{{end}}{{if not .PublishedAt.IsZero}}<span>{{formatDate .PublishedAt "2 Jan 2006"}}</span>{{end}}</span></div>{{end}}
-<div class="kb-feat__body"><div><p class="kb-mono kb-row__kick">{{with .Category}}<span class="kb-k">{{.}}</span>{{end}}{{with .ReadingTime}}<span>{{.}} min read</span>{{end}}</p>
-<h3 class="kb-feat__title">{{.Title}}</h3>{{with .Excerpt}}<p class="kb-feat__excerpt">{{.}}</p>{{end}}</div>
-<span class="kb-feat__go">{{template "kb-arrow"}}</span></div>
-</a>{{else}}<p class="kb-empty">No posts yet.</p>{{end}}
+{{if $feat}}{{template "kb-feature" dict "Item" $feat "Art" $art "Level" 3}}{{else}}<p class="kb-empty">No posts yet.</p>{{end}}
 </div>
 <div class="kb-journal__recent">
 {{template "kb-sh" dict "Title" "Recent" "Href" $arch "Label" "All posts"}}
