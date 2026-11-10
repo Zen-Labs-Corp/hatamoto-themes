@@ -74,6 +74,12 @@
         "description": "Empty uses the tagline.",
         "default": ""
       },
+      "home_sections": {
+        "type": "boolean",
+        "title": "Show home page sections",
+        "description": "Prints the blocks of the home page built in the editor below the post grid.",
+        "default": false
+      },
       "archive_url": {
         "type": "string",
         "title": "Address of the post archive",

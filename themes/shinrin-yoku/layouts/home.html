@@ -6,4 +6,5 @@
 {{template "sy-grid" dict "Root" . "Items" $r.Items "Cats" $cats}}
 {{template "sy-pager" dict "Page" $r.Page "Pages" $r.Pages "Base" "/"}}
 </div>
-</div>{{end}}
+</div>
+{{if .Settings.home_sections}}{{template "page-body" .}}{{end}}{{end}}

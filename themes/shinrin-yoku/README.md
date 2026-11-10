@@ -43,6 +43,7 @@ page keeps rendering.
 | Button label (`cta_label`) | text | `Subscribe` | The header button. The site's own header button wins. |
 | Button address (`cta_url`) | text | `/feed.xml` | Where the button goes; empty hides it. |
 | Footer quote (`footer_quote`) | text | empty | The italic line in the footer; empty uses the site tagline. |
+| Home page sections (`home_sections`) | on/off | off | Prints the blocks of the home page built in the editor below the post grid. |
 | Address of the post archive (`archive_url`) | text | `/blog` | Where "Latest" points. |
 
 Colours, fonts and corners follow **Theme > Colours and fonts**. The stock forest primary turns lime in dark mode; any other primary you pick is lightened for dark.
