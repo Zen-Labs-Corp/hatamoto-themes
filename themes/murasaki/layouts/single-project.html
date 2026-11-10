@@ -1,10 +1,10 @@
-{{/* A project page: display title, a ruled meta row (date, reading time, category, each
+{{/* A project page: a back link to the archive (the trail's second crumb, so any archive path works; none when the trail has no archive), display title, a ruled meta row (date, reading time, category, each
 only when present), the optional featured image, then the body in the shared prose
 styles of the blog post. Block-built projects render through page-body. */}}
 {{define "content"}}{{if and .Entity (not (and .Blocks (not .Body)))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$m := readingTime .Body}}
 <article class="hm-container mu-article mu-project">
 <header class="mu-article__head">
-<p class="mu-article__kick"><a href="/work"><span aria-hidden="true">&larr;</span> Selected work</a></p>
+{{if gt (len .Breadcrumb) 2}}{{with index .Breadcrumb 1}}<p class="mu-article__kick"><a href="{{.URL}}"><span aria-hidden="true">&larr;</span> {{.Name}}</a></p>{{end}}{{end}}
 <h1 class="mu-article__title">{{$e.Title}}</h1>
 {{with $e.Excerpt}}<p class="mu-article__lede">{{.}}</p>{{end}}
 <p class="hm-meta">{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "Jan 2006"}}</time>{{end}}{{if $m}}<span>{{$m}} min read</span>{{end}}{{range $e.Categories}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</p>
