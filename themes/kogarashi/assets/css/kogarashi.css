@@ -204,6 +204,8 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
   display: flex; flex-direction: column; padding: calc(var(--kg-s4) + 3.75rem) var(--kg-s4) var(--kg-s3);
   background: var(--kg-panel); color: var(--kg-panel-ink);
 }
+/* the sheet covers the other header controls: out of sight, out of the tab order */
+.kg-menu[open] ~ :not(.kg-logo) { visibility: hidden; }
 .kg-menu__list, .kg-menu__sub { list-style: none; margin: 0; padding: 0; }
 .kg-menu__list > li { border-block-end: 1px solid rgba(255, 255, 255, .12); }
 .kg-menu__list a, .kg-menu__list > li > span { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; font-size: var(--kg-fs-xl); font-weight: 600; }
