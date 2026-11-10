@@ -95,10 +95,6 @@
   /* relative luminance y of the fill: white text at or below .179, black above it. That is where both reach the same contrast, 4.5:1 or better for any fill. */
   :root { --hg-primary-ink: color(from var(--hg-primary) xyz-d65 calc(clamp(0, (.179 - y) * 1000, 1) * .95047) clamp(0, (.179 - y) * 1000, 1) calc(clamp(0, (.179 - y) * 1000, 1) * 1.08883)); }
 }
-@supports not (color: color(from red xyz x y z)) {
-  /* no relative colour: dark ink on a fill lightened toward white, 7:1 or better for any primary */
-  .hg-btn--primary, .hg-pager a[aria-current] { background: #f5adc3; background: color-mix(in srgb, var(--hg-primary) 35%, #fff); border-color: transparent; }
-}
 
 /* ---- palette (dark): the system choice, the toggle, or the owner's default ---- */
 :root[data-theme="dark"],
@@ -420,4 +416,10 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
   .hg-post__grid, .hg-post__grid--notoc { grid-template-columns: minmax(0, 42.5rem); padding: 2.5rem 1.125rem 3.5rem; }
   .hg-toc { position: static; padding: 1rem; background: var(--hg-tint); border-radius: var(--hg-radius-lg); }
   .hg-share { position: static; flex-direction: row; align-items: center; }
+}
+
+/* last, so it wins over the fills above at equal weight; :root keeps it above them anyway */
+@supports not (color: color(from red xyz x y z)) {
+  /* no relative colour: dark ink on a fill lightened toward white, 7:1 or better for any primary */
+  :root .hg-btn--primary, :root .hg-pager a[aria-current] { background: #f5adc3; background: color-mix(in srgb, var(--hg-primary) 35%, #fff); border-color: transparent; }
 }
