@@ -1,4 +1,6 @@
 {{/* Kazahana library: dict-taking defines, all named kz-*. */}}
+{{/* kz-nav-items: menu items as <li>, children as a nested list. A parent without a link is a plain label. dict "Items" .Site.Nav "Path" "" */}}
+{{define "kz-nav-items"}}{{$p := .Path}}{{range .Items}}<li>{{if and .Children (or (not .Href) (eq .Href "#"))}}<span class="kz-nav-label">{{.Label}}</span>{{else}}{{template "nav-link" dict "Item" . "Path" $p}}{{end}}{{if .Children}}<ul class="kz-sub">{{template "kz-nav-items" dict "Items" .Children "Path" $p}}</ul>{{end}}</li>{{end}}{{end}}
 {{/* kz-sub: the Subscribe link. The site's header button wins, else the RSS feed (always there on a site with posts).
    dict "Root" . "Class" "" */}}
 {{define "kz-sub"}}{{$u := "/feed.xml"}}{{$l := "Subscribe"}}{{with .Root.Site.HeaderCTA}}{{if .URL}}{{$u = .URL}}{{$l = default "Subscribe" .Label}}{{end}}{{end}}<a class="{{.Class}}" href="{{cta $u}}">{{$l}}</a>{{end}}
