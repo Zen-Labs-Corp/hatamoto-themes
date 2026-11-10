@@ -1,7 +1,7 @@
 {
   "name": "yukigeshiki",
   "version": "0.1.0",
-  "description": "Notion-style blog theme: a sticky masthead and category sidebar, a two-column card grid on tinted panels, Bricolage Grotesque with Source Serif italics, in pine green.",
+  "description": "Editorial blog theme: a sticky masthead and category sidebar, a two-column card grid on tinted panels, Bricolage Grotesque with Source Serif italics, in pine green.",
   "screenshot": "assets/screenshot.png",
   "csp": {
     "strictScripts": true

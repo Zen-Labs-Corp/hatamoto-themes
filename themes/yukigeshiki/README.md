@@ -1,6 +1,6 @@
 # Yukigeshiki
 
-Notion-style blog theme: a sticky masthead and category sidebar, a two-column card grid on tinted panels, Bricolage Grotesque with Source Serif italics, in pine green.
+Editorial blog theme: a sticky masthead and category sidebar, a two-column card grid on tinted panels, Bricolage Grotesque with Source Serif italics, in pine green.
 
 ![Yukigeshiki](assets/screenshot.png)
 

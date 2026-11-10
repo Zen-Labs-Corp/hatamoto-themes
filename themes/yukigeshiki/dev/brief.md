@@ -6,7 +6,7 @@
 - Type: `blog`
 - Prefix: `yk`
 - Title: `Yukigeshiki`
-- Description: `Notion-style blog theme: a sticky masthead and category sidebar, a two-column card grid on tinted panels, Bricolage Grotesque with Source Serif italics, in pine green.`
+- Description: `Editorial blog theme: a sticky masthead and category sidebar, a two-column card grid on tinted panels, Bricolage Grotesque with Source Serif italics, in pine green.`
 - Palette light: paper `#fcfcfa`, surface `#f2f4f0`, ink `#13201b`, muted `#56645d` (AA on paper),
   line `#e2e6e0`, primary `#2c6a4e` (pine; owner can change), ink on primary `#ffffff`.
   Card tints (per category, cycling): `#e5efe8`, `#eef0e2`, `#e6edf1`, `#f3ece4`, `#eceeea`.
