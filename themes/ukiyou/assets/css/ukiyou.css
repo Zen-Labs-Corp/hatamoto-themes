@@ -183,3 +183,55 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 650; letter-s
   .uk-menu { display: block; }
 }
 
+/* ---- shared bits ---- */
+.uk-cat { display: inline-flex; align-items: center; gap: 8px; font: 700 .7rem/1 var(--uk-font-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--hm-primary); }
+.uk-cat::before { content: ""; inline-size: 14px; block-size: 3px; background: var(--uk-accent); }
+.uk-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 0; font: 500 .78rem/1.3 var(--uk-font-ui); color: var(--uk-muted); }
+.uk-empty { padding-block: 4rem; text-align: center; color: var(--uk-muted); }
+.uk-media { position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--uk-surface); }
+.uk-media img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.uk-media--empty::after { content: ""; position: absolute; inset-inline-start: 14px; inset-block-end: 14px; inline-size: 36px; block-size: 3px; background: var(--uk-accent); }
+.uk-media--lead { aspect-ratio: 4 / 3; }
+.uk-lead__title a, .uk-card__title a { color: inherit; text-decoration: none; }
+.uk-lead__title a:hover, .uk-card__title a:hover, .uk-side__list a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--uk-accent); }
+
+/* ---- home ---- */
+.uk-lead { display: grid; grid-template-columns: 7fr 5fr; gap: 40px; align-items: center; padding-block: 40px; border-bottom: 1px solid var(--uk-line); }
+.uk-lead__body { min-inline-size: 0; }
+.uk-lead__title { margin: 18px 0 16px; font-size: clamp(2.2rem, 7vw, var(--uk-step-5)); line-height: .98; overflow-wrap: anywhere; }
+.uk-lead__excerpt { margin: 0 0 20px; font-size: 1.2rem; color: var(--uk-muted); }
+
+.uk-mag { display: grid; grid-template-columns: 3fr 1fr; gap: 40px; padding-block: 40px; }
+.uk-mag--full { grid-template-columns: 1fr; }
+.uk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; align-content: start; }
+.uk-mag--full .uk-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.uk-card { min-inline-size: 0; }
+.uk-card .uk-media { margin-block-end: 14px; }
+.uk-card__title { margin: 10px 0 6px; font-size: 1.35rem; line-height: 1.15; overflow-wrap: anywhere; }
+.uk-card__excerpt { margin: 0 0 10px; font-size: .95rem; color: var(--uk-muted); }
+
+.uk-side { border-inline-start: 1px solid var(--uk-line); padding-inline-start: 28px; min-inline-size: 0; align-self: start; }
+.uk-side:first-child { grid-column: 1 / -1; }
+.uk-side__title { margin: 0 0 6px; padding-block-end: 10px; border-bottom: 2px solid var(--hm-text); font: 700 .72rem/1 var(--uk-font-ui); letter-spacing: .12em; text-transform: uppercase; }
+.uk-side__list { list-style: none; margin: 0; padding: 0; counter-reset: uk-n; }
+.uk-side__list li { counter-increment: uk-n; display: grid; grid-template-columns: 34px 1fr; padding-block: 14px; border-bottom: 1px solid var(--uk-line); font: 600 1rem/1.25 var(--uk-font-heading); overflow-wrap: anywhere; }
+.uk-side__list li::before { content: counter(uk-n, decimal-leading-zero); font: 700 1.3rem/1 var(--uk-font-heading); color: var(--uk-accent-text); }
+.uk-side__list a { color: var(--hm-text); text-decoration: none; }
+.uk-side__topics { margin-block-start: 28px; }
+
+.uk-news { background: var(--hm-primary); color: var(--uk-on-primary); margin-block-start: var(--uk-section); }
+.uk-news .uk-wrap { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between; padding-block: 48px; }
+.uk-news h2 { margin: 0; max-inline-size: 18ch; font-size: var(--uk-step-3); line-height: 1.05; overflow-wrap: anywhere; }
+main:has(> .uk-news) + .uk-footer { margin-block-start: 0; }
+.uk-news :focus-visible { outline-color: var(--uk-on-primary); }
+
+@media (max-width: 900px) {
+  .uk-lead, .uk-mag { grid-template-columns: 1fr; gap: 24px; }
+  .uk-lead { padding-block: 24px; }
+  .uk-grid, .uk-mag--full .uk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .uk-side { border-inline-start: 0; padding-inline-start: 0; }
+}
+@media (max-width: 560px) {
+  .uk-grid, .uk-mag--full .uk-grid { grid-template-columns: 1fr; }
+  .uk-news .uk-wrap { flex-direction: column; align-items: stretch; padding-block: 36px; }
+}

@@ -1,0 +1,30 @@
+{{/* Ukiyou's own partials. Names are global, so they all start with uk-. */}}
+{{/* uk-cat: the category kicker. Pass the category name (a string). */}}
+{{define "uk-cat"}}{{with .}}<span class="uk-cat">{{.}}</span>{{end}}{{end}}
+{{/* uk-meta: author, date, reading time of a listing item. Pass the item. */}}
+{{define "uk-meta"}}<p class="uk-meta">{{with .Author}}<span>{{.}}</span>{{end}}{{if not .PublishedAt.IsZero}}<time datetime="{{formatDate .PublishedAt "2006-01-02"}}">{{formatDate .PublishedAt "2 Jan 2006"}}</time>{{end}}{{with .ReadingTime}}<span>{{.}} min read</span>{{end}}</p>{{end}}
+{{/* uk-media: the featured image in a fixed-ratio box, or a flat tinted block when there is none.
+   dict "Item" . "Sizes" "..." "Ratio" "uk-media--wide" "Eager" true */}}
+{{define "uk-media"}}{{$it := .Item}}<a class="uk-media{{with .Ratio}} {{.}}{{end}}{{if not $it.Image}} uk-media--empty{{end}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{with $it.Image}}<img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="{{$.Sizes}}"{{end}} alt=""{{if $.Eager}} fetchpriority="high"{{else}} loading="lazy"{{end}} decoding="async">{{end}}</a>{{end}}
+{{/* uk-card: one story in a grid. dict "Item" . */}}
+{{define "uk-card"}}{{$it := .Item}}<article class="uk-card">
+{{template "uk-media" dict "Item" $it "Sizes" "(max-width: 560px) 100vw, (max-width: 900px) 50vw, 25vw"}}
+{{template "uk-cat" $it.Category}}
+<h3 class="uk-card__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h3>
+{{with $it.Excerpt}}<p class="uk-card__excerpt">{{.}}</p>{{end}}
+{{template "uk-meta" $it}}
+</article>{{end}}
+{{/* uk-chips: category links, the current one marked. dict "Terms" . "Cur" path "All" url "Label" "Categories" */}}
+{{define "uk-chips"}}{{if or .Terms .All}}<nav aria-label="{{default "Categories" .Label}}"><ul class="uk-chips">{{with .All}}<li><a href="{{cta .}}"{{if eq $.Cur "all"}} aria-current="page"{{end}}>All</a></li>{{end}}{{range .Terms}}<li><a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a></li>{{end}}</ul></nav>{{end}}{{end}}
+{{/* uk-pagehead: the page's one h1. dict "Kicker" "" "Title" "" "Meta" "" */}}
+{{define "uk-pagehead"}}<header class="uk-pagehead"><div>{{with .Kicker}}<span class="uk-cat">{{.}}</span>{{end}}<h1 class="uk-pagehead__title">{{.Title}}</h1></div>{{with .Meta}}<p class="uk-meta">{{.}}</p>{{end}}</header>{{end}}
+{{/* uk-search-form: GET search form. dict "Root" . "Id" "x" */}}
+{{define "uk-search-form"}}<form class="uk-searchform" role="search" action="/search" method="get"><label class="uk-sr" for="uk-q-{{.Id}}">Search the site</label><input id="uk-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button type="submit" class="uk-btn">Search</button></form>{{end}}
+{{/* uk-page-url: dict "N" 2 "Pg" .Pagination */}}
+{{define "uk-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+{{/* uk-pager: numbered pages, only when there is more than one. dict "Pg" .Pagination */}}
+{{define "uk-pager"}}{{with .Pg}}{{if gt .TotalPages 1}}{{$p := .Page}}{{$n := .TotalPages}}{{$pg := .}}<nav class="uk-pager" aria-label="Pagination"><ul>
+{{if gt $p 1}}<li><a rel="prev" aria-label="Previous page" href="{{template "uk-page-url" dict "N" (sub $p 1) "Pg" $pg}}">&larr;</a></li>{{end}}
+{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a href="{{template "uk-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<li><span aria-hidden="true">&hellip;</span></li>{{end}}{{end}}
+{{if lt $p $n}}<li><a rel="next" aria-label="Next page" href="{{template "uk-page-url" dict "N" (add $p 1) "Pg" $pg}}">&rarr;</a></li>{{end}}
+</ul></nav>{{end}}{{end}}{{end}}
