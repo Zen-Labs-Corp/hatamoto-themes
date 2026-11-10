@@ -1,0 +1,6 @@
+{{define "content"}}<div class="kz-wrap kz-listing"><div class="kz-panel">
+<header class="kz-pagehead kz-pagehead--search"><div><p class="kz-eyebrow">Search</p><h1>{{if .Query}}Results for &ldquo;{{.Query}}&rdquo;{{else}}Search the journal{{end}}</h1></div>
+{{if .Query}}{{with .Pagination}}{{if gt .Total 0}}<p class="kz-pagehead__count" role="status">{{if eq .Total 1}}1 result{{else}}{{.Total}} results{{end}}</p>{{end}}{{end}}{{end}}</header>
+<form class="kz-search" role="search" action="/search" method="get"><label for="kz-search-q"><span class="kz-sr">Search the site</span><input id="kz-search-q" type="search" name="q" value="{{.Query}}" placeholder="Search posts and pages" autocomplete="off"></label>{{with .SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button class="kz-btn kz-btn--ink" type="submit">Search</button></form>
+{{if .Query}}{{template "kz-list" dict "Root" . "Empty" "Nothing matched. Try fewer or different words."}}{{else}}<p class="kz-empty">Type a word or phrase to search.</p>{{end}}
+</div></div>{{end}}

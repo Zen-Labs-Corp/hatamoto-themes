@@ -1,0 +1,17 @@
+{{define "footer"}}{{$cats := terms "category" 12}}<footer class="kz-footer">
+<div class="kz-wrap">
+<div class="kz-footer__grid">
+<div class="kz-footer__about"><p class="kz-brand kz-brand--foot"><span class="kz-dot" aria-hidden="true"></span><span class="kz-brand__name">{{.Site.Name}}</span></p>{{with .Site.Tagline}}<p class="kz-footer__tag">{{.}}</p>{{end}}</div>
+{{if .Site.FooterNav}}<nav aria-label="Footer"><p class="kz-label">Site</p>
+<ul>{{range .Site.FooterNav}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}
+{{end}}</ul></nav>
+{{end}}{{if $cats}}<nav aria-label="Footer topics"><p class="kz-label">Topics</p>
+<ul>{{range $cats}}<li><a href="{{.URL}}">{{.Name}}</a></li>
+{{end}}</ul></nav>
+{{end}}<div><p class="kz-label">Subscribe</p><p class="kz-footer__tag">Get new notes as they are published.</p>{{template "kz-sub" dict "Root" . "Class" "kz-btn kz-btn--pine"}}</div>
+</div>
+<div class="kz-footer__base"><p>&copy; {{year}} {{.Site.Name}}</p>
+{{if .Site.SocialLinks}}<ul class="kz-social">{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
+{{end}}</ul>{{end}}</div>
+</div>
+</footer>{{end}}

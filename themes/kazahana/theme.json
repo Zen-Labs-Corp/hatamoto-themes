@@ -1,0 +1,73 @@
+{
+  "name": "kazahana",
+  "version": "1.0.0",
+  "description": "Editorial blog theme with a masthead and topic strip, big EB Garamond headlines, hairline meta rows and a pine intro block, in snow white and camellia red.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "show_intro": {
+        "type": "boolean",
+        "title": "Intro block on the home page",
+        "description": "Show the pine block with the tagline, topics and the latest notes above the newest post.",
+        "default": true
+      },
+      "drop_cap": {
+        "type": "boolean",
+        "title": "Drop cap on posts",
+        "description": "Start each post with a large red initial letter.",
+        "default": true
+      },
+      "header_topics": {
+        "type": "boolean",
+        "title": "Topics in the header",
+        "description": "Show the categories under the masthead, and as a strip on small screens.",
+        "default": true
+      },
+      "header_dateline": {
+        "type": "boolean",
+        "title": "Dateline in the header",
+        "description": "Show the date of the latest note and the site tagline left of the site name.",
+        "default": true
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "description": "Where the \"All notes\" and \"All\" topic links lead.",
+        "default": "/blog"
+      },
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
+        "default": "auto"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
+        "default": "comfortable"
+      }
+    }
+  }
+}
