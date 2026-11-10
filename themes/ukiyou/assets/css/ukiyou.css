@@ -131,6 +131,7 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 650; letter-s
 .uk-logo img { display: block; max-inline-size: 100%; inline-size: auto; block-size: 48px; }
 .uk-mast__tools { position: absolute; inset-inline-end: 40px; inset-block-start: 50%; transform: translateY(-30%); display: flex; align-items: center; gap: .75rem; }
 .uk-mode { display: inline-grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border: 1px solid var(--uk-line); border-radius: 0; background: none; color: var(--hm-text); cursor: pointer; }
+.uk-mode[hidden] { visibility: hidden; }
 .uk-mode svg { inline-size: 1rem; block-size: 1rem; }
 .uk-sun, [data-theme="dark"] .uk-moon { display: none; }
 [data-theme="dark"] .uk-sun { display: block; }
@@ -198,6 +199,10 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 650; letter-s
   .uk-logo { font-size: 1.9rem; text-align: start; }
   .uk-mast__tools { position: static; transform: none; }
   .uk-menu { display: block; }
+}
+/* keep a long wordmark clear of the colour toggle */
+@media (min-width: 721px) {
+  .uk-mast { padding-inline: calc(40px + 2.25rem + 12px); }
 }
 
 /* ---- shared bits ---- */
