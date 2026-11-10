@@ -312,6 +312,11 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 .hg-prose th, .hg-prose td { padding: .75rem 1rem; text-align: start; border-block-end: 1px solid var(--hg-line); }
 .hg-prose th { background: var(--hg-tint); font: 500 var(--hg-fs-xs)/1 var(--hg-mono); letter-spacing: .05em; text-transform: uppercase; }
 .hg-prose tr:last-child td { border-block-end: 0; }
+/* the built-in .hm-entry table (block, scrolls sideways) loads after this file at the same weight: .hm-entry here lifts the rounded mockup look above it and keeps the scroll */
+.hg-prose.hm-entry > table { border-collapse: separate; border-spacing: 0; border: 1px solid var(--hg-line); border-radius: var(--hg-radius-md); font-size: var(--hg-fs-sm); }
+.hg-prose.hm-entry > table th, .hg-prose.hm-entry > table td { padding: .75rem 1rem; border: 0; border-block-end: 1px solid var(--hg-line); }
+.hg-prose.hm-entry > table thead th { background: var(--hg-tint); }
+.hg-prose.hm-entry > table tr:last-child td { border-block-end: 0; }
 .hg-prose pre { overflow: auto; padding: 1.25rem; background: var(--hg-tint); color: var(--hg-ink); border: 1px solid var(--hg-line); border-radius: var(--hg-radius-md); font: 400 var(--hg-fs-sm)/1.6 var(--hg-mono); }
 .hg-prose :not(pre) > code { padding: .1em .35em; border-radius: var(--hg-radius-xs); background: var(--hg-tint); font: 400 .9em var(--hg-mono); }
 .hg-pn { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-inline-size: 70rem; margin-inline: auto; padding: 0 1.75rem var(--hg-space-8); }
