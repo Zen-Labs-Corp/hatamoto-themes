@@ -176,7 +176,7 @@ body.km-body { margin: 0; background: var(--km-paper); color: var(--km-ink); fon
   .km-runhead__inner span:first-child { display: none; }
   .km-runhead__inner { justify-content: flex-start; }
   .km-runhead--bare { display: none; }
-  .km-runhead__inner span:last-child { text-align: left; }
+  .km-runhead__inner span:last-child { text-align: left; white-space: normal; min-width: 0; overflow-wrap: anywhere; }
 }
 @media (prefers-reduced-motion: reduce) {
   .km-btn, .km-body a { transition: none; }
