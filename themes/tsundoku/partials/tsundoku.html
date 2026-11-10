@@ -1,0 +1,16 @@
+{{/* Tsundoku library: dict-taking defines, all named tk-*. */}}
+{{/* tk-hl: a headline where the text after "|" gets the chartreuse highlighter. Takes the string. */}}
+{{define "tk-hl"}}{{$p := split . "|"}}{{trim (index $p 0)}}{{if gt (len $p) 1}} <span class="tk-hl">{{trim (index $p 1)}}</span>{{end}}{{end}}
+{{/* tk-img: a featured image, responsive. dict "Image" url "Sizes" "..." "Eager" bool */}}
+{{define "tk-img"}}<img src="{{imgsrc .Image}}"{{with srcset .Image}} srcset="{{.}}" sizes="{{$.Sizes}}"{{end}} alt=""{{if .Eager}} fetchpriority="high"{{else}} loading="lazy"{{end}} decoding="async">{{end}}
+{{/* tk-media: the featured image, else a flat colour block. dict "Item" . "N" index "Sizes" "..." "Eager" bool */}}
+{{define "tk-media"}}{{with .Item.Image}}<div class="tk-media">{{template "tk-img" dict "Image" . "Sizes" $.Sizes "Eager" $.Eager}}</div>{{else}}<div class="tk-media tk-media--flat tk-c-{{mod $.N 5}}" aria-hidden="true"></div>{{end}}{{end}}
+{{/* tk-meta: category, date and reading time on one line. dict "Item" . */}}
+{{define "tk-meta"}}{{$i := .Item}}<p class="tk-meta">{{with $i.Category}}<span>{{.}}</span>{{end}}{{if not $i.PublishedAt.IsZero}}<time datetime="{{formatDate $i.PublishedAt "2006-01-02"}}">{{formatDate $i.PublishedAt "2 Jan"}}</time>{{end}}{{with $i.ReadingTime}}<span>{{.}} min read</span>{{end}}</p>{{end}}
+{{/* tk-card: a post card. dict "Item" . "N" index "Level" 2|3 */}}
+{{define "tk-card"}}{{$i := .Item}}<article class="tk-card"><a class="tk-card__link" href="{{$i.URL}}">
+{{template "tk-media" dict "Item" $i "N" .N "Sizes" "(min-width: 60rem) 28rem, (min-width: 40rem) 50vw, 100vw"}}
+<div class="tk-card__body">{{if eq .Level 2}}<h2 class="tk-card__title">{{$i.Title}}</h2>{{else}}<h3 class="tk-card__title">{{$i.Title}}</h3>{{end}}{{template "tk-meta" dict "Item" $i}}</div>
+</a></article>{{end}}
+{{/* tk-spine: one book spine of the pile. dict "Item" . "N" index */}}
+{{define "tk-spine"}}{{$i := .Item}}<a class="tk-spine tk-c-{{mod .N 5}}" href="{{$i.URL}}"><span class="tk-spine__title">{{$i.Title}}</span><small>{{with $i.Category}}{{.}}{{end}}{{if and $i.Category (not $i.PublishedAt.IsZero)}} &middot; {{end}}{{if not $i.PublishedAt.IsZero}}{{formatDate $i.PublishedAt "2 Jan"}}{{end}}</small></a>{{end}}
