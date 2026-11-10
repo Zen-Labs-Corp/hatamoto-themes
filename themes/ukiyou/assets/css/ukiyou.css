@@ -362,3 +362,5 @@ main:has(> .uk-news) + .uk-footer { margin-block-start: 0; }
 .uk-nf__body > p { margin: 0 0 20px; color: var(--uk-muted); }
 .uk-nf .uk-searchform { margin-block: 0 24px; }
 @media (max-width: 799px) { .uk-nf { grid-template-columns: 1fr; gap: 16px; padding-block: 40px; } }
+/* Builder logo strip: let the static track shrink and wrap instead of being clipped on narrow screens. */
+.hm-logo-strip--static .hm-logo-strip__track { flex: 1 1 0; min-inline-size: 0; }
