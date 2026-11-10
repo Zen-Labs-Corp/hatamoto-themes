@@ -58,7 +58,7 @@
   --tk-primary: color-mix(in srgb, var(--hm-primary) 6%, #f4e6dc); --tk-primary-ink: #1a0f1d;
   --tk-pop: #c8de3a; --tk-teal: #0b5e59; --tk-teal-text: #4fc2b8; --tk-coral: #e47b57; --tk-footer-bg: #0f0811;
   /* the built-in dark rule has the same specificity and sets these to its own greys: map them again */
-  --hm-sumi: var(--tk-ink); --hm-hai: var(--tk-muted); --hm-label: var(--tk-muted); --hm-hair: var(--tk-line); --hm-shiro: var(--tk-paper); --hm-kasumi: var(--tk-paper-2);
+  --hm-sumi: var(--tk-ink); --hm-hai: var(--tk-muted); --hm-label: var(--tk-muted); --hm-hair: var(--tk-line); --hm-shiro: var(--tk-paper); --hm-kasumi: var(--tk-paper-2); --hm-kinu: var(--tk-line); --hm-sumi-soft: var(--tk-ink);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
