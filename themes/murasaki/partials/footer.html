@@ -1,7 +1,7 @@
 {{define "footer"}}<footer class="mu-footer">
 <div class="mu-wrap">
 <div class="mu-footer__top">
-<p class="mu-footer__brand">{{.Site.Name}}{{with .Site.Tagline}}<span>{{.}}</span>{{end}}</p>
+<p class="mu-footer__brand">{{with .Site.Tagline}}{{.}}{{else}}{{.Site.Name}}{{end}}</p>
 {{if .Site.FooterNav}}<nav class="mu-footer__nav" aria-label="Footer">
 {{range .Site.FooterNav}}<div class="mu-footer__col">
 {{if .Children}}<p class="mu-footer__title">{{.Label}}</p>
@@ -14,4 +14,5 @@
 {{end}}</ul>
 {{end}}<p class="mu-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
 </div>
-</footer>{{end}}
+{{if ne (printf "%v" .Settings.footer_wordmark) "false"}}{{$n := len .Site.Name}}<p class="mu-wordmark{{if gt $n 28}} mu-wordmark--4{{else if gt $n 20}} mu-wordmark--3{{else if gt $n 15}} mu-wordmark--2{{else if gt $n 11}} mu-wordmark--1{{end}}" aria-hidden="true"><span>{{.Site.Name}}</span><i>.</i></p>
+{{end}}</footer>{{end}}
