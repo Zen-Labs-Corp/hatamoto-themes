@@ -149,19 +149,26 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 700; letter-s
 }
 
 .wa-footer { margin-block-start: var(--wa-section); padding-block-start: 56px; border-top: 1px solid var(--wa-line); overflow: hidden; }
-.wa-footer__cols { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.wa-footer > .wa-wrap { container-type: inline-size; }
+.wa-footer__cols { display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; }
+.wa-footer__about { flex: 2 1 16rem; }
+.wa-footer__col { flex: 1 1 9rem; }
 .wa-footer__about p { max-inline-size: 36ch; margin: 12px 0 0; color: var(--wa-muted); font-size: 15px; }
-.wa-footer__title { margin: 0 0 12px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+.wa-footer__title { margin: 0 0 14px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--wa-ink); }
 .wa-footer ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 15px; color: var(--wa-muted); }
 .wa-footer a { color: inherit; text-decoration: none; }
 .wa-footer a:hover { color: var(--wa-ink); }
 .wa-social { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-block-start: 32px; }
-.wa-footer__word { margin: 40px 0 0; overflow: hidden; white-space: nowrap; text-overflow: clip; font-size: clamp(3rem, 13vw, 11rem); font-weight: 700; letter-spacing: -.06em; line-height: .8; padding-block-end: .08em; color: var(--wa-line); user-select: none; }
-.wa-footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; margin: 0; padding-block: 20px 28px; border-top: 1px solid var(--wa-line); font-size: 13px; color: var(--wa-muted); }
+.wa-footer__word { margin: 40px 0 0; overflow: hidden; white-space: nowrap; font-size: 21cqw; font-weight: 700; letter-spacing: -.06em; line-height: 1; padding-block-end: .04em; color: var(--wa-line); user-select: none; }
+.wa-footer__word--xs { font-size: 29cqw; }
+.wa-footer__word--m { font-size: 15.5cqw; }
+.wa-footer__word--l { font-size: 11cqw; }
+.wa-footer__word--xl { font-size: 8cqw; }
+.wa-footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; margin: 16px 0 0; padding-block: 20px 28px; border-top: 1px solid var(--wa-line); font-size: 13px; color: var(--wa-muted); }
 .wa-footer__legal span:last-child { display: flex; gap: 14px; }
 @media (max-width: 640px) {
-  .wa-footer__cols { grid-template-columns: 1fr 1fr; }
-  .wa-footer__about { grid-column: 1 / 3; }
+  .wa-footer__about { flex-basis: 100%; }
+  .wa-footer__col { flex-basis: 7rem; }
 }
 
 /* ---- cards ---- */
