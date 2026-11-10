@@ -63,5 +63,4 @@
 <div><p class="km-label">The newsletter</p><h2 id="km-letter-h">The next chapter, by post.</h2><p>New writing as it is published, in your reader or your inbox.</p></div>
 <div class="km-letter__links"><a class="km-btn" href="{{$cta}}">{{with .Site.HeaderCTA}}{{.Label}}{{else}}Subscribe by RSS{{end}}</a>{{if .Site.HeaderCTA}}<a class="km-btn km-btn--ghost" href="/feed.xml">RSS</a>{{end}}</div>
 </div></section>
-{{if .Blocks}}{{template "page-body" .}}{{end}}
 {{end}}
