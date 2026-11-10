@@ -1,0 +1,10 @@
+{{/* Not found: a giant numeral, the page's one h1, a way home, a search box and, when
+the site has posts, the latest three. */}}
+{{define "content"}}<section class="hm-container mu-lost">
+<p class="mu-lost__code" aria-hidden="true">404</p>
+<h1 class="mu-lost__title">Page not found</h1>
+<p class="mu-lost__lede">The address may have changed, or it has a typo. Search the site, or start again from the front page.</p>
+<form class="mu-search" role="search" action="/search" method="get"><label class="hm-visually-hidden" for="mu-q-lost">Search the site</label><input id="mu-q-lost" type="search" name="q" placeholder="Search the site" autocomplete="off"><button class="hm-btn" type="submit">Search</button></form>
+<p class="mu-lost__home"><a class="hm-btn" href="/">Back to the front page</a></p>
+{{with recent "post" 3}}<div class="mu-lost__recent"><h2>Latest posts</h2><div class="hm-cards">{{range .}}{{template "post-card-h3" .}}{{end}}</div></div>{{end}}
+</section>{{end}}
