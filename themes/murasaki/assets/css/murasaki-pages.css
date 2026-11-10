@@ -14,8 +14,8 @@
 .mu-body .hm-section-head__eyebrow { grid-column: 1; grid-row: 1; padding-block-start: .6rem; }
 
 /* The first section of an inner page opens it: display-size headline, a hairline under it. */
-.mu-body main > .hm-section:first-child:is(.hm-section--content, .hm-section--contact_info, .hm-section--contact_form) { padding-block: var(--mu-space-6) var(--mu-space-5); }
-.mu-body main > .hm-section:first-child :is(.hm-content__headline, .hm-contact-info__heading, .hm-contact-form__heading) {
+.mu-body main > .hm-section:first-of-type:is(.hm-section--content, .hm-section--contact_info, .hm-section--contact_form) { padding-block: var(--mu-space-6) var(--mu-space-5); }
+.mu-body main > .hm-section:first-of-type :is(.hm-content__headline, .hm-contact-info__heading, .hm-contact-form__heading) {
   max-width: 14ch; margin: 0 0 var(--mu-space-3); font-size: var(--mu-step-4); line-height: .98; letter-spacing: var(--mu-track-display); overflow-wrap: anywhere;
 }
 

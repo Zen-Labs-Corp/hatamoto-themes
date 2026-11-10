@@ -1,5 +1,5 @@
-{{/* Block-built pages: when no section prints the h1 (no hero), add the page name as a
-visually hidden h1 so the page has exactly one. It comes after the sections so the first
-section stays main's first child (the inner-page opener CSS relies on that). */}}
-{{define "mu-page-body"}}{{$h1 := false}}{{range .Blocks}}{{if eq .Type "hero"}}{{$h1 = true}}{{end}}{{end}}{{template "page-body" .}}{{if and .Blocks (not $h1)}}
-<h1 class="hm-visually-hidden">{{.Page.Name}}</h1>{{end}}{{end}}
+{{/* Block-built pages: when no section prints the h1 (a hero), add the page name as a visually hidden h1 so the page has exactly one.
+It comes first; the inner-page opener CSS matches the first section (:first-of-type), so
+the h1 does not break it. */}}
+{{define "mu-page-body"}}{{$h1 := false}}{{range .Blocks}}{{if eq .Type "hero"}}{{$h1 = true}}{{end}}{{end}}{{if and .Blocks (not $h1)}}<h1 class="hm-visually-hidden">{{.Page.Name}}</h1>
+{{end}}{{template "page-body" .}}{{end}}
