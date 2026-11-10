@@ -1,0 +1,12 @@
+{{define "content"}}{{$post := or (not .SchemaSlug) (eq .SchemaSlug "post")}}{{$total := 0}}{{with .Pagination}}{{$total = .Total}}{{end}}
+<div class="km-wrap km-archive">
+<header class="km-arch-head">
+{{if $total}}<span class="km-arch-head__big" aria-hidden="true">{{$total}}</span>{{end}}
+<div><p class="km-label">{{if $post}}The index{{else}}Archive{{end}}</p><h1>{{.Page.Name}}</h1>
+{{with .Page.Description}}<p>{{.}}</p>{{else}}{{if $total}}<p>{{template "km-count" $.Pagination}} so far, newest first.</p>{{end}}{{end}}</div>
+</header>
+{{if $post}}{{template "km-filters" dict "Terms" (terms "category" 12) "Cur" "all" "All" .Path}}{{end}}
+{{if .Items}}{{template "km-index" dict "Items" .Items "Group" $post}}
+{{template "km-pages" dict "Pg" .Pagination}}{{else}}<p class="km-empty">Nothing here yet.</p>{{end}}
+</div>
+{{end}}
