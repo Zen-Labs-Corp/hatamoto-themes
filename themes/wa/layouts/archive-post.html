@@ -1,6 +1,3 @@
-{{define "content"}}{{$post := or (not .SchemaSlug) (eq .SchemaSlug "post")}}{{$total := 0}}{{with .Pagination}}{{$total = .Total}}{{end}}
-{{$eye := "Archive"}}{{$pre := .Page.Name}}{{$acc := ""}}{{$terms := ""}}
-{{if $post}}{{$eye = "Journal"}}{{$terms = terms "category" 12}}{{if gt $total 0}}{{$pre = print .Page.Name ", "}}{{if eq $total 1}}{{$acc = "1 story"}}{{else}}{{$acc = print $total " stories"}}{{end}}{{end}}
-{{else if gt $total 0}}{{if eq $total 1}}{{$pre = print .Page.Name ", 1 entry"}}{{else}}{{$pre = print .Page.Name ", " $total " entries"}}{{end}}{{end}}
-{{template "wa-listing" dict "Eyebrow" $eye "Pre" $pre "Accent" $acc "Post" "" "Lede" .Page.Description "Terms" $terms "Cur" "all" "All" .Path "Items" .Items "Pg" .Pagination}}
+{{define "content"}}{{$total := 0}}{{with .Pagination}}{{$total = .Total}}{{end}}{{$post := ""}}{{if eq $total 1}}{{$post = ", 1 story"}}{{else if gt $total 1}}{{$post = print ", " $total " stories"}}{{end}}
+{{template "wa-listing" dict "Eyebrow" "Journal" "Pre" "" "Accent" .Page.Name "Post" $post "Lede" .Page.Description "Terms" (terms "category" 12) "Cur" "all" "All" .Path "Items" .Items "Pg" .Pagination}}
 {{end}}
