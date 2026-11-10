@@ -226,7 +226,7 @@ span.wa-pager__dir { color: var(--wa-muted); }
 .wa-empty h2 { margin: 14px 0 8px; font-size: var(--wa-step-4); }
 .wa-empty p:last-child { color: var(--wa-muted); max-inline-size: 40ch; }
 .wa-hero { padding-block: 28px 32px; background: var(--wa-band); }
-.wa-mosaic { display: grid; grid-template-columns: 1fr 1.9fr 1fr; grid-auto-rows: 260px; gap: var(--wa-gap); }
+.wa-mosaic { display: grid; grid-template-columns: 1fr 1.9fr 1fr; grid-auto-rows: minmax(260px, auto); gap: var(--wa-gap); }
 .wa-mosaic .wa-card { min-block-size: 0; }
 .wa-mosaic .wa-card:first-child { grid-column: 2; grid-row: 1 / 3; }
 .wa-mosaic .wa-card:first-child .wa-card__body { padding-inline-end: 100px; }
@@ -279,7 +279,7 @@ span.wa-pager__dir { color: var(--wa-muted); }
 /* ---- home: bottom ---- */
 .wa-night { background: var(--wa-night); color: var(--wa-night-ink); }
 .wa-night .wa-eyebrow { color: var(--wa-signal); }
-.wa-vault { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: 230px 230px; gap: var(--wa-gap); }
+.wa-vault { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: minmax(230px, auto) minmax(230px, auto); gap: var(--wa-gap); }
 .wa-vault .wa-card { min-block-size: 0; }
 .wa-vault .wa-card:first-child { grid-row: 1 / 3; }
 .wa-vault__side { grid-column: 2 / 4; padding: 22px 24px; overflow: hidden; border: 1px solid var(--wa-glass-line); border-radius: var(--wa-r-card); background: var(--wa-night-2); }
