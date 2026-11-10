@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{default "en" .Site.Language}}" data-hm-contract="1"{{if .Preview}} data-hm-preview="true"{{end}} data-kg-mode="{{default "auto" .Settings.color_mode}}" data-kg-density="{{default "comfortable" .Settings.density}}" data-kg-side="{{default "left" .Settings.panel_side}}" data-kg-cols="{{default "2" .Settings.grid_columns}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{template "head" .Head}}
+<link rel="stylesheet" href="{{.CSSHref}}">
+{{if .Tokens.Any}}<style>:root{ {{with .Tokens.Primary}}--hm-primary:{{.}};{{end}}{{with .Tokens.Background}}--hm-bg:{{.}};{{end}}{{with .Tokens.Text}}--hm-text:{{.}};{{end}}{{with .Tokens.Font}}--hm-font:{{.}};{{end}}{{with .Tokens.FontHeading}}--hm-font-heading:{{.}};{{end}}{{with .Tokens.RadiusSm}}--hm-radius-sm:{{.}};{{end}}{{with .Tokens.RadiusMd}}--hm-radius-md:{{.}};{{end}}{{with .Tokens.RadiusLg}}--hm-radius-lg:{{.}};{{end}} }</style>
+{{end}}<script src="/theme/assets/js/kogarashi-head.js"></script>
+{{template "plugin-head" .}}</head>
+<body class="kg-body kg-kind-{{.Kind}}">
+<a class="hm-skip" href="#main-content">Skip to content</a>
+<div class="kg-split">
+<div class="kg-panel">
+{{with .Settings.panel_image}}<img class="kg-panel__img" src="{{imgsrc .}}" alt="" aria-hidden="true" fetchpriority="high">
+{{end}}<div class="kg-panel__in">
+{{template "header" .}}
+{{block "kg-panel-body" .}}<div class="kg-hero"><p class="kg-lead">{{default .Site.Name .Site.Tagline}}</p></div>{{end}}
+{{template "footer" .}}
+</div>
+</div>
+<main id="main-content" class="kg-main" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>
+{{template "content" .}}
+</main>
+</div>
+{{template "scripts" .}}
+{{template "plugin-body" .}}</body>
+</html>

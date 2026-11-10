@@ -1,0 +1,7 @@
+{{define "kg-panel-body"}}<div class="kg-hero">
+<span class="kg-kicker">Find</span>
+<h1>Search</h1>
+{{if .Query}}{{with .Pagination}}<p class="kg-lead" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;</p>{{end}}{{else}}<p class="kg-lead">Type a word or phrase to search.</p>{{end}}
+</div>{{end}}
+{{define "content"}}{{template "kg-search-form" dict "Root" . "Id" "search"}}
+{{if .Query}}{{template "kg-ledger" dict "Root" . "Ex" .Settings.show_excerpts}}{{end}}{{end}}

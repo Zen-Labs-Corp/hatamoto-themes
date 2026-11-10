@@ -1,0 +1,8 @@
+{{define "kg-panel-body"}}<div class="kg-hero">
+<p class="kg-404" aria-hidden="true">404</p>
+<h1>This page blew away. The rest of the notes are still here.</h1>
+<p><a class="kg-btn" href="/">Back to the homepage</a></p>
+</div>{{end}}
+{{define "content"}}{{template "kg-search-form" dict "Root" . "Id" "404"}}
+{{$r := query (dict "schema" "post" "limit" 3)}}{{if $r.Items}}<h2 class="kg-label">Latest posts</h2>
+<ul class="kg-rows kg-rows--first">{{range $r.Items}}{{template "kg-row" dict "P" . "Ex" false}}{{end}}</ul>{{end}}{{end}}
