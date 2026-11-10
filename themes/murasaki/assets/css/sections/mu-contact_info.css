@@ -11,7 +11,7 @@
 
 /* As the first section of a page: headline left, the ruled list right. */
 @media (min-width: 56rem) {
-  .mu-body main > .hm-section:first-of-type .hm-contact-info { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); column-gap: var(--mu-space-5); align-items: start; }
-  .mu-body main > .hm-section:first-of-type .hm-contact-info__heading { grid-column: 1; }
-  .mu-body main > .hm-section:first-of-type .hm-contact-info__body { grid-column: 2; grid-row: 1; margin-block-start: var(--mu-space-2); }
+  .mu-body main > :is(.hm-section:first-child, .hm-visually-hidden:first-child + .hm-section) .hm-contact-info { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); column-gap: var(--mu-space-5); align-items: start; }
+  .mu-body main > :is(.hm-section:first-child, .hm-visually-hidden:first-child + .hm-section) .hm-contact-info__heading { grid-column: 1; }
+  .mu-body main > :is(.hm-section:first-child, .hm-visually-hidden:first-child + .hm-section) .hm-contact-info__body { grid-column: 2; grid-row: 1; margin-block-start: var(--mu-space-2); }
 }
