@@ -10,7 +10,7 @@
 <div class="kz-menu__panel">
 {{if .Site.Nav}}<nav aria-label="Menu"><ol class="kz-menu__list">{{template "kz-nav-items" dict "Items" .Site.Nav "Path" $.Path}}</ol></nav>
 {{end}}{{if $topics}}<p class="kz-label">Topics</p>
-<nav class="kz-chips" aria-label="Topics"><a class="kz-chip" href="{{$arch}}"{{if eq $.Path $arch}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>
+<nav class="kz-chips" aria-label="Topics in menu"><a class="kz-chip" href="{{$arch}}"{{if eq $.Path $arch}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>
 {{end}}{{template "kz-search" dict "Class" "kz-search--onpine" "Placeholder" "Search the journal" "Button" "Go"}}
 </div></details>
 </div>

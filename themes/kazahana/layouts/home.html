@@ -3,7 +3,7 @@
 <div class="kz-intro__main">
 {{/* the page's own sections bring their own h1 (hero), so the intro title steps down to h2 then */}}{{if .Blocks}}<h2 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h2>{{else}}<h1 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h1>{{end}}
 {{with .Entity}}{{with .Excerpt}}<p class="kz-intro__text">{{.}}</p>{{end}}{{end}}
-{{if $cats}}<nav class="kz-chips" aria-label="Topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>{{end}}
+{{if $cats}}<nav class="kz-chips" aria-label="Browse topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>{{end}}
 </div>
 {{if $items}}<div class="kz-latest"><h2 class="kz-label">Latest</h2>
 <ul>{{range $i, $it := $items}}{{if lt $i 3}}<li>{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time>{{else}}<span></span>{{end}}<a href="{{$it.URL}}">{{$it.Title}}</a></li>{{end}}
