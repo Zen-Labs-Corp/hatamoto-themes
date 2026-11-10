@@ -11,6 +11,6 @@
 {{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
 {{end}}</ul>
 {{end}}<p class="wa-footer__word" aria-hidden="true">{{.Site.Name}}</p>
-<p class="wa-footer__legal"><span>&copy; {{year}} {{.Site.Name}}</span><span><a href="/feed.xml">RSS</a> <a href="/atom.xml">Atom</a></span></p>
+<p class="wa-footer__legal"><span>&copy; {{year}} {{.Site.Name}}</span>{{with .Site.Feeds}}<span>{{range .}}<a href="{{.Href}}">{{if eq .Type "application/atom+xml"}}Atom{{else}}RSS{{end}}</a> {{end}}</span>{{end}}</p>
 </div>
 </footer>{{end}}
