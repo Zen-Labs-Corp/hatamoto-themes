@@ -224,6 +224,7 @@ img, svg { max-width: 100%; }
 .kz-intro > * { position: relative; z-index: 1; min-inline-size: 0; }
 .kz-intro__title { margin: 0 0 .6rem; font-size: var(--kz-step-3); line-height: 1.08; overflow-wrap: anywhere; }
 .kz-intro__text { margin: 0; max-inline-size: 30rem; opacity: .85; }
+.kz-intro__text > * { margin: 0; }
 .kz-intro .kz-chips { margin-block-start: 1.2rem; }
 .kz-latest .kz-label { margin-block-end: .4rem; }
 .kz-latest ul { margin: 0; padding: 0; list-style: none; }

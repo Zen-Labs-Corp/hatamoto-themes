@@ -2,7 +2,7 @@
 {{/* a builder hero (or any native block) prints its own h1 and takes the intro's place; otherwise the intro carries the h1 */}}{{if and .Settings.show_intro (not $hero)}}<section class="kz-wrap"><div class="kz-intro">
 <div class="kz-intro__main">
 <h1 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h1>
-{{with .Entity}}{{with .Excerpt}}<p class="kz-intro__text">{{.}}</p>{{end}}{{end}}
+{{if and .Body (not .Blocks)}}<div class="kz-intro__text">{{.Body}}</div>{{else}}{{with .Entity}}{{with .Excerpt}}<p class="kz-intro__text">{{.}}</p>{{end}}{{end}}{{end}}
 {{if $cats}}<nav class="kz-chips" aria-label="Browse topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>{{end}}
 </div>
 {{if $items}}<div class="kz-latest"><h2 class="kz-label">Latest</h2>
@@ -10,7 +10,7 @@
 {{end}}</ul></div>{{end}}
 </div></section>
 {{else if not $hero}}<h1 class="kz-sr">{{.Site.Name}}</h1>
-{{end}}{{template "page-body" .}}
+{{end}}{{if or .Blocks (not .Settings.show_intro) (not .Body)}}{{template "page-body" .}}{{end}}
 <div class="kz-wrap">
 {{range $i, $it := $items}}{{if eq $i 0}}<article class="kz-lead{{if not $it.Image}} kz-lead--plain{{end}}">
 <div class="kz-lead__body">
