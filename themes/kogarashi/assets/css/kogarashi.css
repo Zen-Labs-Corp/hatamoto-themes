@@ -160,6 +160,15 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: linear-gradient(180deg, rgba(10, 18, 32, .35) 0%, transparent 30%, var(--kg-panel-tint) 62%, rgba(6, 11, 20, .92) 100%);
 }
+/* Over an owner image the cover stays visible in the middle; a band behind the header and behind the
+   hero text (it grows with the headline) keeps the panel text at AA even on a white photo. */
+.kg-panel:has(.kg-panel__img)::after { background: linear-gradient(180deg, transparent 0%, transparent 40%, var(--kg-panel-tint) 70%, rgba(6, 11, 20, .92) 100%); }
+.kg-panel:has(.kg-panel__img) .kg-header { position: relative; }
+.kg-panel:has(.kg-panel__img) .kg-header::before,
+.kg-panel:has(.kg-panel__img) .kg-hero::before { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+.kg-panel:has(.kg-panel__img) .kg-header::before { inset: calc(var(--kg-s4) * -1) calc(var(--kg-s4) * -1) -3rem; background: linear-gradient(180deg, rgba(6, 11, 20, .72) 0, rgba(6, 11, 20, .72) calc(100% - 3rem), transparent); }
+.kg-panel:has(.kg-panel__img) .kg-hero { position: relative; }
+.kg-panel:has(.kg-panel__img) .kg-hero::before { inset: -5rem calc(var(--kg-s4) * -1) -8rem; background: linear-gradient(180deg, transparent, rgba(6, 11, 20, .72) 5rem); }
 .kg-panel__img { position: absolute; inset: 0; z-index: -2; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .kg-panel a { color: inherit; text-decoration: none; }
 .kg-panel :focus-visible { outline: 2px solid var(--kg-frost); outline-offset: 3px; }
