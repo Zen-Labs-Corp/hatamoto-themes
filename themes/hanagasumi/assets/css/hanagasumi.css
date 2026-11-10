@@ -318,6 +318,11 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 .hg-prose.hm-entry > table th, .hg-prose.hm-entry > table td { padding: .75rem 1rem; border: 0; border-block-end: 1px solid var(--hg-line); }
 .hg-prose.hm-entry > table thead th { background: var(--hg-tint); }
 .hg-prose.hm-entry > table tr:last-child td { border-block-end: 0; }
+/* wide screens: real table layout so the table fills the column and cells wrap; mobile keeps the built-in sideways scroll */
+@media (min-width: 700px) {
+  .hg-prose.hm-entry > table { display: table; inline-size: 100%; }
+  .hg-prose.hm-entry > table th, .hg-prose.hm-entry > table td { min-inline-size: 0; text-align: start; }
+}
 .hg-prose pre { overflow: auto; padding: 1.25rem; background: var(--hg-tint); color: var(--hg-ink); border: 1px solid var(--hg-line); border-radius: var(--hg-radius-md); font: 400 var(--hg-fs-sm)/1.6 var(--hg-mono); }
 .hg-prose :not(pre) > code { padding: .1em .35em; border-radius: var(--hg-radius-xs); background: var(--hg-tint); font: 400 .9em var(--hg-mono); }
 .hg-pn { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-inline-size: 70rem; margin-inline: auto; padding: 0 1.75rem var(--hg-space-8); }
