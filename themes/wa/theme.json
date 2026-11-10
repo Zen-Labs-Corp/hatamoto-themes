@@ -181,9 +181,9 @@
       },
       "home_sections": {
         "type": "boolean",
-        "title": "Show page-builder blocks on the home",
-        "description": "Print the blocks of the home page (from the editor) below the generated sections.",
-        "default": false
+        "title": "Use the home page's own blocks",
+        "description": "When the home page has blocks built in the editor, show them instead of the generated magazine home. Switch off to always show the magazine home.",
+        "default": true
       }
     }
   }

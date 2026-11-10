@@ -55,7 +55,7 @@ page keeps rendering.
 | Newsletter link (`newsletter_url`) | text | `/about` | Where that button goes, for example a page with your sign-up form. |
 | Signal colour (`signal_colour`) | hex colour | `#c8f04a` | The accent on chips, badges and the newsletter button. Text on it is a fixed dark ink, so choose a **light** colour; a dark value makes that text hard to read. It is a plain text field: type a value such as `#c8f04a`. |
 | Journal link (`archive_url`) | text | `/blog` | Where the "All stories" links and the 404 button lead. |
-| Home page sections (`home_sections`) | on/off | off | Prints the blocks of the home page built in the editor below the generated sections. |
+| Use the home page's own blocks (`home_sections`) | on/off | on | When the home page has blocks built in the editor, they are shown instead of the generated magazine home (so a business or landing site keeps its own home). A home without blocks shows the magazine home. Switch off to always show the magazine home. |
 
 Empty text settings fall back to their defaults, except the announcement text, the
 announcement button and the newsletter heading end, which hide their part.
