@@ -1,4 +1,7 @@
-{{define "content"}}{{$own := and .Blocks (ne (printf "%v" .Settings.home_sections) "false")}}{{if $own}}{{template "page-body" .}}{{else}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$items := $r.Items}}{{$n := len $items}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$items := $r.Items}}{{$n := len $items}}{{$nb := len .Blocks}}{{$mode := default "auto" .Settings.home_layout}}
+{{/* Auto: the owner's blocks win when the home has more than the one starter block, or when there are no posts to show. */}}
+{{$own := and (gt $nb 0) (or (eq $mode "blocks") (and (eq $mode "auto") (or (gt $nb 1) (eq $n 0))))}}
+{{if $own}}{{template "page-body" .}}{{else}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
 {{$showTick := ne (printf "%v" .Settings.show_ticker) "false"}}
 <h1 class="wa-sr">{{.Site.Name}}</h1>
 {{if eq $n 0}}<section class="wa-wrap wa-empty"><p class="wa-eyebrow">{{.Site.Name}}</p><h2>No posts yet</h2><p>New stories will show up here as soon as they are published.</p></section>

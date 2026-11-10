@@ -179,11 +179,16 @@
         "description": "Where \"All stories\" links point.",
         "default": "/blog"
       },
-      "home_sections": {
-        "type": "boolean",
-        "title": "Use the home page's own blocks",
-        "description": "When the home page has blocks built in the editor, show them instead of the generated magazine home. Switch off to always show the magazine home.",
-        "default": true
+      "home_layout": {
+        "type": "string",
+        "title": "Home page",
+        "description": "Auto shows the blocks built in the editor when the home page has several (or the site has no posts), and the magazine home otherwise. Choose Blocks or Magazine to force one.",
+        "enum": [
+          "auto",
+          "blocks",
+          "magazine"
+        ],
+        "default": "auto"
       }
     }
   }
