@@ -11,7 +11,7 @@
 </div>
 {{with $latest}}<div class="km-spread__recto">
 <p class="km-label">Latest chapter</p>
-<div class="km-book km-c1" aria-hidden="true"><small>Chapter I{{with .Category}} &middot; {{.}}{{end}}</small><strong>{{.Title}}</strong></div>
+<div class="km-book km-c1" aria-hidden="true"><small><span class="km-ch">Chapter I &middot; </span>{{.Category}}</small><strong>{{.Title}}</strong></div>
 <div class="km-spread__meta"><h2><a href="{{.URL}}">{{.Title}}</a></h2>{{with .Excerpt}}<p>{{.}}</p>{{end}}</div>
 </div>{{end}}
 </section>
@@ -52,7 +52,7 @@
 <div class="km-sec__head"><h2 id="km-journal-h">From the <em>journal</em></h2><a href="/blog">Everything &rarr;</a></div>
 <div class="km-grid3">
 {{range $i, $it := $r.Items}}{{if lt $i 6}}<a class="km-card" href="{{$it.URL}}">
-{{if $it.Image}}<img class="km-plate" src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 380px"{{end}} alt="" loading="lazy" decoding="async">{{else}}<span class="km-plate km-c{{mod $i 5}}" aria-hidden="true"></span>{{end}}
+{{if $it.Image}}<img class="km-plate" src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 380px"{{end}} alt="" decoding="sync">{{else}}<span class="km-plate km-c{{mod $i 5}}" aria-hidden="true"></span>{{end}}
 {{with $it.Category}}<span class="km-label km-label--primary">{{.}}</span>{{end}}<h3>{{$it.Title}}</h3>{{with $it.Excerpt}}<p>{{.}}</p>{{end}}
 <span class="km-card__meta">{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}{{with $it.ReadingTime}}<span>{{.}} min read</span>{{end}}</span>
 </a>
