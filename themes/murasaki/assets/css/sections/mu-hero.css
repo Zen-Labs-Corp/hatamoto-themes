@@ -1,0 +1,26 @@
+/* hero: oversized headline, a foot row (lede left, buttons right) over a hairline,
+   then the image as a wide panorama. Split and centered layouts look the same. */
+.mu-body .hm-section--hero { padding-block: var(--mu-space-6) var(--mu-space-5); }
+.mu-body .hm-hero { display: block; text-align: start; }
+.mu-body .hm-hero__body { display: grid; grid-template-columns: minmax(0, 1fr) auto; max-width: none; }
+.mu-body .hm-hero__body > * { grid-column: 1 / -1; }
+.mu-body .hm-hero__headline { max-width: 13ch; margin: var(--mu-space-3) 0 0; font-size: var(--mu-step-4); line-height: .98; letter-spacing: var(--mu-track-display); overflow-wrap: anywhere; }
+.mu-body .hm-hero__headline .mu-hero__accent { color: var(--mu-primary); }
+html[data-mu-accent="off"] .mu-body .hm-hero__headline .mu-hero__accent { color: inherit; }
+.mu-body .hm-hero__subheadline { grid-column: 1; max-width: none; margin: var(--mu-space-4) 0 0; padding: var(--mu-space-3) var(--mu-space-4) 0 0; border-top: 1px solid var(--mu-line); font-size: var(--mu-step-1); line-height: 1.4; color: var(--mu-muted); }
+.mu-body .hm-hero__subheadline > * { max-width: 46ch; }
+.mu-body .hm-hero__subheadline:last-child { grid-column: 1 / -1; }
+.mu-body .hm-hero__actions { grid-column: 2; justify-content: flex-start; margin: var(--mu-space-4) 0 0; padding-top: var(--mu-space-3); border-top: 1px solid var(--mu-line); }
+.mu-body .hm-hero__actions:nth-child(2) { grid-column: 1 / -1; }
+.mu-body .hm-hero__chip { justify-self: start; }
+.mu-body .hm-hero__media { margin-top: var(--mu-space-5); aspect-ratio: 16 / 6; overflow: hidden; border-radius: var(--mu-radius-lg); }
+.mu-body .hm-hero__media--panel { aspect-ratio: auto; overflow: visible; }
+.mu-body .hm-hero__image { width: 100%; height: 100%; object-fit: cover; border: 0; border-radius: 0; }
+
+@media (max-width: 56rem) {
+  .mu-body .hm-hero__body { grid-template-columns: minmax(0, 1fr); }
+  .mu-body .hm-hero__subheadline, .mu-body .hm-hero__actions { grid-column: 1; }
+  .mu-body .hm-hero__subheadline { padding-right: 0; }
+  .mu-body .hm-hero__actions { margin-top: var(--mu-space-3); padding-top: 0; border-top: 0; }
+  .mu-body .hm-hero__media { aspect-ratio: 4 / 3; margin-top: var(--mu-space-4); }
+}

@@ -1,0 +1,16 @@
+/* faq: heading in the label column, ruled rows with a + / - marker. */
+.mu-body .hm-faq { display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: var(--mu-space-4); align-items: start; max-width: var(--mu-max); }
+.mu-body .hm-faq__heading { grid-column: 1; grid-row: 1; margin: 0; font-size: var(--mu-step-2); }
+.mu-body .hm-faq__heading::before { margin-bottom: 1rem; }
+.mu-body .hm-faq__subheading { grid-column: 1; margin: 1rem 0 0; color: var(--mu-muted); }
+.mu-body .hm-faq__list { grid-column: 2; grid-row: 1 / span 2; display: block; border-top: 1px solid var(--mu-ink); }
+.mu-body .hm-faq .hm-faq__item { padding: var(--mu-space-3) 0; border: 0; border-bottom: 1px solid var(--mu-line); border-radius: 0; }
+.mu-body .hm-faq__question { display: flex; justify-content: space-between; gap: 1rem; list-style: none; font: 600 var(--mu-step-1)/1.25 var(--mu-font-display); letter-spacing: -.02em; }
+.mu-body .hm-faq__question::-webkit-details-marker { display: none; }
+.mu-body .hm-faq__question::after { content: "+"; flex: none; font-family: var(--mu-font-mono); font-weight: 400; color: var(--mu-primary); }
+.mu-body .hm-faq__item[open] > .hm-faq__question::after { content: "\2212"; }
+.mu-body .hm-faq__answer { max-width: 60ch; margin-top: .75rem; color: var(--mu-muted); }
+@media (max-width: 56rem) {
+  .mu-body .hm-faq { grid-template-columns: 1fr; row-gap: var(--mu-space-3); }
+  .mu-body .hm-faq__heading, .mu-body .hm-faq__subheading, .mu-body .hm-faq__list { grid-column: 1; grid-row: auto; margin-top: 0; }
+}

@@ -1,0 +1,16 @@
+/* testimonials: the first quote is a large night card, the others sit beside it in surface cards. */
+.mu-body .hm-testimonials .hm-testimonials__list { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--mu-space-3); max-width: none; margin: 0; }
+.mu-body .hm-testimonials .hm-testimonials__item { padding: var(--mu-space-4); border: 1px solid var(--mu-line); border-radius: var(--mu-radius-lg); background: var(--mu-surface); text-align: start; }
+.mu-body .hm-testimonials .hm-testimonials__figure { justify-content: space-between; gap: var(--mu-space-4); }
+.mu-body .hm-testimonials .hm-testimonials__quote { margin: 0; flex: 0 1 auto; font: 500 var(--mu-step-1)/1.3 var(--mu-font-display); letter-spacing: -.02em; color: inherit; }
+.mu-body .hm-testimonials .hm-testimonials__author { justify-content: flex-start; font-size: .92rem; }
+.mu-body .hm-testimonials__role { color: var(--mu-muted); font-size: inherit; }
+.mu-body .hm-testimonials .hm-testimonials__item:first-child { grid-row: span 2; background: var(--mu-night); border-color: var(--mu-night); color: var(--mu-on-night); }
+.mu-body .hm-testimonials .hm-testimonials__item:first-child .hm-testimonials__quote { font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.12; letter-spacing: -.035em; }
+.mu-body .hm-testimonials .hm-testimonials__item:first-child .hm-testimonials__quote::before { content: "\201C"; display: block; margin-bottom: .5rem; font-size: 4rem; line-height: .6; color: var(--mu-primary); }
+.mu-body .hm-testimonials .hm-testimonials__item:first-child .hm-testimonials__role { color: color-mix(in srgb, var(--mu-on-night) 65%, transparent); }
+.mu-body .hm-testimonials .hm-testimonials__item:only-child { grid-column: 1 / -1; }
+@media (max-width: 56rem) {
+  .mu-body .hm-testimonials .hm-testimonials__list { grid-template-columns: minmax(0, 1fr); }
+  .mu-body .hm-testimonials .hm-testimonials__item:first-child { grid-row: auto; }
+}

@@ -1,0 +1,35 @@
+/* features (cards, minimal, centered): a full-width hairline index. Each row is
+   label | big title | description | square arrow, and the whole row is the link.
+   The first row is in the accent. Bento keeps its framed cells. */
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__list { display: block; gap: 0; background: none; border: 0; border-top: 1px solid var(--mu-ink); }
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__item {
+  position: relative; display: grid; grid-template-columns: 200px minmax(0, 1.2fr) minmax(0, 1fr) 44px; column-gap: var(--mu-space-4); align-items: center;
+  padding: var(--mu-space-3) 0; background: none; border-bottom: 1px solid var(--mu-line); text-align: start;
+}
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__item:hover { background: none; }
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__item::after {
+  content: "\2192"; grid-column: 4; grid-row: 1; display: grid; place-items: center; inline-size: 44px; block-size: 44px;
+  border: 1px solid var(--mu-line); border-radius: var(--mu-radius); font-family: var(--mu-font-mono);
+}
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__item:first-child::after { background: var(--mu-primary); border-color: var(--mu-primary); color: var(--mu-on-primary); }
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__item:first-child .hm-features__title { color: var(--mu-primary); }
+.mu-body .hm-features:not(.hm-features--bento) :is(.hm-features__number, .hm-features__category, .hm-features__badge, .hm-features__link) {
+  grid-column: 1; position: static; padding: 0; border: 0; text-decoration: none; background: none; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted);
+}
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__icon { grid-column: 1; margin: 0; }
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__title { grid-column: 2; grid-row: 1; margin: 0; font-size: clamp(1.75rem, 3.4vw, 2.75rem); line-height: 1; letter-spacing: -.04em; }
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__description { grid-column: 3; grid-row: 1; margin: 0; font-size: .98rem; color: var(--mu-muted); }
+.mu-body .hm-features:not(.hm-features--bento) .hm-features__tags { grid-column: 3; margin: 0; padding: 0; }
+/* the link text is the label; its box covers the row so the row is one target */
+.mu-body .hm-features__link::before { content: ""; position: absolute; inset: 0; }
+.mu-body .hm-features__link:focus-visible { outline: 0; }
+.mu-body .hm-features__link:focus-visible::before { outline: 2px solid var(--mu-primary); outline-offset: 2px; }
+
+@media (max-width: 56rem) {
+  .mu-body .hm-features:not(.hm-features--bento) .hm-features__item { grid-template-columns: minmax(0, 1fr) 44px; row-gap: .5rem; }
+  .mu-body .hm-features:not(.hm-features--bento) :is(.hm-features__number, .hm-features__category, .hm-features__badge, .hm-features__link, .hm-features__icon) { grid-column: 1; grid-row: 1; }
+  .mu-body .hm-features:not(.hm-features--bento) .hm-features__title { grid-column: 1; grid-row: 2; }
+  .mu-body .hm-features:not(.hm-features--bento) .hm-features__description,
+  .mu-body .hm-features:not(.hm-features--bento) .hm-features__tags { grid-column: 1; grid-row: 3; }
+  .mu-body .hm-features:not(.hm-features--bento) .hm-features__item::after { grid-column: 2; grid-row: 2 / span 2; align-self: start; }
+}
