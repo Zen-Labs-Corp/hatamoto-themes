@@ -10,7 +10,7 @@
 <div class="kz-menu__panel">
 {{if .Site.Nav}}<nav aria-label="Menu"><ol class="kz-menu__list">{{template "kz-nav-items" dict "Items" .Site.Nav "Path" $.Path}}</ol></nav>
 {{end}}{{if $topics}}<p class="kz-label">Topics</p>
-<nav class="kz-chips" aria-label="Topics in menu"><a class="kz-chip" href="{{$arch}}"{{if eq $.Path $arch}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>
+<nav class="kz-chips" aria-label="Topics in menu"><a class="kz-chip" href="{{cta $arch}}"{{if eq $.Path $arch}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>
 {{end}}{{template "kz-search" dict "Class" "kz-search--onpine" "Placeholder" "Search the journal" "Button" "Go"}}
 </div></details>
 </div>
@@ -20,5 +20,5 @@
 {{end}}{{if and .Site.Nav $topics}}<span class="kz-sep" aria-hidden="true"></span>
 {{end}}{{if $topics}}<nav class="kz-bar__nav" aria-label="Topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path}}</nav>
 {{end}}</div></div>
-{{end}}{{if $topics}}<nav class="kz-strip" aria-label="Topics"><div class="kz-wrap kz-strip__in"><a href="{{$arch}}"{{if eq $.Path $arch}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" $cats "Path" $.Path}}</div></nav>
+{{end}}{{if $topics}}<nav class="kz-strip" aria-label="Topics"><div class="kz-wrap kz-strip__in"><a href="{{cta $arch}}"{{if eq $.Path $arch}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" $cats "Path" $.Path}}</div></nav>
 {{end}}</header>{{end}}

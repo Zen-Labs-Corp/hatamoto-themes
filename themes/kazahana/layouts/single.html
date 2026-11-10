@@ -23,7 +23,7 @@
 {{range $all.Items}}{{if eq .URL $e.URL}}{{$seen = true}}{{else if $seen}}{{if not $older}}{{$older = .}}{{end}}{{else}}{{$newer = .}}{{end}}{{end}}
 {{if $seen}}<nav class="kz-pn" aria-label="More notes">
 {{with $older}}<a rel="prev" href="{{.URL}}"><small>&larr; Older</small><span>{{.Title}}</span></a>{{end}}
-{{with $newer}}<a rel="next" href="{{.URL}}"><small>Newer &rarr;</small><span>{{.Title}}</span></a>{{else}}<a href="{{default "/blog" .Settings.archive_url}}"><small>Newer &rarr;</small><span>Back to the journal</span></a>{{end}}
+{{with $newer}}<a rel="next" href="{{.URL}}"><small>Newer &rarr;</small><span>{{.Title}}</span></a>{{else}}<a href="{{cta (default "/blog" .Settings.archive_url)}}"><small>Newer &rarr;</small><span>Back to the journal</span></a>{{end}}
 </nav>{{end}}{{end}}
 </div>
 <div></div>

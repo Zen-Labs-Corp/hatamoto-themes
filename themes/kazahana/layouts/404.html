@@ -3,5 +3,5 @@
 <h1>This page is under the snow</h1>
 <p>The link may be old, or the note was moved. Try a search, or start from the journal.</p>
 {{template "kz-search" dict "Class" "kz-nf__search" "Placeholder" "Search the journal" "Button" "Search"}}
-<p class="kz-nf__back"><a class="kz-more" href="{{default "/blog" .Settings.archive_url}}">Back to the journal <span aria-hidden="true">&rarr;</span></a></p>
+<p class="kz-nf__back"><a class="kz-more" href="{{cta (default "/blog" .Settings.archive_url)}}">Back to the journal <span aria-hidden="true">&rarr;</span></a></p>
 </section>{{end}}

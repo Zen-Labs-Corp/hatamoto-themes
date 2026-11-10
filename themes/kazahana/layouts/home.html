@@ -27,7 +27,7 @@
 </article>
 {{end}}{{end}}
 {{if gt $n 1}}<section aria-labelledby="hm-kz-recent-h">
-<div class="kz-sh"><h2 id="hm-kz-recent-h">Recent notes</h2><a class="kz-more" href="{{$arch}}">All notes <span aria-hidden="true">&rarr;</span></a></div>
+<div class="kz-sh"><h2 id="hm-kz-recent-h">Recent notes</h2><a class="kz-more" href="{{cta $arch}}">All notes <span aria-hidden="true">&rarr;</span></a></div>
 <div class="kz-grid">{{range $i, $it := $items}}{{if and (ge $i 1) (le $i 3)}}{{template "kz-card" dict "Item" $it}}{{end}}{{end}}</div>
 </section>
 {{end}}{{if $items}}<div class="kz-band">
@@ -35,7 +35,7 @@
 <div class="kz-signup"><h2>Get the next note</h2><p>Follow along by feed, or use the site's subscribe button.</p>{{template "kz-sub" dict "Root" . "Class" "kz-btn kz-btn--ink"}}</div>
 </div>
 {{end}}{{if gt $n 4}}<section aria-labelledby="hm-kz-archive-h">
-<div class="kz-sh"><h2 id="hm-kz-archive-h">From the archive</h2><a class="kz-more" href="{{$arch}}">Browse all <span aria-hidden="true">&rarr;</span></a></div>
+<div class="kz-sh"><h2 id="hm-kz-archive-h">From the archive</h2><a class="kz-more" href="{{cta $arch}}">Browse all <span aria-hidden="true">&rarr;</span></a></div>
 <div class="kz-list">{{range $i, $it := $items}}{{if ge $i 4}}{{template "kz-row" dict "Item" $it "Level" 3}}{{end}}{{end}}</div>
 </section>
 {{end}}{{if not $items}}<p class="kz-empty">No notes yet. Check back soon.</p>

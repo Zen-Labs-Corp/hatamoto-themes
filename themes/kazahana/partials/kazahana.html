@@ -28,7 +28,7 @@
 {{/* kz-count: "3 notes". dict "N" 3 */}}
 {{define "kz-count"}}{{.N}} {{if eq .N 1}}note{{else}}notes{{end}}{{end}}
 {{/* kz-filter: the "All" + topics bar of a listing; the current one is filled. dict "Cats" (terms) "Path" "" "Archive" "" */}}
-{{define "kz-filter"}}{{if .Cats}}<nav class="kz-chips kz-filter" aria-label="Filter by topic"><a class="kz-chip" href="{{.Archive}}"{{if eq .Path .Archive}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" .Cats "Path" .Path "Class" "kz-chip"}}</nav>{{end}}{{end}}
+{{define "kz-filter"}}{{if .Cats}}<nav class="kz-chips kz-filter" aria-label="Filter by topic"><a class="kz-chip" href="{{cta .Archive}}"{{if eq .Path .Archive}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" .Cats "Path" .Path "Class" "kz-chip"}}</nav>{{end}}{{end}}
 {{/* kz-list: rows, the pager and the empty state of a listing. dict "Root" . "Empty" "" */}}
 {{define "kz-list"}}{{if .Root.Items}}<div class="kz-rows">{{range .Root.Items}}{{template "kz-row" dict "Item" . "Level" 2 "Thumb" true}}{{end}}</div>
 {{template "kz-pager" dict "Pg" .Root.Pagination}}{{else}}<p class="kz-empty">{{.Empty}}</p>{{end}}{{end}}

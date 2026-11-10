@@ -178,7 +178,7 @@ img, svg { max-width: 100%; }
 .kz-bar .kz-sub a { display: block; padding: .35rem .5rem; }
 .kz-bar a { position: relative; color: var(--kz-muted); text-decoration: none; }
 .kz-bar a:hover, .kz-bar a[aria-current] { color: var(--hm-text); }
-.kz-bar a[aria-current]::after { content: ""; position: absolute; inset-inline-start: 50%; inset-block-end: -.78rem; inline-size: 6px; block-size: 6px; margin-inline-start: -3px; border-radius: 50%; background: var(--kz-primary); }
+.kz-bar__list > li > a[aria-current]::after { content: ""; position: absolute; inset-inline-start: 50%; inset-block-end: -.78rem; inline-size: 6px; block-size: 6px; margin-inline-start: -3px; border-radius: 50%; background: var(--kz-primary); }
 .kz-sep { inline-size: 1px; background: var(--kz-line); }
 
 .kz-strip, .kz-menu { display: none; }
