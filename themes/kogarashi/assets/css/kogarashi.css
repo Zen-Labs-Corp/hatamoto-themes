@@ -7,44 +7,75 @@
    fonts keeps working; no request to another host (fonts live in
    assets/fonts/, added with scripts/add-font.sh). */
 
+/* Hanken Grotesk (all text) and Fraunces italic (wordmark, quotes, 404 numeral): OFL-1.1,
+   self-hosted, see assets/fonts/*/LICENSE.txt. Owner fonts are never declared here. */
+@font-face { font-family: "Hanken Grotesk"; src: url("/theme/assets/fonts/hanken-grotesk/hanken-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fraunces"; src: url("/theme/assets/fonts/fraunces/fraunces-latin-wght-italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+
 :root {
-  /* ---- palette (light) ---- */
-  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
+  /* ---- owner tokens (Theme > Colours and fonts replaces these) ---- */
+  --hm-primary: #2b59c3;
   --hm-bg: #ffffff;
-  --hm-text: #16181d;
-  --kg-muted: #5d636e;
-  --kg-line: #e4e6ea;
-  --kg-surface: #f6f7f9;
+  --hm-text: #121821;
+  --hm-font: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hm-font-heading: var(--hm-font);
+  --hm-radius-sm: 6px;
+  --hm-radius-md: 12px;
+  --hm-radius-lg: 12px;
+  --hm-container: 72rem;
+
+  /* ---- palette (light), derived from the owner tokens ---- */
+  --kg-accent: var(--hm-primary);
+  --kg-accent-ink: #fff;
+  --kg-ink: var(--hm-text);
+  --kg-paper: var(--hm-bg);
+  --kg-muted: color-mix(in srgb, var(--hm-text) 68%, var(--hm-bg));
+  --kg-surface: color-mix(in srgb, var(--hm-text) 4%, var(--hm-bg));
+  --kg-line: color-mix(in srgb, var(--hm-text) 11%, var(--hm-bg));
+  --kg-accent-soft: color-mix(in srgb, var(--hm-primary) 10%, var(--hm-bg));
+  --kg-accent-soft-ink: color-mix(in srgb, var(--hm-primary) 80%, #000);
+  /* the panel is always midnight, in light and dark */
+  --kg-panel: #101b2c;
+  --kg-panel-tint: rgba(10, 18, 32, .62);
+  --kg-panel-ink: #f4f7fb;
+  --kg-panel-muted: #b7c3d4;
+  --kg-frost: #cfe0f5;
+
+  /* ---- type ---- */
+  --kg-sans: var(--hm-font);
+  --kg-mark: "Fraunces", Georgia, "Times New Roman", serif;
+  --kg-fs-xs: .75rem;
+  --kg-fs-sm: .875rem;
+  --kg-fs-base: 1.0625rem;
+  --kg-fs-lg: 1.25rem;
+  --kg-fs-xl: 1.5rem;
+  --kg-fs-2xl: 2rem;
+  --kg-fs-hero: clamp(2rem, 1.2rem + 2.6vw, 3rem);
+
+  /* ---- shape and rhythm ---- */
+  --kg-r-pill: 999px;
+  --kg-s1: .5rem;
+  --kg-s2: 1rem;
+  --kg-s3: 1.5rem;
+  --kg-s4: 2.5rem;
+  --kg-s5: 4rem;
+  --kg-split: 50%;
+  --kg-gap: clamp(1rem, 3vw, 2rem);
+  --kg-section: clamp(4rem, 9vw, 7rem);
+
   /* the default theme's names, so its sections follow this palette */
-  --hm-sumi: var(--hm-text);
+  --hm-sumi: var(--kg-ink);
   --hm-hai: var(--kg-muted);
   --hm-label: var(--kg-muted);
   --hm-hair: var(--kg-line);
   --hm-shiro: var(--kg-surface);
   --hm-kasumi: var(--kg-surface);
   --hm-shu: var(--hm-primary);
-
-  /* ---- type ---- */
-  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --hm-font-heading: var(--hm-font);
-
-  /* ---- shape and rhythm ---- */
-  --hm-radius-sm: 6px;
-  --hm-radius-md: 10px;
-  --hm-radius-lg: 16px;
-  --hm-container: 72rem;
-  --kg-gap: clamp(1rem, 3vw, 2rem);
-  --kg-section: clamp(4rem, 9vw, 7rem);
 }
 
-:root[data-theme="dark"] {
-  --hm-bg: #0f1115;
-  --hm-text: #e8eaee;
-  --kg-muted: #9aa1ad;
-  --kg-line: #262a31;
-  --kg-surface: #161920;
-  color-scheme: dark;
-}
+:root[data-theme="dark"] { color-scheme: dark; }
+
+body { font: 400 var(--kg-fs-base)/1.6 var(--kg-sans); color: var(--kg-ink); background: var(--kg-paper); }
 
 [data-kg-density="compact"] { --kg-section: clamp(2.5rem, 6vw, 4.5rem); }
 .hm-section { padding-block: var(--kg-section); }
