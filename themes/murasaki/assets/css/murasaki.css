@@ -27,7 +27,7 @@
   /* ---- palette (light), derived from the inputs ---- */
   --mu-paper: var(--hm-bg);
   --mu-ink: var(--hm-text);
-  --mu-primary: var(--hm-primary);
+  --mu-primary: color-mix(in srgb, var(--hm-primary) 94%, #000); /* a touch darker so white button text keeps 4.5:1 */
   --mu-primary-text: color-mix(in srgb, var(--hm-primary) 78%, var(--hm-text)); /* the accent as small text: darker so it keeps contrast on paper */
   --mu-on-primary: #ffffff;
   --mu-surface: #ffffff;

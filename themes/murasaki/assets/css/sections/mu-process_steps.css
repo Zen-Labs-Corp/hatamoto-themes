@@ -7,7 +7,7 @@
 .mu-body .hm-process__step { display: block; padding: var(--mu-space-3) var(--mu-space-3) 0; border-right: 1px solid var(--mu-line); background: none; }
 .mu-body .hm-process__step:first-child { padding-inline-start: 0; }
 .mu-body .hm-process__step:last-child { border-right: 0; }
-.mu-body .hm-process__marker { display: block; height: auto; min-width: 0; padding: 0; border: 0; border-radius: 0; background: none; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; color: var(--mu-primary); }
+.mu-body .hm-process__marker { display: block; height: auto; min-width: 0; padding: 0; border: 0; border-radius: 0; background: none; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; color: var(--mu-primary-text); }
 .mu-body .hm-process__marker:empty::before { content: counter(hm-step, decimal-leading-zero); }
 .mu-body .hm-process__title { margin: var(--mu-space-4) 0 .5rem; font-size: var(--mu-step-2); }
 .mu-body .hm-process__description { font-size: .98rem; color: var(--mu-muted); }
