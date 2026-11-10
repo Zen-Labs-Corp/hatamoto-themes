@@ -165,6 +165,7 @@ body.km-body { margin: 0; background: var(--km-paper); color: var(--km-ink); fon
   .km-brand__name { font-size: 1.45rem; }
   .km-runhead__inner span:first-child { display: none; }
   .km-runhead__inner { justify-content: flex-start; }
+  .km-runhead--bare { display: none; }
   .km-runhead__inner span:last-child { text-align: left; }
 }
 @media (prefers-reduced-motion: reduce) {

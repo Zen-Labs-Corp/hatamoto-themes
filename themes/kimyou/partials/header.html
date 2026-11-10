@@ -14,6 +14,6 @@
 </div>
 </div>
 </header>
-{{/* running head: the tagline left, where the reader is right */}}
-{{$sec := ""}}{{if eq .Kind "home"}}{{$sec = "Contents"}}{{else if eq .Kind "archive"}}{{$sec = "The index"}}{{else if eq .Kind "taxonomy"}}{{with .Term}}{{$sec = .Name}}{{end}}{{else if eq .Kind "author"}}{{$sec = "Author"}}{{else if eq .Kind "search"}}{{$sec = "Search"}}{{else if eq .Kind "notfound"}}{{$sec = "Lost pages"}}{{else if .Entity}}{{if ne .Entity.Schema "page"}}{{range $i, $c := .Entity.Categories}}{{if eq $i 0}}{{$sec = print "Chapter · " $c.Name}}{{end}}{{end}}{{end}}{{end}}
-{{if or .Site.Tagline $sec}}<div class="km-runhead"><div class="km-wrap km-runhead__inner"><span>{{.Site.Tagline}}</span><span>{{$sec}}</span></div></div>{{end}}{{end}}
+{{/* running head: the tagline (else the site name) left, where the reader is right */}}
+{{$sec := ""}}{{if eq .Kind "home"}}{{$sec = "Contents"}}{{else if eq .Kind "archive"}}{{$sec = "The index"}}{{else if eq .Kind "taxonomy"}}{{with .Term}}{{$sec = .Name}}{{end}}{{else if eq .Kind "author"}}{{$sec = "Author"}}{{else if eq .Kind "search"}}{{$sec = "Search"}}{{else if or (eq .Kind "notfound") (and (not .Kind) (not .Entity))}}{{$sec = "Lost pages"}}{{else if .Entity}}{{if ne .Entity.Schema "page"}}{{range $i, $c := .Entity.Categories}}{{if eq $i 0}}{{$sec = print "Chapter · " $c.Name}}{{end}}{{end}}{{end}}{{end}}
+{{$lead := default .Site.Name .Site.Tagline}}{{if or $lead $sec}}<div class="km-runhead{{if not $sec}} km-runhead--bare{{end}}"><div class="km-wrap km-runhead__inner"><span>{{$lead}}</span>{{with $sec}}<span>{{.}}</span>{{end}}</div></div>{{end}}{{end}}
