@@ -1,0 +1,6 @@
+{{define "content"}}{{$total := 0}}{{with .Pagination}}{{$total = .Total}}{{end}}{{$unit := "notes"}}{{if eq $total 1}}{{$unit = "note"}}{{end}}{{$kind := "Category"}}{{$name := ""}}{{$lede := ""}}{{with .Term}}{{$name = .Name}}{{$lede = .Description}}{{if eq .Kind "tag"}}{{$kind = "Tag"}}{{end}}{{end}}
+<div class="tk-wrap">
+{{template "tk-pagehead" dict "Title" $name "Lede" $lede "Count" $total "Unit" $unit "Eyebrow" $kind "Variant" "teal"}}
+{{template "tk-rows" .}}
+{{template "tk-pager" dict "Pg" .Pagination}}
+</div>{{end}}

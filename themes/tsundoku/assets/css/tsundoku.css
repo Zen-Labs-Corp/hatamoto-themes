@@ -257,3 +257,29 @@ a.tk-pager__a:hover { background: var(--tk-pop); color: var(--tk-pop-ink); }
 .tk-pager__a--on, a.tk-pager__a--on:hover { background: var(--tk-footer-bg); color: var(--tk-footer-ink); }
 .tk-pager__a--off { opacity: .45; }
 .tk-pager__gap { padding: 0 .3rem; }
+
+/* ---- taxonomy, author, search, page ---- */
+.tk-ph--teal { background: var(--tk-teal); color: var(--tk-teal-ink); border-radius: var(--tk-radius); padding: clamp(1.4rem, 1rem + 3vw, 3.5rem); margin-top: var(--tk-gap); margin-bottom: var(--tk-gap); }
+.tk-ph--teal .tk-ph__title { margin-top: 1rem; }
+.tk-ph--teal .tk-ph__lede { color: inherit; opacity: .9; font-size: var(--tk-step-0); max-inline-size: 26rem; }
+.tk-ph--teal .tk-count { background: none; color: inherit; padding: 0; font: 550 var(--tk-step--1)/1 var(--tk-sans); }
+.tk-ph--author { justify-content: flex-start; align-items: center; gap: 1.6rem; background: var(--tk-paper-2); border-radius: var(--tk-radius); padding: clamp(1.4rem, 1rem + 3vw, 3.5rem); margin: var(--tk-gap) 0; }
+.tk-ph--author .tk-ph__text { flex: 1 1 18rem; }
+.tk-ph--author .tk-ph__title { margin-top: 1rem; font-size: var(--tk-step-3); }
+.tk-ph--author .tk-count { font-size: var(--tk-step-2); margin-inline-start: auto; }
+.tk-ph__job { margin-top: .6rem; }
+.tk-av--lg { inline-size: 96px; block-size: 96px; font-size: 2.2rem; box-shadow: 0 0 0 4px var(--tk-pop); }
+.tk-links { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: 1rem 0 0; padding: 0; }
+.tk-search { display: flex; align-items: center; gap: 1rem; background: var(--tk-footer-bg); color: var(--tk-footer-ink); border-radius: var(--tk-pill); padding: .7rem .7rem .7rem 1.6rem; margin-top: var(--tk-section); }
+.tk-search input[type="search"] { flex: 1 1 auto; min-inline-size: 0; border: 0; background: none; color: inherit; font: 780 var(--tk-step-2)/1 var(--tk-sans); letter-spacing: -.03em; padding: .4rem 0; }
+.tk-search input[type="search"]::placeholder { color: inherit; opacity: .55; }
+.tk-search input[type="search"]:focus-visible { outline: none; }
+.tk-search:focus-within { outline: 3px solid var(--tk-pop); outline-offset: 3px; }
+.tk-search .tk-btn--pop { flex: none; }
+.tk-status { margin: 1rem 0; }
+.tk-search ~ .tk-rows, .tk-search ~ .tk-empty { margin-bottom: var(--tk-section); }
+.tk-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.4rem; padding: var(--tk-section) 0; align-items: start; }
+.tk-split__head { min-inline-size: 0; }
+.tk-split__title { font-size: var(--tk-step-4); overflow-wrap: anywhere; margin-bottom: 1rem; }
+.tk-split .tk-prose { min-inline-size: 0; }
+@media (max-width: 820px) { .tk-split { grid-template-columns: 1fr; gap: 1.4rem; } .tk-search { padding-inline-start: 1.1rem; } .tk-search input[type="search"] { font-size: var(--tk-step-1); } }

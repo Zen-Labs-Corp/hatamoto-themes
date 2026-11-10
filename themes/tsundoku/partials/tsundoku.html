@@ -25,8 +25,8 @@
 {{with $older}}<a class="tk-pn__a" rel="prev" href="{{.URL}}"><span class="tk-meta">&larr; Older</span><b>{{.Title}}</b></a>{{else}}<span></span>{{end}}
 {{with $newer}}<a class="tk-pn__a tk-pn__a--next" rel="next" href="{{.URL}}"><span class="tk-meta">Newer &rarr;</span><b>{{.Title}}</b></a>{{end}}
 </nav>{{end}}{{end}}
-{{/* tk-pagehead: the h1 of a listing with the item count in a chartreuse pill. dict "Title" "Lede" "Count" n "Eyebrow" "" "Variant" "" */}}
-{{define "tk-pagehead"}}<header class="tk-ph{{with .Variant}} tk-ph--{{.}}{{end}}"><div class="tk-ph__text">{{with .Eyebrow}}<span class="tk-pill tk-pill--solid">{{.}}</span>{{end}}<h1 class="tk-ph__title">{{.Title}}</h1>{{with .Lede}}<p class="tk-ph__lede">{{.}}</p>{{end}}</div>{{if .Count}}<span class="tk-count"><span class="tk-sr">Total: </span>{{.Count}}</span>{{end}}</header>{{end}}
+{{/* tk-pagehead: the h1 of a listing with the item count in a chartreuse pill. dict "Title" "Lede" "Count" n "Unit" "" "Eyebrow" "" "Variant" "" */}}
+{{define "tk-pagehead"}}<header class="tk-ph{{with .Variant}} tk-ph--{{.}}{{end}}"><div class="tk-ph__text">{{with .Eyebrow}}<span class="tk-pill tk-pill--solid">{{.}}</span>{{end}}<h1 class="tk-ph__title">{{.Title}}</h1>{{with .Lede}}<p class="tk-ph__lede">{{.}}</p>{{end}}</div>{{if .Count}}<span class="tk-count"><span class="tk-sr">Total: </span>{{.Count}}{{with .Unit}} {{.}}{{end}}</span>{{end}}</header>{{end}}
 {{/* tk-chips: category filter pills. dict "Terms" "Cur" "all"|url "All" url */}}
 {{define "tk-chips"}}{{if .Terms}}<nav class="tk-chips" aria-label="Categories">{{with .All}}<a class="tk-pill tk-pill--link{{if eq $.Cur "all"}} tk-pill--on{{end}}" href="{{cta .}}"{{if eq $.Cur "all"}} aria-current="page"{{end}}>All</a>{{end}}{{range .Terms}}<a class="tk-pill tk-pill--link{{if eq $.Cur .URL}} tk-pill--on{{end}}" href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{end}}{{end}}
 {{/* tk-row: a two-column listing card, h2 title. dict "Item" . "N" index */}}
@@ -44,3 +44,6 @@
 <ul>{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a class="tk-pager__a{{if eq $k $p}} tk-pager__a--on{{end}}" href="{{template "tk-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<li><span class="tk-pager__gap" aria-hidden="true">&hellip;</span></li>{{end}}{{end}}</ul>
 {{if lt $p $n}}<a class="tk-pager__a" rel="next" href="{{template "tk-page-url" dict "N" (add $p 1) "Pg" $pg}}">Older &rarr;</a>{{else}}<span class="tk-pager__a tk-pager__a--off" aria-hidden="true">Older &rarr;</span>{{end}}
 </nav>{{end}}{{end}}{{end}}
+{{/* tk-split: a plain page, big title left and prose right. dict "Title" "Lede" "Body" html */}}
+{{define "tk-split"}}<div class="tk-wrap"><div class="tk-split"><div class="tk-split__head"><h1 class="tk-split__title">{{.Title}}</h1>{{with .Lede}}<p class="tk-dek">{{.}}</p>{{end}}</div>
+<div class="tk-prose hm-prose hm-entry">{{.Body}}</div></div></div>{{end}}

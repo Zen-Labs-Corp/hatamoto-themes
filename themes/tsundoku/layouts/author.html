@@ -1,0 +1,13 @@
+{{define "content"}}{{$total := 0}}{{with .Pagination}}{{$total = .Total}}{{end}}
+<div class="tk-wrap">
+<header class="tk-ph tk-ph--author">
+{{with .Author}}{{if .Avatar}}<img class="tk-av tk-av--lg" src="{{imgsrc .Avatar}}" alt="" width="96" height="96">{{else}}<span class="tk-av tk-av--lg tk-av--initial" aria-hidden="true">{{upper (printf "%.1s" .Name)}}</span>{{end}}{{end}}
+<div class="tk-ph__text"><span class="tk-pill tk-pill--solid">Author</span>
+<h1 class="tk-ph__title">{{with .Author}}{{.Name}}{{end}}</h1>
+{{with .Author}}{{with .JobTitle}}<p class="tk-meta tk-ph__job">{{.}}</p>{{end}}{{with .Bio}}<p class="tk-ph__lede">{{.}}</p>{{end}}
+{{with .Links}}<ul class="tk-links">{{range .}}<li><a class="tk-pill tk-pill--link" href="{{safeHref .URL}}" rel="me noopener">{{.Label}}</a></li>{{end}}</ul>{{end}}{{end}}</div>
+{{if $total}}<span class="tk-count"><span class="tk-sr">Total: </span>{{$total}}</span>{{end}}
+</header>
+{{template "tk-rows" .}}
+{{template "tk-pager" dict "Pg" .Pagination}}
+</div>{{end}}
