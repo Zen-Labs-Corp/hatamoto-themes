@@ -1,5 +1,5 @@
 {{define "content"}}<div class="tk-wrap"><section class="tk-nf" aria-labelledby="hm-tk-nf-h">
 <div class="tk-nf__pile" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="tk-nf__text"><span class="tk-pill">404</span><h1 id="hm-tk-nf-h">This page fell off the pile.</h1><p>It moved or never existed. The journal is still where we left it.</p>
-<div class="tk-nf__acts"><a class="tk-btn" href="/">Back home</a> <a class="tk-btn tk-btn--ghost" href="/blog">Browse the journal</a></div></div>
+<div class="tk-nf__acts"><a class="tk-btn" href="/">Back home</a> {{template "tk-archive" dict "Items" (query (dict "schema" "post" "limit" 1)).Items "Class" "tk-btn tk-btn--ghost" "Label" "Browse the journal"}}</div></div>
 </section></div>{{end}}
