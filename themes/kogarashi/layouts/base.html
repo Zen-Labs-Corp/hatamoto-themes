@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{default "en" .Site.Language}}" data-hm-contract="1"{{if .Preview}} data-hm-preview="true"{{end}} data-kg-mode="{{default "light" .Settings.color_mode}}" data-kg-density="{{default "comfortable" .Settings.density}}">
+<html lang="{{default "en" .Site.Language}}" data-hm-contract="1"{{if .Preview}} data-hm-preview="true"{{end}} data-kg-mode="{{default "auto" .Settings.color_mode}}" data-kg-density="{{default "comfortable" .Settings.density}}" data-kg-side="{{default "left" .Settings.panel_side}}" data-kg-cols="{{default "2" .Settings.grid_columns}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,11 +10,17 @@
 {{template "plugin-head" .}}</head>
 <body class="kg-body kg-kind-{{.Kind}}">
 <a class="hm-skip" href="#main-content">Skip to content</a>
-{{template "header" .}}
-<main id="main-content" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>
+<div class="kg-split">
+<aside class="kg-panel">
+{{with .Settings.panel_image}}<img class="kg-panel__img" src="{{imgsrc .}}" alt="" aria-hidden="true" fetchpriority="high">
+{{end}}{{template "header" .}}
+{{block "kg-panel-body" .}}<div class="kg-hero"><p class="kg-lead">{{default .Site.Name .Site.Tagline}}</p></div>{{end}}
+{{template "footer" .}}
+</aside>
+<main id="main-content" class="kg-main" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>
 {{template "content" .}}
 </main>
-{{template "footer" .}}
+</div>
 {{template "scripts" .}}
 {{template "plugin-body" .}}</body>
 </html>
