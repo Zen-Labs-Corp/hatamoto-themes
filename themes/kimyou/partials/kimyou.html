@@ -1,0 +1,2 @@
+{{/* km-roman: an integer from 1 to 39 in roman numerals, anything else as it is. */}}
+{{define "km-roman"}}{{if and (gt . 0) (lt . 40)}}{{index (split ",X,XX,XXX" ",") (div . 10)}}{{index (split ",I,II,III,IV,V,VI,VII,VIII,IX" ",") (mod . 10)}}{{else}}{{.}}{{end}}{{end}}
