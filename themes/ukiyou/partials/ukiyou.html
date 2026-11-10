@@ -5,10 +5,10 @@
 {{define "uk-meta"}}<p class="uk-meta">{{with .Author}}<span>{{.}}</span>{{end}}{{if not .PublishedAt.IsZero}}<time datetime="{{formatDate .PublishedAt "2006-01-02"}}">{{formatDate .PublishedAt "2 Jan 2006"}}</time>{{end}}{{with .ReadingTime}}<span>{{.}} min read</span>{{end}}</p>{{end}}
 {{/* uk-media: the featured image in a fixed-ratio box, or a flat tinted block when there is none.
    dict "Item" . "Sizes" "..." "Ratio" "uk-media--wide" "Eager" true */}}
-{{define "uk-media"}}{{$it := .Item}}<a class="uk-media{{with .Ratio}} {{.}}{{end}}{{if not $it.Image}} uk-media--empty{{end}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{with $it.Image}}<img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="{{$.Sizes}}"{{end}} alt=""{{if $.Eager}} fetchpriority="high"{{else}} loading="lazy"{{end}} decoding="async">{{end}}</a>{{end}}
-{{/* uk-card: one story in a grid. dict "Item" . */}}
+{{define "uk-media"}}{{$it := .Item}}<a class="uk-media{{with .Ratio}} {{.}}{{end}}{{if not $it.Image}} uk-media--empty{{end}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{with $it.Image}}<img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="{{$.Sizes}}"{{end}} alt=""{{if $.Eager}} fetchpriority="high"{{else if not $.Soon}} loading="lazy"{{end}} decoding="async">{{end}}</a>{{end}}
+{{/* uk-card: one story in a grid. dict "Item" . [ "Soon" true: first row, loads eagerly ] */}}
 {{define "uk-card"}}{{$it := .Item}}<article class="uk-card">
-{{template "uk-media" dict "Item" $it "Sizes" "(max-width: 560px) 100vw, (max-width: 900px) 50vw, 25vw"}}
+{{template "uk-media" dict "Item" $it "Sizes" "(max-width: 560px) 100vw, (max-width: 900px) 50vw, 25vw" "Soon" .Soon}}
 {{template "uk-cat" $it.Category}}
 <h3 class="uk-card__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h3>
 {{with $it.Excerpt}}<p class="uk-card__excerpt">{{.}}</p>{{end}}

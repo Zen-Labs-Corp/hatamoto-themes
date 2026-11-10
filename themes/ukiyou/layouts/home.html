@@ -17,7 +17,7 @@
 {{if or (gt $n 1) $side}}
 <div class="uk-mag{{if not $side}} uk-mag--full{{end}}">
 {{if gt $n 1}}<div class="uk-grid">
-{{range $i, $it := $r.Items}}{{if and (ge $i 1) (le $i 6)}}{{template "uk-card" dict "Item" $it}}
+{{range $i, $it := $r.Items}}{{if and (ge $i 1) (le $i 6)}}{{template "uk-card" dict "Item" $it "Soon" (le $i 3)}}
 {{end}}{{end}}</div>{{end}}
 {{if $side}}<aside class="uk-side" aria-labelledby="uk-side-h">
 <h2 class="uk-side__title" id="uk-side-h">{{default "Also new" .Settings.sidebar_title}}</h2>

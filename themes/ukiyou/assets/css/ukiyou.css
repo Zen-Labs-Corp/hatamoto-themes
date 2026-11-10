@@ -22,7 +22,7 @@
   --uk-muted: #5d5f6e;
   --uk-line: #ddd5c4;
   --uk-on-primary: #f7f3ea;
-  --uk-on-accent: #1d1f2b;
+  --uk-on-accent: #14151d;
   --uk-accent: #b8740e;       /* saffron, deepened from the mockup #c9821a to reach 3:1 on paper */
   --uk-accent-text: color-mix(in srgb, var(--uk-accent) 60%, var(--hm-text)); /* text-safe accent, AA */
   /* the default theme's names, so its sections follow this palette */
@@ -65,32 +65,41 @@
   color-scheme: dark;
 }
 
-/* ---- accent presets: --uk-accent only, primary stays the owner's ----
-   Contrast (WCAG), raw accent = rules/bars/numerals >= 24px bold (needs 3:1),
-   --uk-accent-text = 60% accent + 40% ink, used for text (needs 4.5:1):
-   light paper #f7f3ea / surface #eee8da
-     saffron #b8740e  raw 3.42 / 3.10   text #7a521a  6.22 / 5.64
-     brick   #b4532a  raw 4.50 / 4.08   text #783e2a  7.52 / 6.82
-     teal    #1f7a74  raw 4.63 / 4.20   text #1e5657  7.51 / 6.81
-   dark paper #14151d / surface #1d1f2a
-     saffron #f0b24f  raw 9.69 / 8.73   text #eec98b  11.57 / 10.43
-     brick   #e08a62  raw 6.91 / 6.23   text #e5b197  9.58 / 8.64
-     teal    #5fc4bb  raw 8.75 / 7.88   text #97d4cc  10.92 / 9.83 */
-:root[data-uk-accent="brick"] { --uk-accent: #b4532a; }
-:root[data-uk-accent="teal"] { --uk-accent: #1f7a74; }
-:root[data-theme="dark"][data-uk-accent="brick"] { --uk-accent: #e08a62; }
-:root[data-theme="dark"][data-uk-accent="teal"] { --uk-accent: #5fc4bb; }
+/* ---- accent presets: --uk-accent (+ its label colour --uk-on-accent) only, primary stays the owner's ----
+   Contrast (WCAG 2.x, computed from the token values below; text needs 4.5, large text and UI 3).
+   Per mode, all accents: ink on paper / surface, muted on paper / surface, primary
+   (links, nav, labels, 404 numerals, focus ring) on paper, on-primary on primary (band, buttons):
+     light  ink 14.78 / 13.40   muted 5.70 / 5.17   primary 8.59 (surface 7.79)   on-primary 8.59
+     dark   ink 15.23 / 13.73   muted 7.45 / 6.71   primary 8.77 (surface 7.90)   on-primary 8.77
+   Per accent: raw accent = rules, bars, nav underline (needs 3) on paper / surface;
+   --uk-accent-text = 60% accent + 40% ink, used for numerals and issue label (needs 4.5);
+   on-accent = label of the accent button on that accent.
+     light paper #f7f3ea / surface #eee8da   raw        text                on-accent
+       saffron #b8740e                       3.42/3.10  #7a521a 6.22/5.64   #14151d 4.80
+       brick   #b4532a                       4.50/4.08  #783e2a 7.52/6.82   #fff    4.99
+       teal    #1f7a74                       4.63/4.20  #1e5657 7.51/6.81   #fff    5.13
+     dark paper #14151d / surface #1d1f2a
+       saffron #f0b24f                       9.69/8.73  #eec98b 11.57/10.43 #14151d 9.69
+       brick   #e08a62                       6.91/6.23  #e5b197 9.58/8.64   #14151d 6.91
+       teal    #5fc4bb                       8.75/7.88  #97d4cc 10.92/9.83  #14151d 8.75
+   The accent button sits on the primary band: its edge is 1.0-2.5:1 there, the 4.5+ label
+   carries it (WCAG 1.4.11 exempts a control identified by its text). */
+:root[data-uk-accent="brick"] { --uk-accent: #b4532a; --uk-on-accent: #fff; }
+:root[data-uk-accent="teal"] { --uk-accent: #1f7a74; --uk-on-accent: #fff; }
+:root[data-theme="dark"][data-uk-accent="brick"] { --uk-accent: #e08a62; --uk-on-accent: #14151d; }
+:root[data-theme="dark"][data-uk-accent="teal"] { --uk-accent: #5fc4bb; --uk-on-accent: #14151d; }
 
 /* ---- no-JS dark fallback: mirrors the dark token block (JS sets data-uk-js) ---- */
 @media (prefers-color-scheme: dark) {
   :root[data-uk-mode="auto"]:not([data-theme]):not([data-uk-js]) { --hm-primary: #9fb0ff; --hm-bg: #14151d; --hm-text: #ecebe6; --uk-surface: #1d1f2a; --uk-muted: #a3a5b4; --uk-line: #2d3040; --uk-on-primary: #14151d; --uk-on-accent: #14151d; --uk-accent: #f0b24f; color-scheme: dark; }
-  :root[data-uk-mode="auto"][data-uk-accent="brick"]:not([data-theme]):not([data-uk-js]) { --uk-accent: #e08a62; }
-  :root[data-uk-mode="auto"][data-uk-accent="teal"]:not([data-theme]):not([data-uk-js]) { --uk-accent: #5fc4bb; }
+  :root[data-uk-mode="auto"][data-uk-accent="brick"]:not([data-theme]):not([data-uk-js]) { --uk-accent: #e08a62; --uk-on-accent: #14151d; }
+  :root[data-uk-mode="auto"][data-uk-accent="teal"]:not([data-theme]):not([data-uk-js]) { --uk-accent: #5fc4bb; --uk-on-accent: #14151d; }
 }
 :root[data-uk-mode="dark"]:not([data-theme]):not([data-uk-js]) { --hm-primary: #9fb0ff; --hm-bg: #14151d; --hm-text: #ecebe6; --uk-surface: #1d1f2a; --uk-muted: #a3a5b4; --uk-line: #2d3040; --uk-on-primary: #14151d; --uk-on-accent: #14151d; --uk-accent: #f0b24f; color-scheme: dark; }
-:root[data-uk-mode="dark"][data-uk-accent="brick"]:not([data-theme]):not([data-uk-js]) { --uk-accent: #e08a62; }
-:root[data-uk-mode="dark"][data-uk-accent="teal"]:not([data-theme]):not([data-uk-js]) { --uk-accent: #5fc4bb; }
+:root[data-uk-mode="dark"][data-uk-accent="brick"]:not([data-theme]):not([data-uk-js]) { --uk-accent: #e08a62; --uk-on-accent: #14151d; }
+:root[data-uk-mode="dark"][data-uk-accent="teal"]:not([data-theme]):not([data-uk-js]) { --uk-accent: #5fc4bb; --uk-on-accent: #14151d; }
 
+input::placeholder { color: var(--uk-muted); opacity: 1; }
 body { background: var(--hm-bg); color: var(--hm-text); font-family: var(--hm-font); font-size: 1.05rem; line-height: 1.6; }
 h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 650; letter-spacing: -.025em; }
 :focus-visible { outline: 2px solid var(--hm-primary); outline-offset: 2px; }
