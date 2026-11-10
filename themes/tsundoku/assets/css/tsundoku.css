@@ -298,7 +298,8 @@ a.tk-pager__a:hover { background: var(--tk-pop); color: var(--tk-pop-ink); }
 .tk-search input[type="search"] { flex: 1 1 auto; min-inline-size: 0; border: 0; background: none; color: inherit; font: 780 var(--tk-step-2)/1 var(--tk-sans); letter-spacing: -.03em; padding: .4rem 0; }
 .tk-search input[type="search"]::placeholder { color: inherit; opacity: .55; }
 .tk-search input[type="search"]:focus-visible { outline: none; }
-.tk-search:focus-within { outline: 3px solid var(--tk-pop); outline-offset: 3px; }
+.tk-search { --tk-focus: var(--tk-footer-ink); }
+.tk-search:focus-within { outline: 3px solid var(--tk-ink); outline-offset: 3px; }
 .tk-search .tk-btn--pop { flex: none; }
 .tk-status { margin: 1rem 0; }
 .tk-search ~ .tk-rows, .tk-search ~ .tk-empty { margin-bottom: var(--tk-section); }
