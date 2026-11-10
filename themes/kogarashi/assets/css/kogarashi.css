@@ -164,7 +164,8 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
 /* Over an owner image the cover stays visible in the middle; a band behind the header and behind the
    hero text (it grows with the headline) keeps the panel text at AA even on a white photo. */
 .kg-panel:has(.kg-panel__img)::after { background: linear-gradient(180deg, transparent 0%, transparent 40%, var(--kg-panel-tint) 70%, rgba(6, 11, 20, .92) 100%); }
-.kg-panel:has(.kg-panel__img)::before { content: ""; position: absolute; inset: 0 0 auto; block-size: 8.5rem; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(6, 11, 20, .72) 0, rgba(6, 11, 20, .72) 62%, transparent); }
+/* the header band is the header itself, so it grows with a wrapping site name */
+.kg-panel:has(.kg-panel__img) .kg-header { margin: calc(var(--kg-s4) * -1) calc(var(--kg-s4) * -1) 0; padding: var(--kg-s4) var(--kg-s4) var(--kg-s2); background: rgba(6, 11, 20, .72); box-shadow: 0 .75rem 1rem rgba(6, 11, 20, .35); }
 .kg-panel:has(.kg-panel__img) .kg-hero::before { content: ""; position: absolute; z-index: -1; pointer-events: none; }
 .kg-panel:has(.kg-panel__img) .kg-hero { position: relative; }
 .kg-panel:has(.kg-panel__img) .kg-hero::before { inset: -5rem calc(var(--kg-s4) * -1) calc(var(--kg-s4) * -1); background: linear-gradient(180deg, transparent, rgba(6, 11, 20, .72) 5rem); }
@@ -237,6 +238,7 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
   .kg-split { display: block; min-height: 0; }
   .kg-panel { position: relative; height: auto; min-height: 88vh; display: flex; }
   .kg-panel__in { flex: 1; block-size: auto; overflow: visible; padding: 26px 24px 22px; }
+  .kg-panel:has(.kg-panel__img) .kg-header { margin: -26px -24px 0; padding: 26px 24px var(--kg-s2); }
   .kg-main { padding: var(--kg-s4) 20px; }
   .kg-logo { font-size: 1.65rem; line-height: 1.05; }
   .kg-header > .kg-btn { display: none; }
