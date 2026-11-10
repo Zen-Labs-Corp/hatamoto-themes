@@ -1,0 +1,9 @@
+{{define "kg-panel-body"}}{{$cats := terms "category" 8}}<div class="kg-hero">
+<span class="kg-kicker">{{.Site.Name}}</span>
+<h1>{{default .Site.Name .Site.Tagline}}</h1>
+{{if $cats}}<nav aria-label="Topics"><ul class="kg-topics">{{range $cats}}<li><a href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul></nav>{{end}}
+</div>{{end}}
+{{define "content"}}{{$r := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{if $r.Items}}<ul class="kg-grid">
+{{range $i, $p := $r.Items}}<li>{{template "kg-card" dict "P" $p "Ex" $.Settings.show_excerpts "First" (and (eq $r.Page 1) (eq $i 0)) "Alt" (mod $i 2)}}</li>
+{{end}}</ul>
+{{template "kg-pager" dict "Page" $r.Page "Pages" $r.Pages}}{{else}}<p class="kg-empty">No posts yet. Check back soon.</p>{{end}}{{end}}

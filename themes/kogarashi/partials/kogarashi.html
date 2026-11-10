@@ -1,0 +1,19 @@
+{{/* Kogarashi library: dict-taking defines, all named kg-*. Settings are passed in, never read from a define. */}}
+{{/* kg-arrow: the up-right arrow of a card title, drawn (no font glyph) */}}
+{{define "kg-arrow"}}<svg class="kg-arr" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg>{{end}}
+{{/* kg-card: one post card. dict "P" item "Ex" show-excerpts "First" bool "Alt" 0|1 */}}
+{{define "kg-card"}}{{$p := .P}}<article class="kg-card">
+{{if $p.Image}}<img class="kg-thumb" src="{{imgsrc $p.Image}}"{{with srcset $p.Image}} srcset="{{.}}" sizes="(max-width: 900px) 100vw, 25vw"{{end}} alt="" width="600" height="400"{{if .First}} fetchpriority="high"{{else}} loading="lazy"{{end}} decoding="async">{{else}}<div class="kg-thumb kg-thumb--empty" aria-hidden="true"></div>{{end}}
+<div class="kg-card__top">{{if or .First $p.Attrs.featured}}<span class="kg-feat" title="Featured"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2 2.9 6.9 7.1.6-5.4 4.7 1.6 7.3L12 17.8 5.8 21.5l1.6-7.3L2 9.5l7.1-.6z"/></svg><span class="kg-sr">Featured</span></span>{{end}}{{with $p.Category}}<span class="kg-chip">{{.}}</span>{{end}}</div>
+<h2 class="kg-title"><a href="{{$p.URL}}"><span>{{$p.Title}}</span></a>{{template "kg-arrow"}}</h2>
+{{if .Ex}}{{with $p.Excerpt}}<p class="kg-ex">{{.}}</p>{{end}}{{end}}
+<p class="kg-by">{{with $p.Author}}<span class="kg-av{{if $.Alt}} kg-av--b{{end}}" aria-hidden="true">{{index (split . "") 0}}</span>{{.}}{{end}}{{if not $p.PublishedAt.IsZero}}{{if $p.Author}}<span class="kg-dot" aria-hidden="true"></span>{{end}}<time datetime="{{formatDate $p.PublishedAt "2006-01-02"}}">{{formatDate $p.PublishedAt "2 Jan 2006"}}</time>{{end}}{{if gt $p.ReadingTime 1}}<span class="kg-dot" aria-hidden="true"></span><span>{{$p.ReadingTime}} min read</span>{{end}}</p>
+</article>{{end}}
+{{/* kg-page-url: N, Pg (a listing's .Pagination, or nil on the home page where ?page=N is used) */}}
+{{define "kg-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+{{/* kg-pager: numbered pages with newer/older, only with more than one page. dict "Page" n "Pages" n "Pg" .Pagination-or-nil */}}
+{{define "kg-pager"}}{{if gt .Pages 1}}{{$p := .Page}}{{$n := .Pages}}{{$pg := .Pg}}<nav class="kg-pager" aria-label="Pagination">
+{{if gt $p 1}}<a rel="prev" href="{{template "kg-page-url" dict "N" (sub $p 1) "Pg" $pg}}">&larr; Newer</a>{{else}}<span aria-hidden="true">&larr; Newer</span>{{end}}
+<ul>{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a href="{{template "kg-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{end}}{{end}}</ul>
+{{if lt $p $n}}<a rel="next" href="{{template "kg-page-url" dict "N" (add $p 1) "Pg" $pg}}">Older &rarr;</a>{{else}}<span aria-hidden="true">Older &rarr;</span>{{end}}
+</nav>{{end}}{{end}}

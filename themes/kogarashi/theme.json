@@ -25,6 +25,12 @@
         "title": "Spacing",
         "enum": ["comfortable", "compact"],
         "default": "comfortable"
+      },
+      "show_excerpts": {
+        "type": "boolean",
+        "title": "Show excerpts",
+        "description": "Print the short excerpt under each post title on cards and list rows.",
+        "default": true
       }
     }
   }
