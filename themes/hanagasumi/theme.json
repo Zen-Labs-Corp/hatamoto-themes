@@ -18,13 +18,37 @@
         "title": "Colour mode",
         "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
         "enum": ["light", "dark", "auto"],
-        "default": "light"
+        "default": "auto"
       },
       "density": {
         "type": "string",
         "title": "Spacing",
         "enum": ["comfortable", "compact"],
         "default": "comfortable"
+      },
+      "story_rail": {
+        "type": "boolean",
+        "title": "Story rail",
+        "description": "Homepage stage with the sideways-scrolling story rail. Off shows the intro and a plain journal list.",
+        "default": true
+      },
+      "corner_style": {
+        "type": "string",
+        "title": "Corner style",
+        "enum": ["soft", "round"],
+        "default": "round"
+      },
+      "show_newsletter": {
+        "type": "boolean",
+        "title": "Newsletter",
+        "description": "Intro card, homepage panel and footer field.",
+        "default": true
+      },
+      "post_toc": {
+        "type": "boolean",
+        "title": "Post contents",
+        "description": "Sticky 'On this page' list on posts.",
+        "default": true
       }
     }
   }

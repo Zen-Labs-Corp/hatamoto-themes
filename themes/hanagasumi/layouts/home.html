@@ -2,8 +2,8 @@
 {{/* the site name in two lines: all but the last word, then the last word in the accent */}}
 {{$words := split (trim .Site.Name) " "}}{{$n := len $words}}{{$l1 := ""}}{{$l2 := ""}}{{range $i, $w := $words}}{{if lt $i (sub $n 1)}}{{$l1 = print $l1 " " $w}}{{else}}{{$l2 = $w}}{{end}}{{end}}{{$l1 = trim $l1}}
 {{/* the rail shows the newest six; the journal list shows the rest */}}
-{{$rail := 6}}
-<section class="hg-stage" aria-labelledby="hg-home-title">
+{{$rail := 0}}{{if .Settings.story_rail}}{{$rail = 6}}{{end}}
+<section class="hg-stage{{if not .Settings.story_rail}} hg-stage--plain{{end}}" aria-labelledby="hg-home-title">
 <div class="hg-intro">
 <div class="hg-intro__top">
 <span class="hg-chip"><i aria-hidden="true"></i>{{if $r.Total}}{{$r.Total}} {{if eq $r.Total 1}}story{{else}}stories{{end}}{{else}}Welcome{{end}}</span>
@@ -11,15 +11,15 @@
 {{with .Site.Tagline}}<p class="hg-intro__tag">{{.}}</p>{{end}}
 {{template "hg-social" dict "Root" . "Rss" true}}
 </div>
-<div class="hg-intro__news"><p>Get new stories when they go up. No tracking, no noise.</p>{{template "hg-newsletter-field" dict "Root" . "Label" "Join"}}</div>
+{{if .Settings.show_newsletter}}<div class="hg-intro__news"><p>Get new stories when they go up. No tracking, no noise.</p>{{template "hg-newsletter-field" dict "Root" . "Label" "Join"}}</div>{{end}}
 </div>
-<div class="hg-divider" aria-hidden="true"><i></i><span>Latest stories</span></div>
+{{if .Settings.story_rail}}<div class="hg-divider" aria-hidden="true"><i></i><span>Latest stories</span></div>
 <div class="hg-rail">
 <h2 class="hg-sr">Latest stories</h2>
 {{if $r.Items}}<ul class="hg-track" tabindex="0" aria-label="Latest stories, scroll sideways" data-hg-track>{{range $i, $p := $r.Items}}{{if lt $i $rail}}{{template "hg-card" dict "Item" $p "No" (add $i 1) "Lead" (eq $i 0)}}{{end}}{{end}}</ul>{{else}}<p class="hg-empty">No stories yet. Publish a post and it shows up here.</p>{{end}}
 </div>
 <div class="hg-stage__foot"><span class="hg-progress" aria-hidden="true" data-hg-progress>{{range $i, $p := $r.Items}}{{if lt $i $rail}}<b{{if eq $i 0}} class="is-on"{{end}}></b>{{end}}{{end}}</span>
-<span class="hg-arrows"><button type="button" class="hg-iconbtn" data-hg-js hidden data-hg-prev aria-label="Previous stories">{{template "hg-icon" "prev"}}</button><button type="button" class="hg-iconbtn" data-hg-js hidden data-hg-next aria-label="Next stories">{{template "hg-icon" "next"}}</button></span></div>
+<span class="hg-arrows"><button type="button" class="hg-iconbtn" data-hg-js hidden data-hg-prev aria-label="Previous stories">{{template "hg-icon" "prev"}}</button><button type="button" class="hg-iconbtn" data-hg-js hidden data-hg-next aria-label="Next stories">{{template "hg-icon" "next"}}</button></span></div>{{end}}
 </section>
 {{if gt $r.Total $rail}}<section class="hg-wrap hg-journal" aria-labelledby="hg-journal-h">
 <div class="hg-sech"><h2 id="hg-journal-h">From the journal</h2>
@@ -27,8 +27,8 @@
 <ul class="hg-list">{{range $i, $p := $r.Items}}{{if ge $i $rail}}{{template "hg-row" dict "Item" $p}}{{end}}{{end}}</ul>
 <p class="hg-more"><a class="hg-btn hg-btn--line" href="/blog">All stories <span aria-hidden="true">&rarr;</span></a></p>
 </section>{{end}}
-<section class="hg-wrap hg-wrap--panel" aria-labelledby="hg-news-h"><div class="hg-panel">
+{{if .Settings.show_newsletter}}<section class="hg-wrap hg-wrap--panel" aria-labelledby="hg-news-h"><div class="hg-panel">
 <div><h2 id="hg-news-h">Get the next {{.Site.Name}} story</h2><p>A short note when a new story goes up. Unsubscribe in one click.</p></div>
 {{template "hg-newsletter-field" dict "Root" . "Label" "Subscribe"}}
-</div></section>
+</div></section>{{end}}
 {{end}}

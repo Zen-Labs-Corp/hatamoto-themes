@@ -1,4 +1,4 @@
-{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}{{$toc := gt (len $b.TOC) 1}}{{$mins := readingTime .Body}}
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}{{$toc := and .Settings.post_toc (gt (len $b.TOC) 1)}}{{$mins := readingTime .Body}}
 <article class="hg-post">
 <header class="hg-post__head">
 {{if $post}}{{with $e.Categories}}{{with index . 0}}{{template "hg-chip" dict "Label" .Name "URL" .URL}}{{end}}{{end}}{{end}}

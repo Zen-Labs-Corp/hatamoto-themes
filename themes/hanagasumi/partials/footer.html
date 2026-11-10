@@ -4,7 +4,7 @@
 <div class="hg-footer__brand">
 <a class="hg-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img class="hg-brand__logo" src="{{imgsrc .Site.LogoURL}}" alt="" height="30">{{else}}<span class="hg-brand__dot" aria-hidden="true"></span>{{end}}<span class="hg-brand__name">{{.Site.Name}}</span></a>
 {{with .Site.Tagline}}<p class="hg-footer__tag">{{.}}</p>{{end}}
-<div class="hg-field"><span aria-hidden="true">you@example.com</span>{{template "hg-subscribe" dict "Root" . "Class" "hg-btn hg-btn--primary" "Label" "Join"}}</div>
+{{if .Settings.show_newsletter}}<div class="hg-field"><span aria-hidden="true">you@example.com</span>{{template "hg-subscribe" dict "Root" . "Class" "hg-btn hg-btn--primary" "Label" "Join"}}</div>{{end}}
 {{if .Site.SocialLinks}}{{template "hg-social" dict "Root" . "Rss" false}}{{end}}
 </div>
 {{if $pages}}<nav class="hg-footer__col" aria-label="Footer"><h2 class="hg-label">Pages</h2>{{range $pages}}{{if .Children}}{{range .Children}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{else}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{end}}</nav>
