@@ -73,7 +73,62 @@
   --hm-shu: var(--hm-primary);
 }
 
-:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --kg-paper: #0c1118;
+  --kg-ink: #e7ecf3;
+  --kg-muted: #98a3b3;
+  --kg-surface: #141b25;
+  --kg-line: #222c39;
+  /* accent follows the owner colour, lightened; the ink on it is dark so the button passes AA */
+  --kg-accent: color-mix(in srgb, var(--hm-primary) 70%, #fff);
+  --kg-accent-ink: #0c1118;
+  --kg-accent-soft: color-mix(in srgb, var(--hm-primary) 20%, #0c1118);
+  --kg-accent-soft-ink: color-mix(in srgb, var(--hm-primary) 35%, #fff);
+  --kg-panel: #070c14;
+  --kg-panel-tint: rgba(4, 8, 15, .7);
+}
+/* no script: the owner's setting applies through the attribute on <html> */
+:root[data-kg-mode="dark"]:not([data-theme]):not([data-kg-js]) {
+  color-scheme: dark;
+  --kg-paper: #0c1118;
+  --kg-ink: #e7ecf3;
+  --kg-muted: #98a3b3;
+  --kg-surface: #141b25;
+  --kg-line: #222c39;
+  /* accent follows the owner colour, lightened; the ink on it is dark so the button passes AA */
+  --kg-accent: color-mix(in srgb, var(--hm-primary) 70%, #fff);
+  --kg-accent-ink: #0c1118;
+  --kg-accent-soft: color-mix(in srgb, var(--hm-primary) 20%, #0c1118);
+  --kg-accent-soft-ink: color-mix(in srgb, var(--hm-primary) 35%, #fff);
+  --kg-panel: #070c14;
+  --kg-panel-tint: rgba(4, 8, 15, .7);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-kg-mode="auto"]:not([data-theme]):not([data-kg-js]) {
+    color-scheme: dark;
+  --kg-paper: #0c1118;
+  --kg-ink: #e7ecf3;
+  --kg-muted: #98a3b3;
+  --kg-surface: #141b25;
+  --kg-line: #222c39;
+  /* accent follows the owner colour, lightened; the ink on it is dark so the button passes AA */
+  --kg-accent: color-mix(in srgb, var(--hm-primary) 70%, #fff);
+  --kg-accent-ink: #0c1118;
+  --kg-accent-soft: color-mix(in srgb, var(--hm-primary) 20%, #0c1118);
+  --kg-accent-soft-ink: color-mix(in srgb, var(--hm-primary) 35%, #fff);
+  --kg-panel: #070c14;
+  --kg-panel-tint: rgba(4, 8, 15, .7);
+  }
+}
+
+/* The default theme's builder sections paint with --hm-bg / --hm-text. In dark they follow the page, but
+   only inside <main>: the owner's tokens on :root stay untouched. */
+:root[data-theme="dark"] .kg-main,
+:root[data-kg-mode="dark"]:not([data-theme]):not([data-kg-js]) .kg-main { --hm-bg: var(--kg-paper); --hm-text: var(--kg-ink); }
+@media (prefers-color-scheme: dark) {
+  :root[data-kg-mode="auto"]:not([data-theme]):not([data-kg-js]) .kg-main { --hm-bg: var(--kg-paper); --hm-text: var(--kg-ink); }
+}
 
 body { font: 400 var(--kg-fs-base)/1.6 var(--kg-sans); color: var(--kg-ink); background: var(--kg-paper); }
 
@@ -202,7 +257,7 @@ html[data-kg-cols="3"] .kg-grid { grid-template-columns: repeat(2, minmax(0, 1fr
 .kg-card:hover .kg-title span { color: var(--kg-accent); }
 .kg-ex { margin: 0 0 var(--kg-s2); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--kg-muted); font-size: var(--kg-fs-sm); line-height: 1.55; }
 .kg-by { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .55rem; margin: auto 0 0; padding-block-start: .25rem; font-size: var(--kg-fs-sm); font-weight: 500; }
-.kg-av { display: inline-grid; place-items: center; flex: none; inline-size: 30px; block-size: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--kg-accent), color-mix(in srgb, var(--kg-accent) 35%, #fff)); color: #fff; font: 700 .8125rem/1 var(--kg-sans); text-transform: uppercase; }
+.kg-av { display: inline-grid; place-items: center; flex: none; inline-size: 30px; block-size: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--kg-accent), color-mix(in srgb, var(--kg-accent) 80%, #fff)); color: var(--kg-accent-ink); font: 700 .8125rem/1 var(--kg-sans); text-transform: uppercase; }
 .kg-av--b { background: linear-gradient(135deg, var(--kg-panel), var(--kg-frost)); color: var(--kg-panel); }
 .kg-dot { inline-size: 4px; block-size: 4px; border-radius: 50%; background: var(--kg-muted); }
 .kg-empty { margin: var(--kg-s4) 0; color: var(--kg-muted); }
