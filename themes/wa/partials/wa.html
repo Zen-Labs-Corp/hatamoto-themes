@@ -7,3 +7,32 @@
 {{define "wa-nav-item"}}{{$i := (navlink .).Item}}{{if and (or (not $i.Href) (eq $i.Href "#")) $i.Children}}<span class="wa-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
 {{/* wa-nav-list: the primary menu, used by the bar and the mobile panel. dict "Root" . */}}
 {{define "wa-nav-list"}}{{$r := .Root}}<ul>{{range $r.Site.Nav}}<li>{{template "wa-nav-item" dict "Item" . "Path" $r.Path}}{{if .Children}}<ul class="wa-nav__sub">{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $r.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul>{{end}}
+{{/* wa-card: a notched card; the whole card is one stretched link. dict "Item" (listing item) "Size" "lg"|"md"|"sm" "N" serial (0 = none) "Path" "" "Chip" "" (signal chip text) "Excerpt" bool */}}
+{{define "wa-card"}}{{$it := .Item}}{{$img := imgsrc $it.Image}}<article class="wa-card wa-card--{{default "md" .Size}}{{if not $img}} wa-card--type{{end}}">
+{{if $img}}<span class="wa-card__media"><img src="{{$img}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(min-width:900px) 50vw,100vw"{{end}} alt="" loading="lazy" decoding="async"></span>{{else}}<span class="wa-card__ch" aria-hidden="true">{{upper (printf "%.1s" $it.Title)}}</span>{{end}}
+<div class="wa-card__top"><span class="wa-card__pills">{{with .Chip}}<span class="wa-pill wa-pill--signal">{{.}}</span>{{end}}{{with $it.Category}}<span class="wa-pill">{{.}}</span>{{end}}</span>{{if not $it.PublishedAt.IsZero}}<span class="wa-pill"><time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time></span>{{end}}</div>
+<div class="wa-card__body">{{if gt .N 0}}<span class="wa-mono wa-card__n">{{printf "%03d" .N}}</span>{{end}}
+<h3><a class="wa-card__link" href="{{$it.URL}}">{{$it.Title}}</a></h3>
+{{if .Excerpt}}{{with $it.Excerpt}}<p class="wa-card__excerpt">{{.}}</p>{{end}}{{end}}
+{{template "wa-meta" dict "Item" $it "Date" false}}</div>
+<span class="wa-notch" aria-hidden="true"><span class="wa-arrow">{{template "wa-arrow"}}</span></span>
+</article>{{end}}
+{{/* wa-meta: date and reading time. dict "Item" . "Date" bool */}}
+{{define "wa-meta"}}{{$it := .Item}}{{if or (and .Date (not $it.PublishedAt.IsZero)) $it.ReadingTime}}<p class="wa-meta">{{if and .Date (not $it.PublishedAt.IsZero)}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}{{with $it.ReadingTime}}<span>{{.}} min read</span>{{end}}</p>{{end}}{{end}}
+{{/* wa-chips: the topic pill row. dict "Terms" (terms ...) "Cur" "all" or a term URL "All" url-of-all "Path" . */}}
+{{define "wa-chips"}}<ul class="wa-chips">
+{{with .All}}<li><a class="wa-chip" href="{{.}}"{{if eq $.Cur "all"}} aria-current="true"{{end}}>All</a></li>
+{{end}}{{range .Terms}}<li><a class="wa-chip" href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="true"{{end}}>{{.Name}}{{if .Count}}<span>{{.Count}}</span>{{end}}</a></li>
+{{end}}</ul>{{end}}
+{{/* wa-pager: previous, numbered pages, next; only for more than one page. dict "Pg" .Pagination */}}
+{{define "wa-pager"}}{{with .Pg}}{{if gt .TotalPages 1}}<nav class="wa-pager" aria-label="Pagination">
+{{if .HasPrev}}<a class="wa-pager__dir" rel="prev" href="{{.PrevURL}}">&larr; Newer</a>{{else}}<span class="wa-pager__dir" aria-hidden="true">&larr; Newer</span>{{end}}
+<ul>{{range paginate .}}<li>{{if .Gap}}<span aria-hidden="true">&hellip;</span>{{else}}<a href="{{.URL}}"{{if .Current}} aria-current="page" aria-label="Page {{.N}}, current page"{{else}} aria-label="Page {{.N}}"{{end}}>{{.N}}</a>{{end}}</li>{{end}}</ul>
+{{if .HasNext}}<a class="wa-pager__dir" rel="next" href="{{.NextURL}}">Older &rarr;</a>{{else}}<span class="wa-pager__dir" aria-hidden="true">Older &rarr;</span>{{end}}
+</nav>{{end}}{{end}}{{end}}
+{{/* wa-search-form: GET /search. dict "Id" "x" "Query" "" */}}
+{{define "wa-search-form"}}<form class="wa-search" role="search" action="/search" method="get">
+<label class="wa-search__label" for="hm-wa-q-{{.Id}}">Search</label>
+<input id="hm-wa-q-{{.Id}}" type="search" name="q" value="{{.Query}}" placeholder="Search the journal" autocomplete="off">
+<button type="submit" class="wa-cta">Search</button>
+</form>{{end}}
