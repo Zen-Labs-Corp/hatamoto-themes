@@ -1,0 +1,15 @@
+{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+<div class="sy-wrap sy-layout">
+{{template "sy-sidebar" dict "Root" . "Cats" $cats "Cur" "" "H1" false "All" $arch}}
+<div class="sy-main">
+{{template "sy-chips" dict "Cats" $cats "Cur" "" "All" $arch}}
+<header class="sy-listhead sy-authorhead">
+{{with .Author.Avatar}}<img src="{{imgsrc .}}" alt="" width="96" height="96">{{end}}
+<div><p class="sy-listhead__kick">Author</p><h1>{{.Author.Name}}</h1>
+{{with .Author.JobTitle}}<p class="sy-listhead__kick sy-authorhead__job">{{.}}</p>{{end}}
+{{with .Author.Bio}}<p class="sy-listhead__lede">{{.}}</p>{{end}}
+{{with .Author.Links}}<p class="sy-authorhead__links">{{range .}}<a href="{{cta .URL}}" rel="me noopener">{{.Label}}</a>{{end}}</p>{{end}}
+{{template "sy-count" dict "Pg" .Pagination "Noun" "post" "Plural" "posts"}}</div></header>
+{{template "sy-listing" dict "Root" . "Cats" $cats}}
+</div>
+</div>{{end}}

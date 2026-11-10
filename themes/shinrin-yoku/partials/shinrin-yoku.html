@@ -38,3 +38,7 @@
 {{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<a href="{{template "sy-page-url" dict "N" $k "Pg" $d.Pg "Base" $d.Base}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<span aria-hidden="true">&hellip;</span>{{end}}{{end}}
 {{if lt $p $n}}<a rel="next" href="{{template "sy-page-url" dict "N" (add $p 1) "Pg" $d.Pg "Base" $d.Base}}" aria-label="Next page">&rarr;</a>{{end}}
 </nav>{{end}}{{end}}
+{{/* sy-listing: the card grid and the pager of a listing view (archive, taxonomy, author, search). dict "Root" . "Cats" terms */}}
+{{define "sy-listing"}}{{template "sy-grid" dict "Root" .Root "Items" .Root.Items "Cats" .Cats}}{{with .Root.Pagination}}{{template "sy-pager" dict "Page" .Page "Pages" .TotalPages "Pg" .}}{{end}}{{end}}
+{{/* sy-count: "N posts" under a list heading. dict "Pg" .Pagination "Noun" "post" "Plural" "posts" */}}
+{{define "sy-count"}}{{with .Pg}}{{if .Total}}<p class="sy-listhead__count">{{.Total}} {{if eq .Total 1}}{{$.Noun}}{{else}}{{$.Plural}}{{end}}</p>{{end}}{{end}}{{end}}
