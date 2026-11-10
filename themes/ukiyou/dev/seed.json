@@ -203,8 +203,30 @@
  "menus": {
   "header": [
    {
+    "label": "Home",
+    "url": "/"
+   },
+   {
     "label": "Journal",
     "archive": "post"
+   },
+   {
+    "label": "Topics",
+    "url": "/blog",
+    "children": [
+     {
+      "label": "Travel",
+      "url": "/category/travel"
+     },
+     {
+      "label": "Food",
+      "url": "/category/food"
+     },
+     {
+      "label": "Books",
+      "url": "/category/books"
+     }
+    ]
    },
    {
     "label": "About",
@@ -261,5 +283,10 @@
    "path": "/no-such-page",
    "status": 404
   }
- ]
+ ],
+ "theme_settings": {
+  "ukiyou": {
+   "subscribe_url": "https://example.com/subscribe"
+  }
+ }
 }
