@@ -8,7 +8,12 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
@@ -16,15 +21,169 @@
       "color_mode": {
         "type": "string",
         "title": "Colour mode",
-        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
-        "default": "light"
+        "description": "What a first-time visitor sees: light, dark, or auto (follows the visitor's system). Visitors can still switch with the header toggle.",
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
+        "default": "auto"
       },
       "density": {
         "type": "string",
         "title": "Spacing",
-        "enum": ["comfortable", "compact"],
+        "description": "Compact tightens the space between home sections.",
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
         "default": "comfortable"
+      },
+      "show_ticker": {
+        "type": "boolean",
+        "title": "Show the ticker",
+        "description": "The scrolling strip of topics and recent titles under the picks.",
+        "default": true
+      },
+      "show_topics": {
+        "type": "boolean",
+        "title": "Show topics",
+        "description": "The topic chips section on the home page.",
+        "default": true
+      },
+      "show_archive_band": {
+        "type": "boolean",
+        "title": "Show the archive band",
+        "description": "The dark band with older stories (needs more than five posts).",
+        "default": true
+      },
+      "show_newsletter": {
+        "type": "boolean",
+        "title": "Show the newsletter block",
+        "description": "The call-to-action inside the dark band. It links to a page; it has no form.",
+        "default": true
+      },
+      "picks_heading": {
+        "type": "string",
+        "title": "Picks heading",
+        "description": "Heading of the picks section; the accent follows it.",
+        "default": "Picked by"
+      },
+      "picks_accent": {
+        "type": "string",
+        "title": "Picks accent word",
+        "description": "Italic word after the picks heading. Empty uses the first name of the featured post's author, or \"us\".",
+        "default": ""
+      },
+      "archive_heading": {
+        "type": "string",
+        "title": "Archive heading",
+        "description": "Start of the archive band heading.",
+        "default": "Worth a"
+      },
+      "archive_accent": {
+        "type": "string",
+        "title": "Archive accent word",
+        "description": "Italic word in the archive band heading.",
+        "default": "second"
+      },
+      "archive_tail": {
+        "type": "string",
+        "title": "Archive heading end",
+        "description": "Words after the accent in the archive band heading.",
+        "default": "read"
+      },
+      "queue_heading": {
+        "type": "string",
+        "title": "Reading queue heading",
+        "description": "Start of the last section's heading.",
+        "default": "Don't"
+      },
+      "queue_accent": {
+        "type": "string",
+        "title": "Reading queue accent word",
+        "description": "Italic word in the last section's heading.",
+        "default": "miss"
+      },
+      "queue_tail": {
+        "type": "string",
+        "title": "Reading queue heading end",
+        "description": "Words after the accent in the last section's heading.",
+        "default": "these"
+      },
+      "announce_text": {
+        "type": "string",
+        "title": "Announcement text",
+        "description": "The pill under the hero. Leave empty to hide it.",
+        "default": "New stories are published here regularly."
+      },
+      "announce_label": {
+        "type": "string",
+        "title": "Announcement button",
+        "description": "Label of the button in the pill. Empty hides the button.",
+        "default": "Read the latest"
+      },
+      "announce_url": {
+        "type": "string",
+        "title": "Announcement link",
+        "description": "Where the button goes: a path such as /blog or a full address.",
+        "default": "/blog"
+      },
+      "newsletter_heading": {
+        "type": "string",
+        "title": "Newsletter heading",
+        "description": "Start of the newsletter heading.",
+        "default": "Stay in"
+      },
+      "newsletter_accent": {
+        "type": "string",
+        "title": "Newsletter accent word",
+        "description": "Italic words in the newsletter heading.",
+        "default": "the loop"
+      },
+      "newsletter_tail": {
+        "type": "string",
+        "title": "Newsletter heading end",
+        "description": "Words after the accent. Empty is fine.",
+        "default": ""
+      },
+      "newsletter_text": {
+        "type": "string",
+        "title": "Newsletter text",
+        "description": "One line under the newsletter heading.",
+        "default": "Find out what is new, in one place."
+      },
+      "newsletter_button": {
+        "type": "string",
+        "title": "Newsletter button",
+        "description": "Label of the button; also the header button when the site has no header call to action.",
+        "default": "Subscribe"
+      },
+      "newsletter_url": {
+        "type": "string",
+        "title": "Newsletter link",
+        "description": "Where the button goes (a page with your sign-up form, for example).",
+        "default": "/about"
+      },
+      "signal_colour": {
+        "type": "string",
+        "title": "Signal colour",
+        "description": "Accent for chips, badges and the newsletter button. Text on it is a fixed dark ink, so choose a light colour. Type a hex value such as #c8f04a.",
+        "maxLength": 9,
+        "pattern": "^#[0-9a-fA-F]{3,8}$",
+        "default": "#c8f04a"
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Journal link",
+        "description": "Where \"All stories\" links point.",
+        "default": "/blog"
+      },
+      "home_sections": {
+        "type": "boolean",
+        "title": "Show page-builder blocks on the home",
+        "description": "Print the blocks of the home page (from the editor) below the generated sections.",
+        "default": false
       }
     }
   }
