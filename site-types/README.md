@@ -44,6 +44,7 @@ when present, replaces the type's seed for that theme.
                {"label": "...", "archive": "post"},
                {"label": "...", "url": "/x", "children": [...]}]
   },
+  "theme_settings": {"<theme>": {"key": "value"}},             // optional: stored theme settings
   "screenshot": "/",                                           // the registry preview (1440x900)
   "shots": [{"name": "home", "path": "/"},                     // checked and shot at desktop + mobile
             {"name": "not-found", "path": "/nope", "status": 404}]

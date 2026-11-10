@@ -280,6 +280,15 @@ for schema, items in S.get("entries", {}).items():
         create(schema, e)
 
 
+# ---- theme settings ----------------------------------------------------------------------------
+
+for theme, values in S.get("theme_settings", {}).items():
+    sql("""insert into hatamoto_theme_settings (theme, settings) values (:'v1', :'v2'::jsonb)
+           on conflict (theme) do update set settings = excluded.settings, updated_at = now()""",
+        theme, json.dumps(values))
+    print("theme settings", theme)
+
+
 # ---- menus -----------------------------------------------------------------------------------
 
 def item(menu_id, it, pos, parent=None):
