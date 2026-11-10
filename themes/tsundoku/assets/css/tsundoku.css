@@ -237,6 +237,7 @@ a { color: inherit; }
 .tk-prose ol li::marker { color: var(--tk-teal-text); font-family: var(--tk-sans); font-weight: 750; }
 .tk-prose.hm-prose blockquote { margin: 2em -1rem; padding: 1.6rem 1.8rem; border-radius: var(--tk-radius); background: var(--tk-pop); color: var(--tk-pop-ink); font: 750 var(--tk-step-2)/1.1 var(--tk-sans); letter-spacing: -.03em; border: 0; }
 .tk-prose blockquote p { margin: 0; }
+.tk-prose blockquote { --tk-focus: var(--tk-pop-ink); }
 /* a block box keeps the built-in scroll box: a wide table scrolls inside itself, not off the page */
 .tk-prose.hm-entry > table, .tk-prose table { display: block; width: max-content; max-inline-size: 100%; overflow-x: auto; border-collapse: separate; border-spacing: 0; font: 550 .95rem/1.4 var(--tk-sans); background: var(--tk-paper-2); border-radius: var(--tk-radius-sm); margin: 0 0 1em; }
 .tk-prose.hm-entry th, .tk-prose.hm-entry > table thead th { border: 0; text-align: start; padding: .75rem 1rem; background: var(--tk-footer-bg); color: var(--tk-footer-ink); white-space: nowrap; }
