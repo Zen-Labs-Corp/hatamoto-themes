@@ -9,3 +9,14 @@
 {{/* kz-menu-icon / kz-x: the Menu button's bars and the Close cross, drawn */}}
 {{define "kz-bars"}}<svg class="kz-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 5.5h12M2 10.5h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>{{end}}
 {{define "kz-x"}}<svg class="kz-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3.5 3.5 9 9m0-9-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>{{end}}
+{{/* kz-card: a recent-note card (3:2 image, or a frost tile with the category name). dict "Item" . */}}
+{{define "kz-card"}}{{$it := .Item}}<article class="kz-card">
+<a class="kz-card__media" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"{{end}} alt="" loading="lazy" decoding="async">{{else}}<span class="kz-card__tile">{{default "Note" $it.Category}}</span>{{end}}</a>
+<p class="kz-eyebrow">{{with $it.Category}}<b>{{.}}</b>{{end}}{{if not $it.PublishedAt.IsZero}}{{if $it.Category}} &middot; {{end}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time>{{end}}</p>
+<h3><a href="{{$it.URL}}">{{$it.Title}}</a></h3>
+{{with $it.Excerpt}}<p class="kz-card__text">{{.}}</p>{{end}}
+{{if or $it.Author $it.ReadingTime}}<p class="kz-card__by">{{with $it.Author}}{{.}}{{end}}{{with $it.ReadingTime}}{{if $it.Author}} &middot; {{end}}{{.}} min read{{end}}</p>{{end}}
+</article>{{end}}
+{{/* kz-row: a dated row (mono date, title, excerpt). dict "Item" . */}}
+{{define "kz-row"}}{{$it := .Item}}<article class="kz-row"><span class="kz-row__date">{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time>{{end}}</span>
+<div><h3><a href="{{$it.URL}}">{{$it.Title}}</a></h3>{{with $it.Excerpt}}<p>{{.}}</p>{{end}}</div></article>{{end}}

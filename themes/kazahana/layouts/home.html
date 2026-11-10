@@ -1,0 +1,42 @@
+{{define "content"}}{{$q := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{$items := $q.Items}}{{$n := len $items}}{{$cats := terms "category" 8}}
+{{if .Settings.show_intro}}<section class="kz-wrap"><div class="kz-intro">
+<div class="kz-intro__main">
+<h1 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h1>
+{{with .Entity}}{{with .Excerpt}}<p class="kz-intro__text">{{.}}</p>{{end}}{{end}}
+{{if $cats}}<nav class="kz-chips" aria-label="Topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>{{end}}
+</div>
+{{if $items}}<div class="kz-latest"><h2 class="kz-label">Latest</h2>
+<ul>{{range $i, $it := $items}}{{if lt $i 3}}<li>{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time>{{else}}<span></span>{{end}}<a href="{{$it.URL}}">{{$it.Title}}</a></li>{{end}}
+{{end}}</ul></div>{{end}}
+</div></section>
+{{else}}<h1 class="kz-sr">{{.Site.Name}}</h1>
+{{end}}<div class="kz-wrap">
+{{range $i, $it := $items}}{{if eq $i 0}}<article class="kz-lead{{if not $it.Image}} kz-lead--plain{{end}}">
+<div class="kz-lead__body">
+<p class="kz-eyebrow">{{with $it.Category}}<b>{{.}}</b> &middot; {{end}}Newest note</p>
+<h2 class="kz-lead__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h2>
+<div class="kz-meta">
+{{if or (not $it.PublishedAt.IsZero) $it.ReadingTime}}<p>{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 January 2006"}}</time>{{else}}<span></span>{{end}}{{with $it.ReadingTime}}<span>{{.}} min read</span>{{end}}</p>
+{{end}}{{if or $it.Author $it.Category}}<p>{{with $it.Author}}<span>{{.}}</span>{{else}}<span></span>{{end}}{{with $it.Category}}<span>{{.}}</span>{{end}}</p>
+{{end}}</div>
+{{with $it.Excerpt}}<p class="kz-dek">{{.}}</p>{{end}}
+<a class="kz-more" href="{{$it.URL}}">Read the note <span aria-hidden="true">&rarr;</span></a>
+</div>
+{{with $it.Image}}<figure class="kz-lead__media"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(max-width: 900px) 100vw, 40vw"{{end}} alt="" fetchpriority="high"></figure>{{end}}
+</article>
+{{end}}{{end}}
+{{if gt $n 1}}<section aria-labelledby="hm-kz-recent-h">
+<div class="kz-sh"><h2 id="hm-kz-recent-h">Recent notes</h2><a class="kz-more" href="/blog">All notes <span aria-hidden="true">&rarr;</span></a></div>
+<div class="kz-grid">{{range $i, $it := $items}}{{if and (ge $i 1) (le $i 3)}}{{template "kz-card" dict "Item" $it}}{{end}}{{end}}</div>
+</section>
+{{end}}{{if $items}}<div class="kz-band">
+<p class="kz-band__quote">Notes worth keeping, sent when they are written.</p>
+<div class="kz-signup"><h2>Get the next note</h2><p>Follow along by feed, or use the site's subscribe button.</p>{{template "kz-sub" dict "Root" . "Class" "kz-btn kz-btn--ink"}}</div>
+</div>
+{{end}}{{if gt $n 4}}<section aria-labelledby="hm-kz-archive-h">
+<div class="kz-sh"><h2 id="hm-kz-archive-h">From the archive</h2><a class="kz-more" href="/blog">Browse all <span aria-hidden="true">&rarr;</span></a></div>
+<div class="kz-list">{{range $i, $it := $items}}{{if ge $i 4}}{{template "kz-row" dict "Item" $it}}{{end}}{{end}}</div>
+</section>
+{{end}}{{if not $items}}<p class="kz-empty">No notes yet. Check back soon.</p>
+{{end}}</div>
+{{end}}

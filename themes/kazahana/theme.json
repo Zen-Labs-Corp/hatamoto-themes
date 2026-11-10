@@ -18,6 +18,12 @@
   "settings_schema": {
     "type": "object",
     "properties": {
+      "show_intro": {
+        "type": "boolean",
+        "title": "Intro block on the home page",
+        "description": "Show the pine block with the tagline, topics and the latest notes above the newest post.",
+        "default": true
+      },
       "header_topics": {
         "type": "boolean",
         "title": "Topics in the header",
