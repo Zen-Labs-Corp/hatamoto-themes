@@ -1,0 +1,6 @@
+{{define "content"}}<div class="kz-wrap kz-listing">
+{{$post := or (not .SchemaSlug) (eq .SchemaSlug "post")}}{{$eyebrow := "Archive"}}{{if $post}}{{$eyebrow = "Journal"}}{{end}}
+{{template "kz-pagehead" dict "Eyebrow" $eyebrow "Title" .Page.Name "Lede" .Page.Description "Total" .Pagination}}
+{{if $post}}{{template "kz-filter" dict "Cats" (terms "category" 12) "Path" .Path}}{{end}}
+{{template "kz-list" dict "Root" . "Empty" "Nothing here yet."}}
+</div>{{end}}

@@ -35,7 +35,7 @@
 </div>
 {{end}}{{if gt $n 4}}<section aria-labelledby="hm-kz-archive-h">
 <div class="kz-sh"><h2 id="hm-kz-archive-h">From the archive</h2><a class="kz-more" href="/blog">Browse all <span aria-hidden="true">&rarr;</span></a></div>
-<div class="kz-list">{{range $i, $it := $items}}{{if ge $i 4}}{{template "kz-row" dict "Item" $it}}{{end}}{{end}}</div>
+<div class="kz-list">{{range $i, $it := $items}}{{if ge $i 4}}{{template "kz-row" dict "Item" $it "Level" 3}}{{end}}{{end}}</div>
 </section>
 {{end}}{{if not $items}}<p class="kz-empty">No notes yet. Check back soon.</p>
 {{end}}</div>

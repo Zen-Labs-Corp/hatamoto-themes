@@ -1,0 +1,6 @@
+{{define "content"}}<div class="kz-wrap kz-listing">
+{{$eyebrow := "Topic"}}{{if eq .Term.Kind "tag"}}{{$eyebrow = "Tag"}}{{end}}
+{{template "kz-pagehead" dict "Eyebrow" $eyebrow "Title" .Term.Name "Lede" .Term.Description "Total" .Pagination}}
+{{if ne .Term.Kind "tag"}}{{template "kz-filter" dict "Cats" (terms "category" 12) "Path" .Path}}{{end}}
+{{template "kz-list" dict "Root" . "Empty" "Nothing here yet."}}
+</div>{{end}}

@@ -1,0 +1,7 @@
+{{define "content"}}<div class="kz-wrap kz-listing"><div class="kz-panel">
+<header class="kz-pagehead"><div><p class="kz-eyebrow">Author</p><h1>{{.Author.Name}}</h1>
+{{with .Author.JobTitle}}<p class="kz-pagehead__lede kz-pagehead__job">{{.}}</p>{{end}}{{with .Author.Bio}}<p class="kz-pagehead__lede">{{.}}</p>{{end}}
+{{with .Author.Links}}<ul class="kz-chips" aria-label="Find {{$.Author.Name}} elsewhere">{{range .}}<li><a class="kz-chip" href="{{.URL}}" rel="me noopener">{{.Label}}</a></li>{{end}}</ul>{{end}}</div>
+{{with .Pagination}}{{if .Total}}<p class="kz-pagehead__count">{{template "kz-count" dict "N" .Total}}</p>{{end}}{{end}}</header>
+{{if .Items}}{{template "kz-list" dict "Root" . "Empty" ""}}{{end}}
+</div></div>{{end}}
