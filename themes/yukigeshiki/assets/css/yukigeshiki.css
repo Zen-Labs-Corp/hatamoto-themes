@@ -48,7 +48,7 @@
   /* ---- shape and rhythm ---- */
   --hm-radius-sm: 8px;
   --hm-radius-md: 10px;
-  --hm-radius-lg: 999px;
+  --hm-radius-lg: 14px;       /* panels: built-in hero images, CTA bands, cards. Chips use a literal 999px */
   --yk-container: 82.5rem;
   --yk-side: 240px;
   --yk-gap-x: 44px;
