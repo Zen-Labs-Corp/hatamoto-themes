@@ -1,9 +1,9 @@
-{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$r := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{/* the untouched first-boot home carries one "welcome" hero with core's placeholder text: it is not the owner's page yet (never so in the editor canvas/preview, nor once edited) */}}{{$w := and .Blocks (eq (len .Blocks) 1) (eq (index .Blocks 0).ID "welcome") (eq (printf "%v" (index .Blocks 0).Content.subheadline) "Your site is running. Sign in to the admin to edit this page.")}}{{$own := and .Blocks (or .Canvas .Preview (not $w))}}{{$page := or $own (and (not $r.Items) (or .Blocks .Body))}}
-{{if $page}}{{template "page-body" .}}{{end}}
+{{define "content"}}{{$posts := recent "post" 1}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$r := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{/* the untouched first-boot home carries one "welcome" hero with core's placeholder text: it is not the owner's page yet (never so in the editor canvas/preview, nor once edited) */}}{{$w := and .Blocks (eq (len .Blocks) 1) (eq (index .Blocks 0).ID "welcome") (eq (printf "%v" (index .Blocks 0).Content.subheadline) "Your site is running. Sign in to the admin to edit this page.")}}{{$own := and .Blocks (or .Canvas .Preview (not $w))}}{{$page := or $own (and (not $r.Items) (or .Blocks .Body))}}
+{{if $page}}{{if not .Blocks}}<div class="yk-wrap">{{template "yk-listhead" dict "Title" .Site.Name "Lede" .Site.Tagline}}</div>{{end}}{{template "page-body" .}}{{end}}
 {{if or $r.Items (not $page)}}<div class="yk-wrap yk-layout">
-{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" "all" "All" $arch "H1" (not (and $page .Blocks))}}
+{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" "all" "All" $arch "Posts" $posts "H1" (not (and $page .Blocks))}}
 <div class="yk-main">
-{{template "yk-chips" dict "Cats" $cats "Cur" "all" "All" $arch}}
+{{template "yk-chips" dict "Cats" $cats "Cur" "all" "All" $arch "Posts" $posts}}
 {{template "yk-grid" dict "Root" . "Items" $r.Items "Cats" $cats}}
 </div>
 {{template "yk-pager" dict "Page" $r.Page "Pages" $r.Pages}}

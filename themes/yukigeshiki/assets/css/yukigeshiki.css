@@ -185,7 +185,6 @@ a { color: inherit; }
 .yk-main { border-inline-start: 1px solid var(--yk-line); padding-inline-start: 48px; }
 .yk-mast { margin: 0; font-weight: 700; font-size: 44px; line-height: .98; letter-spacing: -.035em; overflow-wrap: anywhere; }
 .yk-mast em { display: block; font: italic 400 1em/1 var(--yk-serif); letter-spacing: -.01em; }
-.yk-intro { margin: 0 0 32px; }
 .yk-tag { margin: 18px 0 22px; color: var(--yk-muted); font-size: .84375rem; line-height: 1.5; }
 .yk-side hr { inline-size: 56px; margin: 18px 0; border: 0; border-block-start: 1px solid var(--yk-line); }
 .yk-tag + hr { margin-block: 0 18px; }

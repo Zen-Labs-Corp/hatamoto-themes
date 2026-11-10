@@ -1,6 +1,6 @@
-{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+{{define "content"}}{{$posts := recent "post" 1}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
 <div class="yk-wrap yk-layout">
-{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" "none" "All" $arch}}
+{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" "none" "All" $arch "Posts" $posts}}
 <div class="yk-main">
 {{template "yk-listhead" dict "Title" "Search"}}
 {{template "yk-search-form" dict "Root" . "Id" "page"}}

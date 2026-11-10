@@ -1,9 +1,9 @@
-{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+{{define "content"}}{{$posts := recent "post" 1}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
 <div class="yk-wrap yk-layout">
-{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" "all" "All" $arch}}
+{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" "all" "All" $arch "Posts" $posts}}
 <div class="yk-main">
 {{template "yk-listhead" dict "Title" .Page.Name "Lede" .Page.Description}}
-{{template "yk-chips" dict "Cats" $cats "Cur" "all" "All" $arch}}
+{{template "yk-chips" dict "Cats" $cats "Cur" "all" "All" $arch "Posts" $posts}}
 {{template "yk-grid" dict "Root" . "Items" .Items "Cats" $cats}}
 </div>
 {{with .Pagination}}{{template "yk-pager" dict "Page" .Page "Pages" .TotalPages "Pg" .}}{{end}}
