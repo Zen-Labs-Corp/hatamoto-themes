@@ -29,7 +29,7 @@
 {{$auth := and $it.Author (ne (print $s.show_author) "false")}}{{if or $auth (not $it.PublishedAt.IsZero)}}<p class="sy-card__by">{{if $auth}}<span class="sy-av" aria-hidden="true">{{template "sy-initials" dict "Name" $it.Author}}</span>{{end}}<span>{{if $auth}}{{if $it.AuthorURL}}<a href="{{$it.AuthorURL}}">{{$it.Author}}</a>{{else}}<b>{{$it.Author}}</b>{{end}}{{end}}{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}</span></p>{{end}}
 </article>{{end}}
 {{/* sy-grid: the two-column card grid, or the empty state. dict "Root" . "Items" items "Cats" terms */}}
-{{define "sy-grid"}}{{if .Items}}<div class="sy-grid">{{range .Items}}{{template "sy-card" dict "Item" . "Root" $.Root "Cats" $.Cats "Level" 2}}{{end}}</div>{{else}}<p class="sy-empty">{{if .Root.Query}}No results for &ldquo;{{.Root.Query}}&rdquo;. Try fewer words.{{else}}No posts yet. Check back soon.{{end}}</p>{{end}}{{end}}
+{{define "sy-grid"}}{{if .Items}}<div class="sy-grid">{{range .Items}}{{template "sy-card" dict "Item" . "Root" $.Root "Cats" $.Cats "Level" 2}}{{end}}</div>{{else}}<p class="sy-empty">{{if .Root.Query}}No results for &ldquo;{{.Root.Query}}&rdquo;.{{else}}No posts yet. Check back soon.{{end}}</p>{{end}}{{end}}
 {{/* sy-page-url: page N of a listing. With "Pg" (.Pagination) the engine builds it; else "Base" and ?page=N. dict "N" 2 "Pg" . "Base" "/" */}}
 {{define "sy-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}{{.Base}}{{else}}{{.Base}}?page={{.N}}{{end}}{{end}}
 {{/* sy-pager: numbered pages, only when there is more than one. dict "Page" 1 "Pages" 3 "Base" "/" "Pg" .Pagination|nil */}}
@@ -42,3 +42,5 @@
 {{define "sy-listing"}}{{template "sy-grid" dict "Root" .Root "Items" .Root.Items "Cats" .Cats}}{{with .Root.Pagination}}{{template "sy-pager" dict "Page" .Page "Pages" .TotalPages "Pg" .}}{{end}}{{end}}
 {{/* sy-count: "N posts" under a list heading. dict "Pg" .Pagination "Noun" "post" "Plural" "posts" */}}
 {{define "sy-count"}}{{with .Pg}}{{if .Total}}<p class="sy-listhead__count">{{.Total}} {{if eq .Total 1}}{{$.Noun}}{{else}}{{$.Plural}}{{end}}</p>{{end}}{{end}}{{end}}
+{{/* sy-search-form: GET search form. dict "Root" . "Id" "x" */}}
+{{define "sy-search-form"}}<form class="sy-searchform" role="search" action="/search" method="get"><label class="sy-sr" for="sy-q-{{.Id}}">Search the site</label><input id="sy-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button class="hm-btn" type="submit">Search</button></form>{{end}}

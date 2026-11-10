@@ -1,0 +1,11 @@
+{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+<div class="sy-wrap sy-layout">
+{{template "sy-sidebar" dict "Root" . "Cats" $cats "Cur" "" "H1" false "All" $arch}}
+<div class="sy-main">
+{{template "sy-chips" dict "Cats" $cats "Cur" "" "All" $arch}}
+<header class="sy-listhead"><h1>Search</h1>
+{{template "sy-search-form" dict "Root" . "Id" "page"}}
+{{if .Query}}{{with .Pagination}}{{if gt .Total 0}}<p class="sy-listhead__count" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;</p>{{end}}{{end}}{{end}}</header>
+{{if .Query}}{{template "sy-listing" dict "Root" . "Cats" $cats}}{{else}}<p class="sy-empty">Type a word or phrase to search.</p>{{end}}
+</div>
+</div>{{end}}
