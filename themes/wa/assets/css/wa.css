@@ -39,9 +39,9 @@
   --wa-night-ink: #e7ecf7;
   --wa-night-muted: #97a2bb;
   --wa-card-ink: #fff;
-  --wa-scrim: color-mix(in srgb, var(--wa-night) 82%, transparent);
-  --wa-scrim-top: color-mix(in srgb, var(--wa-night) 5%, transparent);
-  --wa-glass: color-mix(in srgb, var(--wa-night) 38%, transparent);
+  --wa-scrim: color-mix(in srgb, var(--wa-night) 90%, transparent);
+  --wa-scrim-top: color-mix(in srgb, var(--wa-night) 30%, transparent);
+  --wa-glass: color-mix(in srgb, var(--wa-night) 70%, transparent);
   --wa-glass-line: color-mix(in srgb, var(--wa-card-ink) 22%, transparent);
   --wa-ghost-letter: color-mix(in srgb, var(--wa-signal) 13%, transparent);
 
@@ -172,7 +172,7 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 700; letter-s
 .wa-card--lg { min-block-size: 420px; }
 .wa-card__media { position: absolute; inset: 0; z-index: -2; }
 .wa-card__media img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
-.wa-card::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, var(--wa-scrim-top) 30%, var(--wa-scrim)); }
+.wa-card::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, var(--wa-scrim-top) 0, color-mix(in srgb, var(--wa-night) 55%, transparent) 40%, var(--wa-scrim) 80%); }
 .wa-card--type { background: linear-gradient(150deg, var(--wa-night-2), var(--wa-night)); }
 .wa-card--type::after { background: none; }
 .wa-card__ch { position: absolute; inset-inline-end: -6%; inset-block-start: -14%; z-index: -1; font: italic 400 220px/1 var(--wa-serif); color: var(--wa-ghost-letter); user-select: none; }
