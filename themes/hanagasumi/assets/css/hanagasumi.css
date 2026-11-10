@@ -7,43 +7,113 @@
    fonts keeps working; no request to another host (fonts live in
    assets/fonts/, added with scripts/add-font.sh). */
 
+/* Instrument Sans (variable), OFL-1.1 (assets/fonts/instrument-sans/LICENSE.txt) */
+@font-face { font-family: "Instrument Sans"; src: url("/theme/assets/fonts/instrument-sans/instrument-sans-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* IBM Plex Mono, OFL-1.1 (assets/fonts/ibm-plex-mono/LICENSE.txt) */
+@font-face { font-family: "IBM Plex Mono"; src: url("/theme/assets/fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url("/theme/assets/fonts/ibm-plex-mono/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+
 :root {
-  /* ---- palette (light) ---- */
-  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
-  --hm-bg: #ffffff;
-  --hm-text: #16181d;
-  --hg-muted: #5d636e;
-  --hg-line: #e4e6ea;
-  --hg-surface: #f6f7f9;
-  /* the default theme's names, so its sections follow this palette */
-  --hm-sumi: var(--hm-text);
+  /* ---- owner tokens (Theme > Colours and fonts replace these) ---- */
+  --hm-primary: #f5adc3;
+  --hm-bg: #fefbfa;
+  --hm-text: #3d3644;
+
+  /* ---- palette: flower mist (light) ---- */
+  --hg-paper: var(--hm-bg);
+  --hg-ink: var(--hm-text);
+  --hg-surface: #ffffff;
+  --hg-tint: #fcf0f3;
+  --hg-muted: #7d7383;
+  --hg-line: #f1e6e9;
+  --hg-sage: #a9c4b4;
+  --hg-primary: var(--hm-primary);
+  /* text on primary fills: dark on light primaries, light on dark ones */
+  --hg-primary-ink: #4a1f31;
+  /* accent text, links, chips: darkened from the owner's primary so it stays AA */
+  --hg-primary-text: color-mix(in srgb, var(--hg-primary) 30%, #6e1a3d);
+  --hg-primary-soft: color-mix(in srgb, var(--hg-primary) 22%, var(--hg-surface));
+  --hg-shadow: 0 1px 2px rgba(61, 54, 68, .03), 0 8px 24px -14px rgba(61, 54, 68, .12);
+  color-scheme: light;
+
+  /* ---- type ---- */
+  --hm-font: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hm-font-heading: var(--hm-font);
+  --hm-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --hg-mono: var(--hm-font-mono);
+  --hg-fs-xs: .75rem;
+  --hg-fs-sm: .875rem;
+  --hg-fs-md: 1.0625rem;
+  --hg-fs-lg: 1.375rem;
+  --hg-fs-xl: clamp(1.75rem, 2.6vw, 2.25rem);
+  --hg-fs-2xl: clamp(2.5rem, 5vw, 4.25rem);
+  --hg-lh: 1.6;
+
+  /* ---- shape ---- */
+  --hg-radius-xs: 6px;
+  --hg-radius-sm: 10px;
+  --hg-radius-md: 16px;
+  --hg-radius-lg: 24px;
+  --hg-radius-xl: 32px;
+  --hg-radius-pill: 999px;
+  --hm-radius-sm: var(--hg-radius-sm);
+  --hm-radius-md: var(--hg-radius-md);
+  --hm-radius-lg: var(--hg-radius-lg);
+
+  /* ---- spacing ---- */
+  --hg-space-1: .25rem;
+  --hg-space-2: .5rem;
+  --hg-space-3: .75rem;
+  --hg-space-4: 1rem;
+  --hg-space-5: 1.5rem;
+  --hg-space-6: 2rem;
+  --hg-space-7: 3rem;
+  --hg-space-8: 4.5rem;
+  --hg-max: 1360px;
+  --hm-container: var(--hg-max);
+  --hg-gap: clamp(1rem, 3vw, 2rem);
+  --hg-section: clamp(4rem, 9vw, 7rem);
+
+  /* ---- the default theme's names, so its sections follow this palette ---- */
+  --hm-sumi: var(--hg-ink);
   --hm-hai: var(--hg-muted);
   --hm-label: var(--hg-muted);
   --hm-hair: var(--hg-line);
   --hm-shiro: var(--hg-surface);
-  --hm-kasumi: var(--hg-surface);
-  --hm-shu: var(--hm-primary);
-
-  /* ---- type ---- */
-  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --hm-font-heading: var(--hm-font);
-
-  /* ---- shape and rhythm ---- */
-  --hm-radius-sm: 6px;
-  --hm-radius-md: 10px;
-  --hm-radius-lg: 16px;
-  --hm-container: 72rem;
-  --hg-gap: clamp(1rem, 3vw, 2rem);
-  --hg-section: clamp(4rem, 9vw, 7rem);
+  --hm-kasumi: var(--hg-tint);
+  --hm-shu: var(--hg-primary-text);
 }
 
-:root[data-theme="dark"] {
-  --hm-bg: #0f1115;
-  --hm-text: #e8eaee;
-  --hg-muted: #9aa1ad;
-  --hg-line: #262a31;
-  --hg-surface: #161920;
+@supports (color: oklch(from red l c h)) {
+  :root { --hg-primary-ink: oklch(from var(--hg-primary) clamp(.2, (.68 - l) * 1000, .98) .03 h); }
+}
+
+/* ---- palette (dark): the system choice, the toggle, or the owner's default ---- */
+:root[data-theme="dark"],
+:root[data-hg-mode="dark"]:not([data-theme]):not([data-hg-js]) {
   color-scheme: dark;
+  --hg-paper: #24202a;
+  --hg-ink: #f6eff3;
+  --hg-surface: #2d2833;
+  --hg-tint: #362f3d;
+  --hg-muted: #b6abb9;
+  --hg-line: #403847;
+  --hg-sage: #9bb7a6;
+  --hg-primary: color-mix(in srgb, var(--hm-primary) 60%, #fff);
+  --hg-primary-text: var(--hg-primary);
+  --hg-primary-soft: color-mix(in srgb, var(--hg-primary) 14%, var(--hg-surface));
+  --hg-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px -12px rgba(0, 0, 0, .6);
+  --hm-bg: var(--hg-paper);
+  --hm-text: var(--hg-ink);
+}
+
+/* ---- base ---- */
+body { font-family: var(--hm-font); font-size: var(--hg-fs-md); line-height: var(--hg-lh); color: var(--hg-ink); background: var(--hg-paper); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 600; letter-spacing: -.02em; }
+:focus-visible { outline: 2px solid var(--hg-primary-text); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
 
 [data-hg-density="compact"] { --hg-section: clamp(2.5rem, 6vw, 4.5rem); }
