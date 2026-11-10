@@ -3,6 +3,8 @@
 {{define "yk-initial"}}{{with trim .Name}}{{index (split . "") 0}}{{end}}{{end}}
 {{/* yk-brand: logo image, or monogram + site name. dict "Root" . */}}
 {{define "yk-brand"}}<a class="yk-brand" href="/" aria-label="{{.Root.Site.Name}}, home">{{if .Root.Site.LogoURL}}<img src="{{imgsrc .Root.Site.LogoURL}}" alt="{{.Root.Site.Name}}" height="28">{{else}}<span class="yk-mark" aria-hidden="true">{{template "yk-initial" dict "Name" .Root.Site.Name}}</span><span class="yk-brand__name">{{.Root.Site.Name}}</span>{{end}}</a>{{end}}
+{{/* yk-nav-item: a menu item; a group without an address is a plain label, not a button. dict "Item" . "Path" ... */}}
+{{define "yk-nav-item"}}{{$i := (navlink .).Item}}{{if and (or (not $i.Href) (eq $i.Href "#")) $i.Children}}<span class="yk-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
 {{/* yk-cta: the header button. The site's own header button wins, else the theme settings; no address, no button. dict "Root" . "Class" s */}}
 {{define "yk-cta"}}{{$l := default "Subscribe" .Root.Settings.cta_label}}{{$u := .Root.Settings.cta_url}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if $u}}<a class="{{.Class}}" href="{{cta $u}}">{{$l}}</a>{{end}}{{end}}
 {{/* yk-masthead-text: the site name, with the last word on its own line in italic serif when split_masthead is on. dict "Root" . */}}
