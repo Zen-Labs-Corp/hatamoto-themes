@@ -16,8 +16,15 @@
 </article>{{end}}
 {{/* uk-chips: category links, the current one marked. dict "Terms" . "Cur" path "All" url "Label" "Categories" */}}
 {{define "uk-chips"}}{{if or .Terms .All}}<nav aria-label="{{default "Categories" .Label}}"><ul class="uk-chips">{{with .All}}<li><a href="{{cta .}}"{{if eq $.Cur "all"}} aria-current="page"{{end}}>All</a></li>{{end}}{{range .Terms}}<li><a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a></li>{{end}}</ul></nav>{{end}}{{end}}
-{{/* uk-pagehead: the page's one h1. dict "Kicker" "" "Title" "" "Meta" "" */}}
-{{define "uk-pagehead"}}<header class="uk-pagehead"><div>{{with .Kicker}}<span class="uk-cat">{{.}}</span>{{end}}<h1 class="uk-pagehead__title">{{.Title}}</h1></div>{{with .Meta}}<p class="uk-meta">{{.}}</p>{{end}}</header>{{end}}
+{{/* uk-pagehead: the page's one h1. dict "Kicker" "" "Title" "" "Lede" "" "Pg" .Pagination (optional, prints the story count) */}}
+{{define "uk-pagehead"}}<header class="uk-pagehead"><div>{{with .Kicker}}<span class="uk-cat">{{.}}</span>{{end}}<h1 class="uk-pagehead__title">{{.Title}}</h1>{{with .Lede}}<p class="uk-pagehead__lede">{{.}}</p>{{end}}</div>{{template "uk-count" .}}</header>{{end}}
+{{/* uk-count: "12 stories" from dict "Pg" .Pagination */}}
+{{define "uk-count"}}{{with .Pg}}{{if .Total}}<p class="uk-meta uk-count">{{.Total}} {{if eq .Total 1}}story{{else}}stories{{end}}</p>{{end}}{{end}}{{end}}
+{{/* uk-listing: the card grid, pager and empty state of a listing view. dict "Root" . "Empty" "message" */}}
+{{define "uk-listing"}}{{$v := .Root}}{{$post := or (not $v.SchemaSlug) (eq $v.SchemaSlug "post")}}{{if $v.Items}}<div class="uk-grid uk-grid--4">
+{{range $v.Items}}{{template "uk-card" dict "Item" .}}
+{{end}}</div>
+{{template "uk-pager" dict "Pg" $v.Pagination}}{{else}}<p class="uk-empty">{{.Empty}} <a href="/">Back to the front page</a></p>{{end}}{{end}}
 {{/* uk-search-form: GET search form. dict "Root" . "Id" "x" */}}
 {{define "uk-search-form"}}<form class="uk-searchform" role="search" action="/search" method="get"><label class="uk-sr" for="uk-q-{{.Id}}">Search the site</label><input id="uk-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button type="submit" class="uk-btn">Search</button></form>{{end}}
 {{/* uk-page-url: dict "N" 2 "Pg" .Pagination */}}

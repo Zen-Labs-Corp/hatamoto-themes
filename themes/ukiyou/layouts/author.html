@@ -1,0 +1,12 @@
+{{define "content"}}<div class="uk-wrap uk-list">
+<header class="uk-pagehead uk-authorhead">
+{{with .Author.Avatar}}<img src="{{imgsrc .}}" alt="" width="96" height="96">{{end}}
+<div><span class="uk-cat">Author</span>
+<h1 class="uk-pagehead__title">{{.Author.Name}}</h1>
+{{with .Author.JobTitle}}<p class="uk-authorhead__job">{{.}}</p>{{end}}
+{{with .Author.Bio}}<p class="uk-pagehead__lede">{{.}}</p>{{end}}
+{{with .Author.Links}}<ul class="uk-chips">{{range .}}<li><a href="{{cta .URL}}" rel="me noopener">{{.Label}}</a></li>{{end}}</ul>{{end}}</div>
+{{template "uk-count" dict "Pg" .Pagination}}
+</header>
+{{template "uk-listing" dict "Root" . "Empty" "No stories from this author yet."}}
+</div>{{end}}

@@ -299,3 +299,29 @@ main:has(> .uk-news) + .uk-footer { margin-block-start: 0; }
 @media (max-width: 900px) { .uk-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 720px) { .uk-post { padding: 28px 20px 16px; } .uk-pn { grid-template-columns: 1fr; margin-inline: 20px; } .uk-pn__next { grid-column: 1; } }
 @media (max-width: 560px) { .uk-grid--3 { grid-template-columns: 1fr; } }
+
+/* ---- listings: archive, taxonomy, author ---- */
+.uk-list { padding-block: 40px 16px; }
+.uk-pagehead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 24px; padding-block-end: 16px; border-bottom: 2px solid var(--hm-text); }
+.uk-pagehead > div { min-inline-size: 0; flex: 1 1 20rem; }
+.uk-pagehead__title { margin: 14px 0 0; font-size: clamp(2.4rem, 8vw, var(--uk-step-5)); line-height: 1; overflow-wrap: anywhere; }
+.uk-pagehead__lede { margin: 14px 0 0; max-inline-size: 52ch; font-size: 1.2rem; color: var(--uk-muted); }
+.uk-list .uk-chips { margin-block-start: 20px; }
+.uk-list > nav[aria-label="Categories"] { padding-block-start: 0; }
+.uk-authorhead { align-items: center; }
+.uk-authorhead img { flex: none; inline-size: 96px; block-size: 96px; object-fit: cover; }
+.uk-authorhead__job { margin: 8px 0 0; font: 600 .85rem/1.3 var(--uk-font-ui); color: var(--uk-muted); }
+.uk-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); padding-block: 32px; }
+.uk-pager { padding-block: 8px 40px; }
+.uk-pager ul { display: flex; flex-wrap: wrap; justify-content: center; list-style: none; margin: 0; padding: 0; font: 700 .85rem/1 var(--uk-font-ui); }
+.uk-pager li { margin-inline-start: -1px; }
+.uk-pager li:first-child { margin-inline-start: 0; }
+.uk-pager a, .uk-pager li > span { display: grid; place-items: center; min-inline-size: 42px; block-size: 42px; padding-inline: 6px; border: 1px solid var(--hm-text); color: var(--hm-text); text-decoration: none; }
+.uk-pager li > span { border-color: var(--uk-line); color: var(--uk-muted); }
+.uk-pager a:hover { background: var(--uk-surface); }
+.uk-pager a[aria-current] { background: var(--hm-text); color: var(--hm-bg); }
+.uk-strip__links { display: flex; gap: 18px; }
+@media (max-width: 1099px) { .uk-grid--4 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 799px) { .uk-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .uk-list { padding-block-start: 24px; } .uk-authorhead { align-items: start; } }
+@media (max-width: 519px) { .uk-grid--4 { grid-template-columns: 1fr; } }

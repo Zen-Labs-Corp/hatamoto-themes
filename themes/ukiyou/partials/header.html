@@ -3,7 +3,7 @@
 {{if .Settings.issue_strip}}<div class="uk-strip"><div class="uk-wrap">
 {{$date := ""}}{{with recent "post" 1}}{{$d := (index . 0).PublishedAt}}{{if not $d.IsZero}}{{$date = formatDate $d "January 2006"}}{{end}}{{end}}
 <span class="uk-strip__issue">{{with .Settings.issue_label}}<b>{{.}}</b>{{end}}{{if and .Settings.issue_label $date}} &middot; {{end}}{{$date}}</span>
-<a href="/search">Search</a>
+<span class="uk-strip__links">{{with .Site.Feeds}}{{with index . 0}}<a href="{{.Href}}">RSS</a>{{end}}{{end}}<a href="/search">Search</a></span>
 </div></div>
 {{end}}<div class="uk-mast uk-wrap">
 <a class="uk-logo" href="/"{{if .Site.LogoURL}} aria-label="{{.Site.Name}}, home"{{end}}>{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="" height="48">{{else}}{{.Site.Name}}<span aria-hidden="true">.</span>{{end}}</a>
