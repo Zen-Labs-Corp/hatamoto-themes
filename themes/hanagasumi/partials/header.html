@@ -1,7 +1,7 @@
 {{define "header"}}{{$cats := terms "category" 6}}<header class="hg-header">
 <div class="hg-header__in">
 <a class="hg-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img class="hg-brand__logo" src="{{imgsrc .Site.LogoURL}}" alt="" height="30">{{else}}<span class="hg-brand__dot" aria-hidden="true"></span>{{end}}<span class="hg-brand__name">{{.Site.Name}}</span></a>
-{{if .Site.Nav}}<nav class="hg-nav" aria-label="Primary">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav>
+{{if .Site.Nav}}<nav class="hg-nav" aria-label="Primary"><ul class="hg-nav__list">{{range .Site.Nav}}<li class="hg-nav__item">{{template "nav-link" dict "Item" . "Path" $.Path}}{{with .Children}}<ul class="hg-nav__sub">{{range .}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>
 {{end}}<div class="hg-header__end">
 <a class="hg-iconbtn" href="/search" aria-label="Search">{{template "hg-icon" "search"}}</a>
 <button type="button" class="hg-iconbtn hg-mode" data-hm-theme-toggle aria-label="Switch to dark mode" aria-pressed="false" hidden><span class="hg-moon">{{template "hg-icon" "moon"}}</span><span class="hg-sun">{{template "hg-icon" "sun"}}</span></button>

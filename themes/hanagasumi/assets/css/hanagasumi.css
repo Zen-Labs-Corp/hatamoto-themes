@@ -168,10 +168,19 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 .hg-brand__dot { inline-size: 1.875rem; block-size: 1.875rem; flex: none; border-radius: 50%; background: radial-gradient(circle at 35% 35%, var(--hg-primary-soft), var(--hg-primary)); }
 .hg-brand__logo { block-size: 1.875rem; inline-size: auto; }
 .hg-brand__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hg-nav { display: flex; align-items: center; gap: .375rem; padding: .3rem; border-radius: var(--hg-radius-pill); background: var(--hg-surface); border: 1px solid var(--hg-line); }
-.hg-nav a, .hg-nav span { padding: .65rem 1rem; border-radius: var(--hg-radius-pill); color: var(--hg-muted); font: 500 var(--hg-fs-sm)/1 var(--hm-font); text-decoration: none; white-space: nowrap; }
+.hg-nav { min-inline-size: 0; padding: .3rem; border-radius: var(--hg-radius-pill); background: var(--hg-surface); border: 1px solid var(--hg-line); }
+.hg-nav__list, .hg-nav__sub { list-style: none; margin: 0; padding: 0; }
+.hg-nav__list { display: flex; align-items: center; gap: .375rem; }
+.hg-nav__item { position: relative; }
+.hg-nav a, .hg-nav li > span { display: block; padding: .65rem 1rem; border-radius: var(--hg-radius-pill); color: var(--hg-muted); font: 500 var(--hg-fs-sm)/1 var(--hm-font); text-decoration: none; white-space: nowrap; }
 .hg-nav a:hover { color: var(--hg-ink); }
 .hg-nav a[aria-current] { background: var(--hg-primary-soft); color: var(--hg-primary-text); }
+/* submenu: opens on hover or keyboard focus, no script; a link-less parent is focusable (the engine gives it tabindex) */
+.hg-nav__sub { display: none; position: absolute; inset-inline-start: 0; inset-block-start: calc(100% + .3rem); z-index: 30; min-inline-size: 12rem; padding: .4rem; background: var(--hg-surface); border: 1px solid var(--hg-line); border-radius: var(--hg-radius-lg); box-shadow: var(--hg-shadow); }
+.hg-nav__sub::before { content: ""; position: absolute; inset-inline: 0; inset-block-end: 100%; block-size: .4rem; }
+.hg-nav__item:hover > .hg-nav__sub, .hg-nav__item:focus-within > .hg-nav__sub { display: block; }
+.hg-nav__sub a, .hg-nav__sub li > span { border-radius: var(--hg-radius-md); }
+.hg-nav__sub a:hover { background: var(--hg-tint); }
 .hg-header__end { display: flex; align-items: center; gap: .5rem; }
 .hg-mode[hidden] { display: none; }
 .hg-moon, .hg-sun { display: grid; }
