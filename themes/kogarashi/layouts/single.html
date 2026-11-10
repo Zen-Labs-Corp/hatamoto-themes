@@ -3,7 +3,7 @@
 {{end}}{{$m := readingTime $.Body}}<div class="kg-hero">
 {{if not $post}}<span class="kg-kicker">{{$.Site.Name}}</span>{{else if or .Categories (gt $m 1)}}<span class="kg-kicker">{{with .Categories}}{{(index . 0).Name}}{{end}}{{if and .Categories (gt $m 1)}} &middot; {{end}}{{if gt $m 1}}{{$m}} min read{{end}}</span>{{end}}
 {{template "kg-h1" dict "Title" .Title "Blocks" $.Blocks}}
-{{if $post}}<p class="kg-by">{{with .Author}}{{with .Avatar}}<img class="kg-avatar" src="{{imgsrc .}}" alt="" width="32" height="32">{{else}}<span class="kg-av" aria-hidden="true">{{index (split .Name "") 0}}</span>{{end}}{{.Name}}{{end}}{{if not .PublishedAt.IsZero}}{{if .Author}}<span class="kg-dot" aria-hidden="true"></span>{{end}}<time datetime="{{formatDate .PublishedAt "2006-01-02"}}">{{formatDate .PublishedAt "2 Jan 2006"}}</time>{{end}}</p>{{end}}
+{{if $post}}<p class="kg-by">{{with .Author}}{{with .Avatar}}<img class="kg-avatar" src="{{imgsrc .}}" alt="" width="32" height="32">{{else}}<span class="kg-av" aria-hidden="true">{{index (split .Name "") 0}}</span>{{end}}{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}{{end}}{{if not .PublishedAt.IsZero}}{{if .Author}}<span class="kg-dot" aria-hidden="true"></span>{{end}}<time datetime="{{formatDate .PublishedAt "2006-01-02"}}">{{formatDate .PublishedAt "2 Jan 2006"}}</time>{{end}}</p>{{end}}
 </div>{{end}}{{end}}
 {{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}
 <article class="kg-article">

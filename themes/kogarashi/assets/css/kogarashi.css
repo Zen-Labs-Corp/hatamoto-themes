@@ -295,6 +295,8 @@ html[data-kg-cols="3"] .kg-grid { grid-template-columns: repeat(2, minmax(0, 1fr
 
 /* ---- single post: panel byline, reading column, neighbours ---- */
 .kg-h1 { max-inline-size: 20ch; margin: .8rem 0 var(--kg-s3); font: 700 var(--kg-fs-hero)/1.16 var(--hm-font-heading); letter-spacing: -.015em; overflow-wrap: anywhere; }
+.kg-by a { position: relative; z-index: 1; color: inherit; text-decoration: none; }
+.kg-by a:hover { text-decoration: underline; }
 .kg-hero .kg-by { margin: 0; padding: 0; color: var(--kg-panel-muted); }
 .kg-hero .kg-by { color: var(--kg-panel-ink); }
 .kg-hero .kg-by time, .kg-hero .kg-by .kg-dot + span { color: var(--kg-panel-muted); font-weight: 400; }

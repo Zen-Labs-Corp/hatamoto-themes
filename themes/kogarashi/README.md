@@ -6,6 +6,9 @@ Split-screen blog theme. A fixed midnight image panel on one side, a scrolling g
 
 A theme for [Hatamoto](https://hatamoto.dev), built for blog sites.
 
+Not for docs sites: a `doc` entry would use this theme's `single` layout and lose the docs
+sidebar, table of contents and previous/next links.
+
 ## Install
 
 From the registry: **Theme > Themes > Available themes**, then **Install**, **Preview**
