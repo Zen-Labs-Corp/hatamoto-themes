@@ -3,7 +3,8 @@
    (sorted), then assets/css/sections/*.css, across the theme AND the built-in
    default theme it falls back to. The default's section CSS therefore loads
    AFTER this file: where an override of an hm-* rule must win it is written
-   with a :root prefix (one class more of specificity), not by order.
+   with a :root prefix (one class more of specificity), not by order. Buttons
+   (.hm-btn) stay at one class, so a builder button's own .hm-n-<id> style wins.
    Rules: only --hm-* tokens for colour, type and radius, so Theme > Colours and
    fonts keeps working; no request to another host (fonts live in
    assets/fonts/, added with scripts/add-font.sh). */
@@ -284,9 +285,9 @@ a { color: inherit; }
 .yk-grid--related { padding-block-end: 56px; }
 
 /* ---- pages: the default theme's sections and prose, through this palette ---- */
-:root .hm-btn { min-height: 2.5rem; padding: 0 1.1rem; border-radius: var(--hm-radius-sm); background: var(--yk-primary); border-color: var(--yk-primary); color: var(--yk-on-primary); font-weight: 500; }
-:root .hm-btn:hover { filter: brightness(1.08); }
-:root .hm-btn--ghost, :root .hm-btn--outline, :root .hm-btn--secondary { background: transparent; color: var(--hm-text); border-color: var(--yk-line); }
+.hm-btn { min-height: 2.5rem; padding: 0 1.1rem; border-radius: var(--hm-radius-sm); background: var(--yk-primary); border-color: var(--yk-primary); color: var(--yk-on-primary); font-weight: 500; }
+.hm-btn:hover { filter: brightness(1.08); }
+.hm-btn--ghost, .hm-btn--outline, :root .hm-btn--secondary:not(.hm-w-btn) { background: transparent; color: var(--hm-text); border-color: var(--yk-line); }
 .hm-prose, .hm-html-body { color: var(--hm-text); line-height: 1.65; }
 .hm-prose :is(h1, h2, h3, h4), .hm-section h1, .hm-section h2, .hm-section h3 { color: var(--hm-text); font-family: var(--hm-font-heading); letter-spacing: -.025em; }
 .hm-prose a, .hm-html-body a { color: var(--yk-primary); text-underline-offset: 3px; }
