@@ -62,3 +62,46 @@
 <div class="wa-result__text"><p class="wa-result__kick">{{with $it.Category}}<span>{{.}}</span>{{end}}{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}</p>
 <h2><a class="wa-result__link" href="{{$it.URL}}">{{$it.Title}}</a></h2>
 {{with $it.Excerpt}}<p class="wa-result__excerpt">{{.}}</p>{{end}}</div></li>{{end}}
+{{/* wa-entity: a post or a plain page on the band header; builder blocks go through page-body. Called by single.html and page.html with the page root. */}}
+{{define "wa-entity"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}
+<article class="wa-article">
+<header class="wa-posthd wa-on-band{{if not $post}} wa-posthd--flat{{end}}"><div class="wa-wrap">
+<div class="wa-posthd__in">
+{{if $post}}<p class="wa-crumb">{{with $e.Categories}}{{with index . 0}}<a href="{{.URL}}">{{.Name}}</a>{{end}}{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 Jan 2006"}}</time>{{end}}{{with readingTime .Body}}<span>{{.}} min read</span>{{end}}</p>
+{{else}}<p class="wa-eyebrow wa-eyebrow--c">{{$.Site.Name}}</p>{{end}}
+<h1>{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="wa-dek">{{.}}</p>{{end}}
+{{if $post}}{{with $e.Author}}<p class="wa-byline">{{with .Avatar}}<img class="wa-av" src="{{imgsrc .}}" alt="" width="40" height="40">{{else}}<span class="wa-av" aria-hidden="true">{{upper (printf "%.1s" .Name)}}</span>{{end}}<span>{{if .URL}}<a href="{{cta .URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</span></p>{{end}}{{end}}
+</div>
+{{if $post}}{{if $e.Image}}<figure class="wa-cover"><img src="{{imgsrc $e.Image}}"{{with srcset $e.Image}} srcset="{{.}}" sizes="(min-width:1280px) 1200px,100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>
+{{else}}<div class="wa-cover wa-cover--type wa-card--type" aria-hidden="true"><span class="wa-card__ch">{{upper (printf "%.1s" $e.Title)}}</span></div>{{end}}{{end}}
+</div></header>
+<div class="wa-wrap"><div class="wa-postbody{{if not $post}} wa-postbody--page{{end}}">
+{{if and $post $b.TOC}}<nav class="wa-toc" aria-label="Contents"><h2>Contents</h2>{{range $b.TOC}}<a href="#{{.ID}}">{{.Text}}</a>{{end}}</nav>{{else}}<span class="wa-rail-gap"></span>{{end}}
+<div class="wa-postmain">
+{{if .Body}}<div class="wa-prose hm-prose">{{$b.HTML}}</div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+{{if $post}}{{with $e.Tags}}<ul class="wa-tags" aria-label="Tags">{{range .}}<li><a href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul>{{end}}
+{{with $e.Author}}<aside class="wa-authorbox" aria-label="About the author">
+{{with .Avatar}}<img class="wa-av wa-av--lg" src="{{imgsrc .}}" alt="" width="64" height="64">{{else}}<span class="wa-av wa-av--lg" aria-hidden="true">{{upper (printf "%.1s" .Name)}}</span>{{end}}
+<div><p class="wa-authorbox__name"><span class="wa-eyebrow">Written by</span>{{if .URL}}<a href="{{cta .URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>
+{{with .JobTitle}}<p class="wa-authorbox__job">{{.}}</p>{{end}}{{with .Bio}}<p class="wa-authorbox__bio">{{.}}</p>{{end}}</div></aside>{{end}}{{end}}
+</div>
+{{if $post}}<div class="wa-share"><a class="wa-ibtn" href="mailto:?subject={{$e.Title | urlquery}}" aria-label="Share by email"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18v12H3zM3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></a><a class="wa-ibtn" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>{{else}}<span class="wa-rail-gap"></span>{{end}}
+</div></div>
+{{if $post}}
+{{$all := (query (dict "schema" "post" "limit" 100)).Items}}{{$prev := ""}}{{$next := ""}}
+{{range $i, $it := $all}}{{if eq $it.URL $e.URL}}{{if gt $i 0}}{{$next = index $all (add $i -1)}}{{end}}{{if lt (add $i 1) (len $all)}}{{$prev = index $all (add $i 1)}}{{end}}{{end}}{{end}}
+{{if or $prev $next}}<div class="wa-wrap"><nav class="wa-prevnext" aria-label="More posts">
+{{with $prev}}<a class="wa-prevnext__a" rel="prev" href="{{.URL}}"><small>&larr; Older</small><b>{{.Title}}</b></a>{{else}}<span></span>{{end}}
+{{with $next}}<a class="wa-prevnext__a wa-prevnext__a--next" rel="next" href="{{.URL}}"><small>Newer &rarr;</small><b>{{.Title}}</b></a>{{end}}
+</nav></div>{{end}}
+{{with $e.Categories}}{{with index . 0}}{{$c := .}}{{$more := query (dict "schema" "post" "term" (print "category:" $c.Slug) "limit" 4)}}{{$shown := 0}}
+{{if gt (len $more.Items) 1}}<section class="wa-sec wa-more" aria-label="More from {{$c.Name}}"><div class="wa-wrap">
+<p class="wa-eyebrow">Keep reading</p>
+<div class="wa-sec__h"><h2>More from <em class="wa-it">{{$c.Name}}</em></h2></div>
+<div class="wa-grid3">{{range $more.Items}}{{if and (ne .URL $e.URL) (lt $shown 3)}}{{$shown = add $shown 1}}{{template "wa-card" dict "Item" . "Size" "md" "N" 0}}{{end}}{{end}}</div>
+</div></section>{{end}}{{end}}{{end}}
+{{end}}
+</article>
+{{else}}{{template "page-body" .}}{{end}}{{end}}
