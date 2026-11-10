@@ -1,0 +1,31 @@
+{
+  "name": "kogarashi",
+  "version": "0.1.0",
+  "description": "Split-screen blog theme. A fixed midnight image panel on one side, a scrolling grid of post cards on the other, cobalt accents.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "light"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      }
+    }
+  }
+}
