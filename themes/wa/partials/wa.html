@@ -44,3 +44,16 @@
 {{define "wa-row"}}{{$it := .Item}}{{$img := imgsrc $it.Image}}<li class="wa-row"><span class="wa-row__n" aria-hidden="true">{{printf "%02d" .N}}</span>
 <div class="wa-row__text">{{with $it.Category}}<span class="wa-row__cat">{{.}}</span>{{end}}<h3><a class="wa-row__link" href="{{$it.URL}}">{{$it.Title}}</a></h3>{{template "wa-meta" dict "Item" $it "Date" true}}</div>
 {{if $img}}<span class="wa-row__th"><img src="{{$img}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="72px"{{end}} alt="" loading="lazy" decoding="async"></span>{{else}}<span class="wa-row__th wa-row__th--type" aria-hidden="true">{{upper (printf "%.1s" $it.Title)}}</span>{{end}}</li>{{end}}
+{{/* wa-listing: the band header (eyebrow, h1, lede, optional topic chips) and the card grid with pager. dict "Eyebrow" "" "Pre" "" "Accent" "" "Post" "" "Lede" "" "Terms" (terms ...) or nil "Cur" "all"|url "All" url "Items" . "Pg" .Pagination */}}
+{{define "wa-listing"}}<header class="wa-pagehd wa-on-band"><div class="wa-wrap">
+{{with .Eyebrow}}<p class="wa-eyebrow">{{.}}</p>{{end}}
+<h1>{{.Pre}}{{with .Accent}}<em class="wa-it">{{.}}</em>{{end}}{{.Post}}</h1>
+{{with .Lede}}<p class="wa-pagehd__lede">{{.}}</p>{{end}}
+{{if .Terms}}{{template "wa-chips" dict "Terms" .Terms "Cur" .Cur "All" .All}}{{end}}
+</div></header>
+{{template "wa-listbody" .}}{{end}}
+{{/* wa-listbody: grid of cards with excerpts, pager, empty state. dict "Items" . "Pg" .Pagination */}}
+{{define "wa-listbody"}}<div class="wa-sec wa-listbody"><div class="wa-wrap">
+{{if .Items}}<div class="wa-grid3">{{range .Items}}{{template "wa-card" dict "Item" . "Size" "md" "N" 0 "Excerpt" true}}{{end}}</div>
+{{template "wa-pager" dict "Pg" .Pg}}{{else}}<div class="wa-empty"><h2>Nothing here yet</h2><p>New stories will show up here as soon as they are published.</p></div>{{end}}
+</div></div>{{end}}

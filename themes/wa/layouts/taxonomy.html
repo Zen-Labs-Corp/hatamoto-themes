@@ -1,0 +1,6 @@
+{{define "content"}}{{$total := 0}}{{with .Pagination}}{{$total = .Total}}{{end}}{{$cat := eq .Term.Kind "category"}}
+{{$eye := "Tag"}}{{if $cat}}{{$eye = "Category"}}{{end}}{{$post := ""}}
+{{if eq $total 1}}{{$post = ", 1 story"}}{{else if gt $total 1}}{{$post = print ", " $total " stories"}}{{end}}
+{{$terms := ""}}{{if $cat}}{{$terms = terms "category" 12}}{{end}}
+{{template "wa-listing" dict "Eyebrow" $eye "Pre" (print $eye ": ") "Accent" .Term.Name "Post" $post "Lede" .Term.Description "Terms" $terms "Cur" .Term.URL "All" (default "/blog" .Settings.archive_url) "Items" .Items "Pg" .Pagination}}
+{{end}}

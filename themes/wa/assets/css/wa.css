@@ -390,3 +390,15 @@ span.wa-pager__dir { color: var(--wa-muted); }
   .wa-prevnext__a--next { grid-column: auto; }
   .wa-authorbox { flex-direction: column; align-items: flex-start; }
 }
+
+/* ---- listings: archive, category, author, search ---- */
+.wa-pagehd { padding-block: 56px 48px; background: var(--wa-band); }
+.wa-pagehd h1 { margin: 12px 0 0; font-size: var(--wa-step-5); letter-spacing: -.045em; line-height: 1; overflow-wrap: anywhere; }
+.wa-pagehd__lede { max-inline-size: 52ch; margin: 12px 0 0; color: var(--wa-muted); font-size: var(--wa-step-1); }
+.wa-pagehd .wa-chips { margin-block-start: 22px; }
+.wa-listbody { padding-block: 40px var(--wa-section); }
+.wa-listbody .wa-empty { padding-block: 24px; }
+@media (max-width: 640px) {
+  .wa-pagehd { padding-block: 40px 32px; }
+  .wa-pagehd h1 { font-size: var(--wa-step-4); }
+}
