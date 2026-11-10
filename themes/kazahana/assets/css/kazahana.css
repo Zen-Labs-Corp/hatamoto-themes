@@ -281,6 +281,13 @@ img, svg { max-width: 100%; }
 .kz-panel .kz-pagehead h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
 .kz-panel > .kz-search { margin-block: 1.2rem .4rem; }
 .kz-panel .kz-empty { padding-block: 2rem; }
+.kz-nf { padding-block: clamp(3rem, 8vw, 5rem) var(--kz-section); text-align: center; }
+.kz-nf__code { display: block; color: var(--kz-primary-text); font: italic 500 clamp(5rem, 22vw, 11rem)/1 var(--hm-font-heading); overflow-wrap: anywhere; }
+.kz-nf h1 { margin: .5rem 0; font-size: var(--kz-step-3); line-height: 1.1; overflow-wrap: anywhere; }
+.kz-nf p { max-inline-size: 28rem; margin: 0 auto 1.4rem; color: var(--kz-muted); }
+.kz-nf__search { max-inline-size: 28rem; margin-inline: auto; }
+.kz-nf__search .kz-btn { background: var(--hm-text); color: var(--hm-bg); }
+.kz-nf .kz-nf__back { margin-block: 1.8rem 0; color: var(--hm-text); }
 mark { padding: 0 .15em; border-radius: 3px; background: color-mix(in srgb, var(--kz-primary) 22%, transparent); color: inherit; }
 
 /* ---- post ---- */
