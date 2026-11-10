@@ -103,7 +103,10 @@
   {
    "home": true,
    "name": "Home",
-   "content": "<p>Welcome to Field Notes.</p>"
+   "sections": [],
+   "attributes": {
+    "content": ""
+   }
   },
   {
    "slug": "about",
