@@ -156,14 +156,14 @@
       "newsletter_button": {
         "type": "string",
         "title": "Newsletter button",
-        "description": "Label of the button; also the header button when the site has no header call to action.",
+        "description": "Label of the button; also the header button when the site has no header call to action. Empty hides both buttons.",
         "default": "Subscribe"
       },
       "newsletter_url": {
         "type": "string",
         "title": "Newsletter link",
-        "description": "Where the button goes (a page with your sign-up form, for example).",
-        "default": "/about"
+        "description": "Where the button goes (a page with your sign-up form, for example). Empty hides the newsletter button and the header button.",
+        "default": ""
       },
       "signal_colour": {
         "type": "string",

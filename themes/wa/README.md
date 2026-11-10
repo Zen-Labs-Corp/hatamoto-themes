@@ -51,14 +51,14 @@ page keeps rendering.
 | Announcement link (`announce_url`) | text | `/blog` | Where the button goes. |
 | Newsletter heading, accent, end (`newsletter_heading`, `newsletter_accent`, `newsletter_tail`) | text | `Stay in`, `the loop`, empty | The newsletter heading. |
 | Newsletter text (`newsletter_text`) | text | `Find out what is new, in one place.` | One line under the heading. |
-| Newsletter button (`newsletter_button`) | text | `Subscribe` | The button label; also the header button when the site has no header button of its own. |
-| Newsletter link (`newsletter_url`) | text | `/about` | Where that button goes, for example a page with your sign-up form. |
+| Newsletter button (`newsletter_button`) | text | `Subscribe` | The button label; also the header button when the site has no header button of its own. Empty hides both buttons. |
+| Newsletter link (`newsletter_url`) | text | empty | Where that button goes, for example a page with your sign-up form. While it is empty, neither the newsletter button nor the header button is shown. |
 | Signal colour (`signal_colour`) | hex colour | `#c8f04a` | The accent on chips, badges and the newsletter button. Text on it is a fixed dark ink, so choose a **light** colour; a dark value makes that text hard to read. It is a plain text field: type a value such as `#c8f04a`. |
 | Journal link (`archive_url`) | text | `/blog` | Where the "All stories" links and the 404 button lead. |
 | Use the home page's own blocks (`home_sections`) | on/off | on | When the home page has blocks built in the editor, they are shown instead of the generated magazine home (so a business or landing site keeps its own home). A home without blocks shows the magazine home. Switch off to always show the magazine home. |
 
 Empty text settings fall back to their defaults, except the announcement text, the
-announcement button and the newsletter heading end, which hide their part.
+announcement button, the newsletter heading end, the newsletter button and the newsletter link, which hide their part.
 
 ## Colours and fonts
 

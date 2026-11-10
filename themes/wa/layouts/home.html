@@ -46,7 +46,7 @@
 <div>
 {{$newest := ""}}{{if gt $n 0}}{{$first := index $items 0}}{{if not $first.PublishedAt.IsZero}}{{$newest = formatDate $first.PublishedAt "2 Jan 2006"}}{{end}}{{end}}
 {{if or $r.Total (len $cats) $newest}}<dl class="wa-stats">{{if $r.Total}}<div><dt>{{if eq $r.Total 1}}story so far{{else}}stories so far{{end}}</dt><dd>{{$r.Total}}</dd></div>{{end}}{{if $cats}}<div><dt>{{if eq (len $cats) 1}}topic{{else}}topics{{end}}</dt><dd>{{len $cats}}</dd></div>{{end}}{{if $newest}}<div><dt>latest story</dt><dd>{{$newest}}</dd></div>{{end}}</dl>{{end}}
-<a class="wa-news__btn" href="{{cta (default "/about" .Settings.newsletter_url)}}">{{default "Subscribe" .Settings.newsletter_button}} &rarr;</a>
+{{$nl := trim .Settings.newsletter_button}}{{$nu := trim .Settings.newsletter_url}}{{if and $nl $nu}}<a class="wa-news__btn" href="{{cta $nu}}">{{$nl}} &rarr;</a>{{end}}
 </div>
 </div>{{end}}
 </div></section>
