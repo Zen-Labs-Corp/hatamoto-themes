@@ -12,7 +12,7 @@ Env: DATABASE_URL (must point at this machine), BASE (the running server),
      HATAMOTO_BIN (default hatamoto), PSQL (default psql).
 Usage: python3 scripts/seed-site.py site-types/<type>/seed.json
 """
-import datetime, http.cookiejar, json, os, re, struct, subprocess, sys, urllib.error, urllib.parse, urllib.request, uuid, zlib
+import atexit, datetime, http.cookiejar, json, os, re, shutil, struct, subprocess, sys, tempfile, urllib.error, urllib.parse, urllib.request, uuid, zlib
 
 DB = os.environ.get("DATABASE_URL", "")
 BASE = os.environ.get("BASE", "").rstrip("/")
@@ -165,7 +165,8 @@ token("/admin")
 site = S["site"]
 # The admin hides every screen until the profile (name and photo) is complete;
 # the upload is exempt from that gate.
-tmp = os.environ.get("TMPDIR", "/tmp")
+tmp = tempfile.mkdtemp(prefix="hm-seed-")
+atexit.register(shutil.rmtree, tmp, ignore_errors=True)
 av = os.path.join(tmp, "owner-avatar.png")
 png(av, 256, 256, [site.get("colour", "#c23b22"), "#ffffff", "#000000"], "dots")
 photo = upload(av)
