@@ -1,12 +1,12 @@
-{{define "footer"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$quote := default .Site.Tagline .Settings.footer_quote}}<footer class="yk-footer">
+{{define "footer"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$posts := recent "post" 1}}{{$quote := default .Site.Tagline .Settings.footer_quote}}<footer class="yk-footer">
 <div class="yk-wrap yk-footer__inner">
 <div class="yk-footer__brand">{{template "yk-brand" dict "Root" .}}{{with $quote}}<p class="yk-footer__quote">&ldquo;{{.}}&rdquo;</p>{{end}}</div>
-<nav class="yk-footer__col" aria-labelledby="yk-f-journal"><h2 id="yk-f-journal">Journal</h2>
-<ul><li><a href="{{cta $arch}}">Latest</a></li>{{range $i, $c := $cats}}{{if lt $i 3}}<li><a href="{{$c.URL}}">{{$c.Name}}</a></li>{{end}}{{end}}</ul></nav>
-{{if gt (len $cats) 3}}<nav class="yk-footer__col" aria-labelledby="yk-f-topics"><h2 id="yk-f-topics">Topics</h2>
+{{if or $posts $cats}}<nav class="yk-footer__col" aria-labelledby="yk-f-journal"><h2 id="yk-f-journal">Journal</h2>
+<ul>{{if $posts}}<li><a href="{{cta $arch}}">Latest</a></li>{{end}}{{range $i, $c := $cats}}{{if lt $i 3}}<li><a href="{{$c.URL}}">{{$c.Name}}</a></li>{{end}}{{end}}</ul></nav>
+{{end}}{{if gt (len $cats) 3}}<nav class="yk-footer__col" aria-labelledby="yk-f-topics"><h2 id="yk-f-topics">Topics</h2>
 <ul>{{range $i, $c := $cats}}{{if ge $i 3}}<li><a href="{{$c.URL}}">{{$c.Name}}</a></li>{{end}}{{end}}</ul></nav>
-{{end}}<nav class="yk-footer__col" aria-labelledby="yk-f-site"><h2 id="yk-f-site">Site</h2>
-<ul>{{range .Site.FooterNav}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>{{end}}<li><a href="/feed.xml">RSS</a></li></ul></nav>
-<p class="yk-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
+{{end}}{{if or .Site.FooterNav .Site.SocialLinks $posts}}<nav class="yk-footer__col" aria-labelledby="yk-f-site"><h2 id="yk-f-site">Site</h2>
+<ul>{{range .Site.FooterNav}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>{{end}}{{if $posts}}<li><a href="/feed.xml">RSS</a></li>{{end}}</ul></nav>
+{{end}}<p class="yk-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
 </div>
 </footer>{{end}}

@@ -5,12 +5,12 @@
 {{define "yk-brand"}}<a class="yk-brand" href="/" aria-label="{{.Root.Site.Name}}, home">{{if .Root.Site.LogoURL}}<img src="{{imgsrc .Root.Site.LogoURL}}" alt="{{.Root.Site.Name}}" height="28">{{else}}<span class="yk-mark" aria-hidden="true">{{template "yk-initial" dict "Name" .Root.Site.Name}}</span><span class="yk-brand__name">{{.Root.Site.Name}}</span>{{end}}</a>{{end}}
 {{/* yk-nav-item: a menu item; a group without an address is a plain label, not a button. dict "Item" . "Path" ... */}}
 {{define "yk-nav-item"}}{{$i := (navlink .).Item}}{{if and (or (not $i.Href) (eq $i.Href "#")) $i.Children}}<span class="yk-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
-{{/* yk-cta: the header button. The site's own header button wins, else the theme settings; no address, no button. dict "Root" . "Class" s */}}
-{{define "yk-cta"}}{{$l := default "Subscribe" .Root.Settings.cta_label}}{{$u := .Root.Settings.cta_url}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if $u}}<a class="{{.Class}}" href="{{cta $u}}">{{$l}}</a>{{end}}{{end}}
+{{/* yk-cta: the header button. The site's own header button wins, else the theme settings; no address, no button. The default /feed.xml only exists on a site with posts, so it is hidden on one without. dict "Root" . "Class" s */}}
+{{define "yk-cta"}}{{$l := default "Subscribe" .Root.Settings.cta_label}}{{$u := .Root.Settings.cta_url}}{{if eq $u "/feed.xml"}}{{if not (recent "post" 1)}}{{$u = ""}}{{end}}{{end}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if $u}}<a class="{{.Class}}" href="{{cta $u}}">{{$l}}</a>{{end}}{{end}}
 {{/* yk-masthead-text: the site name, with the last word on its own line in italic serif when split_masthead is on. dict "Root" . */}}
 {{define "yk-masthead-text"}}{{$n := trim .Root.Site.Name}}{{$words := split $n " "}}{{$last := sub (len $words) 1}}{{if ne (printf "%v" .Root.Settings.split_masthead) "false"}}{{$first := ""}}{{range $i, $w := $words}}{{if lt $i $last}}{{$first = print $first " " $w}}{{end}}{{end}}{{with trim $first}}{{.}}{{end}}<em>{{index $words $last}}</em>{{else}}{{$n}}{{end}}{{end}}
 {{/* yk-cats: category links, "Latest" first. dict "Cats" terms "Cur" "all"|term URL|"none" "All" archive URL */}}
-{{define "yk-cats"}}<a href="{{cta .All}}"{{if eq .Cur "all"}} aria-current="page"{{end}}>Latest</a>{{range .Cats}}<a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}{{end}}
+{{define "yk-cats"}}{{if recent "post" 1}}<a href="{{cta .All}}"{{if eq .Cur "all"}} aria-current="page"{{end}}>Latest</a>{{end}}{{range .Cats}}<a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}{{end}}
 {{/* yk-sidebar: masthead, tagline, hairline, category list. The masthead is the page h1 only when H1 is true. dict "Root" . "Cats" terms "Cur" s "All" url "H1" bool */}}
 {{define "yk-sidebar"}}<aside class="yk-side">
 {{if .H1}}<h1 class="yk-mast">{{template "yk-masthead-text" dict "Root" .Root}}</h1>{{else}}<p class="yk-mast">{{template "yk-masthead-text" dict "Root" .Root}}</p>{{end}}
