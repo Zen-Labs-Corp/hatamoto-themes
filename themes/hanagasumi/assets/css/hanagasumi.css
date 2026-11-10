@@ -28,8 +28,8 @@
   --hg-line: #f1e6e9;
   --hg-sage: #a9c4b4;
   --hg-primary: var(--hm-primary);
-  /* text on primary fills: dark on light primaries, light on dark ones */
-  --hg-primary-ink: #4a1f31;
+  /* text on primary fills: black or white, whichever the fill takes at 4.5:1 (see the @supports blocks) */
+  --hg-primary-ink: #1a1a1a;
   /* accent text, links, chips: darkened from the owner's primary so it stays AA */
   --hg-primary-text: color-mix(in srgb, var(--hg-primary) 30%, #6e1a3d);
   --hg-primary-soft: color-mix(in srgb, var(--hg-primary) 22%, var(--hg-surface));
@@ -89,8 +89,13 @@
 /* corner style: Soft tightens every radius */
 :root[data-hg-corner="soft"] { --hg-radius-xs: 4px; --hg-radius-sm: 6px; --hg-radius-md: 10px; --hg-radius-lg: 14px; --hg-radius-xl: 18px; }
 
-@supports (color: oklch(from red l c h)) {
-  :root { --hg-primary-ink: oklch(from var(--hg-primary) clamp(.2, (.68 - l) * 1000, .98) .03 h); }
+@supports (color: color(from red xyz x y z)) {
+  /* relative luminance y of the fill: white text at or below .179, black above it. That is where both reach the same contrast, 4.5:1 or better for any fill. */
+  :root { --hg-primary-ink: color(from var(--hg-primary) xyz-d65 calc(clamp(0, (.179 - y) * 1000, 1) * .95047) clamp(0, (.179 - y) * 1000, 1) calc(clamp(0, (.179 - y) * 1000, 1) * 1.08883)); }
+}
+@supports not (color: color(from red xyz x y z)) {
+  /* no relative colour: dark ink on a fill lightened toward white, 7:1 or better for any primary */
+  .hg-btn--primary, .hg-pager a[aria-current] { background: #f5adc3; background: color-mix(in srgb, var(--hg-primary) 35%, #fff); border-color: transparent; }
 }
 
 /* ---- palette (dark): the system choice, the toggle, or the owner's default ---- */
