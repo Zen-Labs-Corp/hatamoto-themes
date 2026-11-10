@@ -22,7 +22,7 @@
    category, or one past the list, gets the fifth. dict "Item" . "Root" . "Cats" terms "Level" 2|3 */}}
 {{define "sy-card"}}{{$it := .Item}}{{$s := .Root.Settings}}{{$cls := "sy-t5"}}{{$curl := ""}}{{range $i, $t := .Cats}}{{if eq $t.Name $it.Category}}{{$cls = print "sy-t" (add (mod $i 5) 1)}}{{$curl = $t.URL}}{{end}}{{end}}{{if eq (print $s.card_tints) "false"}}{{$cls = "sy-t0"}}{{end}}
 <article class="sy-card">
-<a class="sy-card__media {{$cls}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 860px) 100vw, 480px"{{end}} alt="" decoding="async">{{else}}<span class="sy-card__ph">{{template "sy-initial" dict "Name" (default (default .Root.Site.Name $it.Title) $it.Category)}}</span>{{end}}</a>
+<a class="sy-card__media {{$cls}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 860px) 100vw, 480px"{{end}} alt="">{{else}}<span class="sy-card__ph">{{template "sy-initial" dict "Name" (default (default .Root.Site.Name $it.Title) $it.Category)}}</span>{{end}}</a>
 {{with $it.Category}}<p class="sy-card__kicker">{{if $curl}}<a href="{{$curl}}">{{.}}</a>{{else}}{{.}}{{end}}</p>{{end}}
 {{if eq .Level 3}}<h3 class="sy-card__title">{{else}}<h2 class="sy-card__title">{{end}}<a href="{{$it.URL}}">{{$it.Title}}</a>{{if eq .Level 3}}</h3>{{else}}</h2>{{end}}
 {{with $it.Excerpt}}<p class="sy-card__excerpt">{{.}}</p>{{end}}

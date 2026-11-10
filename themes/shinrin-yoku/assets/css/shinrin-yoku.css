@@ -114,6 +114,13 @@
   }
 }
 
+/* images sit a little lower in the dark */
+:root[data-theme="dark"] .sy-card__media img, :root[data-theme="dark"] .sy-article__cover img, :root[data-theme="dark"] .sy-prose img,
+:root[data-sy-mode="dark"]:not([data-theme]):not([data-sy-js]) .sy-card__media img { filter: brightness(.9); }
+@media (prefers-color-scheme: dark) {
+  :root[data-sy-mode="auto"]:not([data-theme]):not([data-sy-js]) .sy-card__media img { filter: brightness(.9); }
+}
+
 /* ---- base ---- */
 html { font-size: 100%; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--hm-bg); color: var(--hm-text); font-family: var(--hm-font); font-size: 1rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
