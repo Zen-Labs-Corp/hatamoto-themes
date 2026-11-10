@@ -1,0 +1,9 @@
+{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$r := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}
+<div class="sy-wrap sy-layout">
+{{template "sy-sidebar" dict "Root" . "Cats" $cats "Cur" "all" "H1" true "All" $arch}}
+<div class="sy-main">
+{{template "sy-chips" dict "Cats" $cats "Cur" "all" "All" $arch}}
+{{template "sy-grid" dict "Root" . "Items" $r.Items "Cats" $cats}}
+{{template "sy-pager" dict "Page" $r.Page "Pages" $r.Pages "Base" "/"}}
+</div>
+</div>{{end}}
