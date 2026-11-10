@@ -76,6 +76,8 @@
 
   /* ---- the default theme's names, so its sections follow this palette ---- */
   --hm-sumi: var(--hg-ink);
+  --hm-sumi-soft: var(--hg-ink);
+  --hm-kinu: var(--hg-tint);
   --hm-hai: var(--hg-muted);
   --hm-label: var(--hg-muted);
   --hm-hair: var(--hg-line);
@@ -115,6 +117,16 @@
   --hg-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px -12px rgba(0, 0, 0, .6);
   --hm-bg: var(--hg-paper);
   --hm-text: var(--hg-ink);
+  /* the built-in theme sets its own dark values on this same selector; map them again so its sections follow the plum palette */
+  --hm-sumi: var(--hg-ink);
+  --hm-sumi-soft: var(--hg-ink);
+  --hm-hai: var(--hg-muted);
+  --hm-label: var(--hg-muted);
+  --hm-hair: var(--hg-line);
+  --hm-shiro: var(--hg-surface);
+  --hm-kinu: var(--hg-tint);
+  --hm-kasumi: var(--hg-tint);
+  --hm-focus: var(--hg-primary-text);
 }
 
 /* home without the story rail: one column */
