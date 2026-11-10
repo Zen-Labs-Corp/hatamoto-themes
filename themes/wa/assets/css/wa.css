@@ -206,7 +206,7 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 700; letter-s
 .wa-chip:hover { border-color: var(--wa-primary); }
 .wa-chip[aria-current="true"] { border-color: var(--wa-ink); background: var(--wa-ink); color: var(--wa-paper); }
 .wa-pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 20px; margin-block-start: 40px; font-size: 14px; font-weight: 600; }
-.wa-pager ul { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.wa-pager ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .wa-pager li > a, .wa-pager li > span { display: grid; place-items: center; min-inline-size: 38px; block-size: 38px; padding-inline: 8px; border: 1px solid var(--wa-line); border-radius: var(--wa-r-pill); background: var(--wa-surface); color: var(--wa-ink); text-decoration: none; }
 .wa-pager li > span { border: 0; background: none; }
 .wa-pager li > a[aria-current="page"] { border-color: var(--wa-ink); background: var(--wa-ink); color: var(--wa-paper); }
