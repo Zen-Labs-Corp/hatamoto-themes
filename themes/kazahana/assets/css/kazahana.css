@@ -120,7 +120,6 @@ img, svg { max-width: 100%; }
 :focus-visible { outline: 2px solid var(--kz-primary-text); outline-offset: 3px; }
 /* red is too dark on pine; the pale pine ink is at least 3:1 on it, light and dark */
 .kz-footer :focus-visible, .kz-intro :focus-visible, .kz-menu__panel :focus-visible { outline-color: var(--kz-pine-ink); }
-.kz-header:has(.kz-menu[open]) :focus-visible { outline-color: var(--kz-pine-ink); }
 ::selection { background: color-mix(in srgb, var(--kz-primary) 25%, transparent); }
 .kz-sr { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .kz-wrap { width: min(100% - 2 * var(--kz-gap), var(--hm-container)); margin-inline: auto; }
@@ -375,6 +374,7 @@ mark { padding: 0 .15em; border-radius: 3px; background: color-mix(in srgb, var(
   .kz-header:has(.kz-menu[open]) .kz-brand, .kz-header:has(.kz-menu[open]) .kz-mode { color: var(--kz-pine-ink); }
   .kz-header:has(.kz-menu[open]) .kz-mode { background: none; border-color: var(--kz-pine-ink); }
   .kz-header:has(.kz-menu[open]) .kz-strip { display: none; }
+  .kz-header:has(.kz-menu[open]) :focus-visible { outline-color: var(--kz-pine-ink); }
   .kz-menu[open] summary { border-color: var(--kz-pine-ink); }
   .kz-footer__grid { grid-template-columns: 1fr 1fr; }
   .kz-intro, .kz-lead, .kz-band { grid-template-columns: minmax(0, 1fr); }
