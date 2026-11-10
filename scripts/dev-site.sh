@@ -68,7 +68,9 @@ cleanup() {
   if [ "${KEEP:-}" = 1 ]; then echo "dev-site: kept $W"; else rm -rf "$W"; fi
 }
 trap cleanup EXIT
-trap 'exit 130' INT TERM
+# A failure must say why: errexit used to end the script without a word.
+trap 'echo "dev-site: line $LINENO: $BASH_COMMAND failed (status $?)" >&2' ERR
+for sig in HUP INT TERM; do trap "echo 'dev-site: got SIG$sig' >&2; exit 130" "$sig"; done
 port() { python3 -c 'import socket;s=socket.socket();s.bind(("127.0.0.1",0));print(s.getsockname()[1])'; }
 
 # Postgres: a fresh cluster, trust auth, loopback only. A port can be taken
