@@ -1,4 +1,4 @@
-{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$cur := ""}}{{$kick := "Tag"}}{{if eq .Term.Kind "category"}}{{$cur = .Term.URL}}{{$kick = "Category"}}{{end}}
+{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$cur := ""}}{{$kick := .Term.Kind}}{{if eq .Term.Kind "category"}}{{$cur = .Term.URL}}{{$kick = "Category"}}{{else if eq .Term.Kind "tag"}}{{$kick = "Tag"}}{{end}}
 <div class="sy-wrap sy-layout">
 {{template "sy-sidebar" dict "Root" . "Cats" $cats "Cur" $cur "H1" false "All" $arch}}
 <div class="sy-main">

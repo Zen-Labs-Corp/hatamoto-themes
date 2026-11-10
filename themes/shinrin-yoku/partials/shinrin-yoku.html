@@ -19,17 +19,17 @@
 {{/* sy-chips: the category list as a scrolling chip row, below 860px only. dict "Cats" terms "Cur" "" "All" url */}}
 {{define "sy-chips"}}{{if .Cats}}<nav class="sy-chips" aria-label="Categories"><a href="{{cta .All}}"{{if eq .Cur "all"}} aria-current="page"{{end}}>Latest</a>{{range .Cats}}<a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{end}}{{end}}
 {{/* sy-card: one post. The panel tint follows the category's place in the term list (cycling five); a post with no
-   category, or one past the list, gets the fifth. dict "Item" . "Root" . "Cats" terms "Level" 2|3 */}}
+   category, or one past the list, gets the fifth. dict "Item" . "Root" . "Cats" terms "Level" 2|3 "Lazy" bool */}}
 {{define "sy-card"}}{{$it := .Item}}{{$s := .Root.Settings}}{{$cls := "sy-t5"}}{{$curl := ""}}{{range $i, $t := .Cats}}{{if eq $t.Name $it.Category}}{{$cls = print "sy-t" (add (mod $i 5) 1)}}{{$curl = $t.URL}}{{end}}{{end}}{{if eq (print $s.card_tints) "false"}}{{$cls = "sy-t0"}}{{end}}
 <article class="sy-card">
-<a class="sy-card__media {{$cls}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 860px) 100vw, 480px"{{end}} alt="">{{else}}<span class="sy-card__ph">{{template "sy-initial" dict "Name" (default (default .Root.Site.Name $it.Title) $it.Category)}}</span>{{end}}</a>
+<a class="sy-card__media {{$cls}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 860px) 100vw, 480px"{{end}} alt=""{{if .Lazy}} loading="lazy"{{end}}>{{else}}<span class="sy-card__ph">{{template "sy-initial" dict "Name" (default (default .Root.Site.Name $it.Title) $it.Category)}}</span>{{end}}</a>
 {{with $it.Category}}<p class="sy-card__kicker">{{if $curl}}<a href="{{$curl}}">{{.}}</a>{{else}}{{.}}{{end}}</p>{{end}}
 {{if eq .Level 3}}<h3 class="sy-card__title">{{else}}<h2 class="sy-card__title">{{end}}<a href="{{$it.URL}}">{{$it.Title}}</a>{{if eq .Level 3}}</h3>{{else}}</h2>{{end}}
 {{with $it.Excerpt}}<p class="sy-card__excerpt">{{.}}</p>{{end}}
 {{$auth := and $it.Author (ne (print $s.show_author) "false")}}{{if or $auth (not $it.PublishedAt.IsZero)}}<p class="sy-card__by">{{if $auth}}<span class="sy-av" aria-hidden="true">{{template "sy-initials" dict "Name" $it.Author}}</span>{{end}}<span>{{if $auth}}{{if $it.AuthorURL}}<a href="{{$it.AuthorURL}}">{{$it.Author}}</a>{{else}}<b>{{$it.Author}}</b>{{end}}{{end}}{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}</span></p>{{end}}
 </article>{{end}}
 {{/* sy-grid: the two-column card grid, or the empty state. dict "Root" . "Items" items "Cats" terms */}}
-{{define "sy-grid"}}{{if .Items}}<div class="sy-grid">{{range .Items}}{{template "sy-card" dict "Item" . "Root" $.Root "Cats" $.Cats "Level" 2}}{{end}}</div>{{else}}<p class="sy-empty">{{if .Root.Query}}No results for &ldquo;{{.Root.Query}}&rdquo;.{{else}}No posts yet. Check back soon.{{end}}</p>{{end}}{{end}}
+{{define "sy-grid"}}{{if .Items}}<div class="sy-grid">{{range $i, $_ := .Items}}{{template "sy-card" dict "Item" . "Root" $.Root "Cats" $.Cats "Level" 2 "Lazy" (gt $i 1)}}{{end}}</div>{{else}}<p class="sy-empty">{{if .Root.Query}}No results for &ldquo;{{.Root.Query}}&rdquo;.{{else}}No posts yet. Check back soon.{{end}}</p>{{end}}{{end}}
 {{/* sy-page-url: page N of a listing. With "Pg" (.Pagination) the engine builds it; else "Base" and ?page=N. dict "N" 2 "Pg" . "Base" "/" */}}
 {{define "sy-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}{{.Base}}{{else}}{{.Base}}?page={{.N}}{{end}}{{end}}
 {{/* sy-pager: numbered pages, only when there is more than one. dict "Page" 1 "Pages" 3 "Base" "/" "Pg" .Pagination|nil */}}

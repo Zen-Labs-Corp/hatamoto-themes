@@ -13,6 +13,6 @@
 </article>
 {{if $post}}{{with call .Related 2}}<section class="sy-wrap sy-related" aria-labelledby="sy-related-h">
 <h2 id="sy-related-h">More posts</h2>
-<div class="sy-grid">{{range .}}{{template "sy-card" dict "Item" . "Root" $ "Cats" $cats "Level" 3}}{{end}}</div>
+<div class="sy-grid">{{range .}}{{template "sy-card" dict "Item" . "Root" $ "Cats" $cats "Level" 3 "Lazy" true}}{{end}}</div>
 </section>{{end}}{{end}}
 {{else}}{{template "page-body" .}}{{end}}{{end}}
