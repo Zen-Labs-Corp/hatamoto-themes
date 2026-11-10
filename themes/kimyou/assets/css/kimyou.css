@@ -141,7 +141,7 @@ body.km-body { margin: 0; background: var(--km-paper); color: var(--km-ink); fon
 .km-runhead__inner span:first-child { min-width: 0; }
 .km-runhead__inner span:last-child { text-align: right; white-space: nowrap; }
 
-/* the no-JS mobile menu: a details element, hidden from 640px up */
+/* the no-JS mobile menu: a details element, hidden from 900px up */
 .km-menu { display: none; }
 .km-menu summary { display: grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border: 1px solid var(--km-line); border-radius: var(--hm-radius-md); cursor: pointer; list-style: none; }
 .km-menu summary::-webkit-details-marker { display: none; }
@@ -168,9 +168,11 @@ body.km-body { margin: 0; background: var(--km-paper); color: var(--km-ink); fon
 .km-footer__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; font: 500 1.15rem/1.3 var(--km-display); }
 .km-footer__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 0; padding-top: 1.5rem; font: 500 .78rem/1.4 var(--km-sans); opacity: .7; }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .km-nav, .km-header__cta { display: none; }
   .km-menu { display: block; }
+}
+@media (max-width: 640px) {
   .km-header__inner { min-height: 3.75rem; }
   .km-brand__name { font-size: 1.45rem; }
   .km-runhead__inner span:first-child { display: none; }
