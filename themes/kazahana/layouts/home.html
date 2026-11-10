@@ -1,7 +1,7 @@
-{{define "content"}}{{$q := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{$items := $q.Items}}{{$n := len $items}}{{$cats := terms "category" 8}}{{$arch := default "/blog" .Settings.archive_url}}{{$hero := false}}{{range .Blocks}}{{if eq .Type "hero"}}{{$hero = true}}{{end}}{{end}}
-{{if .Settings.show_intro}}<section class="kz-wrap"><div class="kz-intro">
+{{define "content"}}{{$q := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{$items := $q.Items}}{{$n := len $items}}{{$cats := terms "category" 8}}{{$arch := default "/blog" .Settings.archive_url}}{{$hero := false}}{{range .Blocks}}{{if or (eq .Type "hero") .Native}}{{$hero = true}}{{end}}{{end}}
+{{/* a builder hero (or any native block) prints its own h1 and takes the intro's place; otherwise the intro carries the h1 */}}{{if and .Settings.show_intro (not $hero)}}<section class="kz-wrap"><div class="kz-intro">
 <div class="kz-intro__main">
-{{/* a hero section brings the one h1, so the intro title steps down to h2 only then */}}{{if $hero}}<h2 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h2>{{else}}<h1 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h1>{{end}}
+<h1 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h1>
 {{with .Entity}}{{with .Excerpt}}<p class="kz-intro__text">{{.}}</p>{{end}}{{end}}
 {{if $cats}}<nav class="kz-chips" aria-label="Browse topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>{{end}}
 </div>
