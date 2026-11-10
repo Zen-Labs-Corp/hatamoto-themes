@@ -1,0 +1,1 @@
+{{define "content"}}{{$k := "Category"}}{{if eq .Term.Kind "tag"}}{{$k = "Tag"}}{{end}}{{template "hg-listing" dict "Root" . "Kicker" $k "Title" .Term.Name "Lede" .Term.Description "Chips" (eq .Term.Kind "category") "All" "/blog" "Cur" .Term.URL}}{{end}}

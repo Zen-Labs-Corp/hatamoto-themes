@@ -30,3 +30,29 @@
 </li>{{end}}
 {{/* hg-newsletter-field: the pill field that links to the subscribe target. dict "Root" . "Label" "Join" */}}
 {{define "hg-newsletter-field"}}<div class="hg-field"><span aria-hidden="true">you@example.com</span>{{template "hg-subscribe" dict "Root" .Root "Class" "hg-btn hg-btn--primary" "Label" .Label}}</div>{{end}}
+{{/* hg-grid-card: a grid card (image, chip and date, title, excerpt). dict "Item" . */}}
+{{define "hg-grid-card"}}{{$it := .Item}}<li class="hg-card hg-card--grid">
+<a class="hg-card__img hg-card__img--wide" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{template "hg-thumb" dict "Item" $it "Sizes" "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 420px"}}</a>
+<div class="hg-card__meta">{{with $it.Category}}{{template "hg-chip" dict "Label" .}}{{else}}<span></span>{{end}}<span class="hg-label">{{template "hg-date" $it.PublishedAt}}</span></div>
+<h2 class="hg-card__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h2>
+{{with $it.Excerpt}}<p class="hg-card__ex">{{.}}</p>{{end}}
+</li>{{end}}
+{{/* hg-page-url: the address of page N of a listing. dict "N" 2 "Pg" .Pagination */}}
+{{define "hg-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+{{/* hg-pager: pill pager with numbered pages, only when there is more than one page. dict "Pg" .Pagination */}}
+{{define "hg-pager"}}{{with .Pg}}{{if gt .TotalPages 1}}{{$p := .Page}}{{$n := .TotalPages}}{{$pg := .}}<nav class="hg-pager" aria-label="Pagination">
+{{if gt $p 1}}<a class="hg-pager__dir" rel="prev" href="{{template "hg-page-url" dict "N" (sub $p 1) "Pg" $pg}}" aria-label="Newer stories"><span aria-hidden="true">&larr;</span></a>{{else}}<span class="hg-pager__dir" aria-hidden="true">&larr;</span>{{end}}
+<ul>{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a href="{{template "hg-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<li><span aria-hidden="true">&hellip;</span></li>{{end}}{{end}}</ul>
+{{if lt $p $n}}<a class="hg-pager__dir" rel="next" href="{{template "hg-page-url" dict "N" (add $p 1) "Pg" $pg}}" aria-label="Older stories"><span aria-hidden="true">&rarr;</span></a>{{else}}<span class="hg-pager__dir" aria-hidden="true">&rarr;</span>{{end}}
+</nav>{{end}}{{end}}{{end}}
+{{/* hg-grid: the listing's cards, an empty state and the pager. dict "Root" . "Empty" "text" */}}
+{{define "hg-grid"}}{{$v := .Root}}{{if $v.Items}}<ul class="hg-grid">{{range $v.Items}}{{template "hg-grid-card" dict "Item" .}}{{end}}</ul>
+{{template "hg-pager" dict "Pg" $v.Pagination}}{{else}}<p class="hg-empty">{{.Empty}}</p>{{end}}{{end}}
+{{/* hg-chip-row: category chips with "All" first. dict "Terms" . "All" url "Cur" url ("" = All is current) */}}
+{{define "hg-chip-row"}}{{if .Terms}}<nav class="hg-chips" aria-label="Topics">{{template "hg-chip" dict "Label" "All" "URL" .All "Ghost" (ne .Cur "") "Current" (eq .Cur "")}}{{range .Terms}}{{template "hg-chip" dict "Label" .Name "URL" .URL "Ghost" (ne $.Cur .URL) "Current" (eq $.Cur .URL)}}{{end}}</nav>{{end}}{{end}}
+{{/* hg-listing: heading with count, chip row and the grid. dict "Root" . "Kicker" "" "Title" "" "Lede" "" "Chips" bool "All" url "Cur" url */}}
+{{define "hg-listing"}}{{$v := .Root}}<section class="hg-archive">
+<header class="hg-archive__head"><div><span class="hg-label">{{.Kicker}}</span><h1 class="hg-archive__title">{{.Title}}{{with $v.Pagination}}{{if .Total}}<sup class="hg-count" aria-label="{{.Total}} in total">{{printf "%02d" .Total}}</sup>{{end}}{{end}}</h1>{{with .Lede}}<p class="hg-archive__lede">{{.}}</p>{{end}}</div>
+{{if .Chips}}{{template "hg-chip-row" dict "Terms" (terms "category" 12) "All" .All "Cur" .Cur}}{{end}}</header>
+{{template "hg-grid" dict "Root" $v "Empty" "Nothing here yet. Check back soon."}}
+</section>{{end}}
