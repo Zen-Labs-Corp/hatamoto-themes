@@ -355,6 +355,15 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 .hg-lost__home { margin: .25rem 0 0; }
 .hg-lost .hg-search { inline-size: 100%; }
 
+/* a long menu would push the Subscribe button off the screen: switch to the menu sheet sooner (separate rules, so a browser without :has just keeps the 860px switch) */
+@media (max-width: 1240px) {
+  .hg-header__in:has(.hg-nav__item:nth-child(6)) .hg-nav, .hg-header__in:has(.hg-nav__item:nth-child(6)) .hg-header__cta { display: none; }
+  .hg-header__in:has(.hg-nav__item:nth-child(6)) .hg-menu { display: block; }
+}
+@media (max-width: 1060px) {
+  .hg-header__in:has(.hg-nav__item:nth-child(5)) .hg-nav, .hg-header__in:has(.hg-nav__item:nth-child(5)) .hg-header__cta { display: none; }
+  .hg-header__in:has(.hg-nav__item:nth-child(5)) .hg-menu { display: block; }
+}
 @media (max-width: 860px) {
   .hg-nav, .hg-header__cta { display: none; }
   .hg-menu { display: block; }
