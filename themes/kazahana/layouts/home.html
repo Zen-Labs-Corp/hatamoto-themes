@@ -1,7 +1,7 @@
-{{define "content"}}{{$q := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{$items := $q.Items}}{{$n := len $items}}{{$cats := terms "category" 8}}{{$arch := default "/blog" .Settings.archive_url}}
+{{define "content"}}{{$q := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{$items := $q.Items}}{{$n := len $items}}{{$cats := terms "category" 8}}{{$arch := default "/blog" .Settings.archive_url}}{{$hero := false}}{{range .Blocks}}{{if eq .Type "hero"}}{{$hero = true}}{{end}}{{end}}
 {{if .Settings.show_intro}}<section class="kz-wrap"><div class="kz-intro">
 <div class="kz-intro__main">
-{{/* the page's own sections bring their own h1 (hero), so the intro title steps down to h2 then */}}{{if .Blocks}}<h2 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h2>{{else}}<h1 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h1>{{end}}
+{{/* a hero section brings the one h1, so the intro title steps down to h2 only then */}}{{if $hero}}<h2 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h2>{{else}}<h1 class="kz-intro__title">{{default .Site.Name .Site.Tagline}}</h1>{{end}}
 {{with .Entity}}{{with .Excerpt}}<p class="kz-intro__text">{{.}}</p>{{end}}{{end}}
 {{if $cats}}<nav class="kz-chips" aria-label="Browse topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>{{end}}
 </div>
@@ -9,7 +9,7 @@
 <ul>{{range $i, $it := $items}}{{if lt $i 3}}<li>{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time>{{else}}<span></span>{{end}}<a href="{{$it.URL}}">{{$it.Title}}</a></li>{{end}}
 {{end}}</ul></div>{{end}}
 </div></section>
-{{else if not .Blocks}}<h1 class="kz-sr">{{.Site.Name}}</h1>
+{{else if not $hero}}<h1 class="kz-sr">{{.Site.Name}}</h1>
 {{end}}{{template "page-body" .}}
 <div class="kz-wrap">
 {{range $i, $it := $items}}{{if eq $i 0}}<article class="kz-lead{{if not $it.Image}} kz-lead--plain{{end}}">
