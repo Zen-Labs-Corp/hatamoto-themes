@@ -103,7 +103,9 @@
 body.km-body { margin: 0; background: var(--km-paper); color: var(--km-ink); font: 400 var(--km-step-0)/1.7 var(--km-serif); }
 :where(.km-body) a { color: inherit; }
 .km-body img, .km-body svg { max-width: 100%; }
-.km-body :focus-visible { outline: 2px solid var(--km-primary); outline-offset: 3px; }
+.km-body :focus-visible { outline: 2px solid var(--km-focus, var(--km-primary)); outline-offset: 3px; }
+/* on the dark bands the primary colour is too dark to see: use the gold text tone (4.6:1 and up on all of them) */
+.km-menu__panel, .km-spread__recto, .km-footer, .km-cloth-head, .km-epigraph { --km-focus: var(--km-gold-ink); }
 .km-wrap { width: min(100% - 2 * var(--km-gap), var(--km-wide)); margin-inline: auto; }
 
 .km-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.25rem; border: 1px solid var(--km-primary); border-radius: var(--hm-radius-md); background: var(--km-primary); color: var(--km-primary-ink); font: 700 .75rem/1 var(--km-sans); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
