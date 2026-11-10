@@ -1,17 +1,15 @@
-{{define "footer"}}<footer class="hg-footer">
-<div class="hg-wrap">
-<div class="hg-footer__top">
-<p class="hg-footer__brand">{{.Site.Name}}{{with .Site.Tagline}}<span>{{.}}</span>{{end}}</p>
-{{if .Site.FooterNav}}<nav class="hg-footer__nav" aria-label="Footer">
-{{range .Site.FooterNav}}<div class="hg-footer__col">
-{{if .Children}}<p class="hg-footer__title">{{.Label}}</p>
-<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{else}}<ul><li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li></ul>{{end}}
+{{define "footer"}}{{$cats := terms "category" 6}}{{$pages := .Site.FooterNav}}{{if not $pages}}{{$pages = .Site.Nav}}{{end}}<footer class="hg-footer">
+<div class="hg-footer__in">
+<div class="hg-footer__card">
+<div class="hg-footer__brand">
+<a class="hg-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img class="hg-brand__logo" src="{{imgsrc .Site.LogoURL}}" alt="" height="30">{{else}}<span class="hg-brand__dot" aria-hidden="true"></span>{{end}}<span class="hg-brand__name">{{.Site.Name}}</span></a>
+{{with .Site.Tagline}}<p class="hg-footer__tag">{{.}}</p>{{end}}
+<div class="hg-field"><span aria-hidden="true">you@example.com</span>{{template "hg-subscribe" dict "Root" . "Class" "hg-btn hg-btn--primary" "Label" "Join"}}</div>
+{{if .Site.SocialLinks}}{{template "hg-social" dict "Root" . "Rss" false}}{{end}}
 </div>
-{{end}}</nav>
+{{if $pages}}<nav class="hg-footer__col" aria-label="Footer"><h2 class="hg-label">Pages</h2>{{range $pages}}{{if .Children}}{{range .Children}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{else}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{end}}</nav>
+{{end}}{{if $cats}}<nav class="hg-footer__col" aria-label="Topics"><h2 class="hg-label">Topics</h2>{{range $cats}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</nav>
 {{end}}</div>
-{{if .Site.SocialLinks}}<ul class="hg-social">
-{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
-{{end}}</ul>
-{{end}}<p class="hg-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
+<p class="hg-footer__bottom"><span>&copy; {{year}} {{.Site.Name}}</span><span><a href="/feed.xml">RSS</a></span></p>
 </div>
 </footer>{{end}}
