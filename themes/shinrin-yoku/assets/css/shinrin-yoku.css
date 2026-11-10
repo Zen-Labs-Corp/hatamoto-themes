@@ -133,6 +133,23 @@ a { color: inherit; }
 /* ---- buttons ---- */
 .hm-btn { background: var(--sy-primary); border-color: var(--sy-primary); color: var(--sy-on-primary); }
 .hm-btn:hover { filter: brightness(1.12); }
+.hm-btn { border-radius: var(--hm-radius-sm); font-weight: 500; }
+.hm-btn--secondary { background: transparent; border-color: var(--sy-line); color: var(--hm-text); }
+.hm-btn--secondary:hover { filter: none; border-color: var(--hm-text); }
+
+/* ---- pages built from the default sections (about, generic pages) ---- */
+.hm-section h1, .hm-section h2 { font-weight: 700; letter-spacing: -.03em; line-height: 1.05; }
+.hm-section h3 { font-weight: 650; letter-spacing: -.02em; }
+.hm-prose, .hm-html-body { color: var(--hm-text); font-size: 1.0625rem; line-height: 1.65; }
+.hm-prose a, .hm-html-body a { color: var(--sy-primary-text); text-underline-offset: 3px; }
+.hm-prose blockquote, .hm-html-body blockquote { margin: 1.6em 0; padding: 0 0 0 1.25rem; border: 0; border-inline-start: 2px solid var(--sy-primary); color: var(--hm-text); font: italic 400 1.375rem/1.4 var(--sy-serif); }
+.hm-prose code, .hm-html-body code { padding: .1em .35em; border-radius: var(--hm-radius-sm); background: var(--sy-surface); font-size: .9em; }
+.hm-prose pre, .hm-html-body pre { padding: 1rem 1.25rem; overflow-x: auto; border: 1px solid var(--sy-line); border-radius: var(--hm-radius-sm); background: var(--sy-surface); }
+.hm-prose pre code, .hm-html-body pre code { padding: 0; background: none; }
+.hm-prose table, .hm-html-body table { display: block; max-inline-size: 100%; overflow-x: auto; }
+.hm-cta--dark { background: var(--hm-text); color: var(--hm-bg); }
+.hm-cta--dark .hm-btn { background: var(--hm-bg); border-color: var(--hm-bg); color: var(--hm-text); }
+.hm-cta--tinted, .hm-frame, .hm-card { background: var(--sy-surface); }
 
 /* ---- shell ---- */
 .sy-wrap { width: min(100% - 2 * var(--sy-gap), var(--hm-container)); margin-inline: auto; }
