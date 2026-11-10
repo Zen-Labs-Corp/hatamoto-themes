@@ -1,0 +1,9 @@
+{{define "content"}}<section class="uk-wrap uk-nf">
+<p class="uk-nf__big" aria-hidden="true">404</p>
+<div class="uk-nf__body">
+<h1 class="uk-nf__title">Page not found</h1>
+<p>The address may have changed, or it has a typo. Search the journal, or start again from the front page.</p>
+{{template "uk-search-form" dict "Root" . "Id" "lost"}}
+<p class="uk-nf__home"><a class="uk-btn" href="/">Back to the front page</a></p>
+</div>
+</section>{{end}}
