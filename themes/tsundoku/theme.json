@@ -1,0 +1,60 @@
+{
+  "name": "tsundoku",
+  "version": "0.1.0",
+  "description": "Warm, playful blog theme: clay paper, plum ink and chartreuse, a rounded bento home and recent posts stacked as coloured book spines.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "archive_path": {
+        "type": "string",
+        "title": "Archive path",
+        "description": "Where the Start reading and Browse buttons go, e.g. /blog. Empty works it out from the newest post's address.",
+        "default": ""
+      },
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "auto"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      },
+      "home_headline": {
+        "type": "string",
+        "title": "Home headline",
+        "description": "Text after a | is highlighted in chartreuse, e.g. Small things|worth noticing.",
+        "default": "Small things|worth noticing."
+      },
+      "recent_style": {
+        "type": "string",
+        "title": "Recent posts",
+        "enum": ["pile", "list"],
+        "default": "pile"
+      },
+      "show_newsletter": {
+        "type": "boolean",
+        "title": "Show the newsletter tile",
+        "default": true
+      },
+      "corners": {
+        "type": "string",
+        "title": "Corners",
+        "enum": ["rounded", "soft", "square"],
+        "default": "rounded"
+      }
+    }
+  }
+}

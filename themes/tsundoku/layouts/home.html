@@ -1,0 +1,20 @@
+{{define "content"}}{{$q := query (dict "schema" "post" "limit" 10)}}{{$posts := $q.Items}}{{$cats := terms "category" 12}}
+{{$style := default "pile" .Settings.recent_style}}{{$letter := ne (printf "%v" .Settings.show_newsletter) "false"}}
+<div class="tk-wrap"><div class="tk-bento">
+<section class="tk-tile tk-hello"><span class="tk-pill tk-pill--solid">{{.Site.Name}}</span>
+<h1 class="tk-hello__title">{{template "tk-hl" (default "Small things|worth noticing." .Settings.home_headline)}}</h1>
+<div class="tk-hello__row">{{with .Site.Tagline}}<p>{{.}}</p>{{end}}{{template "tk-archive" dict "Path" .Settings.archive_path "Items" $posts "Class" "tk-btn" "Label" "Start reading →"}}</div></section>
+{{with $posts}}{{$lead := index . 0}}<article class="tk-tile tk-lead"><a class="tk-lead__link" href="{{$lead.URL}}">
+{{template "tk-media" dict "Item" $lead "N" 0 "Sizes" "(min-width: 60rem) 36rem, 100vw" "Eager" true}}
+{{template "tk-meta" dict "Item" $lead}}<h2 class="tk-lead__title">{{$lead.Title}}</h2>{{with $lead.Excerpt}}<p>{{.}}</p>{{end}}</a></article>{{end}}
+{{if gt (len $posts) 1}}<section class="tk-tile tk-pile{{if not $letter}} tk-pile--wide{{end}}" aria-labelledby="hm-tk-pile-h"><h2 id="hm-tk-pile-h">The pile {{template "tk-archive" dict "Path" .Settings.archive_path "Items" $posts "Label" (printf "All %v notes →" $q.Total)}}</h2>
+<ol class="tk-spines{{if eq $style "list"}} tk-spines--list{{end}}">{{range $i, $p := $posts}}{{if and (ge $i 1) (le $i 5)}}<li>{{template "tk-spine" dict "Item" $p "N" (sub $i 1)}}</li>{{end}}{{end}}</ol></section>{{end}}
+{{if $letter}}<section class="tk-tile tk-letter" aria-labelledby="hm-tk-letter-h"><h2 id="hm-tk-letter-h">Get the letter</h2><p>New notes, straight to you, whenever there is something worth saying.</p>
+{{with .Site.HeaderCTA}}<a class="tk-btn" href="{{cta .URL}}">{{.Label}} &rarr;</a>{{else}}{{with .Site.Feeds}}<a class="tk-btn" href="{{(index . 0).Href}}">Follow by RSS &rarr;</a>{{end}}{{end}}</section>{{end}}
+{{if $cats}}<section class="tk-tile tk-browse" aria-labelledby="hm-tk-browse-h"><h2 id="hm-tk-browse-h">Browse</h2>{{range $cats}}<a class="tk-chip" href="{{.URL}}">{{.Name}}<sup>{{.Count}}</sup></a>{{end}}</section>{{end}}
+</div>
+{{if gt (len $posts) 6}}<div class="tk-cards">{{range $i, $p := $posts}}{{if and (ge $i 6) (le $i 8)}}{{template "tk-card" dict "Item" $p "N" $i "Level" 3}}{{end}}{{end}}</div>{{end}}
+{{/* the untouched first-boot home carries one "welcome" block with core's placeholder text: skip it, print the owner's own blocks */}}
+{{$w := and .Blocks (eq (len .Blocks) 1) (eq (index .Blocks 0).ID "welcome") (eq (printf "%v" (index .Blocks 0).Content.subheadline) "Your site is running. Sign in to the admin to edit this page.")}}
+{{if and .Blocks (or .Canvas .Preview (not $w))}}{{template "page-body" .}}{{end}}
+</div>{{end}}

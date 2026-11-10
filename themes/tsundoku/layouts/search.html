@@ -1,0 +1,8 @@
+{{define "content"}}<div class="tk-wrap">
+<h1 class="tk-sr">Search</h1>
+<form class="tk-search" role="search" action="/search" method="get"><label class="tk-sr" for="hm-tk-search-q">Search the site</label>
+<input id="hm-tk-search-q" type="search" name="q" value="{{.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}
+<button class="tk-btn tk-btn--pop" type="submit">Search</button></form>
+{{if .Query}}{{with .Pagination}}<p class="tk-meta tk-status" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;</p>{{end}}
+{{template "tk-rows" .}}{{template "tk-pager" dict "Pg" .Pagination}}{{else}}<p class="tk-empty">Type a word or phrase to search.</p>{{end}}
+</div>{{end}}

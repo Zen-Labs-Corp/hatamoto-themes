@@ -1,0 +1,14 @@
+{{define "header"}}<header class="tk-header">
+<div class="tk-wrap"><div class="tk-bar">
+<a class="tk-brand{{if .Site.LogoURL}} tk-brand--logo{{end}}" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img class="tk-brand__logo" src="{{imgsrc .Site.LogoURL}}" alt="" height="28">{{end}}<span>{{.Site.Name}}</span></a>
+{{if .Site.Nav}}<nav class="tk-nav" aria-label="Primary"><ul>{{range .Site.Nav}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}{{if .Children}}<ul class="tk-nav__sub">{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>
+{{end}}<div class="tk-bar__end">
+{{with .Site.HeaderCTA}}<a class="tk-btn tk-btn--pop tk-bar__cta" href="{{cta .URL}}">{{.Label}}</a>
+{{end}}<button type="button" class="tk-mode" data-hm-theme-toggle aria-label="Switch to dark mode" aria-pressed="false" hidden><svg class="tk-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="tk-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+<details class="tk-menu"><summary class="tk-menu__btn"><span class="tk-menu__open">Menu</span><span class="tk-menu__close">Close &times;</span></summary>
+<div class="tk-menu__panel">{{if .Site.Nav}}<nav aria-label="Menu"><ul>{{range .Site.Nav}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}{{if .Children}}<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>
+{{end}}<form class="tk-menu__search" role="search" action="/search" method="get"><label class="tk-sr" for="hm-tk-menu-q">Search the site</label><input id="hm-tk-menu-q" type="search" name="q" placeholder="Search the journal" autocomplete="off"></form>
+{{with .Site.HeaderCTA}}<a class="tk-btn tk-menu__cta" href="{{cta .URL}}">{{.Label}}</a>{{end}}</div></details>
+</div>
+</div></div>
+</header>{{end}}

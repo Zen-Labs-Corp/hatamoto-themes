@@ -1,0 +1,1 @@
+{{define "content"}}{{if .Blocks}}{{template "page-body" .}}{{else}}{{$b := docBody .Body}}{{$title := .Page.Name}}{{with .Entity}}{{$title = .Title}}{{end}}{{template "tk-split" dict "Title" $title "Lede" .Page.Description "Body" $b.HTML}}{{end}}{{end}}
