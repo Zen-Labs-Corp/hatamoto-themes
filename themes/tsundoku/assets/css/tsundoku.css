@@ -54,7 +54,7 @@
   --tk-paper-2: #28182c; --tk-muted: #b8a2b5; --tk-line: #3a2640;
   /* drawn in the primary colour: the owner's, lightened toward the paper-ink so it stays visible on dark */
   --tk-primary: color-mix(in srgb, var(--hm-primary) 6%, #f4e6dc); --tk-primary-ink: #1a0f1d;
-  --tk-pop: #c8de3a; --tk-teal: #0e7a73; --tk-teal-text: #4fc2b8; --tk-coral: #e47b57; --tk-footer-bg: #0f0811;
+  --tk-pop: #c8de3a; --tk-teal: #0b5e59; --tk-teal-text: #4fc2b8; --tk-coral: #e47b57; --tk-footer-bg: #0f0811;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
