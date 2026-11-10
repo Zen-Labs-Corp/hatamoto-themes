@@ -360,8 +360,7 @@ span.wa-pager__dir { color: var(--wa-muted); }
 .wa-prose li::marker { color: var(--wa-primary); font-weight: 700; }
 .wa-prose blockquote { margin: 36px 0; padding: 24px 28px; border: 0; border-radius: var(--wa-r-card); background: var(--wa-band); font: italic 400 26px/1.35 var(--wa-serif); color: var(--wa-ink); }
 .wa-prose blockquote p { margin: 0; }
-.wa-prose table { display: table; inline-size: 100%; border-collapse: collapse; font-size: 15px; }
-@media (max-width: 640px) { .wa-prose table { display: block; overflow-x: auto; } }
+.wa-prose table { display: block; max-inline-size: 100%; overflow-x: auto; border-collapse: collapse; font-size: 15px; }
 .wa-prose th, .wa-prose td { padding: 10px 12px; border-block-end: 1px solid var(--wa-line); text-align: start; }
 .wa-prose th { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--wa-muted); }
 .wa-postmain { min-inline-size: 0; }

@@ -62,7 +62,7 @@
 <div class="wa-result__text"><p class="wa-result__kick">{{with $it.Category}}<span>{{.}}</span>{{end}}{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}</p>
 <h2><a class="wa-result__link" href="{{$it.URL}}">{{$it.Title}}</a></h2>
 {{with $it.Excerpt}}<p class="wa-result__excerpt">{{.}}</p>{{end}}</div></li>{{end}}
-{{/* wa-entity: a post or a plain page on the band header; builder blocks go through page-body. Called by single-post.html and page.html with the page root. */}}
+{{/* wa-entity: a post or a plain page on the band header; builder blocks go through page-body. Called by single-post.html and single-page.html with the page root. */}}
 {{define "wa-entity"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}
 <article class="wa-article">
 <header class="wa-posthd wa-on-band{{if not $post}} wa-posthd--flat{{end}}"><div class="wa-wrap">
