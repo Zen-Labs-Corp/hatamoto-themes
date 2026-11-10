@@ -91,7 +91,7 @@ a { color: inherit; }
 .tk-brand::before { content: ""; width: 14px; height: 22px; border-radius: 3px; background: linear-gradient(var(--tk-pop) 0 33%, var(--tk-coral) 33% 66%, var(--tk-teal) 66%); box-shadow: 0 0 0 1.5px var(--tk-primary-ink); flex: none; }
 .tk-brand--logo::before { content: none; }
 .tk-brand__logo { display: block; block-size: 28px; inline-size: auto; max-inline-size: 40vw; min-inline-size: 0; object-fit: contain; flex: 0 1 auto; }
-.tk-nav { min-inline-size: 0; }
+.tk-nav { flex: 1 1 0; min-inline-size: 0; }
 .tk-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem; font: 650 .95rem/1 var(--tk-sans); }
 .tk-nav li { position: relative; }
 .tk-nav a, .tk-nav li > span { display: block; padding: .7rem 1rem; border-radius: var(--tk-pill); color: inherit; text-decoration: none; }
