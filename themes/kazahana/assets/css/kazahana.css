@@ -1,0 +1,83 @@
+/* Kazahana: the theme's own stylesheet.
+   The engine bundles assets/css/base.css, then every other assets/css/*.css
+   (sorted), then assets/css/sections/*.css, across the theme AND the built-in
+   default theme it falls back to. So this file restyles the default's markup
+   (hm-* classes) and styles this theme's own (kz-* classes).
+   Rules: only --hm-* tokens for colour, type and radius, so Theme > Colours and
+   fonts keeps working; no request to another host (fonts live in
+   assets/fonts/, added with scripts/add-font.sh). */
+
+:root {
+  /* ---- palette (light) ---- */
+  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
+  --hm-bg: #ffffff;
+  --hm-text: #16181d;
+  --kz-muted: #5d636e;
+  --kz-line: #e4e6ea;
+  --kz-surface: #f6f7f9;
+  /* the default theme's names, so its sections follow this palette */
+  --hm-sumi: var(--hm-text);
+  --hm-hai: var(--kz-muted);
+  --hm-label: var(--kz-muted);
+  --hm-hair: var(--kz-line);
+  --hm-shiro: var(--kz-surface);
+  --hm-kasumi: var(--kz-surface);
+  --hm-shu: var(--hm-primary);
+
+  /* ---- type ---- */
+  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --hm-font-heading: var(--hm-font);
+
+  /* ---- shape and rhythm ---- */
+  --hm-radius-sm: 6px;
+  --hm-radius-md: 10px;
+  --hm-radius-lg: 16px;
+  --hm-container: 72rem;
+  --kz-gap: clamp(1rem, 3vw, 2rem);
+  --kz-section: clamp(4rem, 9vw, 7rem);
+}
+
+:root[data-theme="dark"] {
+  --hm-bg: #0f1115;
+  --hm-text: #e8eaee;
+  --kz-muted: #9aa1ad;
+  --kz-line: #262a31;
+  --kz-surface: #161920;
+  color-scheme: dark;
+}
+
+[data-kz-density="compact"] { --kz-section: clamp(2.5rem, 6vw, 4.5rem); }
+.hm-section { padding-block: var(--kz-section); }
+
+/* ---- shell ---- */
+.kz-wrap { width: min(100% - 2 * var(--kz-gap), var(--hm-container)); margin-inline: auto; }
+
+.kz-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--kz-line); }
+.kz-header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
+.kz-brand { display: inline-flex; align-items: center; gap: .5rem; color: var(--hm-text); text-decoration: none; font-weight: 650; letter-spacing: -.01em; }
+.kz-nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin-inline-start: auto; }
+.kz-nav a { color: var(--kz-muted); text-decoration: none; font-size: .95rem; }
+.kz-nav a:hover, .kz-nav a[aria-current="page"] { color: var(--hm-text); }
+.kz-header__end { display: flex; align-items: center; gap: .75rem; }
+.kz-mode { display: inline-grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border: 1px solid var(--kz-line); border-radius: 999px; background: none; color: var(--hm-text); cursor: pointer; }
+.kz-mode svg { inline-size: 1rem; block-size: 1rem; }
+.kz-sun, [data-theme="dark"] .kz-moon { display: none; }
+[data-theme="dark"] .kz-sun { display: block; }
+
+.kz-footer { margin-block-start: var(--kz-section); padding-block: 3rem 2rem; border-top: 1px solid var(--kz-line); color: var(--kz-muted); font-size: .9rem; }
+.kz-footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
+.kz-footer__brand { margin: 0; color: var(--hm-text); font-weight: 650; }
+.kz-footer__brand span { display: block; margin-top: .25rem; color: var(--kz-muted); font-weight: 400; }
+.kz-footer__nav { display: flex; flex-wrap: wrap; gap: 2rem 3rem; }
+.kz-footer__nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.kz-footer__title { margin: 0 0 .5rem; color: var(--hm-text); font-weight: 600; }
+.kz-footer a { color: inherit; text-decoration: none; }
+.kz-footer a:hover { color: var(--hm-text); }
+.kz-social { display: flex; gap: 1rem; list-style: none; padding: 0; margin: 2rem 0 0; }
+.kz-footer__legal { margin: 2rem 0 0; }
+
+@media (max-width: 720px) {
+  .kz-header__inner { flex-wrap: wrap; padding-block: .75rem; gap: .75rem; }
+  .kz-nav { order: 3; inline-size: 100%; margin: 0; overflow-x: auto; flex-wrap: nowrap; padding-bottom: .25rem; }
+  .kz-header__end { margin-inline-start: auto; }
+}
