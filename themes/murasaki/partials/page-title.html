@@ -1,0 +1,5 @@
+{{/* Block-built pages: when no section prints the h1 (a hero, or a contact form with
+heading level 1), add the page name as a visually hidden h1 so the page has exactly one.
+Pages that open with a hero are untouched. */}}
+{{define "mu-page-body"}}{{$h1 := false}}{{range .Blocks}}{{if or (eq .Type "hero") (and (eq .Type "contact_form") (eq (print .Content.heading_level) "1"))}}{{$h1 = true}}{{end}}{{end}}{{if and .Blocks (not $h1)}}<h1 class="hm-visually-hidden">{{.Page.Name}}</h1>
+{{end}}{{template "page-body" .}}{{end}}

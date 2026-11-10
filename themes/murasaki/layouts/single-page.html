@@ -1,0 +1,2 @@
+{{/* A page: the built-in article when it has a body, otherwise its blocks with exactly one h1. */}}
+{{define "content"}}{{if and .Entity (not (and .Blocks (not .Body)))}}{{template "article" .}}{{else}}{{template "mu-page-body" .}}{{end}}{{end}}
