@@ -30,7 +30,9 @@
   --mu-primary: color-mix(in srgb, var(--hm-primary) 94%, #000); /* a touch darker so white button text keeps 4.5:1 */
   --mu-primary-text: color-mix(in srgb, var(--hm-primary) 78%, var(--hm-text)); /* the accent as small text: darker so it keeps contrast on paper */
   --mu-on-primary: #ffffff;
-  --mu-surface: #ffffff;
+  /* Cards, inputs and quotes: white on a light Background (the default look), a step
+     lighter than the paper on a dark one, so the owner's Text colour stays readable. */
+  --mu-surface: oklch(from var(--hm-bg) calc(l + clamp(0, (l - .5) * 100, 1) * (1 - l) + (1 - clamp(0, (l - .5) * 100, 1)) * .04) c h);
   --mu-snow: color-mix(in srgb, var(--hm-text) 6%, var(--hm-bg));
   --mu-muted: color-mix(in srgb, var(--hm-text) 66%, var(--hm-bg));
   --mu-line: color-mix(in srgb, var(--hm-text) 13%, var(--hm-bg));
@@ -103,6 +105,10 @@
   --mu-night: #05090d;
   --mu-on-night: #e8edf1;
   color-scheme: dark;
+}
+
+@supports not (color: oklch(from red l c h)) {
+  :root { --mu-surface: color-mix(in srgb, var(--hm-bg) 97%, var(--hm-text)); }
 }
 
 [data-mu-density="compact"] { --mu-section: clamp(2.5rem, 6vw, 4.5rem); }
