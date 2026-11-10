@@ -1,0 +1,17 @@
+{{define "header"}}{{$cats := terms "category" 6}}<header class="hg-header">
+<div class="hg-header__in">
+<a class="hg-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img class="hg-brand__logo" src="{{imgsrc .Site.LogoURL}}" alt="" height="30">{{else}}<span class="hg-brand__dot" aria-hidden="true"></span>{{end}}<span class="hg-brand__name">{{.Site.Name}}</span></a>
+{{if .Site.Nav}}<nav class="hg-nav" aria-label="Primary"><ul class="hg-nav__list">{{range .Site.Nav}}<li class="hg-nav__item">{{template "nav-link" dict "Item" . "Path" $.Path}}{{with .Children}}<ul class="hg-nav__sub">{{range .}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>
+{{end}}<div class="hg-header__end">
+<a class="hg-iconbtn" href="/search" aria-label="Search">{{template "hg-icon" "search"}}</a>
+<button type="button" class="hg-iconbtn hg-mode" data-hm-theme-toggle aria-label="Switch to dark mode" aria-pressed="false" hidden><span class="hg-moon">{{template "hg-icon" "moon"}}</span><span class="hg-sun">{{template "hg-icon" "sun"}}</span></button>
+{{template "hg-subscribe" dict "Root" . "Class" "hg-btn hg-btn--primary hg-header__cta"}}
+<details class="hg-menu"><summary class="hg-iconbtn" aria-label="Menu"><span class="hg-menu__open">{{template "hg-icon" "menu"}}</span><span class="hg-menu__close">{{template "hg-icon" "close"}}</span></summary>
+<div class="hg-menu__sheet">
+{{if .Site.Nav}}<nav class="hg-menu__nav" aria-label="Menu">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{range .Children}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{end}}</nav>
+{{end}}{{if $cats}}<p class="hg-label">Topics</p><p class="hg-menu__chips">{{range $cats}}{{template "hg-chip" dict "Label" .Name "URL" .URL "Ghost" true}}{{end}}</p>
+{{end}}{{template "hg-subscribe" dict "Root" . "Class" "hg-btn hg-btn--primary hg-btn--block"}}
+</div></details>
+</div>
+</div>
+</header>{{end}}

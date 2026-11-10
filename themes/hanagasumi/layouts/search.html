@@ -1,0 +1,6 @@
+{{define "content"}}<section class="hg-archive hg-searchpage">
+<header class="hg-archive__head"><div><span class="hg-label">Find</span><h1 class="hg-archive__title">{{if .Query}}Results for &ldquo;{{.Query}}&rdquo;{{else}}Search{{end}}</h1></div></header>
+<div class="hg-searchpage__form">{{template "hg-search-form" dict "Root" . "Id" "page"}}
+{{if .Query}}{{with .Pagination}}<p class="hg-label hg-searchpage__count" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}}</p>{{end}}{{end}}</div>
+{{if .Query}}{{template "hg-grid" dict "Root" . "Empty" "Nothing matched. Try fewer or different words."}}{{else}}<p class="hg-empty">Type a word or phrase to search.</p>{{end}}
+</section>{{end}}

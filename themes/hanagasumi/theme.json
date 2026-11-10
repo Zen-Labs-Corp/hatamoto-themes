@@ -1,0 +1,61 @@
+{
+  "name": "hanagasumi",
+  "version": "0.1.0",
+  "description": "Soft pastel blog theme: a split homepage with a sideways-scrolling story rail, rounded cards, pill chips and mono labels in rose on warm mist.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "auto"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      },
+      "story_rail": {
+        "type": "boolean",
+        "title": "Story rail",
+        "description": "Homepage stage with the sideways-scrolling story rail. Off shows the intro and a plain journal list.",
+        "default": true
+      },
+      "corner_style": {
+        "type": "string",
+        "title": "Corner style",
+        "enum": ["soft", "round"],
+        "default": "round"
+      },
+      "show_newsletter": {
+        "type": "boolean",
+        "title": "Newsletter",
+        "description": "Subscribe card in the intro, the homepage panel and the footer button. They link to the header button, else the RSS feed.",
+        "default": true
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "description": "Where the \"All\" chip, \"All stories\" and the back link on posts point. Leave empty for /blog. Change it if your posts live somewhere else; it must start with /.",
+        "default": ""
+      },
+      "post_toc": {
+        "type": "boolean",
+        "title": "Post contents",
+        "description": "Sticky 'On this page' list on posts.",
+        "default": true
+      }
+    }
+  }
+}

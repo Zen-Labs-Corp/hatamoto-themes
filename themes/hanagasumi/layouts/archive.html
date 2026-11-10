@@ -1,0 +1,1 @@
+{{define "content"}}{{$post := or (not .SchemaSlug) (eq .SchemaSlug "post")}}{{$kick := "Archive"}}{{if $post}}{{$kick = "Journal"}}{{end}}{{template "hg-listing" dict "Root" . "Kicker" $kick "Title" .Page.Name "Lede" .Page.Description "Chips" $post "All" .Path "Cur" ""}}{{end}}

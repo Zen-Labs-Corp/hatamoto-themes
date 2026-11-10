@@ -1,0 +1,15 @@
+{{define "footer"}}{{$cats := terms "category" 6}}{{$pages := .Site.FooterNav}}{{if not $pages}}{{$pages = .Site.Nav}}{{end}}<footer class="hg-footer">
+<div class="hg-footer__in">
+<div class="hg-footer__card">
+<div class="hg-footer__brand">
+<a class="hg-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img class="hg-brand__logo" src="{{imgsrc .Site.LogoURL}}" alt="" height="30">{{else}}<span class="hg-brand__dot" aria-hidden="true"></span>{{end}}<span class="hg-brand__name">{{.Site.Name}}</span></a>
+{{with .Site.Tagline}}<p class="hg-footer__tag">{{.}}</p>{{end}}
+{{if .Settings.show_newsletter}}{{template "hg-subscribe" dict "Root" . "Class" "hg-btn hg-btn--primary"}}{{end}}
+{{if .Site.SocialLinks}}{{template "hg-social" dict "Root" . "Rss" false}}{{end}}
+</div>
+{{if $pages}}<nav class="hg-footer__col" aria-label="Footer"><h2 class="hg-label">Pages</h2>{{range $pages}}{{if .Children}}{{range .Children}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{else}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{end}}</nav>
+{{end}}{{if $cats}}<nav class="hg-footer__col" aria-label="Topics"><h2 class="hg-label">Topics</h2>{{range $cats}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</nav>
+{{end}}</div>
+<p class="hg-footer__bottom"><span>&copy; {{year}} {{.Site.Name}}</span><span><a href="/feed.xml">RSS</a></span></p>
+</div>
+</footer>{{end}}

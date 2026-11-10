@@ -1,0 +1,10 @@
+{{define "content"}}<section class="hg-lost">
+<p class="hg-lost__num" aria-hidden="true">404</p>
+<div class="hg-lost__body">
+<span class="hg-chip">Lost, a little</span>
+<h1 class="hg-lost__title">This page wandered off</h1>
+<p class="hg-lost__lede">The address may have changed, or it has a typo. Try a search, or head back to the latest stories.</p>
+{{template "hg-search-form" dict "Root" . "Id" "lost"}}
+<p class="hg-lost__home"><a class="hg-btn hg-btn--line" href="/"><span aria-hidden="true">&larr;</span> Back home</a></p>
+</div>
+</section>{{end}}
