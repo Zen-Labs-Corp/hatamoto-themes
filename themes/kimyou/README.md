@@ -37,6 +37,7 @@ page keeps rendering.
 | Spacing (`density`) | `comfortable`, `compact` | `comfortable` | `compact` tightens the space between sections. |
 | Home headline (`home_headline`) | text | `The small things \| worth noticing.` | The cover headline. Text after `\|` is set in italic in the primary colour. Empty uses the default. |
 | Home lede (`home_lede`) | text | empty | The line under the headline. Empty uses the site tagline. |
+| Post archive address (`archive_url`) | path or URL | `/blog` | Where "The full index" and "Everything" on the home page point. Set it when the posts live somewhere else. |
 | Show the shelf (`show_shelf`) | on/off | on | The shelf of categories on the home page. |
 | Books category (`books_category`) | category slug | `books` | The category shown in "On books". Empty, or a slug that does not exist, hides the section. |
 | Ornaments (`ornaments`) | `full`, `quiet` | `full` | `quiet` drops the drop cap, section signs, fleurons, roman numerals and "Chapter" labels, and sets titles upright. |

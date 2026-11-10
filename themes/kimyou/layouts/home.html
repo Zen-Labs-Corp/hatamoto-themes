@@ -1,4 +1,4 @@
-{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$cats := terms "category" 12}}{{$cta := ""}}{{with .Site.HeaderCTA}}{{$cta = cta .URL}}{{else}}{{$cta = "/feed.xml"}}{{end}}
+{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$cats := terms "category" 12}}{{$arch := cta (default "/blog" .Settings.archive_url)}}{{$cta := ""}}{{with .Site.HeaderCTA}}{{$cta = cta .URL}}{{else}}{{$cta = "/feed.xml"}}{{end}}
 {{$h := trim (default "The small things | worth noticing." .Settings.home_headline)}}{{if not $h}}{{$h = "The small things | worth noticing."}}{{end}}
 {{$parts := split $h "|"}}{{$h1 := trim (index $parts 0)}}{{$h2 := ""}}{{if gt (len $parts) 1}}{{$h2 = trim (index $parts 1)}}{{end}}
 {{$latest := ""}}{{range $r.Items}}{{if not $latest}}{{$latest = .}}{{end}}{{end}}
@@ -17,7 +17,7 @@
 </section>
 {{if $r.Items}}
 <section class="km-wrap km-sec" aria-labelledby="km-contents-h">
-<div class="km-sec__head"><h2 id="km-contents-h">Contents</h2><a href="/blog">The full index &rarr;</a></div>
+<div class="km-sec__head"><h2 id="km-contents-h">Contents</h2><a href="{{$arch}}">The full index &rarr;</a></div>
 <ol class="km-toc">
 {{range $i, $it := $r.Items}}{{if and (ge $i 1) (le $i 8)}}<li><span class="km-toc__t"><a href="{{$it.URL}}">{{$it.Title}}</a></span>{{with $it.Category}}<span class="km-toc__p">{{.}}</span>{{end}}{{with $it.Excerpt}}<p class="km-toc__x">{{.}}</p>{{end}}</li>
 {{end}}{{end}}</ol>
@@ -49,7 +49,7 @@
 </div></section>{{end}}{{end}}
 {{if $r.Items}}
 <section class="km-wrap km-sec" aria-labelledby="km-journal-h">
-<div class="km-sec__head"><h2 id="km-journal-h">From the <em>journal</em></h2><a href="/blog">Everything &rarr;</a></div>
+<div class="km-sec__head"><h2 id="km-journal-h">From the <em>journal</em></h2><a href="{{$arch}}">Everything &rarr;</a></div>
 <div class="km-grid3">
 {{range $i, $it := $r.Items}}{{if lt $i 6}}<a class="km-card" href="{{$it.URL}}">
 {{if $it.Image}}<img class="km-plate" src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 380px"{{end}} alt="" decoding="sync">{{else}}<span class="km-plate km-c{{mod $i 5}}" aria-hidden="true"></span>{{end}}

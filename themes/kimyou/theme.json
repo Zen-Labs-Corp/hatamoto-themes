@@ -36,6 +36,11 @@
         "title": "Home lede (empty = site tagline)",
         "default": ""
       },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "default": "/blog"
+      },
       "show_shelf": {
         "type": "boolean",
         "title": "Show the shelf of categories",
