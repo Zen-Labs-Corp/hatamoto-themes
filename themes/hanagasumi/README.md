@@ -19,24 +19,39 @@ hatamoto theme activate hanagasumi
 Layouts and sections the theme does not ship come from the built-in theme, so every
 page keeps rendering.
 
+## What it ships
+
+- A partial theme: the shell (header, footer), home, single post, archive and category/tag listing, search and 404. Everything else (pages, authors) comes from the built-in theme.
+- A split homepage: intro and newsletter card beside a sideways-scrolling story rail, then a journal list and a newsletter panel.
+- Rounded cards, pill chips and mono labels in rose on warm mist. Light and dark.
+- A pill header with a menu sheet on small screens that works without JavaScript. JavaScript only adds the rail buttons, the contents highlight, copy link and the colour toggle.
+
 ## Settings
 
-**Theme > Themes > Hanagasumi > Settings**:
+**Theme > Themes > Hanagasumi > Settings**. Every setting has a default.
 
-| Setting | Default | What it does |
-| --- | --- | --- |
-| Colour mode | `light` | what a first visit shows: `light`, `dark` or `auto` (follows the system); visitors can still switch |
-| Spacing | `comfortable` | `compact` tightens the space between sections |
+| Key | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `color_mode` | `light`, `dark`, `auto` | `auto` | What a first visit shows; `auto` follows the system. Visitors can still switch with the header toggle. |
+| `density` | `comfortable`, `compact` | `comfortable` | Spacing between sections. |
+| `story_rail` | on/off | on | The sideways-scrolling story rail on the home page. Off shows the intro and a plain journal list. |
+| `corner_style` | `soft`, `round` | `round` | Corner radius of cards, fields and images. |
+| `show_newsletter` | on/off | on | The intro card, the home panel and the footer field. |
+| `post_toc` | on/off | on | The "On this page" list on posts. |
 
-Colours, fonts and corners follow **Theme > Colours and fonts**.
+## Colours and fonts
+
+**Theme > Colours** drives the accent; the text and soft tints of the accent are derived from it with `color-mix`, so any primary colour keeps readable contrast.
+
+[Instrument Sans](https://fonts.google.com/specimen/Instrument+Sans) and [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono), both under the SIL Open Font License 1.1, self-hosted in `assets/fonts/` with their licences.
 
 ## Develop
 
 From the root of the `hatamoto-themes` repository:
 
 ```sh
-scripts/dev-site.sh blog themes/hanagasumi --serve   # a seeded local site with this theme, live reload
-scripts/check.sh themes/hanagasumi                            # the full check: package, render, browser, screenshot
+scripts/dev-site.sh blog themes/hanagasumi --serve   # a seeded local site with this theme
+scripts/check.sh themes/hanagasumi                   # the full check
 ```
 
 `dev/` is not part of the package.
