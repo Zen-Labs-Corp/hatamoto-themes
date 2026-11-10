@@ -18,7 +18,7 @@
         "title": "Colour mode",
         "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
         "enum": ["light", "dark", "auto"],
-        "default": "light"
+        "default": "auto"
       },
       "density": {
         "type": "string",

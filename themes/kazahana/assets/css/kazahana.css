@@ -3,47 +3,101 @@
    (sorted), then assets/css/sections/*.css, across the theme AND the built-in
    default theme it falls back to. So this file restyles the default's markup
    (hm-* classes) and styles this theme's own (kz-* classes).
-   Rules: only --hm-* tokens for colour, type and radius, so Theme > Colours and
-   fonts keeps working; no request to another host (fonts live in
+   Rules: colour, type and radius go through the --hm-* tokens, so Theme >
+   Colours and fonts keeps working; no request to another host (fonts live in
    assets/fonts/, added with scripts/add-font.sh). */
 
+/* Fonts: EB Garamond (headings, masthead, quotes) and Schibsted Grotesk (body), both OFL-1.1 */
+@font-face { font-family: "EB Garamond"; src: url("/theme/assets/fonts/eb-garamond/eb-garamond-latin-wght-normal.woff2") format("woff2"); font-weight: 400 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "EB Garamond"; src: url("/theme/assets/fonts/eb-garamond/eb-garamond-latin-wght-italic.woff2") format("woff2"); font-weight: 400 800; font-style: italic; font-display: swap; }
+@font-face { font-family: "Schibsted Grotesk"; src: url("/theme/assets/fonts/schibsted-grotesk/schibsted-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: swap; }
+
+/* ---- tokens ----
+   --kz-* hold the palette. --hm-* point at them, so the owner's Theme > Colours
+   and fonts (printed after this file) replaces paper, ink, primary and fonts. */
 :root {
-  /* ---- palette (light) ---- */
-  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
-  --hm-bg: #ffffff;
-  --hm-text: #16181d;
-  --kz-muted: #5d636e;
-  --kz-line: #e4e6ea;
-  --kz-surface: #f6f7f9;
+  /* palette (light) */
+  --kz-paper: #f4f5f2;
+  --kz-surface: #ffffff;
+  --kz-ink: #1a2123;
+  --kz-muted: #5c6769;
+  --kz-line: #d3d9d7;
+  --kz-primary-ink: #ffffff;
+  --kz-pine: #1e3833;
+  --kz-pine-ink: #eef3f1;
+  --kz-frost: #e3ebe8;
+  --kz-code: #eceeeb;
+  --kz-pine-soft: #f0907d;                /* red on pine, for current items */
+  --kz-pine-line: color-mix(in srgb, var(--kz-pine-ink) 28%, transparent);
+
+  /* the engine's names */
+  --hm-primary: #b5382a;                  /* camellia red; the owner's primary colour replaces this */
+  --hm-bg: var(--kz-paper);
+  --hm-text: var(--kz-ink);
+  --kz-primary: var(--hm-primary);
+  --kz-primary-text: color-mix(in srgb, var(--hm-primary) 85%, #000);  /* small red text on paper and surface */
   /* the default theme's names, so its sections follow this palette */
   --hm-sumi: var(--hm-text);
   --hm-hai: var(--kz-muted);
   --hm-label: var(--kz-muted);
   --hm-hair: var(--kz-line);
   --hm-shiro: var(--kz-surface);
-  --hm-kasumi: var(--kz-surface);
+  --hm-kasumi: var(--kz-frost);
   --hm-shu: var(--hm-primary);
 
-  /* ---- type ---- */
-  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --hm-font-heading: var(--hm-font);
+  /* type */
+  --hm-font: "Schibsted Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hm-font-heading: "EB Garamond", Garamond, "Times New Roman", serif;
+  --kz-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* ---- shape and rhythm ---- */
+  /* shape and rhythm */
   --hm-radius-sm: 6px;
-  --hm-radius-md: 10px;
-  --hm-radius-lg: 16px;
-  --hm-container: 72rem;
-  --kz-gap: clamp(1rem, 3vw, 2rem);
-  --kz-section: clamp(4rem, 9vw, 7rem);
+  --hm-radius-md: 14px;
+  --hm-radius-lg: 22px;
+  --hm-container: 77.5rem;
+  --kz-gap: clamp(1rem, 2.5vw, 2rem);
+  --kz-section: clamp(3rem, 7vw, 5.5rem);
+  --kz-measure: 40rem;
 }
 
-:root[data-theme="dark"] {
-  --hm-bg: #0f1115;
-  --hm-text: #e8eaee;
-  --kz-muted: #9aa1ad;
-  --kz-line: #262a31;
-  --kz-surface: #161920;
+/* palette (dark): the toggle, a saved choice, the owner's dark default, and
+   no-JS auto through the system preference */
+:root[data-theme="dark"],
+:root[data-kz-mode="dark"]:not([data-theme]):not([data-kz-js]) {
+  --kz-paper: #0f1314;
+  --kz-surface: #161b1c;
+  --kz-ink: #e6ebe9;
+  --kz-muted: #97a3a2;
+  --kz-line: #2a3334;
+  --kz-primary-ink: #1a0d0a;
+  --kz-pine: #1b2f2b;
+  --kz-pine-ink: #e6efec;
+  --kz-frost: #1c2526;
+  --kz-code: #1b2122;
+  --kz-primary: color-mix(in srgb, var(--hm-primary) 45%, #ff9a85);  /* about #ec7a64 for the default red */
+  --kz-primary-text: var(--kz-primary);
+  --hm-bg: var(--kz-paper);
+  --hm-text: var(--kz-ink);
   color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-kz-mode="auto"]:not([data-theme]):not([data-kz-js]) {
+    --kz-paper: #0f1314;
+    --kz-surface: #161b1c;
+    --kz-ink: #e6ebe9;
+    --kz-muted: #97a3a2;
+    --kz-line: #2a3334;
+    --kz-primary-ink: #1a0d0a;
+    --kz-pine: #1b2f2b;
+    --kz-pine-ink: #e6efec;
+    --kz-frost: #1c2526;
+    --kz-code: #1b2122;
+    --kz-primary: color-mix(in srgb, var(--hm-primary) 45%, #ff9a85);
+    --kz-primary-text: var(--kz-primary);
+    --hm-bg: var(--kz-paper);
+    --hm-text: var(--kz-ink);
+    color-scheme: dark;
+  }
 }
 
 [data-kz-density="compact"] { --kz-section: clamp(2.5rem, 6vw, 4.5rem); }
