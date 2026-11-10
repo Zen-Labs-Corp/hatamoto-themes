@@ -239,8 +239,8 @@ body.km-body { margin: 0; background: var(--km-paper); color: var(--km-ink); fon
 .km-shelf-wrap { padding-top: var(--km-section); }
 .km-shelf-note { display: grid; grid-template-columns: 1fr 1fr; gap: var(--km-gap); align-items: end; margin-bottom: 2.25rem; }
 .km-shelf-note p { max-width: 30rem; margin: 0; color: var(--km-muted); }
-.km-shelf { display: flex; align-items: flex-end; gap: 6px; min-height: 19rem; padding-inline: 1rem; border-bottom: 14px solid var(--km-plank); overflow-x: clip; }
-.km-spine { --c: var(--km-oxblood); --t: #f6eedd; flex: 0 0 auto; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; inline-size: 4.4rem; block-size: clamp(11rem, calc(9.5rem + var(--km-n, 1) * 2.6rem), 18rem); padding: 1rem 0 .9rem; background: var(--c); color: var(--t); border-radius: 3px 3px 0 0; text-decoration: none; box-shadow: inset -6px 0 10px rgb(0 0 0 / .18), inset 3px 0 0 rgb(255 255 255 / .08); }
+.km-shelf { display: flex; align-items: flex-end; gap: 6px; min-height: 19rem; padding-inline: 1rem; border-bottom: 14px solid var(--km-plank); overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scrollbar-width: thin; }
+.km-spine { scroll-snap-align: start; --c: var(--km-oxblood); --t: #f6eedd; flex: 0 0 auto; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; inline-size: 4.4rem; block-size: clamp(11rem, calc(9.5rem + var(--km-n, 1) * 2.6rem), 18rem); padding: 1rem 0 .9rem; background: var(--c); color: var(--t); border-radius: 3px 3px 0 0; text-decoration: none; box-shadow: inset -6px 0 10px rgb(0 0 0 / .18), inset 3px 0 0 rgb(255 255 255 / .08); }
 .km-spine::before, .km-spine::after { content: ""; position: absolute; inset-inline: 8px; block-size: 2px; background: var(--km-gold); opacity: .8; }
 .km-spine::before { top: 2.4rem; }
 .km-spine::after { bottom: 2.9rem; }
