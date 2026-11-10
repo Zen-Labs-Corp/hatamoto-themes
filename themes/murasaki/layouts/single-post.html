@@ -12,7 +12,7 @@ the body has at least two headings. */}}
 </header>
 {{with $e.Image}}<figure class="mu-article__image"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1360px) 1264px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
 <div class="mu-article__cols{{if not $toc}} mu-article__cols--solo{{end}}">
-{{if $toc}}<nav class="mu-toc" aria-label="Contents"><ol>{{$n := 0}}{{range $b.TOC}}{{if eq .Level 2}}{{$n = add $n 1}}<li><a href="#{{.ID}}"><span aria-hidden="true">{{printf "%02d" $n}}</span> {{.Text}}</a></li>{{end}}{{end}}</ol></nav>{{end}}
+{{if $toc}}<nav class="mu-toc" aria-label="Contents"><ol>{{range $b.TOC}}{{if eq .Level 2}}<li><a href="#{{.ID}}">{{.Text}}</a></li>{{end}}{{end}}</ol></nav>{{end}}
 <div class="mu-article__main">
 {{if .Body}}<div class="hm-prose hm-entry mu-entry">{{$b.HTML}}</div>{{end}}
 {{range .Blocks}}{{template "section" .}}
