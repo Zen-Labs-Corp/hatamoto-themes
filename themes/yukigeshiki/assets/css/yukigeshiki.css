@@ -301,3 +301,9 @@ a { color: inherit; }
 .yk-lost__lede { max-inline-size: 40ch; margin: 0 auto 28px; color: var(--yk-muted); }
 .yk-lost .yk-search { margin-inline: auto; }
 .yk-lost__home { margin: 28px 0 0; }
+
+/* ---- dark mode: photographs sit a little lower so they do not glare ---- */
+[data-theme="dark"] :is(.yk-media, .yk-article__cover, .yk-prose, .hm-prose) img { filter: brightness(.9); }
+@media (prefers-color-scheme: dark) {
+  :root[data-yk-mode="auto"]:not([data-theme]):not([data-yk-js]) :is(.yk-media, .yk-article__cover, .yk-prose, .hm-prose) img { filter: brightness(.9); }
+}
