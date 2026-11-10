@@ -56,3 +56,5 @@
 {{if .Chips}}{{template "hg-chip-row" dict "Terms" (terms "category" 12) "All" .All "Cur" .Cur}}{{end}}</header>
 {{template "hg-grid" dict "Root" $v "Empty" "Nothing here yet. Check back soon."}}
 </section>{{end}}
+{{/* hg-search-form: the pill search field (GET /search). dict "Root" . "Id" "x" "Placeholder" "" */}}
+{{define "hg-search-form"}}<form class="hg-search" role="search" action="/search" method="get"><label class="hg-sr" for="hg-q-{{.Id}}">Search the site</label><input id="hg-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="{{default "Search the journal" .Placeholder}}" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button type="submit" class="hg-btn hg-btn--primary">Search</button></form>{{end}}
