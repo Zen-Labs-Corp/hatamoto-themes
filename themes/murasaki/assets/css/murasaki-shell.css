@@ -9,7 +9,8 @@
 .mu-nav { display: flex; gap: 1.75rem; margin-inline-start: auto; font-size: .95rem; }
 .mu-nav a { color: var(--mu-muted); text-decoration: none; padding-bottom: 4px; }
 .mu-nav a:hover { color: var(--mu-ink); }
-.mu-nav > span, .mu-nav__group > span { color: var(--mu-muted); padding-bottom: 4px; cursor: default; }
+.mu-nav__label { appearance: none; background: none; border: 0; margin: 0; font: inherit; color: var(--mu-muted); padding: 0 0 4px; cursor: default; }
+.mu-nav__label:hover, .mu-nav__group:focus-within > .mu-nav__label { color: var(--mu-ink); }
 .mu-nav__group { position: relative; }
 .mu-nav__sub { display: none; position: absolute; inset-inline-start: -1rem; top: 100%; z-index: 30; min-width: 13rem; margin: 0; padding: .5rem 1rem; list-style: none; background: var(--mu-paper); border: 1px solid var(--mu-line); }
 .mu-nav__sub a { display: block; padding: .4rem 0; }
