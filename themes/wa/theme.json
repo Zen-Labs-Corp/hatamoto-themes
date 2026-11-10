@@ -169,8 +169,8 @@
         "type": "string",
         "title": "Signal colour",
         "description": "Accent for chips, badges and the newsletter button. Text on it is a fixed dark ink, so choose a light colour. Type a hex value such as #c8f04a.",
-        "maxLength": 9,
-        "pattern": "^#[0-9a-fA-F]{3,8}$",
+        "maxLength": 7,
+        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$",
         "default": "#c8f04a"
       },
       "archive_url": {
