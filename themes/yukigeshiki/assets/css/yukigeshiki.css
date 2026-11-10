@@ -250,7 +250,7 @@ a { color: inherit; }
 .yk-article__read { margin-inline-start: 4px; color: var(--yk-muted); font-size: .8125rem; }
 .yk-article__cover { max-inline-size: 60rem; margin-block: 32px 40px; padding: 0; background: var(--yk-tint); border: 1px solid color-mix(in srgb, var(--hm-text) 8%, transparent); border-radius: calc(var(--hm-radius-md) + 4px); overflow: hidden; }
 .yk-article__cover img { display: block; inline-size: 100%; block-size: auto; max-block-size: 34rem; object-fit: cover; }
-.yk-prose { color: var(--hm-text); font-size: 1.0625rem; line-height: 1.65; }
+.yk-prose { overflow-wrap: break-word; color: var(--hm-text); font-size: 1.0625rem; line-height: 1.65; }
 .yk-prose :is(h2, h3, h4, strong, th) { color: var(--hm-text); }
 .yk-prose pre, .yk-prose table { display: block; max-inline-size: 100%; overflow-x: auto; }
 .yk-prose pre { padding: 14px 16px; background: var(--yk-surface); border-radius: var(--hm-radius-md); font-size: .875rem; line-height: 1.5; }

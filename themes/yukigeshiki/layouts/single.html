@@ -7,7 +7,7 @@
 {{if $post}}<p class="yk-by yk-article__by">{{if and $e.Author (ne (printf "%v" .Settings.show_author) "false")}}<span class="yk-av" aria-hidden="true">{{template "yk-initials" dict "Name" $e.Author.Name}}</span><span><b>{{if $e.Author.URL}}<a href="{{$e.Author.URL}}">{{$e.Author.Name}}</a>{{else}}{{$e.Author.Name}}{{end}}</b>{{template "yk-date" (dict "PublishedAt" $e.PublishedAt)}}</span>{{else}}<span>{{template "yk-date" (dict "PublishedAt" $e.PublishedAt)}}</span>{{end}}{{if $m}}<span class="yk-article__read">{{$m}} min read</span>{{end}}</p>{{end}}
 </header>
 {{with $e.Image}}<figure class="yk-article__cover yk-t{{$tint}}"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1360px) 1264px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
-{{if .Body}}<div class="yk-prose hm-prose">{{$b.HTML}}</div>{{end}}
+{{if .Body}}<div class="yk-prose hm-entry">{{$b.HTML}}</div>{{end}}
 {{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
 {{with $e.Tags}}<footer class="yk-article__foot"><h2 class="yk-article__foot-h">Tags</h2><p class="yk-tags">{{range .}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</p></footer>{{end}}
 </article>
