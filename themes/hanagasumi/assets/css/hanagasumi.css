@@ -24,7 +24,7 @@
   --hg-ink: var(--hm-text);
   --hg-surface: #ffffff;
   --hg-tint: #fcf0f3;
-  --hg-muted: #7d7383;
+  --hg-muted: #71677a;
   --hg-line: #f1e6e9;
   --hg-sage: #a9c4b4;
   --hg-primary: var(--hm-primary);
@@ -245,7 +245,7 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 .hg-more { display: flex; justify-content: center; margin: 2rem 0 0; }
 .hg-panel { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; align-items: center; padding: 3rem; border-radius: var(--hg-radius-xl); background: linear-gradient(120deg, var(--hg-primary-soft), var(--hg-tint) 60%, color-mix(in srgb, var(--hg-sage) 22%, var(--hg-surface))); }
 .hg-panel h2 { margin: 0; font-size: var(--hg-fs-xl); line-height: 1.1; overflow-wrap: anywhere; }
-.hg-panel p { margin: .6rem 0 0; color: var(--hg-muted); }
+.hg-panel p { margin: .6rem 0 0; color: var(--hg-ink); }
 .hg-panel .hg-field { background: var(--hg-surface); max-inline-size: none; }
 
 /* ---- single ---- */
