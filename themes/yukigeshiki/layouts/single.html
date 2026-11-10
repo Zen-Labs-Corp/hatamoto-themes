@@ -1,0 +1,18 @@
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}{{$cats := terms "category" 12}}{{$m := readingTime .Body}}{{$tint := 5}}{{with $e.Categories}}{{$first := (index . 0).Name}}{{range $i, $c := $cats}}{{if eq $c.Name $first}}{{$tint = add (mod $i 5) 1}}{{end}}{{end}}{{end}}{{if eq (printf "%v" .Settings.card_tints) "false"}}{{$tint = 0}}{{end}}
+<article class="yk-wrap yk-article">
+<header class="yk-article__head">
+{{with $e.Categories}}<p class="yk-article__kick">{{range $i, $c := .}}{{if $i}}<span aria-hidden="true">/</span>{{end}}<a href="{{$c.URL}}">{{$c.Name}}</a>{{end}}</p>{{end}}
+<h1 class="yk-article__title">{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="yk-article__lede">{{.}}</p>{{end}}
+{{if $post}}<p class="yk-by yk-article__by">{{if and $e.Author (ne (printf "%v" .Settings.show_author) "false")}}<span class="yk-av" aria-hidden="true">{{template "yk-initials" dict "Name" $e.Author.Name}}</span><span><b>{{if $e.Author.URL}}<a href="{{$e.Author.URL}}">{{$e.Author.Name}}</a>{{else}}{{$e.Author.Name}}{{end}}</b>{{template "yk-date" (dict "PublishedAt" $e.PublishedAt)}}</span>{{else}}<span>{{template "yk-date" (dict "PublishedAt" $e.PublishedAt)}}</span>{{end}}{{if $m}}<span class="yk-article__read">{{$m}} min read</span>{{end}}</p>{{end}}
+</header>
+{{with $e.Image}}<figure class="yk-article__cover yk-t{{$tint}}"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1360px) 1264px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
+{{if .Body}}<div class="yk-prose hm-entry">{{$b.HTML}}</div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+{{with $e.Tags}}<footer class="yk-article__foot"><h2 class="yk-article__foot-h">Tags</h2><p class="yk-tags">{{range .}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</p></footer>{{end}}
+</article>
+{{if $post}}{{with call .Related 3}}<section class="yk-wrap yk-related" aria-labelledby="yk-related-h">
+<h2 id="yk-related-h" class="yk-related__h">More posts</h2>
+<div class="yk-grid yk-grid--related">{{range $i, $r := .}}{{if lt $i 2}}{{template "yk-card" dict "Root" $ "Item" $r "Cats" $cats "Level" 3}}{{end}}{{end}}</div>
+</section>{{end}}{{end}}
+{{else}}{{template "page-body" .}}{{end}}{{end}}

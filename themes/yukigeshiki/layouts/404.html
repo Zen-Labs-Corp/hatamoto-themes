@@ -1,0 +1,7 @@
+{{define "content"}}<section class="yk-wrap yk-lost">
+<p class="yk-lost__code" aria-hidden="true">404</p>
+<h1 class="yk-lost__title">Page not found</h1>
+<p class="yk-lost__lede">The address may have changed, or it has a typo. Search the journal, or start again from the front page.</p>
+{{template "yk-search-form" dict "Root" . "Id" "lost"}}
+<p class="yk-lost__home"><a class="yk-btn" href="/">Back to the front page</a></p>
+</section>{{end}}
