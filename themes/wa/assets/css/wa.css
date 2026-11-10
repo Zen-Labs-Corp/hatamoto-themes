@@ -1,78 +1,131 @@
 /* Wa: the theme's own stylesheet.
    The engine bundles assets/css/base.css, then every other assets/css/*.css
-   (sorted), then assets/css/sections/*.css, across the theme AND the built-in
-   default theme it falls back to. So this file restyles the default's markup
-   (hm-* classes) and styles this theme's own (wa-* classes).
-   Rules: only --hm-* tokens for colour, type and radius, so Theme > Colours and
-   fonts keeps working; no request to another host (fonts live in
-   assets/fonts/, added with scripts/add-font.sh). */
+   (sorted), then assets/css/sections/*.css. Colour, type and radius literals
+   live in the token block below only; everything else reads the tokens, so
+   Theme > Colours and fonts keeps working. No request to another host. */
+
+/* Instrument Sans, OFL-1.1, self-hosted (assets/fonts/instrument-sans/LICENSE.txt) */
+@font-face { font-family: "Instrument Sans"; src: url("/theme/assets/fonts/instrument-sans/instrument-sans-latin-wght-italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("/theme/assets/fonts/instrument-sans/instrument-sans-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* Fraunces italic (accent words only), OFL-1.1, self-hosted (assets/fonts/fraunces/LICENSE.txt) */
+@font-face { font-family: "Fraunces"; src: url("/theme/assets/fonts/fraunces/fraunces-latin-wght-italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
 
 :root {
-  /* ---- palette (light) ---- */
-  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
-  --hm-bg: #ffffff;
-  --hm-text: #16181d;
-  --wa-muted: #5d636e;
-  --wa-line: #e4e6ea;
-  --wa-surface: #f6f7f9;
+  /* owner-restylable (Theme > Colours and fonts) */
+  --hm-primary: #2b54e8;
+  --hm-bg: #f7f8fb;
+  --hm-text: #0e1526;
+  --hm-font: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --hm-font-heading: var(--hm-font);
+  --hm-radius-sm: 10px;
+  --hm-radius-md: 22px;
+  --hm-radius-lg: 22px;
+  --hm-container: var(--wa-wrap);
+
+  /* theme palette; paper, ink and primary follow the owner tokens */
+  --wa-paper: var(--hm-bg);
+  --wa-ink: var(--hm-text);
+  --wa-primary: var(--hm-primary);
+  --wa-on-primary: #fff;
+  --wa-band: #e9eef7;
+  --wa-surface: #fff;
+  --wa-muted: #5a6479;
+  --wa-line: #d9e0ec;
+  --wa-chip: #e6ecf8;
+  --wa-signal: #c8f04a;
+  --wa-signal-ink: #1a2300;
+  --wa-night: #0b1122;
+  --wa-night-2: #141c33;
+  --wa-night-ink: #e7ecf7;
+  --wa-night-muted: #97a2bb;
+
   /* the default theme's names, so its sections follow this palette */
-  --hm-sumi: var(--hm-text);
+  --hm-sumi: var(--wa-ink);
   --hm-hai: var(--wa-muted);
   --hm-label: var(--wa-muted);
   --hm-hair: var(--wa-line);
   --hm-shiro: var(--wa-surface);
-  --hm-kasumi: var(--wa-surface);
-  --hm-shu: var(--hm-primary);
+  --hm-kasumi: var(--wa-band);
+  --hm-shu: var(--wa-primary);
 
-  /* ---- type ---- */
-  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --hm-font-heading: var(--hm-font);
+  /* type */
+  --wa-serif: "Fraunces", ui-serif, Georgia, serif;
+  --wa-mono: ui-monospace, SFMono-Regular, monospace;
+  --wa-step--1: .8125rem;
+  --wa-step-0: 1rem;
+  --wa-step-1: 1.25rem;
+  --wa-step-2: 1.625rem;
+  --wa-step-3: 2.25rem;
+  --wa-step-4: 3.25rem;
+  --wa-step-5: 4.5rem;
 
-  /* ---- shape and rhythm ---- */
-  --hm-radius-sm: 6px;
-  --hm-radius-md: 10px;
-  --hm-radius-lg: 16px;
-  --hm-container: 72rem;
-  --wa-gap: clamp(1rem, 3vw, 2rem);
-  --wa-section: clamp(4rem, 9vw, 7rem);
+  /* shape and space */
+  --wa-r-card: var(--hm-radius-lg);
+  --wa-r-pill: 999px;
+  --wa-r-sm: var(--hm-radius-sm);
+  --wa-gap: 20px;
+  --wa-wrap: 1240px;
+  --wa-pad: clamp(16px, 4vw, 40px);
+  --measure: 44rem;
+  --wa-section: clamp(48px, 7vw, 96px);
 }
 
-:root[data-theme="dark"] {
-  --hm-bg: #0f1115;
-  --hm-text: #e8eaee;
-  --wa-muted: #9aa1ad;
-  --wa-line: #262a31;
-  --wa-surface: #161920;
+/* Dark: never redefine --hm-primary (the owner's inline <style> loses to
+   :root[data-theme]); the dark primary is derived from it instead. */
+:root[data-theme="dark"],
+:root[data-wa-mode="dark"]:not([data-theme]):not([data-wa-js]) {
+  --wa-paper: #0a0f1c;
+  --wa-ink: #e8edf8;
+  --wa-band: #111933;
+  --wa-surface: #121a2e;
+  --wa-muted: #9aa5bd;
+  --wa-line: #24304c;
+  --wa-chip: #1b2541;
+  --wa-night: #060a15;
+  --wa-night-2: #111a31;
+  --wa-on-primary: #0a0f1c;
+  --wa-primary: color-mix(in srgb, var(--hm-primary) 62%, #fff);
   color-scheme: dark;
 }
+
+/* ---- base ---- */
+body { font-family: var(--hm-font); font-size: var(--wa-step-0); line-height: 1.55; background: var(--wa-paper); color: var(--wa-ink); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 700; letter-spacing: -.03em; line-height: 1.08; }
+.wa-wrap { max-width: var(--wa-wrap); margin-inline: auto; padding-inline: var(--wa-pad); }
+.wa-it { font-family: var(--wa-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; color: var(--wa-primary); }
+.wa-night .wa-it { color: var(--wa-signal); }
+.wa-eyebrow { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--wa-primary); }
+.wa-eyebrow::before { content: ""; inline-size: 28px; block-size: 1px; background: currentColor; }
+.wa-mono { font-family: var(--wa-mono); font-weight: 600; letter-spacing: .08em; }
+:focus-visible { outline: 2px solid var(--wa-primary); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 
 [data-wa-density="compact"] { --wa-section: clamp(2.5rem, 6vw, 4.5rem); }
 .hm-section { padding-block: var(--wa-section); }
 
 /* ---- shell ---- */
-.wa-wrap { width: min(100% - 2 * var(--wa-gap), var(--hm-container)); margin-inline: auto; }
 
-.wa-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--wa-line); }
+.wa-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--wa-paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--wa-line); }
 .wa-header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
-.wa-brand { display: inline-flex; align-items: center; gap: .5rem; color: var(--hm-text); text-decoration: none; font-weight: 650; letter-spacing: -.01em; }
+.wa-brand { display: inline-flex; align-items: center; gap: .5rem; color: var(--wa-ink); text-decoration: none; font-weight: 650; letter-spacing: -.01em; }
 .wa-nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin-inline-start: auto; }
 .wa-nav a { color: var(--wa-muted); text-decoration: none; font-size: .95rem; }
-.wa-nav a:hover, .wa-nav a[aria-current="page"] { color: var(--hm-text); }
+.wa-nav a:hover, .wa-nav a[aria-current="page"] { color: var(--wa-ink); }
 .wa-header__end { display: flex; align-items: center; gap: .75rem; }
-.wa-mode { display: inline-grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border: 1px solid var(--wa-line); border-radius: 999px; background: none; color: var(--hm-text); cursor: pointer; }
+.wa-mode { display: inline-grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border: 1px solid var(--wa-line); border-radius: 999px; background: none; color: var(--wa-ink); cursor: pointer; }
 .wa-mode svg { inline-size: 1rem; block-size: 1rem; }
 .wa-sun, [data-theme="dark"] .wa-moon { display: none; }
 [data-theme="dark"] .wa-sun { display: block; }
 
 .wa-footer { margin-block-start: var(--wa-section); padding-block: 3rem 2rem; border-top: 1px solid var(--wa-line); color: var(--wa-muted); font-size: .9rem; }
 .wa-footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
-.wa-footer__brand { margin: 0; color: var(--hm-text); font-weight: 650; }
+.wa-footer__brand { margin: 0; color: var(--wa-ink); font-weight: 650; }
 .wa-footer__brand span { display: block; margin-top: .25rem; color: var(--wa-muted); font-weight: 400; }
 .wa-footer__nav { display: flex; flex-wrap: wrap; gap: 2rem 3rem; }
 .wa-footer__nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
-.wa-footer__title { margin: 0 0 .5rem; color: var(--hm-text); font-weight: 600; }
+.wa-footer__title { margin: 0 0 .5rem; color: var(--wa-ink); font-weight: 600; }
 .wa-footer a { color: inherit; text-decoration: none; }
-.wa-footer a:hover { color: var(--hm-text); }
+.wa-footer a:hover { color: var(--wa-ink); }
 .wa-social { display: flex; gap: 1rem; list-style: none; padding: 0; margin: 2rem 0 0; }
 .wa-footer__legal { margin: 2rem 0 0; }
 
