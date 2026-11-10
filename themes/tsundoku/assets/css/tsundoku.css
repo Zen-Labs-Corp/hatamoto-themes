@@ -70,6 +70,7 @@ a { color: inherit; }
 .tk-menu__panel { --tk-focus: var(--tk-pop-ink); }
 .tk-foot, .tk-pile { --tk-focus: var(--tk-footer-ink); }
 .tk-lead { --tk-focus: var(--tk-teal-ink); }
+.tk-letter, .tk-nf { --tk-focus: var(--tk-coral-ink); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 
 [data-tk-corners="soft"] { --tk-radius: 8px; --tk-radius-sm: 6px; }
