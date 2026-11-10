@@ -1,5 +1,6 @@
-{{/* Block-built pages: when no section prints the h1 (a hero), add the page name as a visually hidden h1 so the page has exactly one.
+{{/* Block-built pages: when no section prints the h1 (a v1 hero, or a native builder
+node with an <h1>), add the page name as a visually hidden h1 so the page has exactly one.
 It comes first; the inner-page opener CSS matches the first section (:first-of-type), so
 the h1 does not break it. */}}
-{{define "mu-page-body"}}{{$h1 := false}}{{range .Blocks}}{{if eq .Type "hero"}}{{$h1 = true}}{{end}}{{end}}{{if and .Blocks (not $h1)}}<h1 class="hm-visually-hidden">{{.Page.Name}}</h1>
+{{define "mu-page-body"}}{{$h1 := false}}{{range .Blocks}}{{if or (eq .Type "hero") (and .Native (contains (lower .Native) "<h1"))}}{{$h1 = true}}{{end}}{{end}}{{if and .Blocks (not $h1)}}<h1 class="hm-visually-hidden">{{.Page.Name}}</h1>
 {{end}}{{template "page-body" .}}{{end}}
