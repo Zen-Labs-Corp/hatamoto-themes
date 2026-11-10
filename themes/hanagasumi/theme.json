@@ -1,0 +1,31 @@
+{
+  "name": "hanagasumi",
+  "version": "0.1.0",
+  "description": "Soft pastel blog theme: a split homepage with a sideways-scrolling story rail, rounded cards, pill chips and mono labels in rose on warm mist.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "light"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      }
+    }
+  }
+}
