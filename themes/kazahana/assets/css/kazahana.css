@@ -399,6 +399,11 @@ mark { padding: 0 .15em; border-radius: 3px; background: color-mix(in srgb, var(
   .kz-byline { gap: .4rem 1rem; }
   .kz-prose table { display: block; overflow-x: auto; }
 }
+/* forced colours drop backgrounds and colour shifts: mark the current item with a line */
+@media (forced-colors: active) {
+  .kz-bar a[aria-current], .kz-strip a[aria-current], .kz-menu__list a[aria-current], .kz-footer a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  .kz-chip[aria-current] { border-width: 3px; font-weight: 700; }
+}
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
