@@ -8,7 +8,12 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
@@ -17,14 +22,69 @@
         "type": "string",
         "title": "Colour mode",
         "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
-        "default": "light"
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
+        "default": "auto"
       },
       "density": {
         "type": "string",
         "title": "Spacing",
-        "enum": ["comfortable", "compact"],
-        "default": "comfortable"
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
+        "default": "comfortable",
+        "description": "Vertical spacing between blocks."
+      },
+      "issue_strip": {
+        "type": "boolean",
+        "title": "Issue strip",
+        "description": "Show the issue line above the wordmark.",
+        "default": true
+      },
+      "issue_label": {
+        "type": "string",
+        "title": "Issue label",
+        "description": "Printed in the issue strip; the month and year of the newest post follow it.",
+        "default": "No. 1"
+      },
+      "sidebar": {
+        "type": "boolean",
+        "title": "Home sidebar",
+        "description": "Show the numbered list and topic chips next to the home grid.",
+        "default": true
+      },
+      "sidebar_title": {
+        "type": "string",
+        "title": "Sidebar title",
+        "description": "Heading of the numbered list.",
+        "default": "Also new"
+      },
+      "subscribe_url": {
+        "type": "string",
+        "title": "Subscribe link",
+        "description": "Where the Subscribe button and band lead. Both stay hidden while this is empty.",
+        "default": ""
+      },
+      "subscribe_headline": {
+        "type": "string",
+        "title": "Subscribe headline",
+        "description": "Headline of the subscribe band on the home page.",
+        "default": "New stories, twice a month. Nothing else."
+      },
+      "accent": {
+        "type": "string",
+        "title": "Accent",
+        "description": "Rules, bars and numerals.",
+        "enum": [
+          "saffron",
+          "brick",
+          "teal"
+        ],
+        "default": "saffron"
       }
     }
   }
