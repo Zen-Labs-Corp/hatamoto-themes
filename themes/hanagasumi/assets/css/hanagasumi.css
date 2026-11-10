@@ -151,6 +151,8 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 600; letter-s
 [data-hg-density="compact"] { --hg-section: clamp(2.5rem, 6vw, 4.5rem); }
 .hm-section { padding-block: var(--hg-section); }
 img, svg { max-inline-size: 100%; }
+/* the built-in theme's container (author page, builder sections) lines up with the header and footer edge */
+.hm-container { padding-inline: 1.75rem; }
 
 /* ---- atoms ---- */
 .hg-icon { display: block; inline-size: 1.0625rem; block-size: 1.0625rem; }
@@ -370,6 +372,7 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 @media (max-width: 860px) {
   .hg-nav, .hg-header__cta { display: none; }
   .hg-menu { display: block; }
+  .hm-container { padding-inline: 1.125rem; }
   .hg-header__in { padding: .875rem 1.125rem; }
   .hg-footer__in { padding: 0 .75rem 1.125rem; }
   .hg-footer__card { grid-template-columns: 1fr; padding: 1.75rem; border-radius: var(--hg-radius-lg); }
