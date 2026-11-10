@@ -120,7 +120,10 @@
       "days_ago": 1,
       "excerpt": "Why the first walk matters more than any sight, and how to spend it.",
       "content": "<p>The first morning in a new city is the only one you get for free. After that you have routines, favourite cafés and a way home that you no longer notice.</p>\n<h2>Before you leave</h2>\n<p>Pack less than you think. Every trip we have regretted was one where the bag decided the day.</p>\n<ul><li>One pair of shoes you can walk in all day.</li><li>A paper notebook, because a phone is for maps.</li><li>A small bag that folds into a pocket.</li></ul>\n<blockquote><p>Walk until you are a little lost, then ask for directions to somewhere you have never heard of.</p></blockquote>\n<h2>The first walk</h2>\n<ol><li>Leave the map in your pocket for the first hour.</li><li>Follow the busiest street until it stops being busy.</li><li>Sit somewhere with a view of people, not of buildings.</li></ol>\n<h3>What to write down</h3>\n<p>Names of streets you liked, prices of coffee, the time the light changed. They make better notes than sights.</p>\n<h2>A small budget table</h2>\n<table><thead><tr><th>Item</th><th>Low</th><th>High</th></tr></thead><tbody><tr><td>Coffee</td><td>1.50</td><td>4.00</td></tr><tr><td>Lunch</td><td>6.00</td><td>18.00</td></tr><tr><td>Local transport, day</td><td>3.00</td><td>9.00</td></tr></tbody></table>\n<h2>For the spreadsheet people</h2>\n<pre><code>daily = coffee * 2 + lunch + dinner + transport\nprint(f\"{daily:.2f} per day\")</code></pre>\n<p>Then forget the number and go outside.</p><h2>After the first coffee</h2><p>By nine you have usually seen enough to form an opinion, which is exactly the moment to put it aside. Walk the same street again in the other direction and notice what changed. The city has not moved; you have.</p><p>Write down three things in your notebook before you go back to the hotel. They will be the details you remember in a year, long after the famous sights have blurred together.</p>",
-      "featured_image": "{{media:walk.png}}"
+      "featured_image": "{{media:walk.png}}",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "Bread, slowly: a year of sourdough",
@@ -129,7 +132,10 @@
       "days_ago": 6,
       "excerpt": "What a year of weekly loaves taught us about patience, flour and failure.",
       "content": "<p>The starter lives in the fridge and eats on Fridays.</p><h2>Flour</h2><p>Strong white for the body, a handful of rye for the taste.</p><h2>Time</h2><p>Twelve hours in the fridge does more than any technique.</p><h2>Failure</h2><p>Flat loaves still make excellent toast.</p><h2>The loaf that failed</h2><p>In the third month we baked eleven loaves that could have been used as doorstops. Each one failed in a different way: too dense, too sour, a crust that cracked like a plate. We wrote every result in a small notebook, with the room temperature and the age of the starter, and by spring the notebook had taught us more than any recipe.</p><p>What changed was not the flour or the oven but the clock. We stopped watching the dough and started watching the day: a warm kitchen meant a shorter rise, a cold morning meant we could go out for a walk and come back to a loaf that had simply waited for us. Patience, it turns out, is mostly a matter of planning your errands around bread.</p><p>If you want to start, begin with one loaf a week and one change at a time. Keep the notes. Share the failures with whoever eats them; they will be kinder than you expect, and the toast is always good.</p>",
-      "featured_image": "{{media:bread.png}}"
+      "featured_image": "{{media:bread.png}}",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "Signs that work in the rain",
@@ -137,7 +143,10 @@
       "category_slug": "design",
       "days_ago": 11,
       "excerpt": "Wayfinding lessons from a wet week of looking at station signs.",
-      "content": "<p>A sign is read in two seconds by someone in a hurry.</p><h2>Contrast</h2><p>Rain kills thin type and pale colours first.</p><h2>Height</h2><p>Put the sign where eyes already are, not where the wall is free.</p><h2>What the weather teaches</h2><p>We spent a week photographing signs in three stations, always after the rain had started. The ones that survived were never the cleverest. They had large letters, a strong dark-on-light contrast and one idea per sign. The ones that failed tried to say three things at once.</p><p>Glare is the second enemy. A glossy panel under a bright lamp turns into a mirror the moment it gets wet, and the arrow you needed disappears behind your own reflection. Matte surfaces cost a little more and save a great many missed trains.</p><p>Next time you stand in a station, look at the signs for ten seconds before you look at your phone. Ask which one you would trust with a heavy bag and a child in a hurry.</p>"
+      "content": "<p>A sign is read in two seconds by someone in a hurry.</p><h2>Contrast</h2><p>Rain kills thin type and pale colours first.</p><h2>Height</h2><p>Put the sign where eyes already are, not where the wall is free.</p><h2>What the weather teaches</h2><p>We spent a week photographing signs in three stations, always after the rain had started. The ones that survived were never the cleverest. They had large letters, a strong dark-on-light contrast and one idea per sign. The ones that failed tried to say three things at once.</p><p>Glare is the second enemy. A glossy panel under a bright lamp turns into a mirror the moment it gets wet, and the arrow you needed disappears behind your own reflection. Matte surfaces cost a little more and save a great many missed trains.</p><p>Next time you stand in a station, look at the signs for ten seconds before you look at your phone. Ask which one you would trust with a heavy bag and a child in a hurry.</p>",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "Ten books for a long train",
@@ -146,7 +155,10 @@
       "days_ago": 17,
       "excerpt": "Short chapters, big ideas and nothing that needs a reading light.",
       "content": "<p>A long train is the best library there is.</p><h2>How we chose</h2><p>Every book here can be read in chapters of twenty minutes.</p><h2>The list</h2><p>Essays, two novels, a travel classic and a cookbook to read, not use.</p><h2>How we choose</h2><p>A book for a long train has to survive interruptions: a conductor, a sleeping neighbour, a missed station announcement. We favour short chapters, a voice you can fall back into after twenty minutes of staring out of the window, and a physical size that fits a coat pocket.</p><p>This list mixes old favourites with a few recent finds. Some are novels, some are essays, one is a field guide to the birds you will not see from the carriage. None of them need a charger, and all of them are fine to read with a sandwich in the other hand.</p><p>Tell us what we missed. The best recommendations we ever received came from strangers sitting across the table, and the list will keep growing as long as the trains keep running late.</p>",
-      "featured_image": "{{media:books.png}}"
+      "featured_image": "{{media:books.png}}",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "A market at six in the morning",
@@ -155,7 +167,10 @@
       "days_ago": 23,
       "excerpt": "Fish, flowers and the best coffee of the trip, before the tourists wake up.",
       "content": "<p>The market opens before the city does.</p><h2>Arrive early</h2><p>By eight the best stalls are sold out.</p><h2>Bring cash</h2><p>Half the stalls still do not take cards.</p>",
-      "featured_image": "{{media:market.png}}"
+      "featured_image": "{{media:market.png}}",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "Notes on notebooks",
@@ -163,7 +178,10 @@
       "category_slug": "notes",
       "days_ago": 30,
       "excerpt": "Dot grid, plain or lined, and why the answer is always the one in your bag.",
-      "content": "<p>Every notebook is the right one if you carry it.</p><h2>Paper</h2><p>Thicker paper forgives the fountain pen.</p><h2>Size</h2><p>Pocket size, or it stays at home.</p>"
+      "content": "<p>Every notebook is the right one if you carry it.</p><h2>Paper</h2><p>Thicker paper forgives the fountain pen.</p><h2>Size</h2><p>Pocket size, or it stays at home.</p>",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "Walking the old harbour line",
@@ -172,7 +190,10 @@
       "days_ago": 38,
       "excerpt": "Eleven kilometres of disused railway, three bridges and one very good bakery.",
       "content": "<p>The line closed in 1971 and became a path in 2009.</p><h2>Start</h2><p>Begin at the north end so the wind is behind you.</p><h2>Stop</h2><p>The bakery at kilometre seven opens at nine.</p>",
-      "featured_image": "{{media:harbour.png}}"
+      "featured_image": "{{media:harbour.png}}",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "Kitchen tools worth keeping",
@@ -180,7 +201,10 @@
       "category_slug": "food",
       "days_ago": 45,
       "excerpt": "Eight things we use every day and the drawer of gadgets we gave away.",
-      "content": "<p>Most kitchens need fewer tools.</p><h2>Keep</h2><p>A sharp knife, a heavy pan, a wooden spoon.</p><h2>Give away</h2><p>Anything that does one thing a knife can do.</p>"
+      "content": "<p>Most kitchens need fewer tools.</p><h2>Keep</h2><p>A sharp knife, a heavy pan, a wooden spoon.</p><h2>Give away</h2><p>Anything that does one thing a knife can do.</p>",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "Maps we would hang on a wall",
@@ -189,7 +213,10 @@
       "days_ago": 52,
       "excerpt": "Old survey sheets, transit diagrams and one hand-drawn map of a village.",
       "content": "<p>A good map explains a place in one look.</p><h2>Survey sheets</h2><p>Contours are drawing at its most patient.</p><h2>Transit diagrams</h2><p>Honest about what matters, careless about distance.</p>",
-      "featured_image": "{{media:maps.png}}"
+      "featured_image": "{{media:maps.png}}",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     },
     {
       "name": "Reading in a second language",
@@ -197,7 +224,10 @@
       "category_slug": "books",
       "days_ago": 60,
       "excerpt": "Children's books, then detective novels, then the newspaper.",
-      "content": "<p>Start below your level and stay there longer than feels right.</p><h2>Children's books</h2><p>Short sentences and pictures that explain them.</p><h2>Detective novels</h2><p>The plot pulls you through the words you do not know.</p>"
+      "content": "<p>Start below your level and stay there longer than feels right.</p><h2>Children's books</h2><p>Short sentences and pictures that explain them.</p><h2>Detective novels</h2><p>The plot pulls you through the words you do not know.</p>",
+      "attributes": {
+        "author": "Ana Ferreira"
+      }
     }
   ],
   "menus": {
