@@ -1,0 +1,17 @@
+{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+<div class="yk-wrap yk-layout">
+{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" "none" "All" $arch}}
+<div class="yk-main">
+<header class="yk-listhead yk-authorhead">
+{{with .Author.Avatar}}<img src="{{imgsrc .}}" alt="" width="96" height="96">{{end}}
+<div><p class="yk-listhead__kick">Author</p>
+<h1 class="yk-listhead__title">{{.Author.Name}}</h1>
+{{with .Author.JobTitle}}<p class="yk-listhead__kick">{{.}}</p>{{end}}
+{{with .Author.Bio}}<p class="yk-listhead__lede">{{.}}</p>{{end}}
+{{with .Author.Links}}<p class="yk-authorlinks">{{range .}}<a href="{{cta .URL}}" rel="me noopener">{{.Label}}</a>{{end}}</p>{{end}}</div>
+</header>
+{{template "yk-chips" dict "Cats" $cats "Cur" "none" "All" $arch}}
+{{template "yk-grid" dict "Root" . "Items" .Items "Cats" $cats}}
+</div>
+{{with .Pagination}}{{template "yk-pager" dict "Page" .Page "Pages" .TotalPages "Pg" .}}{{end}}
+</div>{{end}}

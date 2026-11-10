@@ -1,0 +1,10 @@
+{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$cur := "none"}}{{$kick := ""}}{{if eq .Term.Kind "tag"}}{{$kick = "Tag"}}{{end}}{{if eq .Term.Kind "category"}}{{$cur = .Term.URL}}{{end}}
+<div class="yk-wrap yk-layout">
+{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" $cur "All" $arch}}
+<div class="yk-main">
+{{template "yk-listhead" dict "Kicker" $kick "Title" .Term.Name "Lede" .Term.Description}}
+{{template "yk-chips" dict "Cats" $cats "Cur" $cur "All" $arch}}
+{{template "yk-grid" dict "Root" . "Items" .Items "Cats" $cats}}
+</div>
+{{with .Pagination}}{{template "yk-pager" dict "Page" .Page "Pages" .TotalPages "Pg" .}}{{end}}
+</div>{{end}}
