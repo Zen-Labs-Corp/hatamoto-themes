@@ -7,14 +7,29 @@
    fonts keeps working; no request to another host (fonts live in
    assets/fonts/, added with scripts/add-font.sh). */
 
+/* Bricolage Grotesque, OFL-1.1 (assets/fonts/bricolage-grotesque/LICENSE.txt) */
+@font-face { font-family: "Bricolage Grotesque"; src: url("/theme/assets/fonts/bricolage-grotesque/bricolage-grotesque-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* Source Serif 4, OFL-1.1 (assets/fonts/source-serif-4/LICENSE.txt) */
+@font-face { font-family: "Source Serif 4"; src: url("/theme/assets/fonts/source-serif-4/source-serif-4-latin-wght-italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Source Serif 4"; src: url("/theme/assets/fonts/source-serif-4/source-serif-4-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+
 :root {
-  /* ---- palette (light) ---- */
-  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
-  --hm-bg: #ffffff;
-  --hm-text: #16181d;
-  --yk-muted: #5d636e;
-  --yk-line: #e4e6ea;
-  --yk-surface: #f6f7f9;
+  /* ---- palette (light: paper, ink, pine) ---- */
+  --hm-primary: #2c6a4e;          /* the owner's primary colour replaces this */
+  --hm-bg: #fcfcfa;
+  --hm-text: #13201b;
+  --yk-surface: #f2f4f0;
+  --yk-muted: #56645d;
+  --yk-line: #e2e6e0;
+  --yk-primary: var(--hm-primary);  /* what is drawn in the primary colour; dark mode lightens it */
+  --yk-on-primary: #ffffff;
+  /* card tints, one per category in turn; t0 is the neutral panel when tints are off */
+  --yk-t1: #e5efe8;
+  --yk-t2: #eef0e2;
+  --yk-t3: #e6edf1;
+  --yk-t4: #f3ece4;
+  --yk-t5: #eceeea;
+  --yk-t0: var(--yk-surface);
   /* the default theme's names, so its sections follow this palette */
   --hm-sumi: var(--hm-text);
   --hm-hai: var(--yk-muted);
@@ -22,35 +37,78 @@
   --hm-hair: var(--yk-line);
   --hm-shiro: var(--yk-surface);
   --hm-kasumi: var(--yk-surface);
-  --hm-shu: var(--hm-primary);
+  --hm-shu: var(--yk-primary);
+  color-scheme: light;
 
   /* ---- type ---- */
-  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --hm-font: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
   --hm-font-heading: var(--hm-font);
+  --yk-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 
   /* ---- shape and rhythm ---- */
-  --hm-radius-sm: 6px;
+  --hm-radius-sm: 8px;
   --hm-radius-md: 10px;
-  --hm-radius-lg: 16px;
-  --hm-container: 72rem;
-  --yk-gap: clamp(1rem, 3vw, 2rem);
-  --yk-section: clamp(4rem, 9vw, 7rem);
+  --hm-radius-lg: 999px;
+  --yk-container: 82.5rem;
+  --yk-side: 240px;
+  --yk-gap-x: 44px;
+  --yk-gap-y: 56px;
+  --yk-measure: 44rem;
+  --yk-section: clamp(3rem, 7vw, 5rem);
 }
 
-:root[data-theme="dark"] {
-  --hm-bg: #0f1115;
-  --hm-text: #e8eaee;
-  --yk-muted: #9aa1ad;
-  --yk-line: #262a31;
-  --yk-surface: #161920;
+:root[data-theme="dark"],
+:root[data-yk-mode="dark"]:not([data-theme]):not([data-yk-js]) {
+  --yk-primary: color-mix(in oklch, var(--hm-primary) 50%, white);
+  --hm-bg: #0f1714;
+  --hm-text: #e8eee9;
+  --yk-surface: #16201c;
+  --yk-muted: #a1b0a8;
+  --yk-line: #26322d;
+  --yk-on-primary: #0f1714;
+  --yk-t1: #1a2a22;
+  --yk-t2: #24271b;
+  --yk-t3: #1b2529;
+  --yk-t4: #2a2219;
+  --yk-t5: #1f2421;
   color-scheme: dark;
 }
+/* no script: "auto" follows the system */
+@media (prefers-color-scheme: dark) {
+  :root[data-yk-mode="auto"]:not([data-theme]):not([data-yk-js]) {
+    --yk-primary: color-mix(in oklch, var(--hm-primary) 50%, white);
+    --hm-bg: #0f1714;
+    --hm-text: #e8eee9;
+    --yk-surface: #16201c;
+    --yk-muted: #a1b0a8;
+    --yk-line: #26322d;
+    --yk-on-primary: #0f1714;
+    --yk-t1: #1a2a22;
+    --yk-t2: #24271b;
+    --yk-t3: #1b2529;
+    --yk-t4: #2a2219;
+    --yk-t5: #1f2421;
+    color-scheme: dark;
+  }
+}
 
-[data-yk-density="compact"] { --yk-section: clamp(2.5rem, 6vw, 4.5rem); }
+/* ---- base ---- */
+html { font-size: 100%; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--hm-bg); color: var(--hm-text); font-family: var(--hm-font); font-size: 1rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: var(--hm-font-heading); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--yk-primary); outline-offset: 3px; }
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+[data-yk-density="compact"] { --yk-section: clamp(2rem, 5vw, 3.5rem); }
 .hm-section { padding-block: var(--yk-section); }
 
 /* ---- shell ---- */
-.yk-wrap { width: min(100% - 2 * var(--yk-gap), var(--hm-container)); margin-inline: auto; }
+.yk-wrap { width: min(100% - 2 * 1.5rem, var(--yk-container)); margin-inline: auto; }
 
 .yk-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--yk-line); }
 .yk-header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
