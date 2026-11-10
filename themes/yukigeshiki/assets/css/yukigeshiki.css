@@ -72,6 +72,14 @@
   --yk-t3: #1b2529;
   --yk-t4: #2a2219;
   --yk-t5: #1f2421;
+  /* the default theme's own dark block (same specificity, loaded earlier) sets neutral greys on these names: pin them to the pine palette */
+  --hm-sumi: var(--hm-text);
+  --hm-hai: var(--yk-muted);
+  --hm-label: var(--yk-muted);
+  --hm-hair: var(--yk-line);
+  --hm-shiro: var(--yk-surface);
+  --hm-kasumi: var(--yk-surface);
+  --hm-shu: var(--yk-primary);
   color-scheme: dark;
 }
 /* no script: "auto" follows the system */
@@ -94,7 +102,8 @@
 }
 
 /* ---- base ---- */
-html { font-size: 100%; -webkit-text-size-adjust: 100%; }
+html { font-size: 100%; -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
+main { scroll-margin-top: 84px; }
 body { margin: 0; background: var(--hm-bg); color: var(--hm-text); font-family: var(--hm-font); font-size: 1rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4 { font-family: var(--hm-font-heading); }
 a { color: inherit; }
@@ -114,7 +123,7 @@ a { color: inherit; }
 .yk-btn:hover { filter: brightness(1.08); }
 
 .yk-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 82%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.yk-header__inner { position: relative; display: flex; align-items: center; gap: 24px; block-size: 60px; }
+.yk-header__inner { display: flex; align-items: center; gap: 24px; block-size: 60px; }
 .yk-brand { display: inline-flex; align-items: center; gap: 10px; min-inline-size: 0; color: var(--hm-text); text-decoration: none; font-weight: 650; letter-spacing: -.01em; }
 .yk-brand img { display: block; max-block-size: 28px; inline-size: auto; }
 .yk-brand__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -138,7 +147,7 @@ a { color: inherit; }
 .yk-menu { display: none; }
 .yk-menu summary { list-style: none; cursor: pointer; padding: 6px 12px; border: 1px solid var(--yk-line); border-radius: var(--hm-radius-sm); font-size: .875rem; font-weight: 500; }
 .yk-menu summary::-webkit-details-marker { display: none; }
-.yk-menu__panel { position: absolute; inset-inline: 0; inset-block-start: 100%; padding: 8px 0 20px; background: var(--hm-bg); border-bottom: 1px solid var(--yk-line); }
+.yk-menu__panel { position: absolute; inset-inline: 0; inset-block-start: 100%; padding: 8px 18px 20px; /* full width of the header, text on the page gutter */ background: var(--hm-bg); border-bottom: 1px solid var(--yk-line); }
 .yk-menu__panel nav ul { list-style: none; margin: 0; padding: 0; }
 .yk-menu__panel nav ul ul { padding-inline-start: 16px; }
 .yk-menu__panel nav a, .yk-menu__panel .yk-nav__label { display: block; padding: 12px 0; border-bottom: 1px solid var(--yk-line); font-size: 1.125rem; font-weight: 500; text-decoration: none; }
@@ -171,7 +180,7 @@ a { color: inherit; }
 /* ---- listing layout: sticky sidebar, hairline, card grid ---- */
 .yk-layout { display: grid; grid-template-columns: var(--yk-side) minmax(0, 1fr); column-gap: 40px; padding-block-start: 36px; }
 .yk-layout > * { min-inline-size: 0; }
-.yk-side { position: sticky; top: 96px; align-self: start; max-block-size: calc(100vh - 120px); overflow-y: auto; padding-inline-end: 8px; }
+.yk-side { position: sticky; top: 96px; align-self: start; max-block-size: calc(100vh - 120px); overflow-y: auto; margin: -6px 0 -6px -6px; padding: 6px 8px 6px 6px; /* room for the focus ring inside the scroll box */ }
 .yk-main { border-inline-start: 1px solid var(--yk-line); padding-inline-start: 48px; }
 .yk-mast { margin: 0; font-weight: 700; font-size: 44px; line-height: .98; letter-spacing: -.035em; overflow-wrap: anywhere; }
 .yk-mast em { display: block; font: italic 400 1em/1 var(--yk-serif); letter-spacing: -.01em; }
@@ -220,12 +229,12 @@ a { color: inherit; }
 
 @media (max-width: 900px) {
   .yk-layout { grid-template-columns: minmax(0, 1fr); padding-block-start: 24px; }
-  .yk-side { position: static; max-block-size: none; overflow: visible; padding: 0; margin-block-end: 22px; }
+  .yk-side { position: static; max-block-size: none; overflow: visible; padding: 0; margin: 0 0 22px; }
   .yk-main { border: 0; padding: 0; }
   .yk-mast { font-size: 40px; }
   .yk-tag { margin: 12px 0 0; }
   .yk-side hr, .yk-cats { display: none; }
-  .yk-chips { display: flex; gap: 8px; margin: 0 -18px 26px; padding: 0 18px 4px; overflow-x: auto; scrollbar-width: none; }
+  .yk-chips { display: flex; gap: 8px; margin: -6px -18px 20px; padding: 6px 18px; /* room for the focus ring inside the scroll box */ overflow-x: auto; scrollbar-width: none; }
   .yk-chips::-webkit-scrollbar { display: none; }
   .yk-chips a { flex: none; padding: 6px 12px; border: 1px solid var(--yk-line); border-radius: 999px; color: var(--yk-muted); font-size: .84375rem; text-decoration: none; }
   .yk-chips a[aria-current="page"] { background: var(--hm-text); border-color: var(--hm-text); color: var(--hm-bg); }
