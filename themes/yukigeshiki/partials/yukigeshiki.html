@@ -5,3 +5,39 @@
 {{define "yk-brand"}}<a class="yk-brand" href="/" aria-label="{{.Root.Site.Name}}, home">{{if .Root.Site.LogoURL}}<img src="{{imgsrc .Root.Site.LogoURL}}" alt="{{.Root.Site.Name}}" height="28">{{else}}<span class="yk-mark" aria-hidden="true">{{template "yk-initial" dict "Name" .Root.Site.Name}}</span><span class="yk-brand__name">{{.Root.Site.Name}}</span>{{end}}</a>{{end}}
 {{/* yk-cta: the header button. The site's own header button wins, else the theme settings; no address, no button. dict "Root" . "Class" s */}}
 {{define "yk-cta"}}{{$l := default "Subscribe" .Root.Settings.cta_label}}{{$u := .Root.Settings.cta_url}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if $u}}<a class="{{.Class}}" href="{{cta $u}}">{{$l}}</a>{{end}}{{end}}
+{{/* yk-masthead-text: the site name, with the last word on its own line in italic serif when split_masthead is on. dict "Root" . */}}
+{{define "yk-masthead-text"}}{{$n := trim .Root.Site.Name}}{{$words := split $n " "}}{{$last := sub (len $words) 1}}{{if ne (printf "%v" .Root.Settings.split_masthead) "false"}}{{$first := ""}}{{range $i, $w := $words}}{{if lt $i $last}}{{$first = print $first " " $w}}{{end}}{{end}}{{with trim $first}}{{.}}{{end}}<em>{{index $words $last}}</em>{{else}}{{$n}}{{end}}{{end}}
+{{/* yk-cats: category links, "Latest" first. dict "Cats" terms "Cur" "all"|term URL|"none" "All" archive URL */}}
+{{define "yk-cats"}}<a href="{{cta .All}}"{{if eq .Cur "all"}} aria-current="page"{{end}}>Latest</a>{{range .Cats}}<a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}{{end}}
+{{/* yk-sidebar: masthead, tagline, hairline, category list. The masthead is the page h1 only when H1 is true. dict "Root" . "Cats" terms "Cur" s "All" url "H1" bool */}}
+{{define "yk-sidebar"}}<aside class="yk-side">
+{{if .H1}}<h1 class="yk-mast">{{template "yk-masthead-text" dict "Root" .Root}}</h1>{{else}}<p class="yk-mast">{{template "yk-masthead-text" dict "Root" .Root}}</p>{{end}}
+{{with .Root.Site.Tagline}}<p class="yk-tag">{{.}}</p>{{end}}
+<hr>
+<nav class="yk-cats" aria-label="Categories">{{template "yk-cats" dict "Cats" .Cats "Cur" .Cur "All" .All}}</nav>
+</aside>{{end}}
+{{/* yk-chips: the same links as a scrolling row on small screens. dict "Cats" terms "Cur" s "All" url */}}
+{{define "yk-chips"}}<nav class="yk-chips" aria-label="Categories">{{template "yk-cats" dict "Cats" .Cats "Cur" .Cur "All" .All}}</nav>{{end}}
+{{/* yk-card: a post card. The tint follows the category's place in the category list. dict "Root" . "Item" item "Cats" terms "Level" 2|3 */}}
+{{define "yk-card"}}{{$it := .Item}}{{$root := .Root}}{{$tint := 5}}{{$curl := ""}}{{range $i, $c := .Cats}}{{if eq $c.Name $it.Category}}{{$tint = add (mod $i 5) 1}}{{$curl = $c.URL}}{{end}}{{end}}{{if eq (printf "%v" $root.Settings.card_tints) "false"}}{{$tint = 0}}{{end}}
+<article class="yk-card">
+<a class="yk-media yk-t{{$tint}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 900px) 100vw, 480px"{{end}} alt="" loading="lazy" decoding="async">{{else}}<span class="yk-ph">{{template "yk-initial" dict "Name" (default $it.Title $it.Category)}}</span>{{end}}</a>
+{{with $it.Category}}<p class="yk-kicker">{{if $curl}}<a href="{{$curl}}">{{.}}</a>{{else}}{{.}}{{end}}</p>{{end}}
+{{if eq .Level 3}}<h3 class="yk-card__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h3>{{else}}<h2 class="yk-card__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h2>{{end}}
+{{with $it.Excerpt}}<p class="yk-excerpt">{{.}}</p>{{end}}
+<p class="yk-by">{{if and $it.Author (ne (printf "%v" $root.Settings.show_author) "false")}}<span class="yk-av" aria-hidden="true">{{template "yk-initials" dict "Name" $it.Author}}</span><span><b>{{$it.Author}}</b>{{template "yk-date" $it}}</span>{{else}}<span>{{template "yk-date" $it}}</span>{{end}}</p>
+</article>{{end}}
+{{/* yk-initials: first letters of the first and last word, upper-cased by CSS. dict "Name" s */}}
+{{define "yk-initials"}}{{$w := split (trim .Name) " "}}{{if $w}}{{template "yk-initial" dict "Name" (index $w 0)}}{{if gt (len $w) 1}}{{template "yk-initial" dict "Name" (index $w (sub (len $w) 1))}}{{end}}{{end}}{{end}}
+{{/* yk-date: the publish date of a card item. */}}
+{{define "yk-date"}}{{if not .PublishedAt.IsZero}}<time datetime="{{formatDate .PublishedAt "2006-01-02"}}">{{formatDate .PublishedAt "2 Jan 2006"}}</time>{{end}}{{end}}
+{{/* yk-grid: the two-column card grid, or an empty note. dict "Root" . "Items" items "Cats" terms */}}
+{{define "yk-grid"}}{{if .Items}}<div class="yk-grid">{{range .Items}}{{template "yk-card" dict "Root" $.Root "Item" . "Cats" $.Cats}}{{end}}</div>{{else}}<p class="yk-empty">No posts yet.</p>{{end}}{{end}}
+{{/* yk-page-url: N, Pg (the listing's .Pagination; absent on the home page) */}}
+{{define "yk-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+{{/* yk-pager: numbered pages, only when there is more than one. dict "Page" n "Pages" n "Pg" .Pagination (optional) */}}
+{{define "yk-pager"}}{{if gt .Pages 1}}{{$p := .Page}}{{$n := .Pages}}{{$pg := .Pg}}<nav class="yk-pager" aria-label="Pagination">
+{{if gt $p 1}}<a rel="prev" aria-label="Previous page" href="{{template "yk-page-url" dict "N" (sub $p 1) "Pg" $pg}}">&larr;</a>{{end}}
+{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}{{if eq $k $p}}<span aria-current="page" aria-label="Page {{$k}}, current page">{{$k}}</span>{{else}}<a aria-label="Page {{$k}}" href="{{template "yk-page-url" dict "N" $k "Pg" $pg}}">{{$k}}</a>{{end}}{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<span aria-hidden="true">&hellip;</span>{{end}}{{end}}
+{{if lt $p $n}}<a rel="next" aria-label="Next page" href="{{template "yk-page-url" dict "N" (add $p 1) "Pg" $pg}}">&rarr;</a>{{end}}
+</nav>{{end}}{{end}}
