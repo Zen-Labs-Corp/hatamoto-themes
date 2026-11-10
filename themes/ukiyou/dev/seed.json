@@ -223,7 +223,13 @@
      },
      {
       "label": "Books",
-      "url": "/category/books"
+      "url": "/category/books",
+      "children": [
+       {
+        "label": "Reviews",
+        "url": "/category/books"
+       }
+      ]
      }
     ]
    },

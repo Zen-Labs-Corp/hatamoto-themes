@@ -28,7 +28,7 @@ page keeps rendering.
 - A lead story, a grid of the next six, a numbered "Also new" list with topic chips, and a subscribe band, all filled from your content and hidden when there is nothing to show.
 - A single post with a story index, pull quotes, author box, previous and next links and related stories.
 - Light and dark, with text contrast of at least 4.5:1 for every accent.
-- If your home page has builder sections, Ukiyou renders them instead of the magazine front page; clear the home page's sections to get the magazine front page.
+- Set Home page to `page` to render the home page's builder sections instead of the magazine front page (for a business or landing site); the default `magazine` always shows the front page.
 
 ## Settings
 
@@ -40,6 +40,7 @@ page keeps rendering.
 | Spacing (`density`) | `comfortable`, `compact` | `comfortable` | `compact` tightens the vertical space between blocks. |
 | Issue strip (`issue_strip`) | on/off | on | Shows the issue line above the wordmark; off moves Search into the menu bar. |
 | Issue label (`issue_label`) | text | `No. 1` | Printed in the issue strip, followed by the month and year of the newest post. |
+| Home page (`home_layout`) | `magazine`, `page` | `magazine` | `magazine` shows the lead story, grid and subscribe band. `page` shows the home page's builder sections instead; it falls back to the magazine when the page has none. |
 | Home sidebar (`sidebar`) | on/off | on | The numbered list and topic chips next to the home grid; off gives a four-column grid. |
 | Sidebar title (`sidebar_title`) | text | `Also new` | Heading of the numbered list. |
 | Subscribe link (`subscribe_url`) | URL | empty | Where the Subscribe button and band lead. Both stay hidden while this is empty. |

@@ -51,6 +51,16 @@
         "description": "Printed in the issue strip; the month and year of the newest post follow it.",
         "default": "No. 1"
       },
+      "home_layout": {
+        "type": "string",
+        "title": "Home page",
+        "description": "Magazine shows the lead story, grid and subscribe band. Page Builder shows the sections of the home page instead (for a business or landing site).",
+        "enum": [
+          "magazine",
+          "page"
+        ],
+        "default": "magazine"
+      },
       "sidebar": {
         "type": "boolean",
         "title": "Home sidebar",
