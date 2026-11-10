@@ -402,3 +402,30 @@ span.wa-pager__dir { color: var(--wa-muted); }
   .wa-pagehd { padding-block: 40px 32px; }
   .wa-pagehd h1 { font-size: var(--wa-step-4); }
 }
+.wa-authorhd { display: flex; align-items: center; gap: 28px; }
+.wa-authorhd h1 { margin-block-start: 10px; }
+.wa-av--xl { inline-size: 112px; block-size: 112px; font-size: var(--wa-step-4); }
+.wa-authorhd__job { margin: 10px 0 0; color: var(--wa-primary); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.wa-authorhd__count { margin-block-start: 14px; }
+.wa-authorhd__links { margin-block-start: 18px; }
+.wa-pagehd__form { margin-block-start: 24px; }
+.wa-results-line { margin: 0 0 24px; color: var(--wa-muted); font-size: var(--wa-step-1); }
+.wa-results { margin: 0; padding: 0; list-style: none; }
+.wa-result { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: start; padding-block: 22px; border-block-end: 1px solid var(--wa-line); }
+.wa-result__n { display: grid; place-items: center; inline-size: 44px; block-size: 44px; border-radius: 50%; background: var(--wa-signal); color: var(--wa-signal-ink); font-family: var(--wa-mono); font-size: 13px; font-weight: 700; }
+.wa-result__kick { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 0; color: var(--wa-muted); font-size: 12px; }
+.wa-result__kick span { color: var(--wa-primary); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.wa-result h2 { margin: 6px 0 4px; font-size: 22px; line-height: 1.2; overflow-wrap: anywhere; }
+.wa-result__link { color: inherit; text-decoration: none; }
+.wa-result__link::after { content: ""; position: absolute; inset: 0; }
+.wa-result__link:hover { color: var(--wa-primary); }
+.wa-result__excerpt { margin: 0; max-inline-size: 60ch; color: var(--wa-muted); font-size: 15px; }
+.wa-noresults h2 { margin: 0 0 8px; font-size: var(--wa-step-3); }
+.wa-noresults p { max-inline-size: 44ch; margin: 0 0 20px; color: var(--wa-muted); }
+.wa-results-line + .wa-eyebrow { margin-block-end: 14px; }
+@media (max-width: 640px) {
+  .wa-authorhd { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .wa-av--xl { inline-size: 80px; block-size: 80px; font-size: var(--wa-step-3); }
+  .wa-result { grid-template-columns: 44px 1fr; gap: 14px; }
+  .wa-result__n { inline-size: 36px; block-size: 36px; font-size: 12px; }
+}

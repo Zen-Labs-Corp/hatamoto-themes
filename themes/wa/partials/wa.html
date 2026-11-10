@@ -30,10 +30,10 @@
 <ul>{{range paginate .}}<li>{{if .Gap}}<span aria-hidden="true">&hellip;</span>{{else}}<a href="{{.URL}}"{{if .Current}} aria-current="page" aria-label="Page {{.N}}, current page"{{else}} aria-label="Page {{.N}}"{{end}}>{{.N}}</a>{{end}}</li>{{end}}</ul>
 {{if .HasNext}}<a class="wa-pager__dir" rel="next" href="{{.NextURL}}">Older &rarr;</a>{{else}}<span class="wa-pager__dir" aria-hidden="true">Older &rarr;</span>{{end}}
 </nav>{{end}}{{end}}{{end}}
-{{/* wa-search-form: GET /search. dict "Id" "x" "Query" "" */}}
+{{/* wa-search-form: GET /search. dict "Id" "x" "Query" "" "Type" "" (schema slug, optional) */}}
 {{define "wa-search-form"}}<form class="wa-search" role="search" action="/search" method="get">
 <label class="wa-search__label" for="hm-wa-q-{{.Id}}">Search</label>
-<input id="hm-wa-q-{{.Id}}" type="search" name="q" value="{{.Query}}" placeholder="Search the journal" autocomplete="off">
+<input id="hm-wa-q-{{.Id}}" type="search" name="q" value="{{.Query}}" placeholder="Search the journal" autocomplete="off">{{with .Type}}<input type="hidden" name="type" value="{{.}}">{{end}}
 <button type="submit" class="wa-cta">Search</button>
 </form>{{end}}
 {{/* wa-heading: a heading with one italic accent word. dict "Pre" "" "Accent" "" "Post" "". All empty: no heading. */}}
@@ -57,3 +57,8 @@
 {{if .Items}}<div class="wa-grid3">{{range .Items}}{{template "wa-card" dict "Item" . "Size" "md" "N" 0 "Excerpt" true}}{{end}}</div>
 {{template "wa-pager" dict "Pg" .Pg}}{{else}}<div class="wa-empty"><h2>Nothing here yet</h2><p>New stories will show up here as soon as they are published.</p></div>{{end}}
 </div></div>{{end}}
+{{/* wa-result: a search result row. dict "Item" . "N" serial */}}
+{{define "wa-result"}}{{$it := .Item}}<li class="wa-result"><span class="wa-result__n" aria-hidden="true">{{printf "%02d" .N}}</span>
+<div class="wa-result__text"><p class="wa-result__kick">{{with $it.Category}}<span>{{.}}</span>{{end}}{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}</p>
+<h2><a class="wa-result__link" href="{{$it.URL}}">{{$it.Title}}</a></h2>
+{{with $it.Excerpt}}<p class="wa-result__excerpt">{{.}}</p>{{end}}</div></li>{{end}}

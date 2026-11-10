@@ -1,0 +1,12 @@
+{{define "content"}}{{$a := .Author}}{{$total := 0}}{{with .Pagination}}{{$total = .Total}}{{end}}
+<header class="wa-pagehd wa-on-band"><div class="wa-wrap wa-authorhd">
+{{with $a.Avatar}}<img class="wa-av wa-av--xl" src="{{imgsrc .}}" alt="" width="112" height="112">{{else}}<span class="wa-av wa-av--xl" aria-hidden="true">{{upper (printf "%.1s" $a.Name)}}</span>{{end}}
+<div><p class="wa-eyebrow">Author</p>
+<h1>{{$a.Name}}</h1>
+{{with $a.JobTitle}}<p class="wa-authorhd__job">{{.}}</p>{{end}}
+{{with $a.Bio}}<p class="wa-pagehd__lede">{{.}}</p>{{end}}
+{{if gt $total 0}}<p class="wa-meta wa-authorhd__count">{{$total}} {{if eq $total 1}}story{{else}}stories{{end}}</p>{{end}}
+{{with $a.Links}}<ul class="wa-chips wa-authorhd__links">{{range .}}<li><a class="wa-chip" href="{{cta .URL}}" rel="me noopener">{{.Label}}</a></li>{{end}}</ul>{{end}}
+</div></div></header>
+{{template "wa-listbody" dict "Items" .Items "Pg" .Pagination}}
+{{end}}
