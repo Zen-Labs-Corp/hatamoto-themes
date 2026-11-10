@@ -36,3 +36,11 @@
 <input id="hm-wa-q-{{.Id}}" type="search" name="q" value="{{.Query}}" placeholder="Search the journal" autocomplete="off">
 <button type="submit" class="wa-cta">Search</button>
 </form>{{end}}
+{{/* wa-heading: a heading with one italic accent word. dict "Pre" "" "Accent" "" "Post" "". All empty: no heading. */}}
+{{define "wa-heading"}}{{if or .Pre .Accent .Post}}<h2>{{.Pre}}{{with .Accent}} <em class="wa-it">{{.}}</em>{{end}}{{with .Post}} {{.}}{{end}}</h2>{{end}}{{end}}
+{{/* wa-star: small separator star, drawn */}}
+{{define "wa-star"}}<svg class="wa-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6z" fill="currentColor"/></svg>{{end}}
+{{/* wa-row: a numbered list row. dict "Item" . "N" serial */}}
+{{define "wa-row"}}{{$it := .Item}}{{$img := imgsrc $it.Image}}<li class="wa-row"><span class="wa-row__n" aria-hidden="true">{{printf "%02d" .N}}</span>
+<div class="wa-row__text">{{with $it.Category}}<span class="wa-row__cat">{{.}}</span>{{end}}<h3><a class="wa-row__link" href="{{$it.URL}}">{{$it.Title}}</a></h3>{{template "wa-meta" dict "Item" $it "Date" true}}</div>
+{{if $img}}<span class="wa-row__th"><img src="{{$img}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="72px"{{end}} alt="" loading="lazy" decoding="async"></span>{{else}}<span class="wa-row__th wa-row__th--type" aria-hidden="true">{{upper (printf "%.1s" $it.Title)}}</span>{{end}}</li>{{end}}

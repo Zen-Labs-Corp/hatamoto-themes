@@ -1,0 +1,25 @@
+{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$items := $r.Items}}{{$n := len $items}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+{{$showTick := ne (printf "%v" .Settings.show_ticker) "false"}}
+<h1 class="wa-sr">{{.Site.Name}}</h1>
+{{if eq $n 0}}<section class="wa-wrap wa-empty"><p class="wa-eyebrow">{{.Site.Name}}</p><h2>No posts yet</h2><p>New stories will show up here as soon as they are published.</p></section>
+{{else}}
+<section class="wa-hero wa-on-band" aria-label="Latest"><div class="wa-wrap">
+<div class="wa-mosaic{{if lt $n 5}} wa-mosaic--few{{end}}">
+{{range $k := seq 5}}{{if lt $k $n}}{{if eq $k 0}}{{template "wa-card" dict "Item" (index $items 0) "Size" "lg" "N" 1 "Chip" "Latest" "Excerpt" true}}{{else}}{{template "wa-card" dict "Item" (index $items $k) "Size" "md" "N" (add $k 1)}}{{end}}{{end}}{{end}}
+</div>
+{{with .Settings.announce_text}}<div class="wa-announce"><span class="wa-announce__tag">New</span><span class="wa-announce__text">{{.}}</span>{{if and $.Settings.announce_label $.Settings.announce_url}}<a class="wa-announce__btn" href="{{cta $.Settings.announce_url}}">{{$.Settings.announce_label}}</a>{{end}}</div>{{end}}
+</div></section>
+{{if gt $n 5}}{{$first := index $items 5}}{{$acc := trim .Settings.picks_accent}}{{if not $acc}}{{with trim $first.Author}}{{$acc = index (split . " ") 0}}{{end}}{{end}}{{if not $acc}}{{$acc = "us"}}{{end}}
+<section class="wa-sec" aria-label="Worth your evening"><div class="wa-wrap">
+<p class="wa-eyebrow">Worth your evening</p>
+<div class="wa-sec__h">{{template "wa-heading" dict "Pre" (default "Picked by" .Settings.picks_heading) "Accent" $acc "Post" ""}}<a class="wa-sec__more" href="{{cta $arch}}">All stories &rarr;</a></div>
+<div class="wa-picks">
+{{template "wa-card" dict "Item" $first "Size" "lg" "N" 6 "Chip" "Editor's pick" "Excerpt" true}}
+<ol class="wa-list">{{range $k := seq 4}}{{template "wa-row" dict "Item" (index $items (mod (add 6 $k) $n)) "N" (add $k 1)}}{{end}}</ol>
+</div>
+</div></section>
+{{end}}
+{{$tick := false}}{{if $showTick}}{{if or $cats (ge $n 1)}}{{$tick = true}}{{end}}{{end}}
+{{if $tick}}<div class="wa-ticker" aria-hidden="true"><div class="wa-wrap"><ul>{{range $cats}}<li>{{template "wa-star"}}{{.Name}}</li>{{end}}{{range $k := seq 4}}{{if lt $k $n}}<li>{{template "wa-star"}}{{(index $items $k).Title}}</li>{{end}}{{end}}</ul></div></div>{{end}}
+{{end}}
+{{end}}
