@@ -1,6 +1,6 @@
 {{define "kg-panel-body"}}{{$cats := terms "category" 8}}<div class="kg-hero">
-<span class="kg-kicker">{{.Site.Name}}</span>
-{{template "kg-h1" dict "Title" (default .Site.Name .Site.Tagline) "Blocks" .Blocks}}
+{{with .Site.Tagline}}<span class="kg-kicker">{{$.Site.Name}}</span>
+{{end}}{{template "kg-h1" dict "Title" (default .Site.Name .Site.Tagline) "Blocks" .Blocks}}
 {{if $cats}}<nav aria-label="Topics"><ul class="kg-topics">{{range $cats}}<li><a href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul></nav>{{end}}
 </div>{{end}}
 {{define "content"}}{{if .Blocks}}{{template "page-body" .}}{{else if .Body}}<article class="kg-article"><div class="kg-prose hm-prose">{{(docBody .Body).HTML}}</div></article>{{end}}{{$r := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{if $r.Items}}{{if or .Blocks .Body}}<h2 class="kg-label">Latest posts</h2>
