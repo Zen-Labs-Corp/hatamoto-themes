@@ -9,6 +9,11 @@
 .mu-nav { display: flex; gap: 1.75rem; margin-inline-start: auto; font-size: .95rem; }
 .mu-nav a { color: var(--mu-muted); text-decoration: none; padding-bottom: 4px; }
 .mu-nav a:hover { color: var(--mu-ink); }
+.mu-nav > span, .mu-nav__group > span { color: var(--mu-muted); padding-bottom: 4px; cursor: default; }
+.mu-nav__group { position: relative; }
+.mu-nav__sub { display: none; position: absolute; inset-inline-start: -1rem; top: 100%; z-index: 30; min-width: 13rem; margin: 0; padding: .5rem 1rem; list-style: none; background: var(--mu-paper); border: 1px solid var(--mu-line); }
+.mu-nav__sub a { display: block; padding: .4rem 0; }
+.mu-nav__group:hover > .mu-nav__sub, .mu-nav__group:focus-within > .mu-nav__sub { display: block; }
 .mu-nav a[aria-current] { color: var(--mu-ink); box-shadow: inset 0 -2px 0 var(--mu-primary); }
 .mu-header__end { display: flex; align-items: center; gap: .75rem; }
 .mu-nav:empty ~ .mu-header__end, .mu-brand + .mu-header__end { margin-inline-start: auto; }
@@ -26,6 +31,9 @@
 .mu-menu[open] summary { background: var(--mu-ink); color: var(--mu-paper); }
 .mu-menu__panel { position: absolute; inset-inline: 0; top: 100%; max-height: calc(100vh - 100%); overflow-y: auto; background: var(--mu-paper); padding: var(--mu-space-3) var(--mu-gutter) var(--mu-space-4); border-bottom: 1px solid var(--mu-line); }
 .mu-menu__link { display: flex; justify-content: space-between; align-items: baseline; padding: .9rem 0; border-bottom: 1px solid var(--mu-line); color: var(--mu-ink); text-decoration: none; font: 650 2.25rem/1 var(--mu-font-display); letter-spacing: -.04em; overflow-wrap: anywhere; }
+.mu-menu__sub { margin: 0; padding: 0 0 0 1rem; list-style: none; }
+.mu-body .mu-menu__sub .mu-menu__link { font-size: 1.25rem; letter-spacing: -.02em; padding: .7rem 0; }
+a.mu-menu__link[aria-current] { color: var(--mu-primary-text); }
 .mu-menu__no { font: 500 12px var(--mu-font-mono); color: var(--mu-muted); letter-spacing: 0; }
 .mu-body .mu-menu__cta { margin-top: var(--mu-space-3); inline-size: 100%; justify-content: space-between; }
 
