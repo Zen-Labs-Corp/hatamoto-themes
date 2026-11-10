@@ -12,7 +12,7 @@
 {{/* hg-date: a post's date as a <time>; nothing for an unset date. Pass the time value. */}}
 {{define "hg-date"}}{{if not .IsZero}}<time datetime="{{formatDate . "2006-01-02"}}">{{formatDate . "2 Jan 2006"}}</time>{{end}}{{end}}
 {{/* hg-thumb: a post image, or a tinted block with the title's first letter when it has none. dict "Item" . "Sizes" "" "Eager" bool */}}
-{{define "hg-thumb"}}{{$it := .Item}}{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="{{$.Sizes}}"{{end}} alt="" decoding="async"{{if not .Eager}} loading="lazy"{{end}}>{{else}}<span class="hg-ph" aria-hidden="true">{{slice (trim $it.Title) 0 1}}</span>{{end}}{{end}}
+{{define "hg-thumb"}}{{$it := .Item}}{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="{{$.Sizes}}"{{end}} alt="" decoding="async"{{if not .Eager}} loading="lazy"{{end}}>{{else}}<span class="hg-ph" aria-hidden="true">{{with split (trim $it.Title) ""}}{{index . 0}}{{end}}</span>{{end}}{{end}}
 {{/* hg-card: a rail card. dict "Item" . "No" 1 "Lead" bool */}}
 {{define "hg-card"}}{{$it := .Item}}<li class="hg-card{{if .Lead}} hg-card--lead{{end}}">
 <div class="hg-card__meta">{{with $it.Category}}{{template "hg-chip" dict "Label" .}}{{else}}<span></span>{{end}}<span class="hg-label">{{printf "%02d" .No}}</span></div>
