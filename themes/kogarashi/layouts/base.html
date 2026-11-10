@@ -13,9 +13,11 @@
 <div class="kg-split">
 <aside class="kg-panel">
 {{with .Settings.panel_image}}<img class="kg-panel__img" src="{{imgsrc .}}" alt="" aria-hidden="true" fetchpriority="high">
-{{end}}{{template "header" .}}
+{{end}}<div class="kg-panel__in">
+{{template "header" .}}
 {{block "kg-panel-body" .}}<div class="kg-hero"><p class="kg-lead">{{default .Site.Name .Site.Tagline}}</p></div>{{end}}
 {{template "footer" .}}
+</div>
 </aside>
 <main id="main-content" class="kg-main" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>
 {{template "content" .}}

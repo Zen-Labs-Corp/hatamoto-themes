@@ -147,8 +147,7 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
 
 .kg-panel {
   position: sticky; top: 0; height: 100vh; height: 100dvh;
-  display: flex; flex-direction: column; isolation: isolate; overflow: hidden;
-  padding: var(--kg-s4) var(--kg-s4) var(--kg-s3);
+  isolation: isolate; overflow: hidden;
   color: var(--kg-panel-ink); background: var(--kg-panel);
   /* no panel image: a midnight gradient with faint wind lines */
   background-image:
@@ -156,6 +155,8 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
     repeating-radial-gradient(ellipse 140% 60% at -10% 120%, transparent 0 38px, rgba(207, 224, 245, .10) 39px 41px),
     linear-gradient(160deg, #3a5c86 0%, #1b2d48 45%, #0d1626 100%);
 }
+/* the content scrolls inside; the image and the scrim stay put */
+.kg-panel__in { display: flex; flex-direction: column; block-size: 100%; overflow-y: auto; overscroll-behavior: contain; padding: var(--kg-s4) var(--kg-s4) var(--kg-s3); }
 .kg-panel::after {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: linear-gradient(180deg, rgba(10, 18, 32, .35) 0%, transparent 30%, var(--kg-panel-tint) 62%, rgba(6, 11, 20, .92) 100%);
@@ -163,12 +164,12 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
 /* Over an owner image the cover stays visible in the middle; a band behind the header and behind the
    hero text (it grows with the headline) keeps the panel text at AA even on a white photo. */
 .kg-panel:has(.kg-panel__img)::after { background: linear-gradient(180deg, transparent 0%, transparent 40%, var(--kg-panel-tint) 70%, rgba(6, 11, 20, .92) 100%); }
-.kg-panel:has(.kg-panel__img) .kg-header { position: relative; }
-.kg-panel:has(.kg-panel__img) .kg-header::before,
+.kg-panel:has(.kg-panel__img)::before { content: ""; position: absolute; inset: 0 0 auto; block-size: 8.5rem; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(6, 11, 20, .72) 0, rgba(6, 11, 20, .72) 62%, transparent); }
 .kg-panel:has(.kg-panel__img) .kg-hero::before { content: ""; position: absolute; z-index: -1; pointer-events: none; }
-.kg-panel:has(.kg-panel__img) .kg-header::before { inset: calc(var(--kg-s4) * -1) calc(var(--kg-s4) * -1) -3rem; background: linear-gradient(180deg, rgba(6, 11, 20, .72) 0, rgba(6, 11, 20, .72) calc(100% - 3rem), transparent); }
 .kg-panel:has(.kg-panel__img) .kg-hero { position: relative; }
-.kg-panel:has(.kg-panel__img) .kg-hero::before { inset: -5rem calc(var(--kg-s4) * -1) -8rem; background: linear-gradient(180deg, transparent, rgba(6, 11, 20, .72) 5rem); }
+.kg-panel:has(.kg-panel__img) .kg-hero::before { inset: -5rem calc(var(--kg-s4) * -1) calc(var(--kg-s4) * -1); background: linear-gradient(180deg, transparent, rgba(6, 11, 20, .72) 5rem); }
+.kg-panel:has(.kg-panel__img) .kg-foot { position: relative; }
+.kg-panel:has(.kg-panel__img) .kg-foot::before { content: ""; position: absolute; z-index: -1; pointer-events: none; inset: 0 calc(var(--kg-s4) * -1) calc(var(--kg-s3) * -1); background: rgba(6, 11, 20, .72); }
 .kg-panel__img { position: absolute; inset: 0; z-index: -2; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .kg-panel a { color: inherit; text-decoration: none; }
 .kg-panel :focus-visible { outline: 2px solid var(--kg-frost); outline-offset: 3px; }
@@ -222,12 +223,11 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
 .kg-foot a { text-underline-offset: 3px; }
 .kg-foot a:hover { text-decoration: underline; }
 
-@media (min-width: 901px) and (max-height: 640px) { .kg-panel { overflow-y: auto; } }
-
 /* ---- the panel stacks on top below 900px ---- */
 @media (max-width: 900px) {
   .kg-split { display: block; min-height: 0; }
-  .kg-panel { position: relative; height: auto; min-height: 88vh; padding: 26px 24px 22px; }
+  .kg-panel { position: relative; height: auto; min-height: 88vh; display: flex; }
+  .kg-panel__in { flex: 1; block-size: auto; overflow: visible; padding: 26px 24px 22px; }
   .kg-main { padding: var(--kg-s4) 20px; }
   .kg-logo { font-size: 1.85rem; }
   .kg-header > .kg-btn { display: none; }
