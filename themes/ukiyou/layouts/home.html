@@ -1,0 +1,37 @@
+{{define "content"}}{{if and .Blocks (eq .Settings.home_layout "page")}}{{template "page-body" .}}{{else}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$cats := terms "category" 8}}
+{{$n := len $r.Items}}
+{{$side := false}}{{if .Settings.sidebar}}{{if or (gt $n 7) $cats}}{{$side = true}}{{end}}{{end}}
+<h1 class="uk-sr">{{.Site.Name}}</h1>
+{{if $r.Items}}
+{{$lead := index $r.Items 0}}
+<div class="uk-wrap">
+<article class="uk-lead">
+{{template "uk-media" dict "Item" $lead "Sizes" "(max-width: 900px) 100vw, 58vw" "Ratio" "uk-media--lead" "Eager" true}}
+<div class="uk-lead__body">
+{{template "uk-cat" $lead.Category}}
+<h2 class="uk-lead__title"><a href="{{$lead.URL}}">{{$lead.Title}}</a></h2>
+{{with $lead.Excerpt}}<p class="uk-lead__excerpt">{{.}}</p>{{end}}
+{{template "uk-meta" $lead}}
+</div>
+</article>
+{{if or (gt $n 1) $side}}
+<div class="uk-mag{{if not $side}} uk-mag--full{{end}}">
+{{if gt $n 1}}<div class="uk-grid">
+{{range $i, $it := $r.Items}}{{if and (ge $i 1) (le $i 6)}}{{template "uk-card" dict "Item" $it "Soon" (le $i 3)}}
+{{end}}{{end}}</div>{{end}}
+{{if $side}}<aside class="uk-side" aria-labelledby="uk-side-h">
+<h2 class="uk-side__title" id="uk-side-h">{{default "Also new" .Settings.sidebar_title}}</h2>
+{{if gt $n 7}}<ol class="uk-side__list">
+{{range $i, $it := $r.Items}}{{if and (ge $i 7) (le $i 12)}}<li><a href="{{$it.URL}}">{{$it.Title}}</a></li>
+{{end}}{{end}}</ol>{{end}}
+{{with $cats}}<ul class="uk-chips uk-side__topics">{{range .}}<li><a href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul>{{end}}
+</aside>{{end}}
+</div>
+{{end}}
+</div>
+{{else}}<div class="uk-wrap"><p class="uk-empty">No posts yet.</p></div>{{end}}
+{{with .Settings.subscribe_url}}<section class="uk-news" aria-labelledby="uk-news-h"><div class="uk-wrap">
+<h2 id="uk-news-h">{{default "New stories, twice a month. Nothing else." $.Settings.subscribe_headline}}</h2>
+<a class="uk-btn uk-btn--accent" href="{{cta .}}">Subscribe</a>
+</div></section>{{end}}
+{{end}}{{end}}

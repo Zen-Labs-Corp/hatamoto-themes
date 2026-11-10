@@ -1,0 +1,6 @@
+{{define "content"}}<div class="uk-wrap uk-list">
+{{$post := or (not .SchemaSlug) (eq .SchemaSlug "post")}}{{$kick := "Archive"}}{{if $post}}{{$kick = "Journal"}}{{end}}
+{{template "uk-pagehead" dict "Kicker" $kick "Title" .Page.Name "Lede" .Page.Description "Pg" .Pagination}}
+{{if $post}}{{template "uk-chips" dict "Terms" (terms "category" 12) "Cur" "all" "All" .Path}}{{end}}
+{{template "uk-listing" dict "Root" . "Empty" "Nothing here yet."}}
+</div>{{end}}

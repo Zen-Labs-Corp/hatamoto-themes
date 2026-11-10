@@ -73,7 +73,8 @@ fi
 type=$(cat "$dir/dev/site-type" 2>/dev/null || true)
 [ -n "$type" ] || die "$dir/dev/site-type is missing (one of: $(ls site-types | grep -v README | tr '\n' ' '))"
 shots=${shots:-build/shots/$name}
-scripts/dev-site.sh "$type" "$dir" --shots "$shots" "${shot_flag[@]}" || die "$name: the seeded site failed (shots in $shots)"
+scripts/dev-site.sh "$type" "$dir" --shots "$shots" "${shot_flag[@]}" \
+  || die "$name: the seeded site failed (dev-site exit $?, shots in $shots)"
 "$BIN" theme check "$dir" --registry --expect-name "$name" 2>"$tmp/check.err" || { cat "$tmp/check.err" >&2; die "$name: registry rules (a screenshot in assets/, at most 2 MiB; --screenshot writes one)"; }
 echo "ok   theme check --registry"
 echo "check: OK $name $version ($type)"

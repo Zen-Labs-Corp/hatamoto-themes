@@ -1,0 +1,32 @@
+{{define "header"}}{{$ctaURL := ""}}{{$ctaLabel := "Subscribe"}}{{with .Site.HeaderCTA}}{{$ctaURL = .URL}}{{with .Label}}{{$ctaLabel = .}}{{end}}{{else}}{{with .Settings.subscribe_url}}{{$ctaURL = .}}{{end}}{{end}}
+<header class="uk-header">
+{{if .Settings.issue_strip}}<div class="uk-strip"><div class="uk-wrap">
+{{$date := ""}}{{with recent "post" 1}}{{$d := (index . 0).PublishedAt}}{{if not $d.IsZero}}{{$date = formatDate $d "January 2006"}}{{end}}{{end}}
+<span class="uk-strip__issue">{{with .Settings.issue_label}}<b>{{.}}</b>{{end}}{{if and .Settings.issue_label $date}} &middot; {{end}}{{$date}}</span>
+<span class="uk-strip__links">{{with .Site.Feeds}}{{with index . 0}}<a href="{{.Href}}">RSS</a>{{end}}{{end}}<a href="/search">Search</a></span>
+</div></div>
+{{end}}<div class="uk-mast uk-wrap">
+<a class="uk-logo" href="/"{{if .Site.LogoURL}} aria-label="{{.Site.Name}}, home"{{end}}>{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="" height="48">{{else}}{{.Site.Name}}<span aria-hidden="true">.</span>{{end}}</a>
+<div class="uk-mast__tools">
+<button type="button" class="uk-mode" data-hm-theme-toggle aria-label="Switch to dark mode" aria-pressed="false" hidden><svg class="uk-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="uk-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+<details class="uk-menu">
+<summary class="uk-burger" aria-label="Menu"><span aria-hidden="true"></span></summary>
+<div class="uk-menu__panel">
+{{if .Site.Nav}}<nav aria-label="Menu" class="uk-menu__nav"><ul>{{template "uk-nav-items" dict "Items" .Site.Nav "Path" $.Path}}</ul></nav>
+{{end}}<a class="uk-menu__search" href="/search">Search</a>
+{{with terms "category" 6}}<ul class="uk-chips">{{range .}}<li><a href="{{.URL}}"{{if eq $.Path .URL}} aria-current="page"{{end}}>{{.Name}}</a></li>{{end}}</ul>
+{{end}}{{if $ctaURL}}<p class="uk-menu__cta"><a class="uk-btn" href="{{cta $ctaURL}}">{{$ctaLabel}}</a></p>
+{{end}}</div>
+</details>
+</div>
+</div>
+{{if or .Site.Nav $ctaURL}}<div class="uk-navbar"><div class="uk-wrap">
+{{if .Site.Nav}}<nav class="uk-nav" aria-label="Primary"><ul>{{template "uk-nav-items" dict "Items" .Site.Nav "Path" $.Path}}</ul></nav>
+{{end}}<div class="uk-navbar__end">{{if not .Settings.issue_strip}}<a class="uk-navbar__search" href="/search">Search</a>{{end}}{{if $ctaURL}}<a class="uk-btn" href="{{cta $ctaURL}}">{{$ctaLabel}}</a>{{end}}</div>
+</div></div>
+{{else}}<div class="uk-navbar uk-navbar--bare" aria-hidden="true"></div>
+{{end}}</header>{{end}}
+
+{{/* One list level per call; children nest as a sub-list (a dropdown on desktop, an indented list in the mobile panel). */}}
+{{define "uk-nav-items"}}{{$p := .Path}}{{range .Items}}<li>{{template "nav-link" dict "Item" . "Path" $p}}{{if .Children}}<ul class="uk-sub">{{template "uk-nav-items" dict "Items" .Children "Path" $p}}</ul>{{end}}</li>
+{{end}}{{end}}

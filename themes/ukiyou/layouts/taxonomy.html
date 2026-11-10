@@ -1,0 +1,6 @@
+{{define "content"}}<div class="uk-wrap uk-list">
+{{$k := "Category"}}{{if eq .Term.Kind "tag"}}{{$k = "Tag"}}{{end}}
+{{template "uk-pagehead" dict "Kicker" $k "Title" .Term.Name "Lede" .Term.Description "Pg" .Pagination}}
+{{if eq .Term.Kind "category"}}{{template "uk-chips" dict "Terms" (terms "category" 12) "Cur" .Term.URL "All" (default "/blog" .Settings.archive_url)}}{{end}}
+{{template "uk-listing" dict "Root" . "Empty" "Nothing filed here yet."}}
+</div>{{end}}

@@ -1,0 +1,15 @@
+{{define "footer"}}<footer class="uk-footer">
+<div class="uk-wrap">
+<div class="uk-footer__top">
+<div class="uk-footer__brand"><p class="uk-footer__logo">{{.Site.Name}}<span aria-hidden="true">.</span></p>{{with .Site.Tagline}}<p>{{.}}</p>{{end}}</div>
+{{$cats := terms "category" 8}}{{if or .Site.FooterNav $cats}}{{$flat := false}}{{range .Site.FooterNav}}{{if not .Children}}{{$flat = true}}{{end}}{{end}}
+<nav class="uk-footer__nav" aria-label="Footer">
+{{if $flat}}<div class="uk-footer__col"><p class="uk-footer__title">Site</p><ul>{{range .Site.FooterNav}}{{if not .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}</ul></div>
+{{end}}{{range .Site.FooterNav}}{{if .Children}}<div class="uk-footer__col"><p class="uk-footer__title">{{.Label}}</p><ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul></div>
+{{end}}{{end}}{{with $cats}}<div class="uk-footer__col"><p class="uk-footer__title">Topics</p><ul>{{range .}}<li><a href="{{.URL}}"{{if eq $.Path .URL}} aria-current="page"{{end}}>{{.Name}}</a></li>{{end}}</ul></div>
+{{end}}</nav>
+{{end}}{{if .Site.SocialLinks}}<div class="uk-footer__col"><p class="uk-footer__title">Follow</p><ul>{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>{{end}}</ul></div>
+{{end}}</div>
+<div class="uk-footer__bar"><p>&copy; {{year}} {{.Site.Name}}</p><p>{{with .Site.Feeds}}{{with index . 0}}<a class="uk-footer__rss" href="{{.Href}}">RSS</a> &middot; {{end}}{{end}}<a href="https://hatamoto.dev" rel="noopener">Built with Hatamoto</a></p></div>
+</div>
+</footer>{{end}}

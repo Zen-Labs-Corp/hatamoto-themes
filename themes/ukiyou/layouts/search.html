@@ -1,0 +1,6 @@
+{{define "content"}}<div class="uk-wrap uk-list">
+{{template "uk-pagehead" dict "Kicker" "Search" "Title" "Find a story"}}
+{{template "uk-search-form" dict "Root" . "Id" "page"}}
+{{if .Query}}{{with .Pagination}}<p class="uk-meta uk-count" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;</p>{{end}}
+{{if .Items}}{{template "uk-listing" dict "Root" . "Empty" ""}}{{else}}<p class="uk-empty">No results for &ldquo;{{.Query}}&rdquo;. Try fewer words, or <a href="/">start from the front page</a>.</p>{{end}}{{end}}
+</div>{{end}}

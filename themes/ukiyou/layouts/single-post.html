@@ -1,0 +1,32 @@
+{{define "content"}}{{$e := .Entity}}{{if $e}}{{$b := docBody .Body}}{{$toc := false}}{{if gt (len $b.TOC) 1}}{{$toc = true}}{{end}}
+{{$prev := false}}{{$next := false}}{{$last := false}}{{$found := false}}
+{{$all := query (dict "schema" "post" "order" "-published_at" "limit" 50)}}
+{{range $all.Items}}{{if $found}}{{if not $next}}{{$next = .}}{{end}}{{else if eq .URL $e.URL}}{{$found = true}}{{$prev = $last}}{{end}}{{$last = .}}{{end}}
+<article class="uk-post">
+<header class="uk-post__head">
+{{with $e.Categories}}<p class="uk-post__cats">{{range .}}<a class="uk-cat" href="{{.URL}}">{{.Name}}</a>{{end}}</p>{{end}}
+<h1 class="uk-post__title">{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="uk-post__dek">{{.}}</p>{{end}}
+{{$rt := readingTime .Body}}
+{{if or $e.Author (not $e.PublishedAt.IsZero) (gt $rt 0)}}<p class="uk-post__by">{{with $e.Author}}<span>{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</span>{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 January 2006"}}</time>{{end}}{{if gt $rt 0}}<span>{{$rt}} min read</span>{{end}}</p>{{end}}
+</header>
+{{with $e.Image}}<figure class="uk-post__cover"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1360px) 1280px, 100vw"{{end}} alt="{{default $e.Title $e.Attributes.featured_image_alt}}" fetchpriority="high"></figure>
+{{end}}<div class="uk-post__body{{if not $toc}} uk-post__body--solo{{end}}">
+{{if $toc}}<aside class="uk-toc" aria-labelledby="uk-toc-h"><h2 class="uk-toc__title" id="uk-toc-h">In this story</h2><ol>{{range $b.TOC}}{{if or (eq .Level 2) (eq .Level 3)}}<li class="uk-toc__l{{.Level}}"><a href="#{{.ID}}">{{.Text}}</a></li>{{end}}{{end}}</ol></aside>
+{{end}}<div class="hm-prose uk-prose">{{$b.HTML}}</div>
+</div>
+{{with $e.Tags}}<footer class="uk-post__tags"><h2 class="uk-sr">Tags</h2><ul class="uk-chips">{{range .}}<li><a href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul></footer>
+{{end}}{{with $e.Author}}<aside class="uk-author" aria-label="About the author">
+{{with .Avatar}}<img src="{{imgsrc .}}" alt="" width="64" height="64">{{end}}
+<div><p class="uk-author__name"><span>Written by</span> {{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>{{with .JobTitle}}<p class="uk-author__job">{{.}}</p>{{end}}{{with .Bio}}<p class="uk-author__bio">{{.}}</p>{{end}}</div>
+</aside>
+{{end}}</article>
+{{if or $prev $next}}<nav class="uk-pn" aria-label="More stories">
+{{with $prev}}<a class="uk-pn__prev" href="{{.URL}}" rel="prev"><span class="uk-cat">Previous</span><span class="uk-pn__t">{{.Title}}</span></a>{{end}}{{with $next}}<a class="uk-pn__next" href="{{.URL}}" rel="next"><span class="uk-cat">Next</span><span class="uk-pn__t">{{.Title}}</span></a>{{end}}
+</nav>
+{{end}}{{with call .Related 3}}<section class="uk-wrap uk-related" aria-labelledby="uk-related-h">
+<h2 class="uk-side__title" id="uk-related-h">Keep reading</h2>
+<div class="uk-grid uk-grid--3">{{range .}}{{template "uk-card" dict "Item" .}}
+{{end}}</div>
+</section>
+{{end}}{{else}}<div class="uk-wrap">{{with .Body}}<div class="hm-prose uk-prose">{{.}}</div>{{else}}<p class="uk-empty">Nothing here yet.</p>{{end}}</div>{{end}}{{end}}
