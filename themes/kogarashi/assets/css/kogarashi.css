@@ -218,3 +218,42 @@ html[data-kg-cols="3"] .kg-grid { grid-template-columns: repeat(2, minmax(0, 1fr
   .kg-grid { grid-template-columns: minmax(0, 1fr); gap: var(--kg-s4); }
   .kg-topics { gap: .5rem 1.6rem; font-size: var(--kg-fs-base); }
 }
+
+/* ---- single post: panel byline, reading column, neighbours ---- */
+.kg-h1 { max-inline-size: 20ch; margin: .8rem 0 var(--kg-s3); font: 700 var(--kg-fs-hero)/1.16 var(--hm-font-heading); letter-spacing: -.015em; overflow-wrap: anywhere; }
+.kg-hero .kg-by { margin: 0; padding: 0; color: var(--kg-panel-muted); }
+.kg-hero .kg-by { color: var(--kg-panel-ink); }
+.kg-hero .kg-by time, .kg-hero .kg-by .kg-dot + span { color: var(--kg-panel-muted); font-weight: 400; }
+.kg-hero .kg-dot { background: var(--kg-panel-muted); }
+.kg-avatar { inline-size: 32px; block-size: 32px; border-radius: 50%; object-fit: cover; }
+.kg-article { max-inline-size: 38rem; margin-inline: auto; padding-block: var(--kg-s3); }
+.kg-prose { overflow-wrap: break-word; }
+.kg-prose > :first-child { font-size: var(--kg-fs-lg); line-height: 1.65; color: var(--kg-ink); }
+.kg-prose p, .kg-prose ul, .kg-prose ol { margin: 0 0 var(--kg-s2); color: color-mix(in srgb, var(--kg-ink) 88%, var(--kg-paper)); }
+.kg-prose li { margin-block-end: .35rem; }
+.kg-prose h2, .kg-prose h3, .kg-prose h4 { margin: var(--kg-s4) 0 var(--kg-s2); font-family: var(--hm-font-heading); font-weight: 700; line-height: 1.25; letter-spacing: -.01em; color: var(--kg-ink); }
+.kg-prose h2 { font-size: var(--kg-fs-xl); }
+.kg-prose h3 { font-size: var(--kg-fs-lg); }
+.kg-prose h4 { font-size: var(--kg-fs-base); }
+.kg-prose a { color: var(--kg-accent-soft-ink); text-underline-offset: 3px; }
+.kg-prose a:hover { color: var(--kg-accent); }
+.kg-prose img { max-inline-size: 100%; block-size: auto; border-radius: var(--hm-radius-md); }
+.kg-prose.hm-prose blockquote { border: 0; border-inline-start: 3px solid var(--kg-accent); margin: var(--kg-s4) 0; padding-inline-start: var(--kg-s3); border-inline-start: 3px solid var(--kg-accent); }
+.kg-prose blockquote p { margin: 0; font: italic 400 var(--kg-fs-xl)/1.45 var(--kg-mark); color: var(--kg-ink); }
+.kg-prose pre { margin: var(--kg-s3) 0; padding: var(--kg-s2) var(--kg-s3); overflow-x: auto; border-radius: var(--hm-radius-md); background: var(--kg-panel); color: var(--kg-panel-ink); font-size: var(--kg-fs-sm); line-height: 1.7; }
+.kg-prose code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .92em; }
+.kg-prose :not(pre) > code { padding: .1em .35em; border-radius: 4px; background: var(--kg-surface); }
+.kg-prose table { inline-size: 100%; border-collapse: collapse; margin: var(--kg-s3) 0; font-size: var(--kg-fs-sm); }
+.kg-prose th, .kg-prose td { padding: .65rem .5rem; text-align: start; border-block-end: 1px solid var(--kg-line); }
+.kg-prose th { border-block-end: 2px solid var(--kg-ink); }
+.kg-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: var(--kg-s4) 0 var(--kg-s3); padding: var(--kg-s3) 0 0; list-style: none; border-block-start: 1px solid var(--kg-line); }
+.kg-tags a { text-decoration: none; }
+.kg-tags a:hover { box-shadow: inset 0 0 0 1px var(--kg-accent); }
+.kg-nb { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--kg-s2); margin-block-start: var(--kg-s3); }
+.kg-nb__a { display: flex; flex-direction: column; gap: .5rem; padding: var(--kg-s3); border-radius: var(--hm-radius-md); background: var(--kg-surface); color: var(--kg-ink); text-decoration: none; overflow-wrap: anywhere; }
+.kg-nb__a--r { text-align: end; grid-column: 2; }
+.kg-nb__a span { font: 600 var(--kg-fs-xs)/1 var(--kg-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--kg-muted); }
+.kg-nb__a b { font-weight: 600; line-height: 1.4; }
+.kg-nb__a:hover b { color: var(--kg-accent); }
+.kg-nb__a:focus-visible, .kg-tags a:focus-visible, .kg-prose a:focus-visible, .kg-pager a:focus-visible, .kg-btn:focus-visible { outline: 2px solid var(--kg-accent); outline-offset: 3px; }
+@media (max-width: 900px) { .kg-nb { grid-template-columns: minmax(0, 1fr); } .kg-nb__a--r { grid-column: auto; } .kg-article { padding-block: 0; } }
