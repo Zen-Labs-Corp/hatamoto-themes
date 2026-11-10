@@ -8,7 +8,12 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
@@ -17,13 +22,47 @@
         "type": "string",
         "title": "Colour mode",
         "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
-        "default": "light"
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
+        "default": "auto"
+      },
+      "panel_image": {
+        "type": "string",
+        "title": "Panel image",
+        "description": "Image behind the side panel. Leave empty for the midnight gradient.",
+        "x-hm-field": "image",
+        "default": ""
+      },
+      "panel_side": {
+        "type": "string",
+        "title": "Panel side",
+        "description": "Which side of the screen the fixed panel sits on (desktop). On mobile the panel always comes first.",
+        "enum": [
+          "left",
+          "right"
+        ],
+        "default": "left"
+      },
+      "grid_columns": {
+        "type": "string",
+        "title": "Grid columns",
+        "description": "Post card columns on the home page. Three columns apply on wide screens only (1400 px and up).",
+        "enum": [
+          "2",
+          "3"
+        ],
+        "default": "2"
       },
       "density": {
         "type": "string",
         "title": "Spacing",
-        "enum": ["comfortable", "compact"],
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
         "default": "comfortable"
       },
       "show_excerpts": {

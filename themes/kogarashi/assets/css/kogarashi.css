@@ -140,6 +140,7 @@ a { text-decoration-thickness: 1px; }
 
 /* ---- the split shell: a sticky panel beside the scrolling content ---- */
 .kg-split { display: grid; grid-template-columns: var(--kg-split) minmax(0, 1fr); min-height: 100vh; }
+html[data-kg-side="right"] .kg-split { grid-template-columns: minmax(0, 1fr) var(--kg-split); }
 html[data-kg-side="right"] .kg-panel { order: 2; }
 .kg-main { min-inline-size: 0; background: var(--kg-paper); padding: var(--kg-s4); }
 .kg-main:focus { outline: none; }
