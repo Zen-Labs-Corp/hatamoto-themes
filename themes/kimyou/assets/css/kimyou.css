@@ -436,7 +436,7 @@ span.km-plate::after { content: ""; position: absolute; inset: 0; background: re
 .km-search__head { padding: clamp(3rem, 7vw, 5rem) 0 1.5rem; border-bottom: 2px solid var(--km-ink); }
 .km-search__form { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; margin-top: .75rem; }
 .km-search__input { flex: 1 1 14rem; min-inline-size: 0; padding: 0 0 .5rem; border: 0; border-bottom: 2px solid var(--km-ink); border-radius: 0; background: transparent; color: var(--km-ink); font: italic 400 clamp(2rem, 6vw, 3.5rem)/1.1 var(--km-display); }
-.km-search__input::placeholder { color: var(--km-muted); opacity: .7; }
+.km-search__input::placeholder { color: var(--km-muted); opacity: 1; }
 .km-search__input:focus-visible { outline-offset: 4px; }
 .km-search__n { margin: 1.25rem 0 0; font: 500 .85rem/1.4 var(--km-sans); color: var(--km-muted); }
 .km-search .km-rows--flat { padding-top: 0; }
