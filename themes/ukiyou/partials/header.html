@@ -12,7 +12,7 @@
 <details class="uk-menu">
 <summary class="uk-burger" aria-label="Menu"><span aria-hidden="true"></span></summary>
 <div class="uk-menu__panel">
-{{if .Site.Nav}}<nav aria-label="Menu" class="uk-menu__nav">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav>
+{{if .Site.Nav}}<nav aria-label="Menu" class="uk-menu__nav"><ul>{{template "uk-nav-items" dict "Items" .Site.Nav "Path" $.Path}}</ul></nav>
 {{end}}<a class="uk-menu__search" href="/search">Search</a>
 {{with terms "category" 6}}<ul class="uk-chips">{{range .}}<li><a href="{{.URL}}"{{if eq $.Path .URL}} aria-current="page"{{end}}>{{.Name}}</a></li>{{end}}</ul>
 {{end}}{{if $ctaURL}}<p class="uk-menu__cta"><a class="uk-btn" href="{{cta $ctaURL}}">{{$ctaLabel}}</a></p>
@@ -21,8 +21,12 @@
 </div>
 </div>
 {{if or .Site.Nav $ctaURL}}<div class="uk-navbar"><div class="uk-wrap">
-{{if .Site.Nav}}<nav class="uk-nav" aria-label="Primary">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav>
+{{if .Site.Nav}}<nav class="uk-nav" aria-label="Primary"><ul>{{template "uk-nav-items" dict "Items" .Site.Nav "Path" $.Path}}</ul></nav>
 {{end}}<div class="uk-navbar__end">{{if not .Settings.issue_strip}}<a class="uk-navbar__search" href="/search">Search</a>{{end}}{{if $ctaURL}}<a class="uk-btn" href="{{cta $ctaURL}}">{{$ctaLabel}}</a>{{end}}</div>
 </div></div>
 {{else}}<div class="uk-navbar uk-navbar--bare" aria-hidden="true"></div>
 {{end}}</header>{{end}}
+
+{{/* One list level per call; children nest as a sub-list (a dropdown on desktop, an indented list in the mobile panel). */}}
+{{define "uk-nav-items"}}{{$p := .Path}}{{range .Items}}<li>{{template "nav-link" dict "Item" . "Path" $p}}{{if .Children}}<ul class="uk-sub">{{template "uk-nav-items" dict "Items" .Children "Path" $p}}</ul>{{end}}</li>
+{{end}}{{end}}
