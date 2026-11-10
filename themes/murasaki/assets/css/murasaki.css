@@ -28,6 +28,7 @@
   --mu-paper: var(--hm-bg);
   --mu-ink: var(--hm-text);
   --mu-primary: var(--hm-primary);
+  --mu-primary-text: color-mix(in srgb, var(--hm-primary) 78%, var(--hm-text)); /* the accent as small text: darker so it keeps contrast on paper */
   --mu-on-primary: #ffffff;
   --mu-surface: #ffffff;
   --mu-snow: color-mix(in srgb, var(--hm-text) 6%, var(--hm-bg));
@@ -93,6 +94,7 @@
   --hm-bg: #0a1016;
   --hm-text: #e8edf1;
   --mu-primary: color-mix(in srgb, var(--hm-primary) 72%, #fff);
+  --mu-primary-text: var(--mu-primary);
   --mu-on-primary: #140805;
   --mu-surface: #111a22;
   --mu-snow: #17222c;
