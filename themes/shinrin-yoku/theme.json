@@ -1,0 +1,31 @@
+{
+  "name": "shinrin-yoku",
+  "version": "0.1.0",
+  "description": "Blog theme in forest green on cream: a split serif masthead, a sticky category sidebar and a two-column card grid on soft tinted panels, lime accents after dark.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "light"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      }
+    }
+  }
+}
