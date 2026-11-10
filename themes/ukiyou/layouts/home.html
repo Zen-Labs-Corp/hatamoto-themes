@@ -1,4 +1,4 @@
-{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$cats := terms "category" 8}}
+{{define "content"}}{{if .Blocks}}{{template "page-body" .}}{{else}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$cats := terms "category" 8}}
 {{$n := len $r.Items}}
 {{$side := false}}{{if .Settings.sidebar}}{{if or (gt $n 7) $cats}}{{$side = true}}{{end}}{{end}}
 <h1 class="uk-sr">{{.Site.Name}}</h1>
@@ -34,4 +34,4 @@
 <h2 id="uk-news-h">{{default "New stories, twice a month. Nothing else." $.Settings.subscribe_headline}}</h2>
 <a class="uk-btn uk-btn--accent" href="{{cta .}}">Subscribe</a>
 </div></section>{{end}}
-{{end}}
+{{end}}{{end}}
