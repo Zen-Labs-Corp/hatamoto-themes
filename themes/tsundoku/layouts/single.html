@@ -1,0 +1,20 @@
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}
+<article class="tk-article"><div class="tk-wrap">
+<header class="tk-top{{if not $e.Image}} tk-top--plain{{end}}"><div class="tk-top__text">
+{{with $e.Categories}}{{with index . 0}}<a class="tk-pill tk-pill--solid" href="{{.URL}}">{{.Name}}</a>{{end}}{{end}}
+<h1 class="tk-top__title">{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="tk-dek">{{.}}</p>{{end}}
+{{if $post}}{{template "tk-byline" dict "Entity" $e "Body" $.Body}}{{end}}
+</div>
+{{with $e.Image}}<div class="tk-top__img"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 60rem) 36rem, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></div>{{end}}
+</header>
+<div class="tk-body-col">
+{{if gt (len $b.TOC) 1}}<nav class="tk-toc" aria-label="Contents">{{range $b.TOC}}<a class="tk-pill tk-pill--link" href="#{{.ID}}">{{.Text}}</a>{{end}}</nav>{{end}}
+{{if .Body}}<div class="tk-prose hm-prose hm-entry">{{$b.HTML}}</div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+</div>
+{{if $post}}{{template "tk-prevnext" $e}}{{end}}
+{{if $post}}{{$rel := call .Related 3}}{{if $rel}}<section class="tk-related" aria-labelledby="hm-tk-related-h"><h2 id="hm-tk-related-h">Keep reading</h2>
+<div class="tk-cards tk-cards--related">{{range $i, $r := $rel}}{{template "tk-card" dict "Item" $r "N" $i "Level" 3}}{{end}}</div></section>{{end}}{{end}}
+</div></article>
+{{else}}{{template "page-body" .}}{{end}}{{end}}

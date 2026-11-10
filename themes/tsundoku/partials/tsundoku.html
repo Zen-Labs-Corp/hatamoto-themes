@@ -14,3 +14,14 @@
 </a></article>{{end}}
 {{/* tk-spine: one book spine of the pile. dict "Item" . "N" index */}}
 {{define "tk-spine"}}{{$i := .Item}}<a class="tk-spine tk-c-{{mod .N 5}}" href="{{$i.URL}}"><span class="tk-spine__title">{{$i.Title}}</span><small>{{with $i.Category}}{{.}}{{end}}{{if and $i.Category (not $i.PublishedAt.IsZero)}} &middot; {{end}}{{if not $i.PublishedAt.IsZero}}{{formatDate $i.PublishedAt "2 Jan"}}{{end}}</small></a>{{end}}
+{{/* tk-byline: avatar (or a coral initial), author, date and reading time of a post. dict "Entity" . "Body" html */}}
+{{define "tk-byline"}}{{$e := .Entity}}{{$m := readingTime .Body}}<div class="tk-byline">
+{{with $e.Author}}{{if .Avatar}}<img class="tk-av" src="{{imgsrc .Avatar}}" alt="" width="42" height="42">{{else}}<span class="tk-av tk-av--initial" aria-hidden="true">{{upper (printf "%.1s" .Name)}}</span>{{end}}{{end}}
+<p class="tk-meta">{{with $e.Author}}<b>{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</b><br>{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 January 2006"}}</time>{{end}}{{if $m}} &middot; {{$m}} min read{{end}}</p></div>{{end}}
+{{/* tk-prevnext: the older and newer post around this one (one query, newest first). Takes the entity. */}}
+{{define "tk-prevnext"}}{{$all := (query (dict "schema" "post" "limit" 100)).Items}}{{$cur := -1}}{{range $i, $p := $all}}{{if eq $p.URL $.URL}}{{$cur = $i}}{{end}}{{end}}
+{{$newer := ""}}{{$older := ""}}{{if ge $cur 0}}{{if gt $cur 0}}{{$newer = index $all (sub $cur 1)}}{{end}}{{if lt (add $cur 1) (len $all)}}{{$older = index $all (add $cur 1)}}{{end}}{{end}}
+{{if or $newer $older}}<nav class="tk-pn" aria-label="More posts">
+{{with $older}}<a class="tk-pn__a" rel="prev" href="{{.URL}}"><span class="tk-meta">&larr; Older</span><b>{{.Title}}</b></a>{{else}}<span></span>{{end}}
+{{with $newer}}<a class="tk-pn__a tk-pn__a--next" rel="next" href="{{.URL}}"><span class="tk-meta">Newer &rarr;</span><b>{{.Title}}</b></a>{{end}}
+</nav>{{end}}{{end}}
