@@ -42,6 +42,12 @@
         "description": "Show the date of the latest note and the site tagline left of the site name.",
         "default": true
       },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "description": "Where the \"All notes\" and \"All\" topic links lead.",
+        "default": "/blog"
+      },
       "color_mode": {
         "type": "string",
         "title": "Colour mode",
