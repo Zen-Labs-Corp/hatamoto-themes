@@ -1,5 +1,5 @@
 /* Blog: archive, category, author and single. The archive markup is the built-in
-   one (hm-listing, hm-cards, hm-card); the single is layouts/single.html. */
+   one (hm-listing, hm-cards, hm-card); the single is layouts/single-post.html. */
 
 /* Listing header: mono label, display title, lede. */
 .mu-body .hm-listing { padding-block: var(--mu-space-6) var(--mu-space-5); }
