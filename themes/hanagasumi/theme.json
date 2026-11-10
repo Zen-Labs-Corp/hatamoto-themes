@@ -41,7 +41,7 @@
       "show_newsletter": {
         "type": "boolean",
         "title": "Newsletter",
-        "description": "Intro card, homepage panel and footer field.",
+        "description": "Subscribe card in the intro, the homepage panel and the footer button. They link to the header button, else the RSS feed.",
         "default": true
       },
       "archive_url": {

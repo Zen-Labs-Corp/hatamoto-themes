@@ -28,8 +28,6 @@
 {{with $it.Category}}{{template "hg-chip" dict "Label" . "Ghost" true}}{{else}}<span></span>{{end}}
 <span class="hg-label hg-row__date">{{template "hg-date" $it.PublishedAt}}</span>
 </li>{{end}}
-{{/* hg-newsletter-field: the pill field that links to the subscribe target. dict "Root" . "Label" "Join" */}}
-{{define "hg-newsletter-field"}}<div class="hg-field"><span aria-hidden="true">you@example.com</span>{{template "hg-subscribe" dict "Root" .Root "Class" "hg-btn hg-btn--primary" "Label" .Label}}</div>{{end}}
 {{/* hg-grid-card: a grid card (image, chip and date, title, excerpt). dict "Item" . */}}
 {{define "hg-grid-card"}}{{$it := .Item}}<li class="hg-card hg-card--grid">
 <a class="hg-card__img hg-card__img--wide" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{template "hg-thumb" dict "Item" $it "Sizes" "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 420px"}}</a>

@@ -36,7 +36,7 @@ page keeps rendering.
 | `density` | `comfortable`, `compact` | `comfortable` | Spacing between sections. |
 | `story_rail` | on/off | on | The sideways-scrolling story rail on the home page. Off shows the intro and a plain journal list. |
 | `corner_style` | `soft`, `round` | `round` | Corner radius of cards, fields and images. |
-| `show_newsletter` | on/off | on | The intro card, the home panel and the footer field. |
+| `show_newsletter` | on/off | on | The subscribe card in the intro, the home panel and the footer button; they link to the header button, else the RSS feed. |
 | `archive_url` | text | `/blog` | Address of the post archive, for the "All" chip, "All stories" and the back link on posts. |
 | `post_toc` | on/off | on | The "On this page" list on posts. |
 

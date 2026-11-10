@@ -11,7 +11,7 @@
 {{with .Site.Tagline}}<p class="hg-intro__tag">{{.}}</p>{{end}}
 {{template "hg-social" dict "Root" . "Rss" true}}
 </div>
-{{if .Settings.show_newsletter}}<div class="hg-intro__news"><p>Get new stories when they go up. No tracking, no noise.</p>{{template "hg-newsletter-field" dict "Root" . "Label" "Join"}}</div>{{end}}
+{{if .Settings.show_newsletter}}<div class="hg-intro__news"><p>New stories, whenever they go up.</p>{{template "hg-subscribe" dict "Root" . "Class" "hg-btn hg-btn--primary"}}</div>{{end}}
 </div>
 {{if .Settings.story_rail}}<div class="hg-divider" aria-hidden="true"><i></i><span>Latest stories</span></div>
 <div class="hg-rail">
@@ -28,7 +28,7 @@
 <p class="hg-more"><a class="hg-btn hg-btn--line" href="{{cta $arch}}">All stories <span aria-hidden="true">&rarr;</span></a></p>
 </section>{{end}}
 {{if .Settings.show_newsletter}}<section class="hg-wrap hg-wrap--panel" aria-labelledby="hg-news-h"><div class="hg-panel">
-<div><h2 id="hg-news-h">Get the next {{.Site.Name}} story</h2><p>A short note when a new story goes up. Unsubscribe in one click.</p></div>
-{{template "hg-newsletter-field" dict "Root" . "Label" "Subscribe"}}
+<div><h2 id="hg-news-h">Follow {{.Site.Name}}</h2><p>New stories, whenever they go up.</p></div>
+<div class="hg-panel__act">{{template "hg-subscribe" dict "Root" . "Class" "hg-btn hg-btn--primary"}}</div>
 </div></section>{{end}}
 {{end}}
