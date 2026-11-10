@@ -9,7 +9,7 @@
 {{with $e.Image}}<figure class="hg-hero"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1120px) 1064px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
 <div class="hg-post__grid{{if not $toc}} hg-post__grid--notoc{{end}}">
 {{if $toc}}<nav class="hg-toc" aria-label="On this page"><p class="hg-label">On this page</p>{{range $b.TOC}}<a href="#{{.ID}}" data-hg-toc="{{.ID}}"{{if eq .Level 3}} class="hg-toc__sub"{{end}}>{{.Text}}</a>{{end}}</nav>{{end}}
-<div class="hm-prose hg-prose">{{$b.HTML}}</div>
+<div class="hm-prose hm-entry hg-prose">{{$b.HTML}}</div>
 {{if $post}}<aside class="hg-share" aria-label="Share"><p class="hg-label">Share</p>
 <button type="button" class="hg-iconbtn" data-hg-js hidden data-hg-copy aria-label="Copy link">{{template "hg-icon" "link"}}</button>
 <a class="hg-iconbtn" href="mailto:?subject={{urlquery $e.Title}}" aria-label="Share by email">{{template "hg-icon" "mail"}}</a></aside>{{end}}
