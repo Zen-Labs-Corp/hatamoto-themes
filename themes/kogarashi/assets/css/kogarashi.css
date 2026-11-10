@@ -221,7 +221,8 @@ html[data-kg-side="right"] .kg-panel { order: 2; }
 .kg-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem var(--kg-s3); margin-block-start: var(--kg-s4); padding-block-start: var(--kg-s3); border-block-start: 1px solid rgba(255, 255, 255, .18); font-size: var(--kg-fs-sm); }
 .kg-foot p { margin: 0; flex: 1 1 auto; }
 .kg-foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1rem; }
-.kg-foot nav ul ul { display: none; }
+.kg-foot nav > ul { align-items: flex-start; }
+.kg-foot nav ul ul { flex-direction: column; margin-block-start: .35rem; gap: .2rem; color: var(--kg-panel-muted); }
 .kg-foot a { text-underline-offset: 3px; }
 .kg-foot a:hover { text-decoration: underline; }
 
