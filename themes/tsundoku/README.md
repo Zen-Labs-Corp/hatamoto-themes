@@ -38,6 +38,7 @@ page keeps rendering.
 | Home headline (`home_headline`) | text | `Small things\|worth noticing.` | The big line on the home page. Text after a `\|` is highlighted in chartreuse. |
 | Recent posts (`recent_style`) | `pile`, `list` | `pile` | `pile` shows coloured spines; `list` shows plain rows on the plum tile. |
 | Show the newsletter tile (`show_newsletter`) | on/off | on | The tile links to the site's header button when there is one, else to `/feed.xml`. Off lets the pile take the full row. |
+| Archive path (`archive_path`) | text | empty | Where the "Start reading" and "Browse the journal" links go, e.g. `/blog`. Empty works it out from the newest post's address, and hides the links when that gives no path. |
 | Corners (`corners`) | `rounded`, `soft`, `square` | `rounded` | The corner radius of tiles and cards. Pills and buttons stay round. |
 
 ## Colours and fonts

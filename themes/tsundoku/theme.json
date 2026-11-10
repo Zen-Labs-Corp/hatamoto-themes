@@ -13,6 +13,12 @@
   "settings_schema": {
     "type": "object",
     "properties": {
+      "archive_path": {
+        "type": "string",
+        "title": "Archive path",
+        "description": "Where the Start reading and Browse buttons go, e.g. /blog. Empty works it out from the newest post's address.",
+        "default": ""
+      },
       "color_mode": {
         "type": "string",
         "title": "Colour mode",

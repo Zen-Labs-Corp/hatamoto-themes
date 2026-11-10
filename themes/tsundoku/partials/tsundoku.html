@@ -12,8 +12,8 @@
 {{template "tk-media" dict "Item" $i "N" .N "Sizes" "(min-width: 60rem) 28rem, (min-width: 40rem) 50vw, 100vw"}}
 <div class="tk-card__body">{{if eq .Level 2}}<h2 class="tk-card__title">{{$i.Title}}</h2>{{else}}<h3 class="tk-card__title">{{$i.Title}}</h3>{{end}}{{template "tk-meta" dict "Item" $i}}</div>
 </a></article>{{end}}
-{{/* tk-archive: a link to the post archive, whose path is the parent of a post's URL (the engine exposes no archive path). Prints nothing without posts or when posts live at the root. dict "Items" posts "Class" "" "Label" "" */}}
-{{define "tk-archive"}}{{with .Items}}{{$u := split (index . 0).URL "/"}}{{if gt (len $u) 2}}<a{{with $.Class}} class="{{.}}"{{end}} href="{{join (slice $u 0 (sub (len $u) 1)) "/"}}">{{$.Label}}</a>{{end}}{{end}}{{end}}
+{{/* tk-archive: a link to the post archive: the archive_path setting, else the newest post's URL without its slug and any trailing numeric segments (date patterns like /{year}/{month}/{slug}); the engine exposes no archive path. Prints nothing when neither gives a path. dict "Items" posts "Path" setting "Class" "" "Label" "" */}}
+{{define "tk-archive"}}{{$href := ""}}{{if $.Path}}{{$href = cta $.Path}}{{else}}{{with .Items}}{{$u := split (index . 0).URL "/"}}{{$end := 0}}{{range $i, $s := $u}}{{if and (gt $i 0) (lt $i (sub (len $u) 1))}}{{$n := atoi $s}}{{if not (and (gt $n 0) (eq (printf "%d" $n) (trimPrefix $s "0")))}}{{$end = add $i 1}}{{end}}{{end}}{{end}}{{if gt $end 1}}{{$href = join (slice $u 0 $end) "/"}}{{end}}{{end}}{{end}}{{if $href}}<a{{with $.Class}} class="{{.}}"{{end}} href="{{$href}}">{{$.Label}}</a>{{end}}{{end}}
 {{/* tk-spine: one book spine of the pile. dict "Item" . "N" index */}}
 {{define "tk-spine"}}{{$i := .Item}}<a class="tk-spine tk-c-{{mod .N 5}}" href="{{$i.URL}}"><span class="tk-spine__title">{{$i.Title}}</span><small>{{with $i.Category}}{{.}}{{end}}{{if and $i.Category (not $i.PublishedAt.IsZero)}} &middot; {{end}}{{if not $i.PublishedAt.IsZero}}{{formatDate $i.PublishedAt "2 Jan"}}{{end}}</small></a>{{end}}
 {{/* tk-byline: avatar (or a coral initial), author, date and reading time of a post. dict "Entity" . "Body" html */}}
