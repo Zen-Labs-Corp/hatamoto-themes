@@ -342,6 +342,7 @@ span.wa-pager__dir { color: var(--wa-muted); }
 .wa-share { display: grid; justify-content: start; gap: 8px; }
 .wa-share .wa-ibtn { text-decoration: none; }
 .wa-prose { max-inline-size: var(--measure); color: var(--wa-ink); font-size: 19px; line-height: 1.7; overflow-wrap: break-word; }
+.wa-prose > p:first-of-type { display: flow-root; }
 .wa-prose > p:first-of-type::first-letter { float: left; margin: 8px 10px 0 0; font: italic 400 76px/.8 var(--wa-serif); color: var(--wa-primary); }
 .wa-prose h2, .wa-prose h3 { clear: both; color: var(--wa-ink); }
 .wa-prose h2 { margin: 44px 0 12px; font-size: var(--wa-step-2); }
