@@ -1,4 +1,4 @@
-{{define "content"}}{{$r := query (dict "schema" "post" "limit" 10)}}{{$cats := terms "category" 8}}
+{{define "content"}}{{$arch := default "/blog" .Settings.archive_url}}{{$r := query (dict "schema" "post" "limit" 10)}}{{$cats := terms "category" 8}}
 {{/* the site name in two lines: all but the last word, then the last word in the accent */}}
 {{$words := split (trim .Site.Name) " "}}{{$n := len $words}}{{$l1 := ""}}{{$l2 := ""}}{{range $i, $w := $words}}{{if lt $i (sub $n 1)}}{{$l1 = print $l1 " " $w}}{{else}}{{$l2 = $w}}{{end}}{{end}}{{$l1 = trim $l1}}
 {{/* the rail shows the newest six; the journal list shows the rest */}}
@@ -23,9 +23,9 @@
 </section>
 {{if gt $r.Total $rail}}<section class="hg-wrap hg-journal" aria-labelledby="hg-journal-h">
 <div class="hg-sech"><h2 id="hg-journal-h">From the journal</h2>
-{{if $cats}}<nav class="hg-chips" aria-label="Topics">{{template "hg-chip" dict "Label" "All" "URL" "/blog" "Current" true}}{{range $cats}}{{template "hg-chip" dict "Label" .Name "URL" .URL "Ghost" true}}{{end}}</nav>{{end}}</div>
+{{if $cats}}<nav class="hg-chips" aria-label="Topics">{{template "hg-chip" dict "Label" "All" "URL" (cta $arch)}}{{range $cats}}{{template "hg-chip" dict "Label" .Name "URL" .URL "Ghost" true}}{{end}}</nav>{{end}}</div>
 <ul class="hg-list">{{range $i, $p := $r.Items}}{{if ge $i $rail}}{{template "hg-row" dict "Item" $p}}{{end}}{{end}}</ul>
-<p class="hg-more"><a class="hg-btn hg-btn--line" href="/blog">All stories <span aria-hidden="true">&rarr;</span></a></p>
+<p class="hg-more"><a class="hg-btn hg-btn--line" href="{{cta $arch}}">All stories <span aria-hidden="true">&rarr;</span></a></p>
 </section>{{end}}
 {{if .Settings.show_newsletter}}<section class="hg-wrap hg-wrap--panel" aria-labelledby="hg-news-h"><div class="hg-panel">
 <div><h2 id="hg-news-h">Get the next {{.Site.Name}} story</h2><p>A short note when a new story goes up. Unsubscribe in one click.</p></div>

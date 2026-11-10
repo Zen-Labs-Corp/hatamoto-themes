@@ -20,7 +20,7 @@
 {{range $all.Items}}{{if $found}}{{if not $older}}{{$older = .}}{{end}}{{else if eq .URL $e.URL}}{{$found = true}}{{$newer = $last}}{{else}}{{$last = .}}{{end}}{{end}}
 {{if $found}}<nav class="hg-pn" aria-label="More stories">
 {{with $older}}<a class="hg-pn__older" href="{{.URL}}" rel="prev"><span class="hg-label"><span aria-hidden="true">&larr;</span> Older</span><h2>{{.Title}}</h2></a>{{end}}
-{{with $newer}}<a class="hg-pn__newer" href="{{.URL}}" rel="next"><span class="hg-label">Newer <span aria-hidden="true">&rarr;</span></span><h2>{{.Title}}</h2></a>{{else}}<a class="hg-pn__newer" href="/blog"><span class="hg-label">Journal <span aria-hidden="true">&rarr;</span></span><h2>Back to the journal</h2></a>{{end}}
+{{with $newer}}<a class="hg-pn__newer" href="{{.URL}}" rel="next"><span class="hg-label">Newer <span aria-hidden="true">&rarr;</span></span><h2>{{.Title}}</h2></a>{{else}}<a class="hg-pn__newer" href="{{cta (default "/blog" .Settings.archive_url)}}"><span class="hg-label">Journal <span aria-hidden="true">&rarr;</span></span><h2>Back to the journal</h2></a>{{end}}
 </nav>{{end}}{{end}}
 </article>
 {{else}}{{template "page-body" .}}{{end}}{{end}}

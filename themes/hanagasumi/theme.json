@@ -44,6 +44,12 @@
         "description": "Intro card, homepage panel and footer field.",
         "default": true
       },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "description": "Where the \"All\" chip, \"All stories\" and the back link on posts point. Change it if your posts live somewhere other than /blog.",
+        "default": "/blog"
+      },
       "post_toc": {
         "type": "boolean",
         "title": "Post contents",
