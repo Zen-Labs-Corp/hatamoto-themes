@@ -3,8 +3,8 @@
 {{end}}{{template "kg-h1" dict "Title" (default .Site.Name .Site.Tagline) "Blocks" .Blocks}}
 {{if $cats}}<nav aria-label="Topics"><ul class="kg-topics">{{range $cats}}<li><a href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul></nav>{{end}}
 </div>{{end}}
-{{define "content"}}{{if .Blocks}}{{template "page-body" .}}{{else if .Body}}<article class="kg-article"><div class="kg-prose hm-prose">{{(docBody .Body).HTML}}</div></article>{{end}}{{$r := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{if $r.Items}}{{if or .Blocks .Body}}<h2 class="kg-label">Latest posts</h2>
+{{define "content"}}{{$first := eq (pageNum .) 1}}{{if and $first .Blocks}}{{template "page-body" .}}{{else if and $first .Body}}<article class="kg-article"><div class="kg-prose hm-prose">{{(docBody .Body).HTML}}</div></article>{{end}}{{$r := query (dict "schema" "post" "limit" 12 "page" (pageNum .))}}{{if $r.Items}}{{if and $first (or .Blocks .Body)}}<h2 class="kg-label">Latest posts</h2>
 {{end}}<ul class="kg-grid">
 {{range $i, $p := $r.Items}}<li>{{template "kg-card" dict "P" $p "Ex" $.Settings.show_excerpts "First" (and (eq $r.Page 1) (eq $i 0)) "Alt" (mod $i 2)}}</li>
 {{end}}</ul>
-{{template "kg-pager" dict "Page" $r.Page "Pages" $r.Pages}}{{else if not (or .Blocks .Body)}}<p class="kg-empty">No posts yet. Check back soon.</p>{{end}}{{end}}
+{{template "kg-pager" dict "Page" $r.Page "Pages" $r.Pages}}{{else if not (and $first (or .Blocks .Body))}}<p class="kg-empty">No posts yet. Check back soon.</p>{{end}}{{end}}
