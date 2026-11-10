@@ -1,0 +1,32 @@
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}{{$m := readingTime .Body}}
+{{$h2 := 0}}{{range $b.TOC}}{{if eq .Level 2}}{{$h2 = add $h2 1}}{{end}}{{end}}
+<article class="kz-article{{if and $post .Settings.drop_cap}} kz-article--cap{{end}}">
+<div class="kz-wrap kz-top-of-post">
+<header class="kz-post-hd">
+{{with $e.Categories}}{{if $post}}<p class="kz-eyebrow">{{range $i, $c := .}}{{if $i}} / {{end}}<b><a href="{{$c.URL}}">{{$c.Name}}</a></b>{{end}}</p>{{end}}{{end}}
+<h1>{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="kz-dek">{{.}}</p>{{end}}
+{{if $post}}{{if or $e.Author (not $e.PublishedAt.IsZero) $m}}<p class="kz-byline">{{with $e.Author}}<span>By {{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}<b>{{.Name}}</b>{{end}}</span>{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 January 2006"}}</time>{{end}}{{if $m}}<span>{{$m}} min read</span>{{end}}</p>{{end}}{{end}}
+</header>
+{{with $e.Image}}<figure class="kz-hero"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1280px) 1240px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
+</div>
+<div class="kz-wrap kz-post">
+{{if ge $h2 2}}<aside class="kz-toc" aria-label="On this page"><p class="kz-label">On this page</p>
+<ol>{{range $b.TOC}}{{if eq .Level 2}}<li><a href="#{{.ID}}">{{.Text}}</a></li>{{end}}{{end}}</ol></aside>{{else}}<div></div>{{end}}
+<div class="kz-post__main">
+{{if .Body}}<div class="kz-prose hm-prose">{{$b.HTML}}</div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+{{if $post}}{{with $e.Tags}}<div class="kz-tags"><h2 class="kz-label">Tags</h2><div class="kz-chips">{{range .}}<a class="kz-chip" href="{{.URL}}">{{.Name}}</a>{{end}}</div></div>{{end}}
+{{with $e.Author}}<aside class="kz-author" aria-label="About the author"><span class="kz-ava" aria-hidden="true"></span>
+<div><p class="kz-author__name">{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>{{with .JobTitle}}<p class="kz-author__job">{{.}}</p>{{end}}{{with .Bio}}<p class="kz-author__bio">{{.}}</p>{{end}}</div></aside>{{end}}
+{{$all := query (dict "schema" "post" "limit" 100 "order" "-published_at")}}{{$older := ""}}{{$newer := ""}}{{$seen := false}}
+{{range $all.Items}}{{if eq .URL $e.URL}}{{$seen = true}}{{else if $seen}}{{if not $older}}{{$older = .}}{{end}}{{else}}{{$newer = .}}{{end}}{{end}}
+{{if $seen}}<nav class="kz-pn" aria-label="More notes">
+{{with $older}}<a rel="prev" href="{{.URL}}"><small>&larr; Older</small><span>{{.Title}}</span></a>{{end}}
+{{with $newer}}<a rel="next" href="{{.URL}}"><small>Newer &rarr;</small><span>{{.Title}}</span></a>{{else}}<a href="/blog"><small>Newer &rarr;</small><span>Back to the journal</span></a>{{end}}
+</nav>{{end}}{{end}}
+</div>
+<div></div>
+</div>
+</article>
+{{else}}{{template "page-body" .}}{{end}}{{end}}

@@ -24,6 +24,12 @@
         "description": "Show the pine block with the tagline, topics and the latest notes above the newest post.",
         "default": true
       },
+      "drop_cap": {
+        "type": "boolean",
+        "title": "Drop cap on posts",
+        "description": "Start each post with a large red initial letter.",
+        "default": true
+      },
       "header_topics": {
         "type": "boolean",
         "title": "Topics in the header",
