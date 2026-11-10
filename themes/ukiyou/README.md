@@ -28,6 +28,7 @@ page keeps rendering.
 - A lead story, a grid of the next six, a numbered "Also new" list with topic chips, and a subscribe band, all filled from your content and hidden when there is nothing to show.
 - A single post with a story index, pull quotes, author box, previous and next links and related stories.
 - Light and dark, with text contrast of at least 4.5:1 for every accent.
+- If your home page has builder sections, Ukiyou renders them instead of the magazine front page; clear the home page's sections to get the magazine front page.
 
 ## Settings
 
