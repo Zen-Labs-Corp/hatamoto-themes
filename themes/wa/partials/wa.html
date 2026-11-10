@@ -1,0 +1,9 @@
+{{/* Wa library: dict-taking defines, all named wa-*. */}}
+{{/* wa-arrow: small up-right arrow, drawn (no font glyph) */}}
+{{define "wa-arrow"}}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{{end}}
+{{/* wa-cta: the header and menu button. The site's own header button wins, else the two theme settings; no address, no button. dict "Root" . "Class" "" */}}
+{{define "wa-cta"}}{{$l := ""}}{{$u := ""}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if not $u}}{{$l = .Root.Settings.newsletter_button}}{{$u = default "/about" .Root.Settings.newsletter_url}}{{end}}{{if $u}}<a class="wa-cta {{.Class}}" href="{{cta $u}}">{{default "Subscribe" $l}}</a>{{end}}{{end}}
+{{/* wa-nav-item: a top-level link; a parent without a link (empty or "#") is a plain label. dict "Item" . "Path" ... */}}
+{{define "wa-nav-item"}}{{$i := (navlink .).Item}}{{if and (or (not $i.Href) (eq $i.Href "#")) $i.Children}}<span class="wa-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
+{{/* wa-nav-list: the primary menu, used by the bar and the mobile panel. dict "Root" . */}}
+{{define "wa-nav-list"}}{{$r := .Root}}<ul>{{range $r.Site.Nav}}<li>{{template "wa-nav-item" dict "Item" . "Path" $r.Path}}{{if .Children}}<ul class="wa-nav__sub">{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $r.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul>{{end}}

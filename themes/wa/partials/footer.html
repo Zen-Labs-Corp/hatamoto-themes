@@ -1,17 +1,16 @@
 {{define "footer"}}<footer class="wa-footer">
 <div class="wa-wrap">
-<div class="wa-footer__top">
-<p class="wa-footer__brand">{{.Site.Name}}{{with .Site.Tagline}}<span>{{.}}</span>{{end}}</p>
-{{if .Site.FooterNav}}<nav class="wa-footer__nav" aria-label="Footer">
+<div class="wa-footer__cols">
+<div class="wa-footer__about"><a class="wa-brand" href="/" aria-label="{{.Site.Name}}, home"><i class="wa-brand__dot" aria-hidden="true"></i><span class="wa-brand__name">{{.Site.Name}}</span></a>{{with .Site.Tagline}}<p>{{.}}</p>{{end}}</div>
 {{range .Site.FooterNav}}<div class="wa-footer__col">
-{{if .Children}}<p class="wa-footer__title">{{.Label}}</p>
-<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{else}}<ul><li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li></ul>{{end}}
+{{if .Children}}{{if and .Href (ne .Href "#")}}<h2 class="wa-footer__title">{{template "nav-link" dict "Item" . "Path" $.Path}}</h2>{{else}}<h2 class="wa-footer__title">{{.Label}}</h2>{{end}}
+<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{else}}<ul><li>{{template "wa-nav-item" dict "Item" . "Path" $.Path}}</li></ul>{{end}}
 </div>
-{{end}}</nav>
 {{end}}</div>
 {{if .Site.SocialLinks}}<ul class="wa-social">
 {{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
 {{end}}</ul>
-{{end}}<p class="wa-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
+{{end}}<p class="wa-footer__word" aria-hidden="true">{{.Site.Name}}</p>
+<p class="wa-footer__legal"><span>&copy; {{year}} {{.Site.Name}}</span><span><a href="/feed.xml">RSS</a> <a href="/atom.xml">Atom</a></span></p>
 </div>
 </footer>{{end}}

@@ -6,7 +6,8 @@
 {{template "head" .Head}}
 <link rel="stylesheet" href="{{.CSSHref}}">
 {{if .Tokens.Any}}<style>:root{ {{with .Tokens.Primary}}--hm-primary:{{.}};{{end}}{{with .Tokens.Background}}--hm-bg:{{.}};{{end}}{{with .Tokens.Text}}--hm-text:{{.}};{{end}}{{with .Tokens.Font}}--hm-font:{{.}};{{end}}{{with .Tokens.FontHeading}}--hm-font-heading:{{.}};{{end}}{{with .Tokens.RadiusSm}}--hm-radius-sm:{{.}};{{end}}{{with .Tokens.RadiusMd}}--hm-radius-md:{{.}};{{end}}{{with .Tokens.RadiusLg}}--hm-radius-lg:{{.}};{{end}} }</style>
-{{end}}<script src="/theme/assets/js/wa-head.js"></script>
+{{end}}{{with .Settings.signal_colour}}{{if and (hasPrefix . "#") (lt (len .) 10)}}<style>:root{--wa-signal:{{.}}}</style>
+{{end}}{{end}}<script src="/theme/assets/js/wa-head.js"></script>
 {{template "plugin-head" .}}</head>
 <body class="wa-body wa-kind-{{.Kind}}">
 <a class="hm-skip" href="#main-content">Skip to content</a>
