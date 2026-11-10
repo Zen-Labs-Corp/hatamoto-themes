@@ -8,7 +8,12 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
@@ -17,14 +22,62 @@
         "type": "string",
         "title": "Colour mode",
         "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
-        "default": "light"
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
+        "default": "auto"
       },
       "density": {
         "type": "string",
         "title": "Spacing",
-        "enum": ["comfortable", "compact"],
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
         "default": "comfortable"
+      },
+      "split_masthead": {
+        "type": "boolean",
+        "title": "Split masthead",
+        "description": "Last word of the site name on its own line in italic serif.",
+        "default": true
+      },
+      "card_tints": {
+        "type": "boolean",
+        "title": "Tinted cards",
+        "description": "Soft tint per category behind each card.",
+        "default": true
+      },
+      "show_author": {
+        "type": "boolean",
+        "title": "Show author",
+        "description": "Author line on cards and posts.",
+        "default": true
+      },
+      "cta_label": {
+        "type": "string",
+        "title": "Button label",
+        "description": "Header button. The site's own header button wins.",
+        "default": "Subscribe"
+      },
+      "cta_url": {
+        "type": "string",
+        "title": "Button address",
+        "description": "Empty hides the button.",
+        "default": "/feed.xml"
+      },
+      "footer_quote": {
+        "type": "string",
+        "title": "Footer quote",
+        "description": "Empty uses the tagline.",
+        "default": ""
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "default": "/blog"
       }
     }
   }

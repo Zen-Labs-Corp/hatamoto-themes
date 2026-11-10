@@ -1,0 +1,6 @@
+{{/* Shinrin-yoku library: dict-taking defines, all named sy-*. */}}
+{{/* sy-initial: the first letter of a name, upper-cased. dict "Name" s */}}
+{{define "sy-initial"}}{{with trim .Name}}{{upper (index (split . "") 0)}}{{end}}{{end}}
+{{/* sy-cta: the header and menu button. The site's own header button wins, else the two theme settings; with no
+   address nothing is printed. dict "Root" . "Class" "" */}}
+{{define "sy-cta"}}{{$l := ""}}{{$u := ""}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if not $u}}{{$l = .Root.Settings.cta_label}}{{$u = .Root.Settings.cta_url}}{{end}}{{if $u}}<a class="hm-btn {{.Class}}" href="{{cta $u}}">{{default "Subscribe" $l}}</a>{{end}}{{end}}
