@@ -38,3 +38,5 @@
 {{define "kg-topics"}}{{if .Terms}}<nav aria-label="Topics"><ul class="kg-topics">{{range .Terms}}<li><a href="{{.URL}}"{{if eq .URL $.Cur}} class="on" aria-current="page"{{end}}>{{.Name}}</a></li>{{end}}</ul></nav>{{end}}{{end}}
 {{/* kg-count: "3 posts" or "3 entries". dict "N" n "Post" bool */}}
 {{define "kg-count"}}{{.N}} {{if .Post}}{{if eq .N 1}}post{{else}}posts{{end}}{{else}}{{if eq .N 1}}entry{{else}}entries{{end}}{{end}}{{end}}
+{{/* kg-search-form: GET search form. dict "Root" . "Id" "x" (unique per form on a page) */}}
+{{define "kg-search-form"}}<form class="kg-searchform" role="search" action="/search" method="get"><label class="kg-sr" for="hm-kg-q-{{.Id}}">Search the site</label><svg class="kg-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="hm-kg-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search the notes" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button class="kg-btn" type="submit">Search</button></form>{{end}}
