@@ -110,7 +110,7 @@
   --hg-line: #403847;
   --hg-sage: #9bb7a6;
   --hg-primary: color-mix(in srgb, var(--hm-primary) 60%, #fff);
-  --hg-primary-text: var(--hg-primary);
+  --hg-primary-text: color-mix(in srgb, var(--hm-primary) 30%, #fff);
   --hg-primary-soft: color-mix(in srgb, var(--hg-primary) 14%, var(--hg-surface));
   --hg-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px -12px rgba(0, 0, 0, .6);
   --hm-bg: var(--hg-paper);
@@ -121,6 +121,11 @@
 .hg-stage--plain { grid-template-columns: 1fr; min-block-size: 0; }
 .hg-stage--plain .hg-intro { min-block-size: 0; gap: 2rem; }
 
+@supports (color: oklch(from red l c h)) {
+  /* dark accent text keeps the owner's hue but never drops below L .78, so a navy or black brand colour still reads on the plum paper and chips */
+  :root[data-theme="dark"],
+  :root[data-hg-mode="dark"]:not([data-theme]):not([data-hg-js]) { --hg-primary-text: oklch(from var(--hm-primary) max(l, .78) min(c, .12) h); }
+}
 /* ---- base ---- */
 body { font-family: var(--hm-font); font-size: var(--hg-fs-md); line-height: var(--hg-lh); color: var(--hg-ink); background: var(--hg-paper); -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 600; letter-spacing: -.02em; }
