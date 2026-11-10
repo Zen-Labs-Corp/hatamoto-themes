@@ -1,0 +1,12 @@
+{{define "content"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+<div class="yk-wrap yk-layout">
+{{template "yk-sidebar" dict "Root" . "Cats" $cats "Cur" "none" "All" $arch}}
+<div class="yk-main">
+{{template "yk-listhead" dict "Title" "Search"}}
+{{template "yk-search-form" dict "Root" . "Id" "page"}}
+{{if .Query}}{{with .Pagination}}{{if gt .Total 0}}<p class="yk-count" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;</p>{{end}}{{end}}
+{{if .Items}}{{template "yk-grid" dict "Root" . "Items" .Items "Cats" $cats}}{{else}}<p class="yk-empty">Nothing found for &ldquo;{{.Query}}&rdquo;.</p>{{end}}
+{{else}}<p class="yk-empty">Type a word or phrase to search.</p>{{end}}
+</div>
+{{with .Pagination}}{{if $.Query}}{{template "yk-pager" dict "Page" .Page "Pages" .TotalPages "Pg" .}}{{end}}{{end}}
+</div>{{end}}

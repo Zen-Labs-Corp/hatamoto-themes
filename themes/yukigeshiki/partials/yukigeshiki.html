@@ -43,3 +43,5 @@
 </nav>{{end}}{{end}}
 {{/* yk-listhead: heading block of a listing (the page h1). dict "Kicker" s "Title" s "Lede" s */}}
 {{define "yk-listhead"}}<header class="yk-listhead">{{with .Kicker}}<p class="yk-listhead__kick">{{.}}</p>{{end}}<h1 class="yk-listhead__title">{{.Title}}</h1>{{with .Lede}}<p class="yk-listhead__lede">{{.}}</p>{{end}}</header>{{end}}
+{{/* yk-search-form: GET search form. dict "Root" . "Id" s */}}
+{{define "yk-search-form"}}<form class="yk-search" role="search" action="/search" method="get"><label class="yk-sr" for="yk-q-{{.Id}}">Search the site</label><input id="yk-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button class="yk-btn" type="submit">Search</button></form>{{end}}
