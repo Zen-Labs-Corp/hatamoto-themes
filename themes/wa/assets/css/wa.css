@@ -402,7 +402,7 @@ span.wa-pager__dir { color: var(--wa-muted); }
   .wa-pagehd { padding-block: 40px 32px; }
   .wa-pagehd h1 { font-size: var(--wa-step-4); }
 }
-.wa-authorhd { display: flex; align-items: center; gap: 28px; }
+.wa-authorhd { display: flex; align-items: flex-start; gap: 28px; }
 .wa-authorhd h1 { margin-block-start: 10px; }
 .wa-av--xl { inline-size: 112px; block-size: 112px; font-size: var(--wa-step-4); }
 .wa-authorhd__job { margin: 10px 0 0; color: var(--wa-primary); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
