@@ -236,7 +236,9 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 .hg-divider i { position: relative; inline-size: .5625rem; block-size: .5625rem; border-radius: 50%; background: var(--hg-primary); box-shadow: 0 0 0 5px var(--hg-paper); }
 .hg-divider span { position: relative; padding-block: .6rem; background: var(--hg-paper); writing-mode: vertical-rl; transform: rotate(180deg); font: 500 .6875rem/1 var(--hg-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--hg-muted); }
 .hg-rail { grid-row: 1; min-inline-size: 0; max-inline-size: 100%; }
-.hg-track { display: flex; align-items: flex-start; gap: 1.75rem; list-style: none; margin: 0; padding: 3rem 1.75rem 2.5rem 1.5rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 1.5rem; scrollbar-width: none; }
+.hg-track { display: flex; align-items: flex-start; gap: 1.75rem; list-style: none; margin: 0; padding: 3rem 1.75rem 2.5rem 1.5rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 1.5rem; scrollbar-width: thin; scrollbar-color: var(--hg-primary) transparent; }
+/* with script the prev/next buttons take over, so the bar goes; without it the bar is the mouse way to reach the later cards */
+[data-hg-js] .hg-track { scrollbar-width: none; }
 .hg-card { flex: 0 0 18.75rem; scroll-snap-align: start; display: flex; flex-direction: column; gap: .75rem; min-inline-size: 0; }
 .hg-card--lead { flex-basis: 23.75rem; }
 .hg-track > .hg-card:nth-child(even) { margin-block-start: 7.5rem; }
