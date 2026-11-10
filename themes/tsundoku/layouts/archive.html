@@ -1,0 +1,7 @@
+{{define "content"}}{{$post := or (not .SchemaSlug) (eq .SchemaSlug "post")}}{{$total := 0}}{{with .Pagination}}{{$total = .Total}}{{end}}
+<div class="tk-wrap">
+{{template "tk-pagehead" dict "Title" .Page.Name "Lede" .Page.Description "Count" $total}}
+{{if $post}}{{template "tk-chips" dict "Terms" (terms "category" 12) "Cur" "all" "All" .Path}}{{end}}
+{{template "tk-rows" .}}
+{{template "tk-pager" dict "Pg" .Pagination}}
+</div>{{end}}

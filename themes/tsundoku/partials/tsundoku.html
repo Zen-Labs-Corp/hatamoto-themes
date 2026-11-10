@@ -25,3 +25,22 @@
 {{with $older}}<a class="tk-pn__a" rel="prev" href="{{.URL}}"><span class="tk-meta">&larr; Older</span><b>{{.Title}}</b></a>{{else}}<span></span>{{end}}
 {{with $newer}}<a class="tk-pn__a tk-pn__a--next" rel="next" href="{{.URL}}"><span class="tk-meta">Newer &rarr;</span><b>{{.Title}}</b></a>{{end}}
 </nav>{{end}}{{end}}
+{{/* tk-pagehead: the h1 of a listing with the item count in a chartreuse pill. dict "Title" "Lede" "Count" n "Eyebrow" "" "Variant" "" */}}
+{{define "tk-pagehead"}}<header class="tk-ph{{with .Variant}} tk-ph--{{.}}{{end}}"><div class="tk-ph__text">{{with .Eyebrow}}<span class="tk-pill tk-pill--solid">{{.}}</span>{{end}}<h1 class="tk-ph__title">{{.Title}}</h1>{{with .Lede}}<p class="tk-ph__lede">{{.}}</p>{{end}}</div>{{if .Count}}<span class="tk-count"><span class="tk-sr">Total: </span>{{.Count}}</span>{{end}}</header>{{end}}
+{{/* tk-chips: category filter pills. dict "Terms" "Cur" "all"|url "All" url */}}
+{{define "tk-chips"}}{{if .Terms}}<nav class="tk-chips" aria-label="Categories">{{with .All}}<a class="tk-pill tk-pill--link{{if eq $.Cur "all"}} tk-pill--on{{end}}" href="{{cta .}}"{{if eq $.Cur "all"}} aria-current="page"{{end}}>All</a>{{end}}{{range .Terms}}<a class="tk-pill tk-pill--link{{if eq $.Cur .URL}} tk-pill--on{{end}}" href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{end}}{{end}}
+{{/* tk-row: a two-column listing card, h2 title. dict "Item" . "N" index */}}
+{{define "tk-row"}}{{$i := .Item}}<article class="tk-row"><a class="tk-row__link" href="{{$i.URL}}">
+{{template "tk-media" dict "Item" $i "N" .N "Sizes" "(min-width: 60rem) 9rem, 6rem"}}
+<div class="tk-row__body">{{template "tk-meta" dict "Item" $i}}<h2 class="tk-row__title">{{$i.Title}}</h2>{{with $i.Excerpt}}<p class="tk-row__excerpt">{{.}}</p>{{end}}</div>
+</a></article>{{end}}
+{{/* tk-rows: the items of a listing as row cards, or the empty state. Takes the view. */}}
+{{define "tk-rows"}}{{if .Items}}<div class="tk-rows">{{range $i, $it := .Items}}{{template "tk-row" dict "Item" $it "N" $i}}{{end}}</div>{{else}}<p class="tk-empty">{{if .Query}}No results for &ldquo;{{.Query}}&rdquo;. Try fewer words.{{else}}Nothing here yet. Check back soon.{{end}}</p>{{end}}{{end}}
+{{/* tk-page-url: N, Pg */}}
+{{define "tk-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}/{{else}}/?page={{.N}}{{end}}{{end}}
+{{/* tk-pager: newer/older and numbered pills, only with more than one page. dict "Pg" .Pagination */}}
+{{define "tk-pager"}}{{with .Pg}}{{if gt .TotalPages 1}}{{$p := .Page}}{{$n := .TotalPages}}{{$pg := .}}<nav class="tk-pager" aria-label="Pagination">
+{{if gt $p 1}}<a class="tk-pager__a" rel="prev" href="{{template "tk-page-url" dict "N" (sub $p 1) "Pg" $pg}}">&larr; Newer</a>{{else}}<span class="tk-pager__a tk-pager__a--off" aria-hidden="true">&larr; Newer</span>{{end}}
+<ul>{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<li><a class="tk-pager__a{{if eq $k $p}} tk-pager__a--on{{end}}" href="{{template "tk-page-url" dict "N" $k "Pg" $pg}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a></li>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<li><span class="tk-pager__gap" aria-hidden="true">&hellip;</span></li>{{end}}{{end}}</ul>
+{{if lt $p $n}}<a class="tk-pager__a" rel="next" href="{{template "tk-page-url" dict "N" (add $p 1) "Pg" $pg}}">Older &rarr;</a>{{else}}<span class="tk-pager__a tk-pager__a--off" aria-hidden="true">Older &rarr;</span>{{end}}
+</nav>{{end}}{{end}}{{end}}
