@@ -103,7 +103,8 @@
   {
    "home": true,
    "name": "Home",
-   "content": "<p>Welcome to Field Notes.</p>"
+   "content": "<p>Welcome to Field Notes.</p>",
+   "attributes": {"page_doc": {"v": 2, "nodes": []}}
   },
   {
    "slug": "about",
