@@ -1,0 +1,18 @@
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}{{$cats := terms "category" 12}}{{$m := readingTime .Body}}{{$auth := and $post $e.Author (ne (print .Settings.show_author) "false")}}
+<article class="sy-wrap sy-article">
+<header class="sy-article__head">
+{{with $e.Categories}}<p class="sy-article__kick">{{range $i, $c := .}}{{if $i}}<span aria-hidden="true">/</span>{{end}}<a href="{{$c.URL}}">{{$c.Name}}</a>{{end}}</p>{{end}}
+<h1 class="sy-article__title">{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="sy-article__lede">{{.}}</p>{{end}}
+{{if $post}}{{if or $auth (not $e.PublishedAt.IsZero) $m}}<p class="sy-article__by">{{if $auth}}<span class="sy-av" aria-hidden="true">{{template "sy-initials" dict "Name" $e.Author.Name}}</span><span class="sy-article__who">{{if $e.Author.URL}}<a href="{{$e.Author.URL}}">{{$e.Author.Name}}</a>{{else}}{{$e.Author.Name}}{{end}}</span>{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 Jan 2006"}}</time>{{end}}{{if $m}}<span>{{$m}} min read</span>{{end}}</p>{{end}}{{end}}
+</header>
+{{with $e.Image}}<figure class="sy-article__cover"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 920px) 896px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
+{{if .Body}}<div class="sy-prose hm-prose">{{$b.HTML}}</div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+{{with $e.Tags}}<footer class="sy-article__tags"><h2 class="sy-sr">Tags</h2><p>{{range .}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</p></footer>{{end}}
+</article>
+{{if $post}}{{with call .Related 2}}<section class="sy-wrap sy-related" aria-labelledby="sy-related-h">
+<h2 id="sy-related-h">More posts</h2>
+<div class="sy-grid">{{range .}}{{template "sy-card" dict "Item" . "Root" $ "Cats" $cats "Level" 3}}{{end}}</div>
+</section>{{end}}{{end}}
+{{else}}{{template "page-body" .}}{{end}}{{end}}
