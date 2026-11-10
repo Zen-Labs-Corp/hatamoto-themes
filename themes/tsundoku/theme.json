@@ -25,6 +25,29 @@
         "title": "Spacing",
         "enum": ["comfortable", "compact"],
         "default": "comfortable"
+      },
+      "home_headline": {
+        "type": "string",
+        "title": "Home headline",
+        "description": "Text after a | is highlighted in chartreuse, e.g. Small things|worth noticing.",
+        "default": "Small things|worth noticing."
+      },
+      "recent_style": {
+        "type": "string",
+        "title": "Recent posts",
+        "enum": ["pile", "list"],
+        "default": "pile"
+      },
+      "show_newsletter": {
+        "type": "boolean",
+        "title": "Show the newsletter tile",
+        "default": true
+      },
+      "corners": {
+        "type": "string",
+        "title": "Corners",
+        "enum": ["rounded", "soft", "square"],
+        "default": "rounded"
       }
     }
   }
