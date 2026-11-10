@@ -55,9 +55,9 @@ a.mu-menu__link[aria-current] { color: var(--mu-primary-text); }
 .mu-footer a:hover { color: var(--mu-on-night); text-decoration: underline; }
 .mu-social { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; list-style: none; padding: 0; margin: 0 0 var(--mu-space-3); }
 .mu-footer__legal { margin: 0; padding-block: var(--mu-space-3); border-top: 1px solid color-mix(in srgb, var(--mu-on-night) 18%, transparent); font-size: .85rem; color: color-mix(in srgb, var(--mu-on-night) 55%, transparent); }
-.mu-wordmark { margin: 0 0 -.12em; padding-inline: var(--mu-gutter); font: 750 clamp(4.5rem, 17vw, 16rem)/.78 var(--mu-font-display); letter-spacing: -.065em; white-space: nowrap; overflow: hidden; overflow-wrap: anywhere; color: color-mix(in srgb, var(--mu-on-night) 7%, transparent); }
+.mu-wordmark { margin: 0; padding: 0 var(--mu-gutter) .2em; font: 750 clamp(3.4rem, 15vw, 16rem)/.9 var(--mu-font-display); letter-spacing: -.065em; white-space: nowrap; overflow: hidden; overflow-wrap: anywhere; color: color-mix(in srgb, var(--mu-on-night) 7%, transparent); }
 .mu-wordmark i { font-style: normal; color: var(--mu-primary); }
-.mu-wordmark--1 { font-size: clamp(3.5rem, 13vw, 12.5rem); }
-.mu-wordmark--2 { font-size: clamp(3rem, 10vw, 9.5rem); }
-.mu-wordmark--3 { font-size: clamp(2.5rem, 7vw, 6.5rem); }
-.mu-wordmark--4 { font-size: clamp(2rem, 5vw, 4.5rem); }
+.mu-wordmark--1 { font-size: clamp(2.6rem, 11vw, 12.5rem); }
+.mu-wordmark--2 { font-size: clamp(2rem, 8.5vw, 9.5rem); }
+.mu-wordmark--3 { font-size: clamp(1.45rem, 6.3vw, 6.5rem); }
+.mu-wordmark--4 { font-size: clamp(1rem, 4.5vw, 4.5rem); }
