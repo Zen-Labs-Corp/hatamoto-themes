@@ -1,0 +1,11 @@
+{{/* Kazahana library: dict-taking defines, all named kz-*. */}}
+{{/* kz-sub: the Subscribe link. The site's header button wins, else the RSS feed (always there on a site with posts).
+   dict "Root" . "Class" "" */}}
+{{define "kz-sub"}}{{$u := "/feed.xml"}}{{$l := "Subscribe"}}{{with .Root.Site.HeaderCTA}}{{if .URL}}{{$u = .URL}}{{$l = default "Subscribe" .Label}}{{end}}{{end}}<a class="{{.Class}}" href="{{cta $u}}">{{$l}}</a>{{end}}
+{{/* kz-search: a search form. dict "Class" "" "Placeholder" "" "Button" "" */}}
+{{define "kz-search"}}<form class="kz-search {{.Class}}" role="search" action="/search" method="get"><label><span class="kz-sr">Search</span><input type="search" name="q" placeholder="{{.Placeholder}}" autocomplete="off"></label><button class="kz-btn" type="submit">{{.Button}}</button></form>{{end}}
+{{/* kz-topics: category links; the current one carries aria-current. dict "Cats" (terms) "Path" "" "Class" "" */}}
+{{define "kz-topics"}}{{$p := .Path}}{{range .Cats}}<a{{with $.Class}} class="{{.}}"{{end}} href="{{.URL}}"{{if eq .URL $p}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}{{end}}
+{{/* kz-menu-icon / kz-x: the Menu button's bars and the Close cross, drawn */}}
+{{define "kz-bars"}}<svg class="kz-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 5.5h12M2 10.5h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>{{end}}
+{{define "kz-x"}}<svg class="kz-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3.5 3.5 9 9m0-9-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>{{end}}

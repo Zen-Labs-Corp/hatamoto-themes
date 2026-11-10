@@ -1,10 +1,24 @@
-{{define "header"}}<header class="kz-header">
-<div class="kz-wrap kz-header__inner">
-<a class="kz-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="28">{{else}}<span class="kz-brand__name">{{.Site.Name}}</span>{{end}}</a>
-{{if .Site.Nav}}<nav class="kz-nav" aria-label="Primary">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav>
-{{end}}<div class="kz-header__end">
+{{define "header"}}{{$cats := terms "category" 12}}{{$topics := and $.Settings.header_topics $cats}}<header class="kz-header">
+<div class="kz-wrap kz-top">
+<p class="kz-dateline">{{if $.Settings.header_dateline}}{{.Site.Tagline}}{{end}}</p>
+<a class="kz-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="36">{{else}}<span class="kz-dot" aria-hidden="true"></span><span class="kz-brand__name">{{.Site.Name}}</span>{{end}}</a>
+<div class="kz-act">
 <button type="button" class="kz-mode" data-hm-theme-toggle aria-label="Switch to dark mode" aria-pressed="false" hidden><svg class="kz-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="kz-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
-{{with .Site.HeaderCTA}}<a class="hm-btn kz-header__cta" href="{{cta .URL}}">{{.Label}}</a>
-{{end}}</div>
+<a class="kz-icon" href="/search" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a>
+{{template "kz-sub" dict "Root" . "Class" "kz-btn kz-btn--red kz-act__sub"}}
+<details class="kz-menu"><summary><span class="kz-menu__open">Menu {{template "kz-bars"}}</span><span class="kz-menu__close">Close {{template "kz-x"}}</span></summary>
+<div class="kz-menu__panel">
+{{if .Site.Nav}}<nav aria-label="Menu"><ol class="kz-menu__list">{{range .Site.Nav}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ol></nav>
+{{end}}{{if $topics}}<p class="kz-label">Topics</p>
+<nav class="kz-chips" aria-label="Topics"><a class="kz-chip" href="/blog"{{if eq $.Path "/blog"}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" $cats "Path" $.Path "Class" "kz-chip"}}</nav>
+{{end}}{{template "kz-search" dict "Class" "kz-search--onpine" "Placeholder" "Search the journal" "Button" "Go"}}
+</div></details>
 </div>
-</header>{{end}}
+</div>
+{{if or .Site.Nav $topics}}<div class="kz-bar"><div class="kz-wrap kz-bar__in">
+{{if .Site.Nav}}<nav class="kz-bar__nav" aria-label="Primary">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav>
+{{end}}{{if and .Site.Nav $topics}}<span class="kz-sep" aria-hidden="true"></span>
+{{end}}{{if $topics}}<nav class="kz-bar__nav" aria-label="Topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path}}</nav>
+{{end}}</div></div>
+{{end}}{{if $topics}}<nav class="kz-strip" aria-label="Topics"><div class="kz-wrap kz-strip__in"><a href="/blog"{{if eq $.Path "/blog"}} aria-current="page"{{end}}>All</a>{{template "kz-topics" dict "Cats" $cats "Path" $.Path}}</div></nav>
+{{end}}</header>{{end}}

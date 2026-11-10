@@ -8,22 +8,46 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
     "properties": {
+      "header_topics": {
+        "type": "boolean",
+        "title": "Topics in the header",
+        "description": "Show the categories under the masthead, and as a strip on small screens.",
+        "default": true
+      },
+      "header_dateline": {
+        "type": "boolean",
+        "title": "Tagline in the header",
+        "description": "Show the site tagline left of the site name.",
+        "default": true
+      },
       "color_mode": {
         "type": "string",
         "title": "Colour mode",
         "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
         "default": "auto"
       },
       "density": {
         "type": "string",
         "title": "Spacing",
-        "enum": ["comfortable", "compact"],
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
         "default": "comfortable"
       }
     }
