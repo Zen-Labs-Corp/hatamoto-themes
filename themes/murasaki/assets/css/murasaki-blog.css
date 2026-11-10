@@ -74,6 +74,9 @@
 /* Prose: numbered h2s, accent-ruled quotes. Shared with the project page. */
 .mu-body .mu-entry { font-size: 1.125rem; line-height: 1.7; color: var(--mu-ink); }
 .mu-body .mu-entry > p:first-child { font-size: var(--mu-step-1); line-height: 1.5; }
+/* Docs articles (core layout): prose headings stay below the page h1, not at section-display size. */
+.mu-body .hm-doc__main h2 { margin: 2.5rem 0 .75rem; font-size: var(--mu-step-2); line-height: 1.15; letter-spacing: -.03em; scroll-margin-block-start: var(--mu-space-3); }
+.mu-body .hm-doc__main h3 { margin: 2rem 0 .5rem; font-size: var(--mu-step-1); }
 .mu-body .mu-entry h2 { margin: 2.5rem 0 .25rem; font-size: var(--mu-step-2); line-height: 1.1; letter-spacing: -.03em; scroll-margin-block-start: var(--mu-space-3); }
 .mu-body .mu-entry h3 { margin: 2rem 0 .5rem; font-size: var(--mu-step-1); letter-spacing: -.02em; }
 .mu-body .mu-entry p, .mu-body .mu-entry ul, .mu-body .mu-entry ol { margin: 0 0 1rem; }
