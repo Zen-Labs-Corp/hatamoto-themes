@@ -21,5 +21,45 @@
 {{end}}
 {{$tick := false}}{{if $showTick}}{{if or $cats (ge $n 1)}}{{$tick = true}}{{end}}{{end}}
 {{if $tick}}<div class="wa-ticker" aria-hidden="true"><div class="wa-wrap"><ul>{{range $cats}}<li>{{template "wa-star"}}{{.Name}}</li>{{end}}{{range $k := seq 4}}{{if lt $k $n}}<li>{{template "wa-star"}}{{(index $items $k).Title}}</li>{{end}}{{end}}</ul></div></div>{{end}}
+{{if and (ne (printf "%v" .Settings.show_topics) "false") $cats}}
+<section class="wa-sec wa-on-band wa-topics" aria-label="Topics"><div class="wa-wrap">
+<p class="wa-eyebrow">Browse topics</p>
+<div class="wa-sec__h">{{template "wa-heading" dict "Pre" "Explore by" "Accent" "topic" "Post" ""}}</div>
+{{template "wa-chips" dict "Terms" $cats "Cur" "" "All" ""}}
+</div></section>
 {{end}}
+{{$showArch := and (gt $n 5) (ne (printf "%v" .Settings.show_archive_band) "false")}}{{$showNews := ne (printf "%v" .Settings.show_newsletter) "false"}}
+{{if or $showArch $showNews}}<section class="wa-sec wa-night" aria-label="Archive and newsletter"><div class="wa-wrap">
+{{if $showArch}}{{$s := 10}}{{if lt $n 16}}{{$s = 0}}{{end}}
+<p class="wa-eyebrow">From the archive</p>
+<div class="wa-sec__h">{{template "wa-heading" dict "Pre" (default "Worth a" .Settings.archive_heading) "Accent" (default "second" .Settings.archive_accent) "Post" (default "read" .Settings.archive_tail)}}</div>
+<div class="wa-vault">
+{{range $k := seq 3}}{{$i := mod (add $s $k) $n}}{{if eq $k 0}}{{template "wa-card" dict "Item" (index $items $i) "Size" "lg" "N" (add $i 1) "Excerpt" true}}{{else}}{{template "wa-card" dict "Item" (index $items $i) "Size" "md" "N" (add $i 1)}}{{end}}{{end}}
+<div class="wa-vault__side"><h3>More from the archive</h3>
+{{range $k := seq 3}}{{$it := index $items (mod (add $s (add 3 $k)) $n)}}<a href="{{$it.URL}}"><span>{{$it.Title}}</span>{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time>{{end}}</a>
+{{end}}</div>
+</div>
+{{end}}
+{{if $showNews}}<div class="wa-news{{if $showArch}} wa-news--sep{{end}}">
+<div><p class="wa-eyebrow">The letter</p>{{template "wa-heading" dict "Pre" (default "Stay in" .Settings.newsletter_heading) "Accent" (default "the loop" .Settings.newsletter_accent) "Post" (trim .Settings.newsletter_tail)}}
+<p class="wa-news__text">{{default "A short note when something new is published." .Settings.newsletter_text}}</p></div>
+<div>
+{{$newest := ""}}{{if gt $n 0}}{{$first := index $items 0}}{{if not $first.PublishedAt.IsZero}}{{$newest = formatDate $first.PublishedAt "2 Jan 2006"}}{{end}}{{end}}
+{{if or $r.Total (len $cats) $newest}}<dl class="wa-stats">{{if $r.Total}}<div><dt>{{if eq $r.Total 1}}story so far{{else}}stories so far{{end}}</dt><dd>{{$r.Total}}</dd></div>{{end}}{{if $cats}}<div><dt>{{if eq (len $cats) 1}}topic{{else}}topics{{end}}</dt><dd>{{len $cats}}</dd></div>{{end}}{{if $newest}}<div><dt>latest story</dt><dd>{{$newest}}</dd></div>{{end}}</dl>{{end}}
+<a class="wa-news__btn" href="{{cta (default "/about" .Settings.newsletter_url)}}">{{default "Subscribe" .Settings.newsletter_button}} &rarr;</a>
+</div>
+</div>{{end}}
+</div></section>
+{{end}}
+{{if gt $n 5}}
+<section class="wa-sec" aria-label="Reading queue"><div class="wa-wrap">
+<p class="wa-eyebrow">Reading queue</p>
+<div class="wa-sec__h">{{template "wa-heading" dict "Pre" (default "Don't" .Settings.queue_heading) "Accent" (default "miss" .Settings.queue_accent) "Post" (default "these" .Settings.queue_tail)}}<a class="wa-sec__more" href="{{cta $arch}}">All stories &rarr;</a></div>
+<div class="wa-grid4">
+{{range $k := seq 4}}{{$i := mod (add 16 $k) $n}}{{template "wa-card" dict "Item" (index $items $i) "Size" "md" "N" (add $i 1)}}{{end}}
+</div>
+</div></section>
+{{end}}
+{{end}}
+{{if .Settings.home_sections}}{{template "page-body" .}}{{end}}
 {{end}}
