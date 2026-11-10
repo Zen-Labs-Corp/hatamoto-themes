@@ -10,6 +10,19 @@
   /* JS-only controls: shown once this file runs */
   $$('[data-hg-js][hidden]').forEach(function (el) { el.hidden = false; });
 
+  /* Escape closes an open submenu (it opens on hover or focus, which a keyboard or
+     pointer user could not otherwise dismiss); the next hover or focus reopens it */
+  doc.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var item = doc.activeElement && doc.activeElement.closest('.hg-nav__item');
+    if (!item || !$('.hg-nav__sub', item)) return;
+    item.classList.add('is-dismissed');
+    var a = $('a, [tabindex]', item);
+    if (a) a.focus();
+  });
+  doc.addEventListener('focusin', function (e) { var d = $('.is-dismissed'); if (d && d !== e.target.closest('.hg-nav__item')) d.classList.remove('is-dismissed'); });
+  doc.addEventListener('mouseover', function (e) { var d = $('.is-dismissed'); if (d && d !== e.target.closest('.hg-nav__item')) d.classList.remove('is-dismissed'); });
+
   /* ---------------------------------------------------------------- rail */
   var track = $('[data-hg-track]');
   if (track) {

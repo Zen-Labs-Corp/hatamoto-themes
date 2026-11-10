@@ -188,6 +188,7 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 .hg-nav__sub { display: none; position: absolute; inset-inline-start: 0; inset-block-start: calc(100% + .3rem); z-index: 30; min-inline-size: 12rem; padding: .4rem; background: var(--hg-surface); border: 1px solid var(--hg-line); border-radius: var(--hg-radius-lg); box-shadow: var(--hg-shadow); }
 .hg-nav__sub::before { content: ""; position: absolute; inset-inline: 0; inset-block-end: 100%; block-size: .4rem; }
 .hg-nav__item:hover > .hg-nav__sub, .hg-nav__item:focus-within > .hg-nav__sub { display: block; }
+.hg-nav__item.is-dismissed > .hg-nav__sub { display: none; } /* Escape (hanagasumi.js); cleared on the next hover or focus */
 .hg-nav__sub a, .hg-nav__sub li > span { border-radius: var(--hg-radius-md); }
 .hg-nav__sub a:hover { background: var(--hg-tint); }
 .hg-header__end { display: flex; align-items: center; gap: .5rem; }
@@ -369,6 +370,10 @@ a.hg-chip[aria-current] { background: var(--hg-primary-soft); border-color: tran
 @media (max-width: 1060px) {
   .hg-header__in:has(.hg-nav__item:nth-child(5)) .hg-nav, .hg-header__in:has(.hg-nav__item:nth-child(5)) .hg-header__cta { display: none; }
   .hg-header__in:has(.hg-nav__item:nth-child(5)) .hg-menu { display: block; }
+}
+@media (hover: none) and (max-width: 1240px) {
+  .hg-header__in:has(.hg-nav__sub) .hg-nav, .hg-header__in:has(.hg-nav__sub) .hg-header__cta { display: none; }
+  .hg-header__in:has(.hg-nav__sub) .hg-menu { display: block; }
 }
 @media (max-width: 860px) {
   .hg-nav, .hg-header__cta { display: none; }
