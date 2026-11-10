@@ -1,6 +1,6 @@
 {
   "name": "kazahana",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Editorial blog theme with a masthead and topic strip, big EB Garamond headlines, hairline meta rows and a pine intro block, in snow white and camellia red.",
   "screenshot": "assets/screenshot.png",
   "csp": {
@@ -38,8 +38,8 @@
       },
       "header_dateline": {
         "type": "boolean",
-        "title": "Tagline in the header",
-        "description": "Show the site tagline left of the site name.",
+        "title": "Dateline in the header",
+        "description": "Show the date of the latest note and the site tagline left of the site name.",
         "default": true
       },
       "color_mode": {
