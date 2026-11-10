@@ -96,35 +96,75 @@
 [data-km-density="compact"] { --km-section: clamp(2.5rem, 6vw, 4.5rem); }
 .hm-section { padding-block: var(--km-section); }
 
-/* ---- shell ---- */
-.km-wrap { width: min(100% - 2 * var(--km-gap), var(--hm-container)); margin-inline: auto; }
+/* shell */
+*, *::before, *::after { box-sizing: border-box; }
+body.km-body { margin: 0; background: var(--km-paper); color: var(--km-ink); font: 400 var(--km-step-0)/1.7 var(--km-serif); }
+:where(.km-body) a { color: inherit; }
+.km-body img, .km-body svg { max-width: 100%; }
+.km-body :focus-visible { outline: 2px solid var(--km-primary); outline-offset: 3px; }
+.km-wrap { width: min(100% - 2 * var(--km-gap), var(--km-wide)); margin-inline: auto; }
 
-.km-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--km-line); }
-.km-header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
-.km-brand { display: inline-flex; align-items: center; gap: .5rem; color: var(--hm-text); text-decoration: none; font-weight: 650; letter-spacing: -.01em; }
-.km-nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin-inline-start: auto; }
-.km-nav a { color: var(--km-muted); text-decoration: none; font-size: .95rem; }
-.km-nav a:hover, .km-nav a[aria-current="page"] { color: var(--hm-text); }
+.km-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.25rem; border: 1px solid var(--km-primary); border-radius: var(--hm-radius-md); background: var(--km-primary); color: var(--km-primary-ink); font: 700 .75rem/1 var(--km-sans); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+.km-btn:hover { filter: brightness(1.1); }
+.km-btn--ghost { background: transparent; color: inherit; border-color: currentColor; }
+.km-btn--paper { background: var(--km-cloth-ink); color: var(--km-cloth); border-color: var(--km-cloth-ink); }
+
+.km-header { position: sticky; top: 0; z-index: 20; background: var(--km-paper); border-bottom: 1px solid var(--km-line); }
+.km-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 4.5rem; }
+.km-brand { display: inline-flex; align-items: center; min-width: 0; color: var(--km-ink); text-decoration: none; }
+.km-brand__name { font: 600 1.7rem/1.05 var(--km-display); letter-spacing: .01em; overflow-wrap: anywhere; }
+.km-nav { display: flex; align-items: center; gap: 1.75rem; margin-inline-start: auto; font: 600 .78rem/1 var(--km-sans); letter-spacing: .12em; text-transform: uppercase; }
+.km-nav a, .km-nav span { padding: .35rem 0; border-bottom: 1px solid transparent; text-decoration: none; }
+.km-nav a:hover { border-color: var(--km-line); }
+.km-nav a[aria-current="page"] { border-color: var(--km-primary); color: var(--km-primary); }
 .km-header__end { display: flex; align-items: center; gap: .75rem; }
-.km-mode { display: inline-grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border: 1px solid var(--km-line); border-radius: 999px; background: none; color: var(--hm-text); cursor: pointer; }
+.km-mode { display: inline-grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border: 1px solid var(--km-line); border-radius: 999px; background: none; color: var(--km-ink); cursor: pointer; }
+.km-mode[hidden] { display: none; }
 .km-mode svg { inline-size: 1rem; block-size: 1rem; }
 .km-sun, [data-theme="dark"] .km-moon { display: none; }
 [data-theme="dark"] .km-sun { display: block; }
 
-.km-footer { margin-block-start: var(--km-section); padding-block: 3rem 2rem; border-top: 1px solid var(--km-line); color: var(--km-muted); font-size: .9rem; }
-.km-footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
-.km-footer__brand { margin: 0; color: var(--hm-text); font-weight: 650; }
-.km-footer__brand span { display: block; margin-top: .25rem; color: var(--km-muted); font-weight: 400; }
-.km-footer__nav { display: flex; flex-wrap: wrap; gap: 2rem 3rem; }
-.km-footer__nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
-.km-footer__title { margin: 0 0 .5rem; color: var(--hm-text); font-weight: 600; }
-.km-footer a { color: inherit; text-decoration: none; }
-.km-footer a:hover { color: var(--hm-text); }
-.km-social { display: flex; gap: 1rem; list-style: none; padding: 0; margin: 2rem 0 0; }
-.km-footer__legal { margin: 2rem 0 0; }
+.km-runhead { border-bottom: 1px solid var(--km-line); font: italic 400 .95rem/1.3 var(--km-display); color: var(--km-muted); }
+.km-runhead__inner { display: flex; justify-content: space-between; gap: 1rem; padding-block: .55rem; }
+.km-runhead__inner span:first-child { min-width: 0; }
+.km-runhead__inner span:last-child { text-align: right; white-space: nowrap; }
 
-@media (max-width: 720px) {
-  .km-header__inner { flex-wrap: wrap; padding-block: .75rem; gap: .75rem; }
-  .km-nav { order: 3; inline-size: 100%; margin: 0; overflow-x: auto; flex-wrap: nowrap; padding-bottom: .25rem; }
-  .km-header__end { margin-inline-start: auto; }
+/* the no-JS mobile menu: a details element, hidden from 640px up */
+.km-menu { display: none; }
+.km-menu summary { display: grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border: 1px solid var(--km-line); border-radius: var(--hm-radius-md); cursor: pointer; list-style: none; }
+.km-menu summary::-webkit-details-marker { display: none; }
+.km-burger { display: block; inline-size: 1.1rem; block-size: 1px; background: currentColor; box-shadow: 0 -5px 0 currentColor, 0 5px 0 currentColor; }
+.km-menu[open] .km-burger { box-shadow: none; transform: rotate(45deg); }
+.km-menu[open] .km-burger::after { content: ""; display: block; inline-size: 1.1rem; block-size: 1px; background: currentColor; transform: rotate(90deg); }
+.km-menu__panel { position: absolute; inset-inline: 0; top: 100%; max-height: calc(100vh - 4rem); overflow-y: auto; background: var(--km-cloth); color: var(--km-cloth-ink); padding: 1.75rem var(--km-gap) 2rem; }
+.km-menu__label { margin: 0 0 .75rem; font: 600 .72rem/1.2 var(--km-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--km-gold); }
+.km-menu__list { counter-reset: km-m; list-style: none; margin: 0 0 1.75rem; padding: 0; }
+.km-menu__list li { counter-increment: km-m; display: flex; align-items: baseline; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid rgb(255 255 255 / .14); font: 500 1.9rem/1.1 var(--km-display); }
+.km-menu__list li::before { content: counter(km-m, upper-roman) "."; flex: 0 0 2rem; font: italic 400 1rem/1 var(--km-display); color: var(--km-gold); }
+.km-menu__list a { text-decoration: none; }
+.km-menu__list a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
+
+.km-footer { margin-block-start: var(--km-section); padding-block: 4rem 2rem; background: var(--km-footer); color: var(--km-cloth-ink); }
+.km-footer a { text-decoration: none; }
+.km-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.km-footer__cols { display: flex; flex-wrap: wrap; gap: 2.5rem var(--km-gap); padding-bottom: 3rem; border-bottom: 1px solid rgb(255 255 255 / .14); }
+.km-footer__about { flex: 1.6 1 18rem; }
+.km-footer__col { flex: 1 1 9rem; }
+.km-footer__brand { display: inline-block; font: 600 2.4rem/1.05 var(--km-display); overflow-wrap: anywhere; }
+.km-footer__colophon { max-width: 26rem; margin: 1rem 0 0; font: italic 400 1.05rem/1.5 var(--km-display); opacity: .8; }
+.km-footer__head { margin: 0 0 1rem; font: 700 .7rem/1 var(--km-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--km-gold); }
+.km-footer__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; font: 500 1.15rem/1.3 var(--km-display); }
+.km-footer__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 0; padding-top: 1.5rem; font: 500 .78rem/1.4 var(--km-sans); opacity: .7; }
+
+@media (max-width: 640px) {
+  .km-nav, .km-header__cta { display: none; }
+  .km-menu { display: block; }
+  .km-header__inner { min-height: 3.75rem; }
+  .km-brand__name { font-size: 1.45rem; }
+  .km-runhead__inner span:first-child { display: none; }
+  .km-runhead__inner { justify-content: flex-start; }
+  .km-runhead__inner span:last-child { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .km-btn, .km-body a { transition: none; }
 }
