@@ -50,15 +50,15 @@
   --hg-lh: 1.6;
 
   /* ---- shape ---- */
-  --hg-radius-xs: 6px;
-  --hg-radius-sm: 10px;
-  --hg-radius-md: 16px;
-  --hg-radius-lg: 24px;
-  --hg-radius-xl: 32px;
+  --hm-radius-sm: 10px;
+  --hm-radius-md: 16px;
+  --hm-radius-lg: 24px;
+  --hg-radius-xs: calc(var(--hm-radius-sm) * .6);
+  --hg-radius-sm: var(--hm-radius-sm);
+  --hg-radius-md: var(--hm-radius-md);
+  --hg-radius-lg: var(--hm-radius-lg);
+  --hg-radius-xl: calc(var(--hm-radius-lg) * 4 / 3);
   --hg-radius-pill: 999px;
-  --hm-radius-sm: var(--hg-radius-sm);
-  --hm-radius-md: var(--hg-radius-md);
-  --hm-radius-lg: var(--hg-radius-lg);
 
   /* ---- spacing ---- */
   --hg-space-1: .25rem;
@@ -86,8 +86,8 @@
   --ht-line: var(--hg-line);
 }
 
-/* corner style: Soft tightens every radius */
-:root[data-hg-corner="soft"] { --hg-radius-xs: 4px; --hg-radius-sm: 6px; --hg-radius-md: 10px; --hg-radius-lg: 14px; --hg-radius-xl: 18px; }
+/* corner style: Soft tightens the radii. :where() keeps it at the same weight as the owner's Theme > Colours and fonts radii, which come later and win. */
+:root:where([data-hg-corner="soft"]) { --hm-radius-sm: 6px; --hm-radius-md: 10px; --hm-radius-lg: 14px; }
 
 @supports (color: color(from red xyz x y z)) {
   /* relative luminance y of the fill: white text at or below .179, black above it. That is where both reach the same contrast, 4.5:1 or better for any fill. */
