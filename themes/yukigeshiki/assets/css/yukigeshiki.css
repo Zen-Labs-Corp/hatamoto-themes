@@ -264,3 +264,25 @@ a { color: inherit; }
 .yk-related { padding-block: 40px 24px; border-top: 1px solid var(--yk-line); }
 .yk-related__h { margin: 0 0 28px; font-size: 1.5rem; letter-spacing: -.02em; }
 .yk-grid--related { padding-block-end: 56px; }
+
+/* ---- pages: the default theme's sections and prose, through this palette ---- */
+.hm-btn { min-height: 2.5rem; padding: 0 1.1rem; border-radius: var(--hm-radius-sm); background: var(--yk-primary); border-color: var(--yk-primary); color: var(--yk-on-primary); font-weight: 500; }
+.hm-btn:hover { filter: brightness(1.08); }
+.hm-btn--ghost, .hm-btn--outline, .hm-btn--secondary { background: transparent; color: var(--hm-text); border-color: var(--yk-line); }
+.hm-prose, .hm-html-body { color: var(--hm-text); line-height: 1.65; }
+.hm-prose :is(h1, h2, h3, h4), .hm-section h1, .hm-section h2, .hm-section h3 { color: var(--hm-text); font-family: var(--hm-font-heading); letter-spacing: -.025em; }
+.hm-prose a, .hm-html-body a { color: var(--yk-primary); text-underline-offset: 3px; }
+.hm-prose blockquote, .hm-html-body blockquote { margin-inline: 0; padding: 2px 0 2px 24px; border-inline-start: 3px solid var(--yk-primary); font: italic 400 1.4rem/1.4 var(--yk-serif); }
+.hm-prose hr, .hm-html-body hr { border: 0; border-block-start: 1px solid var(--yk-line); }
+.hm-prose img, .hm-prose pre, .hm-prose table { max-inline-size: 100%; }
+.hm-prose pre { overflow-x: auto; padding: 14px 16px; background: var(--yk-surface); border-radius: var(--hm-radius-md); }
+.hm-prose table { display: block; overflow-x: auto; border-collapse: collapse; }
+.hm-prose :is(th, td) { padding: 8px 14px 8px 0; border-bottom: 1px solid var(--yk-line); text-align: start; }
+.hm-section { border-color: var(--yk-line); }
+.hm-section-head__eyebrow { font-family: var(--hm-font); letter-spacing: 0; text-transform: none; font-size: .8125rem; }
+.hm-cta--tinted { background: var(--yk-t1); border-color: var(--yk-line); }
+.hm-cta--dark { background: var(--hm-text); }
+.hm-cta--dark, .hm-cta--dark h2 { color: var(--hm-bg); }
+.hm-cta--dark .hm-btn { background: var(--hm-bg); border-color: var(--hm-bg); color: var(--hm-text); }
+.hm-page-body { padding-block: 48px 64px; }
+.hm-page-body .hm-entry { max-inline-size: var(--yk-measure); margin-inline: auto; }
