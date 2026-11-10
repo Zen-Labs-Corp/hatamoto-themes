@@ -1,0 +1,12 @@
+{{define "header"}}<header class="kb-header">
+<div class="kb-wrap"><div class="kb-header__inner">
+<a class="kb-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="32">{{else}}<span class="kb-brand__name">{{.Site.Name}}</span>{{template "kb-star"}}{{end}}</a>
+{{if .Site.Nav}}<nav class="kb-nav" aria-label="Primary"><ul class="kb-nav__list">{{range .Site.Nav}}<li>{{template "kb-nav-item" dict "Item" . "Path" $.Path}}{{if .Children}}<ul class="kb-nav__sub">{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>
+{{end}}<div class="kb-header__end">
+<button type="button" class="kb-mode" data-hm-theme-toggle aria-label="Switch to dark mode" aria-pressed="false" hidden><span class="kb-mode__dot" aria-hidden="true"></span></button>
+{{template "kb-cta" dict "Root" . "Class" "kb-cta" "Span" true}}
+<details class="kb-menu"><summary>Menu</summary>
+<div class="kb-menu__panel">{{if .Site.Nav}}<nav aria-label="Menu"><ul>{{range .Site.Nav}}<li>{{template "kb-nav-item" dict "Item" . "Path" $.Path}}{{if .Children}}<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul></nav>{{end}}{{template "kb-cta" dict "Root" . "Class" "kb-menu__cta"}}</div></details>
+</div>
+</div></div>
+</header>{{end}}

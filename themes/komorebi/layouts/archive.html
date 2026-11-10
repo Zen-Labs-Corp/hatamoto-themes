@@ -1,0 +1,6 @@
+{{define "content"}}<div class="kb-wrap kb-list">
+{{$post := or (not .SchemaSlug) (eq .SchemaSlug "post")}}{{$kick := "Archive"}}{{if $post}}{{$kick = "Journal"}}{{end}}{{template "kb-pagehead" dict "Kicker" $kick "Title" .Page.Name "Lede" .Page.Description}}
+{{with .Pagination}}{{if .Total}}<p class="kb-mono kb-count">{{.Total}} {{if $post}}{{if eq .Total 1}}post{{else}}posts{{end}}{{else}}{{if eq .Total 1}}entry{{else}}entries{{end}}{{end}}, newest first</p>{{end}}{{end}}
+{{template "kb-chips" dict "Terms" (terms "category" 12) "Cur" "all" "All" .Path}}
+{{template "kb-ledger" dict "Root" . "Feature" true}}
+</div>{{end}}

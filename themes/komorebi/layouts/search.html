@@ -1,0 +1,6 @@
+{{define "content"}}<div class="kb-wrap kb-list">
+{{template "kb-pagehead" dict "Kicker" "Find" "Title" "Search" "Lede" ""}}
+{{template "kb-search-form" dict "Root" . "Id" "page"}}
+{{if .Query}}{{with .Pagination}}<p class="kb-mono kb-count" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;</p>{{end}}
+{{template "kb-ledger" dict "Root" .}}{{else}}<p class="kb-empty">Type a word or phrase to search.</p>{{end}}
+</div>{{end}}

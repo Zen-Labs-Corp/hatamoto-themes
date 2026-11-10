@@ -1,0 +1,13 @@
+{{/* kb-art: decorative generated art, one of five patterns picked by the seed (a stable number from the item, so
+   the same post gets the same art on every page). Colours come from the --kb-art-* tokens through classes.
+   dict "Seed" int "Ground" bool */}}
+{{define "kb-art"}}{{$s := .Seed}}{{$p := mod $s 5}}<svg class="kb-art" viewBox="0 0 600 380" preserveAspectRatio="{{if .Ground}}xMidYMid slice{{else}}xMinYMid meet{{end}}" aria-hidden="true" focusable="false">
+{{if .Ground}}<rect class="kb-a-bg" width="600" height="380"/>{{end}}
+{{if eq $p 0}}<g transform="rotate(-14 300 190)">{{range $x := seq 10}}{{range $y := seq 10}}<rect class="{{if eq (mod (add (add (mul $x 3) (mul $y 5)) $s) 7) 0}}kb-a-h{{else}}kb-a-s kb-a-o{{mod (add (mul $x 7) (mul $y 3)) 3}}{{end}}" x="{{add 195 (mul $x 21)}}" y="{{add 85 (mul $y 21)}}" width="16" height="16" rx="2"/>{{end}}{{end}}</g>
+{{else if eq $p 1}}{{range $k := seq 6}}<circle class="{{if eq (mod (add $k $s) 3) 0}}kb-a-lh{{else}}kb-a-ls{{end}}" cx="120" cy="380" r="{{add 80 (mul $k 68)}}" stroke-width="{{if eq (mod (add $k $s) 3) 0}}20{{else}}6{{end}}"/>{{end}}<circle class="kb-a-h" cx="{{add 400 (mul (mod $s 4) 30)}}" cy="110" r="44"/>
+{{else if eq $p 2}}{{range $k := seq 12}}<rect class="{{if eq (mod (add (mul $k 5) $s) 4) 0}}kb-a-h{{else}}kb-a-s{{end}}" x="{{mul $k 50}}" y="0" width="{{add 8 (mul (mod (add (mul $k 7) $s) 5) 6)}}" height="380"/>{{end}}<rect class="kb-a-h" x="0" y="{{add 150 (mul (mod $s 3) 30)}}" width="600" height="20"/>
+{{else if eq $p 3}}{{range $k := seq 8}}<rect class="{{if eq $k (mod $s 8)}}kb-a-h{{else}}kb-a-s{{end}}" x="{{add 40 (mul $k 68)}}" y="{{sub 380 (add 60 (mul $k 40))}}" width="58" height="{{add 60 (mul $k 40)}}"/>{{end}}
+{{else}}{{range $x := seq 6}}{{range $y := seq 4}}<circle class="{{if eq (mod (add (add $x $y) $s) 5) 0}}kb-a-h{{else}}kb-a-s{{end}}" cx="{{add 80 (mul $x 88)}}" cy="{{add 60 (mul $y 86)}}" r="{{add 8 (mul (mod (add (mul $x $y) $s) 4) 7)}}"/>{{end}}{{end}}
+{{end}}</svg>{{end}}
+{{/* kb-art-item: the art for a listing item. dict "Item" . "Ground" bool */}}
+{{define "kb-art-item"}}{{template "kb-art" dict "Seed" (add (len .Item.Title) (len .Item.URL)) "Ground" .Ground}}{{end}}

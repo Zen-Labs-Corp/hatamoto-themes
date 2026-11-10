@@ -1,0 +1,8 @@
+{{define "content"}}<section class="kb-wrap kb-lost">
+<p class="kb-mono kb-pagehead__kick">Error 404</p>
+<h1 class="kb-lost__title">Page <span>not found</span></h1>
+<p class="kb-pagehead__lede">The address may have changed, or it has a typo. Search the journal, or start again from the front page.</p>
+{{template "kb-search-form" dict "Root" . "Id" "lost"}}
+<p class="kb-lost__home"><a class="kb-cta" href="/"><span>Back to the front page</span>{{template "kb-arrow"}}</a></p>
+{{if .Settings.generated_art}}<div class="kb-lost__art">{{template "kb-art" dict "Seed" 402 "Ground" true}}</div>{{end}}
+</section>{{end}}

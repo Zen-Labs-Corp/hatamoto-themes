@@ -1,0 +1,6 @@
+{{define "content"}}{{$k := "Category"}}{{if eq .Term.Kind "tag"}}{{$k = "Tag"}}{{end}}<div class="kb-wrap kb-list">
+{{template "kb-pagehead" dict "Kicker" $k "Title" .Term.Name "Lede" .Term.Description}}
+{{with .Pagination}}{{if .Total}}<p class="kb-mono kb-count">{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}}</p>{{end}}{{end}}
+{{if eq .Term.Kind "category"}}{{template "kb-chips" dict "Terms" (terms "category" 12) "Cur" .Term.URL "All" (default "/blog" .Settings.archive_url)}}{{end}}
+{{template "kb-ledger" dict "Root" .}}
+</div>{{end}}

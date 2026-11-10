@@ -1,0 +1,97 @@
+{
+  "name": "komorebi",
+  "version": "0.1.0",
+  "description": "Quiet, typographic blog theme: a two-tone split hero, a featured card with generated pixel art, hairline post lists and mono labels, in indigo and peach.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
+        "default": "auto"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
+        "default": "comfortable"
+      },
+      "hero_line_1": {
+        "type": "string",
+        "title": "Hero line 1",
+        "description": "First headline line. Empty (with line 2) uses the site name split in two.",
+        "default": "Small things,"
+      },
+      "hero_line_2": {
+        "type": "string",
+        "title": "Hero line 2",
+        "description": "Second line, shown in the primary colour.",
+        "default": "worth noticing."
+      },
+      "header_cta_label": {
+        "type": "string",
+        "title": "Header button label",
+        "description": "Also the big line in the footer.",
+        "default": "Write to us"
+      },
+      "header_cta_url": {
+        "type": "string",
+        "title": "Header button address",
+        "description": "Where the header button and the footer line lead.",
+        "default": "/about"
+      },
+      "show_topics": {
+        "type": "boolean",
+        "title": "Show topics",
+        "description": "The three categories with the most posts on the home page.",
+        "default": true
+      },
+      "generated_art": {
+        "type": "boolean",
+        "title": "Generated art",
+        "description": "Pattern art for posts and topics without an image. Off gives text-only cards.",
+        "default": true
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "description": "Where the \"All posts\" links lead.",
+        "default": "/blog"
+      },
+      "home_sections": {
+        "type": "boolean",
+        "title": "Show home page sections",
+        "description": "Prints the blocks of the home page built in the editor below the about band.",
+        "default": false
+      },
+      "about_statement": {
+        "type": "string",
+        "title": "About statement",
+        "description": "The large line in the home page about band. Empty uses \"About\" and the site name.",
+        "default": ""
+      }
+    }
+  }
+}
