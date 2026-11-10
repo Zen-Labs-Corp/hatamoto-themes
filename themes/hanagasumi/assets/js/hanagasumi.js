@@ -36,4 +36,33 @@
     window.addEventListener('resize', queue, { passive: true });
     update();
   }
+
+  /* ------------------------------------------------- post contents spy */
+  var toc = $('.hg-toc');
+  var prose = $('.hg-prose');
+  if (toc && prose && !window.matchMedia('(max-width: 1080px)').matches) {
+    var links = $$('a[data-hg-toc]', toc);
+    var heads = links.map(function (a) { return doc.getElementById(a.getAttribute('data-hg-toc')); });
+    var spyTick = false;
+    var spy = function () {
+      spyTick = false;
+      var cur = -1;
+      heads.forEach(function (h, i) { if (h && h.getBoundingClientRect().top <= 140) cur = i; });
+      links.forEach(function (a, i) {
+        a.classList.toggle('is-active', i === cur);
+        if (i === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      });
+    };
+    window.addEventListener('scroll', function () { if (!spyTick) { spyTick = true; window.requestAnimationFrame(spy); } }, { passive: true });
+    spy();
+  }
+
+  /* --------------------------------------------------------- copy link */
+  $$('[data-hg-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = location.href.split('#')[0];
+      var done = function () { btn.setAttribute('aria-label', 'Link copied'); btn.title = 'Link copied'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () {});
+    });
+  });
 })();

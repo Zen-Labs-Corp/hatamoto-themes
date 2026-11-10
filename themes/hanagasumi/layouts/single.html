@@ -1,0 +1,24 @@
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}{{$toc := gt (len $b.TOC) 1}}{{$mins := readingTime .Body}}
+<article class="hg-post">
+<header class="hg-post__head">
+{{if $post}}{{with $e.Categories}}{{with index . 0}}{{template "hg-chip" dict "Label" .Name "URL" .URL}}{{end}}{{end}}{{end}}
+<h1 class="hg-post__title">{{$e.Title}}</h1>
+{{if $post}}{{with $e.Excerpt}}<p class="hg-post__dek">{{.}}</p>{{end}}
+<p class="hg-byline">{{with $e.Author}}{{with .Avatar}}<img class="hg-avatar" src="{{imgsrc .}}" alt="" width="34" height="34">{{else}}<span class="hg-avatar" aria-hidden="true"></span>{{end}}{{end}}<span class="hg-label">{{with $e.Author}}{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}{{end}}{{if not $e.PublishedAt.IsZero}}{{with $e.Author}} &middot; {{end}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 Jan 2006"}}</time>{{end}}{{if $mins}} &middot; {{$mins}} min read{{end}}</span></p>{{end}}
+</header>
+{{with $e.Image}}<figure class="hg-hero"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1120px) 1064px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
+<div class="hg-post__grid{{if not $toc}} hg-post__grid--notoc{{end}}">
+{{if $toc}}<nav class="hg-toc" aria-label="On this page"><p class="hg-label">On this page</p>{{range $b.TOC}}<a href="#{{.ID}}" data-hg-toc="{{.ID}}"{{if eq .Level 3}} class="hg-toc__sub"{{end}}>{{.Text}}</a>{{end}}</nav>{{end}}
+<div class="hm-prose hg-prose">{{$b.HTML}}</div>
+{{if $post}}<aside class="hg-share" aria-label="Share"><p class="hg-label">Share</p>
+<button type="button" class="hg-iconbtn" data-hg-js hidden data-hg-copy aria-label="Copy link">{{template "hg-icon" "link"}}</button>
+<a class="hg-iconbtn" href="mailto:?subject={{urlquery $e.Title}}" aria-label="Share by email">{{template "hg-icon" "mail"}}</a></aside>{{end}}
+</div>
+{{if $post}}{{$all := query (dict "schema" "post" "limit" 100)}}{{$older := ""}}{{$newer := ""}}{{$last := ""}}{{$found := false}}
+{{range $all.Items}}{{if $found}}{{if not $older}}{{$older = .}}{{end}}{{else if eq .URL $e.URL}}{{$found = true}}{{$newer = $last}}{{else}}{{$last = .}}{{end}}{{end}}
+{{if $found}}<nav class="hg-pn" aria-label="More stories">
+{{with $older}}<a class="hg-pn__older" href="{{.URL}}" rel="prev"><span class="hg-label"><span aria-hidden="true">&larr;</span> Older</span><h2>{{.Title}}</h2></a>{{end}}
+{{with $newer}}<a class="hg-pn__newer" href="{{.URL}}" rel="next"><span class="hg-label">Newer <span aria-hidden="true">&rarr;</span></span><h2>{{.Title}}</h2></a>{{else}}<a class="hg-pn__newer" href="/blog"><span class="hg-label">Journal <span aria-hidden="true">&rarr;</span></span><h2>Back to the journal</h2></a>{{end}}
+</nav>{{end}}{{end}}
+</article>
+{{else}}{{template "page-body" .}}{{end}}{{end}}
