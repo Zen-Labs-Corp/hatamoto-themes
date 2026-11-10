@@ -313,3 +313,80 @@ span.wa-pager__dir { color: var(--wa-muted); }
   .wa-vault .wa-card:first-child, .wa-vault__side { grid-column: auto; }
   .wa-news h2 { font-size: var(--wa-step-4); }
 }
+
+/* ---- single post ---- */
+.wa-eyebrow--c { justify-content: center; }
+.wa-posthd { padding-block: 48px 0; background: var(--wa-band); }
+.wa-posthd__in { max-inline-size: 860px; margin-inline: auto; text-align: center; }
+.wa-posthd h1 { margin: 0; font-size: var(--wa-step-5); letter-spacing: -.04em; line-height: 1; overflow-wrap: anywhere; }
+.wa-crumb { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 8px; margin: 0 0 18px; font-size: 13px; color: var(--wa-muted); }
+.wa-crumb > * + *::before { content: "·"; margin-inline-end: 8px; }
+.wa-crumb a { color: var(--wa-primary); font-weight: 600; text-decoration: none; }
+.wa-dek { max-inline-size: 40ch; margin: 18px auto 22px; font-size: var(--wa-step-1); color: var(--wa-muted); }
+.wa-byline { display: inline-flex; align-items: center; gap: 12px; margin: 0; font-size: 14px; font-weight: 600; }
+.wa-byline a { color: inherit; text-decoration: none; }
+.wa-av { display: inline-grid; place-items: center; flex: none; inline-size: 40px; block-size: 40px; border-radius: 50%; object-fit: cover; background: var(--wa-primary); color: var(--wa-on-primary); font-size: 16px; font-weight: 700; }
+.wa-av--lg { inline-size: 64px; block-size: 64px; font-size: 24px; }
+.wa-cover { position: relative; z-index: 1; display: block; block-size: 460px; margin: 40px 0 0; transform: translateY(60px); overflow: hidden; border-radius: var(--wa-r-card); background: var(--wa-night); }
+.wa-cover img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.wa-cover--type { isolation: isolate; }
+.wa-cover--type .wa-card__ch { inset-inline-end: 4%; inset-block-start: -30%; font-size: 520px; }
+.wa-postbody { display: grid; grid-template-columns: 200px minmax(0, var(--measure)) 200px; justify-content: center; gap: 48px; padding-block: 110px 64px; }
+.wa-postbody--page { grid-template-columns: minmax(0, var(--measure)); padding-block: 56px 72px; }
+.wa-postbody--page .wa-rail-gap { display: none; }
+.wa-toc, .wa-share { position: sticky; inset-block-start: 20px; align-self: start; }
+.wa-toc { font-size: 13px; }
+.wa-toc h2 { margin: 0 0 10px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--wa-muted); }
+.wa-toc a { display: block; padding: 6px 0 6px 12px; border-inline-start: 2px solid var(--wa-line); color: var(--wa-muted); text-decoration: none; }
+.wa-toc a:hover { border-color: var(--wa-primary); color: var(--wa-ink); }
+.wa-share { display: grid; justify-content: start; gap: 8px; }
+.wa-share .wa-ibtn { text-decoration: none; }
+.wa-prose { max-inline-size: var(--measure); color: var(--wa-ink); font-size: 19px; line-height: 1.7; overflow-wrap: break-word; }
+.wa-prose > p:first-of-type::first-letter { float: left; margin: 8px 10px 0 0; font: italic 400 76px/.8 var(--wa-serif); color: var(--wa-primary); }
+.wa-prose h2, .wa-prose h3 { clear: both; color: var(--wa-ink); }
+.wa-prose h2 { margin: 44px 0 12px; font-size: var(--wa-step-2); }
+.wa-prose h3 { margin: 32px 0 8px; font-size: var(--wa-step-1); }
+.wa-prose a { color: var(--wa-primary); }
+.wa-prose img { max-inline-size: 100%; block-size: auto; border-radius: var(--wa-r-sm); }
+.wa-prose li::marker { color: var(--wa-primary); font-weight: 700; }
+.wa-prose blockquote { margin: 36px 0; padding: 24px 28px; border: 0; border-radius: var(--wa-r-card); background: var(--wa-band); font: italic 400 26px/1.35 var(--wa-serif); color: var(--wa-ink); }
+.wa-prose blockquote p { margin: 0; }
+.wa-prose table { display: block; max-inline-size: 100%; overflow-x: auto; border-collapse: collapse; font-size: 15px; }
+.wa-prose th, .wa-prose td { padding: 10px 12px; border-block-end: 1px solid var(--wa-line); text-align: start; }
+.wa-prose th { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--wa-muted); }
+.wa-prose pre { padding: 20px; overflow: auto; border-radius: var(--wa-r-sm); background: var(--wa-night); color: var(--wa-night-ink); font-size: 14px; }
+.wa-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 36px 0 0; padding: 0; list-style: none; }
+.wa-tags a { display: block; padding: 6px 12px; border-radius: var(--wa-r-pill); background: var(--wa-chip); color: var(--wa-ink); font-size: 13px; font-weight: 600; text-decoration: none; }
+.wa-authorbox { display: flex; gap: 18px; align-items: center; margin-block-start: 36px; padding: 24px; border: 1px solid var(--wa-line); border-radius: var(--wa-r-card); background: var(--wa-surface); }
+.wa-authorbox p { margin: 0; }
+.wa-authorbox__name { display: flex; flex-direction: column; gap: 4px; font-weight: 700; }
+.wa-authorbox__name a { color: inherit; text-decoration: none; }
+.wa-authorbox__job { color: var(--wa-primary); font-size: 13px; font-weight: 600; }
+.wa-authorbox__bio { margin-block-start: 6px; color: var(--wa-muted); font-size: 15px; }
+.wa-prevnext { display: grid; grid-template-columns: 1fr 1fr; gap: var(--wa-gap); padding-block-end: 40px; }
+.wa-prevnext__a { padding: 22px 24px; border-radius: var(--wa-r-card); background: var(--wa-band); color: var(--wa-ink); text-decoration: none; }
+.wa-prevnext__a:hover b { color: var(--wa-primary); }
+.wa-prevnext__a small { display: block; margin-block-end: 6px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--wa-primary); }
+.wa-prevnext__a b { font-size: 18px; letter-spacing: -.02em; }
+.wa-prevnext__a--next { grid-column: 2; text-align: end; }
+.wa-more { padding-block-start: 24px; }
+.wa-more .wa-sec__h h2 { font-size: var(--wa-step-3); }
+.wa-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--wa-gap); }
+.wa-grid3 .wa-card { min-block-size: 300px; }
+@media (max-width: 1100px) {
+  .wa-postbody { grid-template-columns: minmax(0, var(--measure)); }
+  .wa-toc, .wa-share, .wa-rail-gap { display: none; }
+}
+@media (max-width: 900px) {
+  .wa-grid3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .wa-posthd h1 { font-size: var(--wa-step-4); }
+  .wa-cover { block-size: 240px; }
+  .wa-cover--type .wa-card__ch { font-size: 300px; }
+  .wa-postbody { padding-block: 90px 40px; }
+  .wa-prose { font-size: 17px; }
+  .wa-prevnext, .wa-grid3 { grid-template-columns: 1fr; }
+  .wa-prevnext__a--next { grid-column: auto; }
+  .wa-authorbox { flex-direction: column; align-items: flex-start; }
+}
