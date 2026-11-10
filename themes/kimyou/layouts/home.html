@@ -32,9 +32,9 @@
 </div>
 </div></section>
 {{end}}
-{{with trim (default "" .Settings.books_category)}}{{$slug := .}}{{$bq := query (dict "schema" "post" "term" (print "category:" $slug) "limit" 2)}}{{if $bq.Items}}
+{{with trim (default "" .Settings.books_category)}}{{$slug := .}}{{$bt := ""}}{{range terms "category" 100}}{{if eq .Slug $slug}}{{$bt = .}}{{end}}{{end}}{{if $bt}}{{$bq := query (dict "schema" "post" "term" (print "category:" $slug) "limit" 2)}}{{if $bq.Items}}
 <section class="km-wrap km-sec" aria-labelledby="km-books-h">
-<div class="km-sec__head"><h2 id="km-books-h">On <em>books</em></h2><a href="/category/{{$slug}}">All of {{with index $bq.Items 0}}{{.Category}}{{end}} &rarr;</a></div>
+<div class="km-sec__head"><h2 id="km-books-h">On <em>books</em></h2><a href="{{$bt.URL}}">All of {{$bt.Name}} &rarr;</a></div>
 <div class="km-bookcards">
 {{range $i, $it := $bq.Items}}<article class="km-bookcard">
 <div class="km-book km-c{{add 2 $i}}" aria-hidden="true"><small>{{$it.Category}}</small><strong>{{$it.Title}}</strong></div>
@@ -42,7 +42,7 @@
 </article>
 {{end}}</div>
 </section>
-{{end}}{{end}}
+{{end}}{{end}}{{end}}
 {{with $latest}}{{with .Excerpt}}<section class="km-epigraph km-sec" aria-label="Epigraph"><div class="km-wrap">
 <blockquote>{{.}}</blockquote>
 <cite>From &ldquo;{{$latest.Title}}&rdquo;</cite>
