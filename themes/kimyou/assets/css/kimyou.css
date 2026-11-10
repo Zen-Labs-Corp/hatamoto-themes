@@ -93,6 +93,14 @@
   --km-band-ink: #f3e3d6;
   --km-plank: #5a4330;
   --km-footer: #0b0d0c;
+  /* the default theme redeclares its own names for dark: point them back at this palette */
+  --hm-sumi: var(--hm-text);
+  --hm-hai: var(--km-muted);
+  --hm-label: var(--km-muted);
+  --hm-hair: var(--km-line);
+  --hm-shiro: var(--km-paper-2);
+  --hm-kasumi: var(--km-paper-2);
+  --hm-shu: var(--hm-primary);
 }
 
 [data-km-density="compact"] { --km-section: clamp(2.5rem, 6vw, 4.5rem); }
