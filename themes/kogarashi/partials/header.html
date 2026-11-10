@@ -9,7 +9,7 @@
 </div>
 </details>
 {{$words := split (trim .Site.Name) " "}}{{$n := len $words}}{{$name1 := ""}}{{$name2 := ""}}{{range $i, $w := $words}}{{if lt $i (sub $n 1)}}{{$name1 = print $name1 " " $w}}{{else}}{{$name2 = $w}}{{end}}{{end}}{{$name1 = trim $name1}}
-<a class="kg-logo" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="32">{{else}}{{with $name1}}{{.}}&nbsp;{{end}}{{if $name1}}<b>{{$name2}}</b>{{else}}{{$name2}}{{end}}{{end}}</a>
+<a class="kg-logo" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="32">{{else}}{{with $name1}}{{.}} {{end}}{{if $name1}}<b>{{$name2}}</b>{{else}}{{$name2}}{{end}}{{end}}</a>
 <span class="kg-header__sp"></span>
 {{template "kg-subscribe" .}}
 <a class="kg-search" href="/search" aria-label="Search"><svg class="kg-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><b aria-hidden="true">Search</b></a>
