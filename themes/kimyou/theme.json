@@ -1,0 +1,62 @@
+{
+  "name": "kimyou",
+  "version": "0.1.0",
+  "description": "Literary blog theme for writers: linen paper, oxblood and book-cloth green, posts as chapters, categories as spines on a shelf.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "auto"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      },
+      "home_headline": {
+        "type": "string",
+        "title": "Home headline (text after | is italic in the primary colour)",
+        "default": "The small things | worth noticing."
+      },
+      "home_lede": {
+        "type": "string",
+        "title": "Home lede (empty = site tagline)",
+        "default": ""
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "default": "/blog"
+      },
+      "show_shelf": {
+        "type": "boolean",
+        "title": "Show the shelf of categories",
+        "default": true
+      },
+      "books_category": {
+        "type": "string",
+        "title": "Books category slug (empty hides On books)",
+        "default": "books"
+      },
+      "ornaments": {
+        "type": "string",
+        "title": "Ornaments",
+        "enum": ["full", "quiet"],
+        "default": "full"
+      }
+    }
+  }
+}

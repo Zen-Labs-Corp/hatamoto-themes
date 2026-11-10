@@ -1,0 +1,18 @@
+{{define "footer"}}<footer class="km-footer">
+<div class="km-wrap">
+<div class="km-footer__cols">
+<div class="km-footer__about">
+<a class="km-footer__brand" href="/">{{.Site.Name}}</a>
+<p class="km-footer__colophon">Set in Cormorant Garamond, Literata and Manrope.</p>
+</div>
+{{$flat := false}}{{range .Site.FooterNav}}{{if not .Children}}{{$flat = true}}{{end}}{{end}}
+{{if $flat}}<nav class="km-footer__col" aria-label="Footer"><h2 class="km-footer__head">Read</h2><ul>{{range .Site.FooterNav}}{{if not .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}</ul></nav>
+{{end}}{{range .Site.FooterNav}}{{if .Children}}<nav class="km-footer__col" aria-label="{{.Label}}"><h2 class="km-footer__head">{{.Label}}</h2><ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul></nav>
+{{end}}{{end}}<div class="km-footer__col"><h2 class="km-footer__head">Elsewhere</h2><ul>
+{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
+{{end}}<li><a href="/feed.xml">RSS feed</a></li><li><a href="/atom.xml">Atom feed</a></li>
+</ul></div>
+</div>
+<p class="km-footer__legal"><span>&copy; {{year}} {{.Site.Name}}</span><span>Colophon</span></p>
+</div>
+</footer>{{end}}

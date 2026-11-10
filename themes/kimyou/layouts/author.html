@@ -1,0 +1,14 @@
+{{define "content"}}{{$name := .Page.Name}}{{with .Author}}{{$name = .Name}}{{end}}
+<div class="km-wrap km-archive">
+<header class="km-author-head">
+{{with .Author}}<span class="km-avatar km-avatar--lg">{{with .Avatar}}<img src="{{imgsrc .}}" alt="" width="72" height="72">{{else}}{{printf "%.1s" .Name}}{{end}}</span>{{end}}
+<div><p class="km-label">Author</p>
+<h1>{{$name}}</h1>
+{{with .Author}}{{with .JobTitle}}<p class="km-author-head__job">{{.}}</p>{{end}}{{with .Bio}}<p class="km-author-head__bio">{{.}}</p>{{end}}{{end}}
+{{with .Pagination}}{{if .Total}}<p class="km-author-head__n">{{template "km-count" .}}</p>{{end}}{{end}}
+{{with .Author}}{{with .Links}}<ul class="km-tags km-tags--start" aria-label="Elsewhere">{{range .}}<li><a class="km-tag" href="{{cta .URL}}" rel="me noopener">{{.Label}}</a></li>{{end}}</ul>{{end}}{{end}}</div>
+</header>
+{{if .Items}}{{template "km-index" dict "Items" .Items "Group" false}}
+{{template "km-pages" dict "Pg" .Pagination}}{{else}}<p class="km-empty">Nothing here yet.</p>{{end}}
+</div>
+{{end}}

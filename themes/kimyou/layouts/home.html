@@ -1,0 +1,66 @@
+{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$cats := terms "category" 12}}{{$arch := cta (default "/blog" .Settings.archive_url)}}{{$cta := ""}}{{with .Site.HeaderCTA}}{{$cta = cta .URL}}{{else}}{{$cta = "/feed.xml"}}{{end}}
+{{$h := trim (default "The small things | worth noticing." .Settings.home_headline)}}{{if not $h}}{{$h = "The small things | worth noticing."}}{{end}}
+{{$parts := split $h "|"}}{{$h1 := trim (index $parts 0)}}{{$h2 := ""}}{{if gt (len $parts) 1}}{{$h2 = trim (index $parts 1)}}{{end}}
+{{$latest := ""}}{{range $r.Items}}{{if not $latest}}{{$latest = .}}{{end}}{{end}}
+<section class="km-spread" aria-label="Welcome">
+<div class="km-spread__verso">
+<p class="km-label">{{.Site.Name}}{{with $latest}}{{with .Author}} &middot; a journal by {{.}}{{end}}{{end}}</p>
+<h1 class="km-spread__title">{{$h1}}{{with $h2}} <em>{{.}}</em>{{end}}</h1>
+{{with default .Site.Tagline .Settings.home_lede}}<p class="km-spread__lede">{{.}}</p>{{end}}
+<div class="km-spread__actions">{{with $latest}}<a class="km-btn" href="{{.URL}}">Start reading</a>{{end}}<a class="km-btn km-btn--ghost" href="{{$cta}}">Subscribe</a></div>
+</div>
+{{with $latest}}<div class="km-spread__recto">
+<p class="km-label">Latest chapter</p>
+<div class="km-book km-c1" aria-hidden="true"><small><span class="km-ch">Chapter I &middot; </span>{{.Category}}</small><strong>{{.Title}}</strong></div>
+<div class="km-spread__meta"><h2><a href="{{.URL}}">{{.Title}}</a></h2>{{with .Excerpt}}<p>{{.}}</p>{{end}}</div>
+</div>{{end}}
+</section>
+{{if gt (len $r.Items) 1}}
+<section class="km-wrap km-sec" aria-labelledby="km-contents-h">
+<div class="km-sec__head"><h2 id="km-contents-h">Contents</h2><a href="{{$arch}}">The full index &rarr;</a></div>
+<ol class="km-toc">
+{{range $i, $it := $r.Items}}{{if and (ge $i 1) (le $i 8)}}<li><span class="km-toc__t"><a href="{{$it.URL}}">{{$it.Title}}</a></span>{{with $it.Category}}<span class="km-toc__p">{{.}}</span>{{end}}{{with $it.Excerpt}}<p class="km-toc__x">{{.}}</p>{{end}}</li>
+{{end}}{{end}}</ol>
+</section>
+{{else if not $r.Items}}<section class="km-wrap km-sec"><p class="km-empty">Nothing has been written yet.</p></section>{{end}}
+{{if and .Settings.show_shelf $cats}}
+<section class="km-shelf-band" aria-labelledby="km-shelf-h"><div class="km-wrap km-shelf-wrap">
+<div class="km-shelf-note"><div class="km-sec__head km-sec__head--bare"><h2 id="km-shelf-h">The <em>shelf</em></h2></div><p>Every category is a book on the shelf. The spine height follows how much has been written in it.</p></div>
+<div class="km-shelf">
+{{range $i, $t := $cats}}<a class="km-spine km-c{{mod $i 5}}" href="{{$t.URL}}" style="--km-n:{{$t.Count}}"><small>{{$t.Count}}</small><span>{{$t.Name}}</span><i aria-hidden="true"></i></a>
+{{end}}<div class="km-pile" aria-hidden="true"><p>the unread pile</p><i class="km-c2"></i><i class="km-c3"></i><i class="km-c0"></i><i class="km-c1"></i></div>
+</div>
+</div></section>
+{{end}}
+{{with trim (default "" .Settings.books_category)}}{{$slug := .}}{{$bt := ""}}{{range terms "category" 100}}{{if eq .Slug $slug}}{{$bt = .}}{{end}}{{end}}{{if $bt}}{{$bq := query (dict "schema" "post" "term" (print "category:" $slug) "limit" 2)}}{{if $bq.Items}}
+<section class="km-wrap km-sec" aria-labelledby="km-books-h">
+<div class="km-sec__head"><h2 id="km-books-h">On <em>books</em></h2><a href="{{$bt.URL}}">All of {{$bt.Name}} &rarr;</a></div>
+<div class="km-bookcards">
+{{range $i, $it := $bq.Items}}<article class="km-bookcard">
+<div class="km-book km-c{{add 2 $i}}" aria-hidden="true"><small>{{$it.Category}}</small><strong>{{$it.Title}}</strong></div>
+<div><p class="km-label">{{with $it.Category}}{{.}}{{end}}{{if not $it.PublishedAt.IsZero}} &middot; {{formatDate $it.PublishedAt "2 Jan 2006"}}{{end}}</p><h3>{{$it.Title}}</h3>{{with $it.Excerpt}}<p>{{.}}</p>{{end}}<a class="km-more" href="{{$it.URL}}">Open the book &rarr;</a></div>
+</article>
+{{end}}</div>
+</section>
+{{end}}{{end}}{{end}}
+{{with $latest}}{{with .Excerpt}}<section class="km-epigraph km-sec" aria-label="Epigraph"><div class="km-wrap">
+<blockquote>{{.}}</blockquote>
+<cite>From &ldquo;{{$latest.Title}}&rdquo;</cite>
+</div></section>{{end}}{{end}}
+{{if $r.Items}}
+<section class="km-wrap km-sec" aria-labelledby="km-journal-h">
+<div class="km-sec__head"><h2 id="km-journal-h">From the <em>journal</em></h2><a href="{{$arch}}">Everything &rarr;</a></div>
+<div class="km-grid3">
+{{range $i, $it := $r.Items}}{{if lt $i 6}}<a class="km-card" href="{{$it.URL}}">
+{{if $it.Image}}<img class="km-plate" src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 380px"{{end}} alt="" decoding="sync">{{else}}<span class="km-plate km-c{{mod $i 5}}" aria-hidden="true"></span>{{end}}
+{{with $it.Category}}<span class="km-label km-label--primary">{{.}}</span>{{end}}<h3>{{$it.Title}}</h3>{{with $it.Excerpt}}<p>{{.}}</p>{{end}}
+<span class="km-card__meta">{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}{{with $it.ReadingTime}}<span>{{.}} min read</span>{{end}}</span>
+</a>
+{{end}}{{end}}</div>
+</section>
+{{end}}
+<section class="km-wrap km-letter-wrap" aria-labelledby="km-letter-h"><div class="km-letter">
+<div><p class="km-label">The newsletter</p><h2 id="km-letter-h">The next chapter, by post.</h2><p>New writing as it is published, in your reader or your inbox.</p></div>
+<div class="km-letter__links"><a class="km-btn" href="{{$cta}}">{{with .Site.HeaderCTA}}{{.Label}}{{else}}Subscribe by RSS{{end}}</a>{{if .Site.HeaderCTA}}<a class="km-btn km-btn--ghost" href="/feed.xml">RSS</a>{{end}}</div>
+</div></section>
+{{end}}

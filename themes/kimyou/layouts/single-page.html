@@ -1,0 +1,11 @@
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}
+<article class="km-wrap km-about{{if not $e.Image}} km-about--solo{{end}}">
+{{with $e.Image}}<figure class="km-about__fig"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 60rem) 28rem, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high">{{with $e.Attributes.featured_image_alt}}<figcaption>{{.}}</figcaption>{{end}}</figure>
+{{end}}<div class="km-about__text">
+<p class="km-label">{{.Site.Name}}</p>
+<h1 class="km-page__title">{{$e.Title}}</h1>
+{{if .Body}}<div class="km-prose">{{$b.HTML}}</div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+</div>
+</article>
+{{else}}{{template "page-body" .}}{{end}}{{end}}

@@ -1,0 +1,24 @@
+{{/* km-roman: an integer from 1 to 39 in roman numerals, anything else as it is. */}}
+{{define "km-roman"}}{{if and (gt . 0) (lt . 40)}}{{index (split ",X,XX,XXX" ",") (div . 10)}}{{index (split ",I,II,III,IV,V,VI,VII,VIII,IX" ",") (mod . 10)}}{{else}}{{.}}{{end}}{{end}}
+
+{{/* km-row: one index row. dict "Item" <listing item> "Dates" bool (show the date in the meta line) */}}
+{{define "km-row"}}{{$it := .Item}}<li class="km-row"><a class="km-row__t" href="{{$it.URL}}">{{$it.Title}}</a>{{with $it.Category}}<span class="km-label km-label--primary km-row__c">{{.}}</span>{{end}}{{with $it.Excerpt}}<p class="km-row__x">{{.}}</p>{{end}}{{if or (and .Dates (not $it.PublishedAt.IsZero)) $it.ReadingTime}}<p class="km-row__m">{{if and .Dates (not $it.PublishedAt.IsZero)}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}{{with $it.ReadingTime}}<span>{{.}} min read</span>{{end}}</p>{{end}}</li>{{end}}
+
+{{/* km-index: rows of listing items. dict "Items" <items> "Group" bool: Group puts a sticky period label (month and year) before each run of rows, newest first. */}}
+{{define "km-index"}}{{if .Items}}{{if .Group}}{{$last := ""}}{{$open := false}}{{range .Items}}{{$m := "Undated"}}{{if not .PublishedAt.IsZero}}{{$m = formatDate .PublishedAt "January 2006"}}{{end}}{{if ne $m $last}}{{if $open}}</ol></section>
+{{end}}<section class="km-period"><h2 class="km-period__label">{{$m}}</h2><ol class="km-rows">
+{{$open = true}}{{$last = $m}}{{end}}{{template "km-row" dict "Item" . "Dates" false}}
+{{end}}{{if $open}}</ol></section>{{end}}{{else}}<ol class="km-rows km-rows--flat">
+{{range .Items}}{{template "km-row" dict "Item" . "Dates" true}}
+{{end}}</ol>{{end}}{{end}}{{end}}
+
+{{/* km-pages: square page buttons, only when there is more than one page. dict "Pg" .Pagination */}}
+{{define "km-pages"}}{{with .Pg}}{{if gt .TotalPages 1}}<nav class="km-pages" aria-label="Pagination">
+{{if .HasPrev}}<a rel="prev" href="{{.PrevURL}}" aria-label="Previous page">&larr;</a>{{end}}{{range paginate .}}{{if .Gap}}<span aria-hidden="true">&hellip;</span>{{else if .Current}}<a href="{{.URL}}" aria-current="page" aria-label="Page {{.N}}, current page">{{.N}}</a>{{else}}<a href="{{.URL}}" aria-label="Page {{.N}}">{{.N}}</a>{{end}}{{end}}{{if .HasNext}}<a rel="next" href="{{.NextURL}}" aria-label="Next page">&rarr;</a>{{end}}
+</nav>{{end}}{{end}}{{end}}
+
+{{/* km-filters: category pills with an All link. dict "Terms" <terms> "Cur" <current url> "All" <all url> */}}
+{{define "km-filters"}}{{if .Terms}}<nav class="km-filters" aria-label="Categories"><a class="km-tag" href="{{.All}}"{{if eq .Cur "all"}} aria-current="page"{{end}}>All</a>{{range .Terms}}<a class="km-tag" href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{end}}{{end}}
+
+{{/* km-count: "1 chapter" / "N chapters" from a pagination (empty when none) */}}
+{{define "km-count"}}{{with .}}{{if .Total}}{{.Total}} {{if eq .Total 1}}chapter{{else}}chapters{{end}}{{end}}{{end}}{{end}}

@@ -1,0 +1,12 @@
+{{define "content"}}{{$name := .Page.Name}}{{$kind := "Category"}}{{$desc := ""}}{{with .Term}}{{$name = .Name}}{{$desc = .Description}}{{if eq .Kind "tag"}}{{$kind = "Tag"}}{{end}}{{end}}
+<div class="km-wrap km-archive">
+<header class="km-cloth-head">
+<p class="km-label">{{$kind}}</p>
+<h1>{{$name}}</h1>
+{{with $desc}}<p class="km-cloth-head__d">{{.}}</p>{{end}}
+{{with .Pagination}}{{if .Total}}<p class="km-cloth-head__n">{{template "km-count" .}}</p>{{end}}{{end}}
+</header>
+{{if .Items}}{{template "km-index" dict "Items" .Items "Group" false}}
+{{template "km-pages" dict "Pg" .Pagination}}{{else}}<p class="km-empty">Nothing here yet.</p>{{end}}
+</div>
+{{end}}

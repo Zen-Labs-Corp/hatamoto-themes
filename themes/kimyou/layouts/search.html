@@ -1,0 +1,16 @@
+{{define "content"}}<div class="km-wrap km-archive km-search">
+<header class="km-search__head">
+<p class="km-label">Search</p>
+<h1 class="hm-visually-hidden">Search {{.Site.Name}}</h1>
+<form class="km-search__form" role="search" action="/search" method="get">
+<label class="hm-visually-hidden" for="km-search-q">Search the journal</label>
+<input id="km-search-q" class="km-search__input" type="search" name="q" value="{{.Query}}" placeholder="Search the journal" autocomplete="off">
+{{with .SearchType}}<input type="hidden" name="type" value="{{.}}">
+{{end}}<button class="km-btn" type="submit">Search</button>
+</form>
+{{if .Query}}{{with .Pagination}}<p class="km-search__n" role="status">{{if .Total}}{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;{{else}}No results for &ldquo;{{$.Query}}&rdquo;. Try fewer words.{{end}}</p>{{end}}{{end}}
+</header>
+{{if .Query}}{{if .Items}}{{template "km-index" dict "Items" .Items "Group" false}}
+{{template "km-pages" dict "Pg" .Pagination}}{{else}}{{if not .Pagination}}<p class="km-empty">No results for &ldquo;{{.Query}}&rdquo;. Try fewer words.</p>{{end}}{{end}}{{else}}<p class="km-empty">Type a word or two to search the journal.</p>{{end}}
+</div>
+{{end}}

@@ -1,0 +1,31 @@
+{{define "content"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}
+{{/* one scan of the newest 100 posts: this post's place, the newer one before it, the older one after it */}}
+{{$all := query (dict "schema" "post" "limit" 100)}}{{$pos := 0}}{{$newer := ""}}{{$older := ""}}{{$last := ""}}
+{{range $i, $it := $all.Items}}{{if eq $it.URL $e.URL}}{{$pos = add $i 1}}{{$newer = $last}}{{else if and $pos (eq $pos $i)}}{{$older = $it}}{{end}}{{$last = $it}}{{end}}
+<article class="km-article">
+<header class="km-article__head km-wrap">
+<p class="km-chapter">{{if $pos}}Chapter {{template "km-roman" $pos}}{{else}}Chapter{{range $i, $c := $e.Categories}}{{if eq $i 0}} &middot; {{$c.Name}}{{end}}{{end}}{{end}}</p>
+<h1 class="km-article__title">{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="km-article__dek">{{.}}</p>{{end}}
+<div class="km-byline">
+{{with $e.Author}}<span class="km-avatar">{{with .Avatar}}<img src="{{imgsrc .}}" alt="" width="36" height="36">{{else}}{{printf "%.1s" .Name}}{{end}}</span>{{end}}
+<span class="km-byline__text">{{with $e.Author}}<span>{{.Name}}</span>{{end}}<span>{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 Jan 2006"}}</time>{{end}}{{with readingTime .Body}} &middot; {{.}} min read{{end}}{{range $i, $c := $e.Categories}}{{if eq $i 0}} &middot; <a href="{{$c.URL}}">{{$c.Name}}</a>{{end}}{{end}}</span></span>
+</div>
+</header>
+{{with $e.Image}}<figure class="km-plate-fig"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 60rem) 60rem, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high">{{with $e.Attributes.featured_image_alt}}<figcaption>Plate. {{.}}</figcaption>{{end}}</figure>
+{{end}}
+{{if .Body}}<div class="km-prose">{{$b.HTML}}</div>
+<div class="km-end" aria-hidden="true"></div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+{{with $e.Tags}}<ul class="km-tags" aria-label="Tags">{{range .}}<li><a class="km-tag" href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul>{{end}}
+{{with $e.Author}}<aside class="km-authorbox" aria-label="About the author">
+<span class="km-avatar km-avatar--lg">{{with .Avatar}}<img src="{{imgsrc .}}" alt="" width="72" height="72">{{else}}{{printf "%.1s" .Name}}{{end}}</span>
+<div><p class="km-label">Written by</p><p class="km-authorbox__name">{{if .URL}}<a href="{{safeHref .URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>
+{{with .JobTitle}}<p class="km-authorbox__job">{{.}}</p>{{end}}{{with .Bio}}<p class="km-authorbox__bio">{{.}}</p>{{end}}</div>
+</aside>{{end}}
+{{if or $newer $older}}<nav class="km-pager km-wrap" aria-label="Chapters">
+{{with $newer}}<a class="km-pager__prev" href="{{.URL}}" rel="prev"><span class="km-label">&larr; Previous chapter</span><strong>{{.Title}}</strong></a>{{end}}
+{{with $older}}<a class="km-pager__next" href="{{.URL}}" rel="next"><span class="km-label">Next chapter &rarr;</span><strong>{{.Title}}</strong></a>{{end}}
+</nav>{{end}}
+</article>
+{{else}}{{template "page-body" .}}{{end}}{{end}}
