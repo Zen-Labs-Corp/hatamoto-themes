@@ -1,0 +1,90 @@
+{
+  "name": "shinrin-yoku",
+  "version": "0.1.0",
+  "description": "Blog theme in forest green on cream: a split serif masthead, a sticky category sidebar and a two-column card grid on soft tinted panels, lime accents after dark.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "enum": [
+          "light",
+          "dark",
+          "auto"
+        ],
+        "default": "auto"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": [
+          "comfortable",
+          "compact"
+        ],
+        "default": "comfortable"
+      },
+      "split_masthead": {
+        "type": "boolean",
+        "title": "Split masthead",
+        "description": "Last word of the site name on its own line in italic serif.",
+        "default": true
+      },
+      "card_tints": {
+        "type": "boolean",
+        "title": "Tinted cards",
+        "description": "Soft tint per category behind each card.",
+        "default": true
+      },
+      "show_author": {
+        "type": "boolean",
+        "title": "Show author",
+        "description": "Author line on cards and posts.",
+        "default": true
+      },
+      "cta_label": {
+        "type": "string",
+        "title": "Button label",
+        "description": "Header button. The site's own header button wins.",
+        "default": "Subscribe"
+      },
+      "cta_url": {
+        "type": "string",
+        "title": "Button address",
+        "description": "Empty hides the button.",
+        "default": "/feed.xml"
+      },
+      "footer_quote": {
+        "type": "string",
+        "title": "Footer quote",
+        "description": "Empty uses the tagline.",
+        "default": ""
+      },
+      "home_sections": {
+        "type": "boolean",
+        "title": "Show home page sections",
+        "description": "Prints the blocks of the home page built in the editor below the post grid.",
+        "default": false
+      },
+      "archive_url": {
+        "type": "string",
+        "title": "Address of the post archive",
+        "default": "/blog"
+      }
+    }
+  }
+}

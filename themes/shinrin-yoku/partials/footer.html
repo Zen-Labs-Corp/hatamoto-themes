@@ -1,0 +1,10 @@
+{{define "footer"}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}{{$quote := default .Site.Tagline .Settings.footer_quote}}<footer class="sy-footer">
+<div class="sy-wrap sy-footer__grid">
+<div class="sy-footer__brand"><a class="sy-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="28">{{else}}<span class="sy-mark" aria-hidden="true">{{template "sy-initial" dict "Name" .Site.Name}}</span><span class="sy-brand__name">{{.Site.Name}}</span>{{end}}</a>
+{{with $quote}}<p class="sy-footer__quote">&ldquo;{{.}}&rdquo;</p>{{end}}</div>
+<nav class="sy-footer__col" aria-labelledby="sy-f-journal"><h2 id="sy-f-journal">Journal</h2><ul><li><a href="{{cta $arch}}">Latest</a></li>{{range $i, $c := $cats}}{{if lt $i 3}}<li><a href="{{$c.URL}}">{{$c.Name}}</a></li>{{end}}{{end}}</ul></nav>
+{{if gt (len $cats) 3}}<nav class="sy-footer__col" aria-labelledby="sy-f-topics"><h2 id="sy-f-topics">Topics</h2><ul>{{range $i, $c := $cats}}{{if ge $i 3}}<li><a href="{{$c.URL}}">{{$c.Name}}</a></li>{{end}}{{end}}</ul></nav>{{end}}
+<nav class="sy-footer__col" aria-labelledby="sy-f-site"><h2 id="sy-f-site">Site</h2><ul>{{range .Site.FooterNav}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>{{end}}<li><a href="/feed.xml">RSS</a></li></ul></nav>
+<p class="sy-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
+</div>
+</footer>{{end}}

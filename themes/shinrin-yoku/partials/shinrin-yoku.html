@@ -1,0 +1,46 @@
+{{/* Shinrin-yoku library: dict-taking defines, all named sy-*. */}}
+{{/* sy-initial: the first letter of a name, upper-cased. dict "Name" s */}}
+{{define "sy-initial"}}{{with trim .Name}}{{upper (index (split . "") 0)}}{{end}}{{end}}
+{{/* sy-cta: the header and menu button. The site's own header button wins, else the two theme settings; with no
+   address nothing is printed. dict "Root" . "Class" "" */}}
+{{define "sy-cta"}}{{$l := ""}}{{$u := ""}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if not $u}}{{$l = .Root.Settings.cta_label}}{{$u = .Root.Settings.cta_url}}{{end}}{{if $u}}<a class="hm-btn {{.Class}}" href="{{cta $u}}">{{default "Subscribe" $l}}</a>{{end}}{{end}}
+{{/* sy-initials: up to two letters from a person's name. dict "Name" s */}}
+{{define "sy-initials"}}{{with trim .Name}}{{$w := split . " "}}{{template "sy-initial" dict "Name" (index $w 0)}}{{if gt (len $w) 1}}{{template "sy-initial" dict "Name" (index $w (sub (len $w) 1))}}{{end}}{{end}}{{end}}
+{{/* sy-sidebar: masthead (the page's h1 when "H1"), tagline, hairline and the category list. "Cur" is "all" or a term
+   URL; "All" is the address of the post archive. dict "Root" . "Cats" terms "Cur" "" "H1" bool "All" url */}}
+{{define "sy-sidebar"}}{{$r := .Root}}{{$w := split (trim $r.Site.Name) " "}}{{$n := len $w}}{{$a := ""}}{{$b := trim $r.Site.Name}}
+{{if ne (print $r.Settings.split_masthead) "false"}}{{$b = ""}}{{range $i, $x := $w}}{{if lt $i (sub $n 1)}}{{$a = print $a " " $x}}{{else}}{{$b = $x}}{{end}}{{end}}{{$a = trim $a}}{{end}}
+<aside class="sy-side">
+{{if .H1}}<h1 class="sy-mast">{{else}}<p class="sy-mast">{{end}}{{with $a}}{{.}}{{end}}{{if $b}}{{if $a}}<em>{{$b}}</em>{{else if ne (print $r.Settings.split_masthead) "false"}}<em>{{$b}}</em>{{else}}{{$b}}{{end}}{{end}}{{if .H1}}</h1>{{else}}</p>{{end}}
+{{with $r.Site.Tagline}}<p class="sy-tagline">{{.}}</p>{{end}}
+<hr>
+<nav aria-label="Categories"><ul class="sy-cats"><li><a href="{{cta .All}}"{{if eq .Cur "all"}} aria-current="page"{{end}}>Latest</a></li>{{range .Cats}}<li><a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a></li>{{end}}</ul></nav>
+</aside>{{end}}
+{{/* sy-chips: the category list as a scrolling chip row, below 860px only. dict "Cats" terms "Cur" "" "All" url */}}
+{{define "sy-chips"}}{{if .Cats}}<nav class="sy-chips" aria-label="Categories"><a href="{{cta .All}}"{{if eq .Cur "all"}} aria-current="page"{{end}}>Latest</a>{{range .Cats}}<a href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{end}}{{end}}
+{{/* sy-card: one post. The panel tint follows the category's place in the term list (cycling five); a post with no
+   category, or one past the list, gets the fifth. dict "Item" . "Root" . "Cats" terms "Level" 2|3 "Lazy" bool */}}
+{{define "sy-card"}}{{$it := .Item}}{{$s := .Root.Settings}}{{$cls := "sy-t5"}}{{$curl := ""}}{{range $i, $t := .Cats}}{{if eq $t.Name $it.Category}}{{$cls = print "sy-t" (add (mod $i 5) 1)}}{{$curl = $t.URL}}{{end}}{{end}}{{if eq (print $s.card_tints) "false"}}{{$cls = "sy-t0"}}{{end}}
+<article class="sy-card">
+<a class="sy-card__media {{$cls}}" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(max-width: 860px) 100vw, 480px"{{end}} alt=""{{if .Lazy}} loading="lazy"{{end}}>{{else}}<span class="sy-card__ph">{{template "sy-initial" dict "Name" (default (default .Root.Site.Name $it.Title) $it.Category)}}</span>{{end}}</a>
+{{with $it.Category}}<p class="sy-card__kicker">{{if $curl}}<a href="{{$curl}}">{{.}}</a>{{else}}{{.}}{{end}}</p>{{end}}
+{{if eq .Level 3}}<h3 class="sy-card__title">{{else}}<h2 class="sy-card__title">{{end}}<a href="{{$it.URL}}">{{$it.Title}}</a>{{if eq .Level 3}}</h3>{{else}}</h2>{{end}}
+{{with $it.Excerpt}}<p class="sy-card__excerpt">{{.}}</p>{{end}}
+{{$auth := and $it.Author (ne (print $s.show_author) "false")}}{{if or $auth (not $it.PublishedAt.IsZero)}}<p class="sy-card__by">{{if $auth}}<span class="sy-av" aria-hidden="true">{{template "sy-initials" dict "Name" $it.Author}}</span>{{end}}<span>{{if $auth}}{{if $it.AuthorURL}}<a href="{{$it.AuthorURL}}">{{$it.Author}}</a>{{else}}<b>{{$it.Author}}</b>{{end}}{{end}}{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}</span></p>{{end}}
+</article>{{end}}
+{{/* sy-grid: the two-column card grid, or the empty state. dict "Root" . "Items" items "Cats" terms */}}
+{{define "sy-grid"}}{{if .Items}}<div class="sy-grid">{{range $i, $_ := .Items}}{{template "sy-card" dict "Item" . "Root" $.Root "Cats" $.Cats "Level" 2 "Lazy" (gt $i 1)}}{{end}}</div>{{else}}<p class="sy-empty">{{if .Root.Query}}No results for &ldquo;{{.Root.Query}}&rdquo;.{{else}}No posts yet. Check back soon.{{end}}</p>{{end}}{{end}}
+{{/* sy-page-url: page N of a listing. With "Pg" (.Pagination) the engine builds it; else "Base" and ?page=N. dict "N" 2 "Pg" . "Base" "/" */}}
+{{define "sy-page-url"}}{{if .Pg}}{{.Pg.URL .N}}{{else if eq .N 1}}{{.Base}}{{else}}{{.Base}}?page={{.N}}{{end}}{{end}}
+{{/* sy-pager: numbered pages, only when there is more than one. dict "Page" 1 "Pages" 3 "Base" "/" "Pg" .Pagination|nil */}}
+{{define "sy-pager"}}{{if gt .Pages 1}}{{$p := .Page}}{{$n := .Pages}}{{$d := .}}<nav class="sy-pager" aria-label="Pagination">
+{{if gt $p 1}}<a rel="prev" href="{{template "sy-page-url" dict "N" (sub $p 1) "Pg" $d.Pg "Base" $d.Base}}" aria-label="Previous page">&larr;</a>{{end}}
+{{range $i := seq $n}}{{$k := add $i 1}}{{if or (eq $k 1) (eq $k $n) (and (ge $k (sub $p 1)) (le $k (add $p 1)))}}<a href="{{template "sy-page-url" dict "N" $k "Pg" $d.Pg "Base" $d.Base}}"{{if eq $k $p}} aria-current="page" aria-label="Page {{$k}}, current page"{{else}} aria-label="Page {{$k}}"{{end}}>{{$k}}</a>{{else if or (and (eq $k 2) (gt $p 3)) (and (eq $k (sub $n 1)) (lt $p (sub $n 2)))}}<span aria-hidden="true">&hellip;</span>{{end}}{{end}}
+{{if lt $p $n}}<a rel="next" href="{{template "sy-page-url" dict "N" (add $p 1) "Pg" $d.Pg "Base" $d.Base}}" aria-label="Next page">&rarr;</a>{{end}}
+</nav>{{end}}{{end}}
+{{/* sy-listing: the card grid and the pager of a listing view (archive, taxonomy, author, search). dict "Root" . "Cats" terms */}}
+{{define "sy-listing"}}{{template "sy-grid" dict "Root" .Root "Items" .Root.Items "Cats" .Cats}}{{with .Root.Pagination}}{{template "sy-pager" dict "Page" .Page "Pages" .TotalPages "Pg" .}}{{end}}{{end}}
+{{/* sy-count: "N posts" under a list heading. dict "Pg" .Pagination "Noun" "post" "Plural" "posts" */}}
+{{define "sy-count"}}{{with .Pg}}{{if .Total}}<p class="sy-listhead__count">{{.Total}} {{if eq .Total 1}}{{$.Noun}}{{else}}{{$.Plural}}{{end}}</p>{{end}}{{end}}{{end}}
+{{/* sy-search-form: GET search form. dict "Root" . "Id" "x" */}}
+{{define "sy-search-form"}}<form class="sy-searchform" role="search" action="/search" method="get"><label class="sy-sr" for="sy-q-{{.Id}}">Search the site</label><input id="sy-q-{{.Id}}" type="search" name="q" value="{{.Root.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .Root.SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button class="hm-btn" type="submit">Search</button></form>{{end}}

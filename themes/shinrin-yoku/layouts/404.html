@@ -1,0 +1,7 @@
+{{define "content"}}<section class="sy-wrap sy-lost">
+<p class="sy-lost__code" aria-hidden="true">404</p>
+<h1 class="sy-lost__title">Page not found</h1>
+<p class="sy-lost__text">The address may have changed, or it has a typo. Search the journal, or start again from the front page.</p>
+{{template "sy-search-form" dict "Root" . "Id" "lost"}}
+<p><a class="hm-btn hm-btn--secondary" href="/">Back to the front page</a></p>
+</section>{{end}}
