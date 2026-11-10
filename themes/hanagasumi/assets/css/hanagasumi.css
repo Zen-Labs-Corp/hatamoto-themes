@@ -14,11 +14,7 @@
 @font-face { font-family: "IBM Plex Mono"; src: url("/theme/assets/fonts/ibm-plex-mono/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 
 :root {
-  :root[data-hg-corner="soft"] { --hg-radius-xs: 4px; --hg-radius-sm: 6px; --hg-radius-md: 10px; --hg-radius-lg: 14px; --hg-radius-xl: 18px; }
-.hg-stage--plain { grid-template-columns: 1fr; min-block-size: 0; }
-.hg-stage--plain .hg-intro { min-block-size: 0; gap: 2rem; }
-
-/* ---- owner tokens (Theme > Colours and fonts replace these) ---- */
+  /* ---- owner tokens (Theme > Colours and fonts replace these) ---- */
   --hm-primary: #f5adc3;
   --hm-bg: #fefbfa;
   --hm-text: #3d3644;
@@ -90,6 +86,9 @@
   --ht-line: var(--hg-line);
 }
 
+/* corner style: Soft tightens every radius */
+:root[data-hg-corner="soft"] { --hg-radius-xs: 4px; --hg-radius-sm: 6px; --hg-radius-md: 10px; --hg-radius-lg: 14px; --hg-radius-xl: 18px; }
+
 @supports (color: oklch(from red l c h)) {
   :root { --hg-primary-ink: oklch(from var(--hg-primary) clamp(.2, (.68 - l) * 1000, .98) .03 h); }
 }
@@ -112,6 +111,10 @@
   --hm-bg: var(--hg-paper);
   --hm-text: var(--hg-ink);
 }
+
+/* home without the story rail: one column */
+.hg-stage--plain { grid-template-columns: 1fr; min-block-size: 0; }
+.hg-stage--plain .hg-intro { min-block-size: 0; gap: 2rem; }
 
 /* ---- base ---- */
 body { font-family: var(--hm-font); font-size: var(--hg-fs-md); line-height: var(--hg-lh); color: var(--hg-ink); background: var(--hg-paper); -webkit-font-smoothing: antialiased; }
