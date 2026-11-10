@@ -14,7 +14,9 @@
 <button type="button" class="hg-iconbtn" data-hg-js hidden data-hg-copy aria-label="Copy link">{{template "hg-icon" "link"}}</button>
 <a class="hg-iconbtn" href="mailto:?subject={{urlquery $e.Title}}" aria-label="Share by email">{{template "hg-icon" "mail"}}</a></aside>{{end}}
 </div>
-{{if $post}}{{$all := query (dict "schema" "post" "limit" 100)}}{{$older := ""}}{{$newer := ""}}{{$last := ""}}{{$found := false}}
+{{if .Blocks}}<div class="hg-blocks">{{range .Blocks}}{{template "section" .}}
+{{end}}</div>
+{{end}}{{if $post}}{{$all := query (dict "schema" "post" "limit" 100)}}{{$older := ""}}{{$newer := ""}}{{$last := ""}}{{$found := false}}
 {{range $all.Items}}{{if $found}}{{if not $older}}{{$older = .}}{{end}}{{else if eq .URL $e.URL}}{{$found = true}}{{$newer = $last}}{{else}}{{$last = .}}{{end}}{{end}}
 {{if $found}}<nav class="hg-pn" aria-label="More stories">
 {{with $older}}<a class="hg-pn__older" href="{{.URL}}" rel="prev"><span class="hg-label"><span aria-hidden="true">&larr;</span> Older</span><h2>{{.Title}}</h2></a>{{end}}
