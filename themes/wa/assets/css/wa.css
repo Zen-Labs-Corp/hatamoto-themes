@@ -115,8 +115,8 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 700; letter-s
 .wa-brand { display: inline-flex; align-items: center; gap: 14px; min-inline-size: 0; overflow-wrap: anywhere; color: var(--wa-ink); text-decoration: none; font-weight: 700; font-size: var(--wa-step-1); letter-spacing: -.04em; }
 .wa-brand img { block-size: 32px; inline-size: auto; max-inline-size: min(100%, 12rem); object-fit: contain; object-position: left center; }
 .wa-brand__dot { flex: none; inline-size: 12px; block-size: 12px; border-radius: 50%; background: var(--wa-primary); box-shadow: 8px 0 0 var(--wa-signal); margin-inline-end: 8px; }
-.wa-nav { margin-inline: auto; }
-.wa-nav > ul { display: flex; gap: 4px; margin: 0; padding: 5px; list-style: none; border: 1px solid var(--wa-line); border-radius: var(--wa-r-pill); background: var(--wa-surface); }
+.wa-nav { min-inline-size: 0; margin-inline: auto; }
+.wa-nav > ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin: 0; padding: 5px; list-style: none; border: 1px solid var(--wa-line); border-radius: var(--wa-r-pill); background: var(--wa-surface); }
 .wa-nav li { position: relative; }
 .wa-nav a, .wa-nav__label { display: block; padding: 7px 14px; border-radius: var(--wa-r-pill); color: var(--wa-muted); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .wa-nav a:hover { color: var(--wa-ink); }
@@ -140,6 +140,7 @@ h1, h2, h3, h4 { font-family: var(--hm-font-heading); font-weight: 700; letter-s
 .wa-menu__panel a[aria-current="page"] { background: var(--wa-ink); color: var(--wa-paper); }
 .wa-menu__panel .wa-nav__sub { position: static; opacity: 1; pointer-events: auto; border: 0; margin: 0; padding: 0 0 0 12px; background: none; }
 .wa-menu__panel .wa-menu__cta { display: flex; justify-content: center; margin-block-start: 10px; }
+@media (max-width: 1180px) and (min-width: 861px) { .wa-nav a, .wa-nav__label { padding-inline: 10px; } }
 @media (max-width: 860px), (hover: none) {
   .wa-nav, .wa-header .wa-cta { display: none; }
   .wa-header__inner { justify-content: space-between; }
