@@ -1,17 +1,8 @@
-{{define "footer"}}<footer class="tk-footer">
-<div class="tk-wrap">
-<div class="tk-footer__top">
-<p class="tk-footer__brand">{{.Site.Name}}{{with .Site.Tagline}}<span>{{.}}</span>{{end}}</p>
-{{if .Site.FooterNav}}<nav class="tk-footer__nav" aria-label="Footer">
-{{range .Site.FooterNav}}<div class="tk-footer__col">
-{{if .Children}}<p class="tk-footer__title">{{.Label}}</p>
-<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{else}}<ul><li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li></ul>{{end}}
-</div>
-{{end}}</nav>
-{{end}}</div>
-{{if .Site.SocialLinks}}<ul class="tk-social">
-{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
-{{end}}</ul>
-{{end}}<p class="tk-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
-</div>
-</footer>{{end}}
+{{define "footer"}}<footer class="tk-footer"><div class="tk-wrap"><div class="tk-foot">
+<div class="tk-foot__brand"><p class="tk-foot__name">{{.Site.Name}}</p>{{with .Site.Tagline}}<p class="tk-foot__tag">{{.}}</p>{{end}}</div>
+{{if .Site.FooterNav}}{{$flat := 0}}{{range .Site.FooterNav}}{{if not .Children}}{{$flat = add $flat 1}}{{end}}{{end}}
+{{if $flat}}<nav class="tk-foot__col" aria-labelledby="hm-tk-foot-links"><h2 class="tk-foot__title" id="hm-tk-foot-links">Links</h2><ul>{{range .Site.FooterNav}}{{if not .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}</ul></nav>{{end}}
+{{range $i, $p := .Site.FooterNav}}{{if $p.Children}}<nav class="tk-foot__col" aria-labelledby="hm-tk-foot-{{$i}}"><h2 class="tk-foot__title" id="hm-tk-foot-{{$i}}">{{$p.Label}}</h2><ul>{{range $p.Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul></nav>{{end}}{{end}}{{end}}
+{{if .Site.SocialLinks}}<div class="tk-foot__col"><h2 class="tk-foot__title">Follow</h2><ul>{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>{{end}}</ul></div>
+{{end}}<div class="tk-foot__base"><span>&copy; {{year}} {{.Site.Name}}</span><a href="/feed.xml">RSS feed</a></div>
+</div></div></footer>{{end}}
