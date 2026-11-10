@@ -15,14 +15,14 @@
 <div class="km-spread__meta"><h2><a href="{{.URL}}">{{.Title}}</a></h2>{{with .Excerpt}}<p>{{.}}</p>{{end}}</div>
 </div>{{end}}
 </section>
-{{if $r.Items}}
+{{if gt (len $r.Items) 1}}
 <section class="km-wrap km-sec" aria-labelledby="km-contents-h">
 <div class="km-sec__head"><h2 id="km-contents-h">Contents</h2><a href="{{$arch}}">The full index &rarr;</a></div>
 <ol class="km-toc">
 {{range $i, $it := $r.Items}}{{if and (ge $i 1) (le $i 8)}}<li><span class="km-toc__t"><a href="{{$it.URL}}">{{$it.Title}}</a></span>{{with $it.Category}}<span class="km-toc__p">{{.}}</span>{{end}}{{with $it.Excerpt}}<p class="km-toc__x">{{.}}</p>{{end}}</li>
 {{end}}{{end}}</ol>
 </section>
-{{else}}<section class="km-wrap km-sec"><p class="km-empty">Nothing has been written yet.</p></section>{{end}}
+{{else if not $r.Items}}<section class="km-wrap km-sec"><p class="km-empty">Nothing has been written yet.</p></section>{{end}}
 {{if and .Settings.show_shelf $cats}}
 <section class="km-shelf-band" aria-labelledby="km-shelf-h"><div class="km-wrap km-shelf-wrap">
 <div class="km-shelf-note"><div class="km-sec__head km-sec__head--bare"><h2 id="km-shelf-h">The <em>shelf</em></h2></div><p>Every category is a book on the shelf. The spine height follows how much has been written in it.</p></div>
