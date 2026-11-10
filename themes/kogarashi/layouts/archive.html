@@ -1,0 +1,7 @@
+{{define "kg-panel-body"}}{{$post := or (not .SchemaSlug) (eq .SchemaSlug "post")}}<div class="kg-hero">
+<span class="kg-kicker">Archive{{with .Pagination}}{{if .Total}} &middot; {{template "kg-count" dict "N" .Total "Post" $post}}{{end}}{{end}}</span>
+<h1>{{.Page.Name}}</h1>
+{{with .Page.Description}}<p class="kg-lead">{{.}}</p>{{end}}
+{{if $post}}{{template "kg-topics" dict "Terms" (terms "category" 8) "Cur" ""}}{{end}}
+</div>{{end}}
+{{define "content"}}{{template "kg-ledger" dict "Root" . "Ex" .Settings.show_excerpts}}{{end}}

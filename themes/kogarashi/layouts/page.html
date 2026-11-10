@@ -1,0 +1,6 @@
+{{define "kg-panel-body"}}{{$t := .Page.Name}}{{with .Entity}}{{$t = .Title}}{{end}}<div class="kg-hero">
+<span class="kg-kicker">{{.Site.Name}}</span>
+{{template "kg-h1" dict "Title" $t "Blocks" .Blocks}}
+{{with .Page.Description}}<p class="kg-lead">{{.}}</p>{{end}}
+</div>{{end}}
+{{define "content"}}{{if and .Body (not .Blocks)}}<article class="kg-article"><div class="kg-prose hm-prose">{{(docBody .Body).HTML}}</div></article>{{else}}{{template "page-body" .}}{{end}}{{end}}

@@ -257,3 +257,24 @@ html[data-kg-cols="3"] .kg-grid { grid-template-columns: repeat(2, minmax(0, 1fr
 .kg-nb__a:hover b { color: var(--kg-accent); }
 .kg-nb__a:focus-visible, .kg-tags a:focus-visible, .kg-prose a:focus-visible, .kg-pager a:focus-visible, .kg-btn:focus-visible { outline: 2px solid var(--kg-accent); outline-offset: 3px; }
 @media (max-width: 900px) { .kg-nb { grid-template-columns: minmax(0, 1fr); } .kg-nb__a--r { grid-column: auto; } .kg-article { padding-block: 0; } }
+
+/* ---- listing rows (archive, topic, author, search) ---- */
+.kg-rows { margin: 0; padding: 0; list-style: none; }
+.kg-row { position: relative; display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: var(--kg-s3); align-items: start; padding-block: var(--kg-s3); border-block-end: 1px solid var(--kg-line); }
+.kg-row:first-child { padding-block-start: 0; }
+.kg-row__img { inline-size: 100%; block-size: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--hm-radius-md); background: var(--kg-surface); }
+.kg-row__body { min-inline-size: 0; }
+.kg-row__body .kg-chip { display: inline-block; margin-block-end: .6rem; }
+.kg-row__title { margin: 0 0 .4rem; font: 700 var(--kg-fs-lg)/1.35 var(--hm-font-heading); letter-spacing: -.005em; }
+.kg-row__title a { color: inherit; text-decoration: none; overflow-wrap: anywhere; }
+.kg-row__title a::after { content: ""; position: absolute; inset: 0; }
+.kg-row__title a:focus-visible { outline: none; }
+.kg-row__title a:focus-visible::after { outline: 2px solid var(--kg-accent); outline-offset: 2px; border-radius: var(--hm-radius-md); }
+.kg-row:hover .kg-row__title span { color: var(--kg-accent); }
+.kg-row__ex { margin: 0 0 .5rem; color: var(--kg-muted); font-size: var(--kg-fs-sm); line-height: 1.55; }
+.kg-row .kg-by { margin: 0; padding: 0; color: var(--kg-muted); font-weight: 400; }
+.kg-avatar--lg { inline-size: 64px; block-size: 64px; margin-block-end: var(--kg-s2); display: block; }
+.kg-hero .kg-lead { max-inline-size: 34rem; margin-block-end: var(--kg-s3); }
+.kg-hero h1 + .kg-lead { margin-block-start: calc(-1 * var(--kg-s2)); }
+@media (max-width: 900px) { .kg-row { grid-template-columns: 6.5rem minmax(0, 1fr); gap: var(--kg-s2); } }
+.kg-row__img.kg-thumb--empty { background: linear-gradient(135deg, var(--kg-panel), color-mix(in srgb, var(--kg-accent) 55%, var(--kg-frost))); }

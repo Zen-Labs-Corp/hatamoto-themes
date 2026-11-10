@@ -1,0 +1,8 @@
+{{define "kg-panel-body"}}<div class="kg-hero">
+{{with .Author.Avatar}}<img class="kg-avatar kg-avatar--lg" src="{{imgsrc .}}" alt="" width="64" height="64">{{end}}
+<span class="kg-kicker">Author{{with .Author.JobTitle}} &middot; {{.}}{{end}}{{with .Pagination}}{{if .Total}} &middot; {{template "kg-count" dict "N" .Total "Post" true}}{{end}}{{end}}</span>
+<h1>{{.Author.Name}}</h1>
+{{with .Author.Bio}}<p class="kg-lead">{{.}}</p>{{end}}
+{{with .Author.Links}}<ul class="kg-topics">{{range .}}<li><a href="{{cta .URL}}" rel="me noopener">{{.Label}}</a></li>{{end}}</ul>{{end}}
+</div>{{end}}
+{{define "content"}}{{template "kg-ledger" dict "Root" . "Ex" .Settings.show_excerpts}}{{end}}
