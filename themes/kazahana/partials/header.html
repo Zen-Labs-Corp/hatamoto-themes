@@ -16,7 +16,7 @@
 </div>
 </div>
 {{if or .Site.Nav $topics}}<div class="kz-bar"><div class="kz-wrap kz-bar__in">
-{{if .Site.Nav}}<nav class="kz-bar__nav" aria-label="Primary"><ul class="kz-bar__list">{{template "kz-nav-items" dict "Items" .Site.Nav "Path" $.Path}}</ul></nav>
+{{if .Site.Nav}}<nav class="kz-bar__nav" aria-label="Primary"><ul class="kz-bar__list">{{template "kz-nav-items" dict "Items" .Site.Nav "Path" $.Path "Disclose" true}}</ul></nav>
 {{end}}{{if and .Site.Nav $topics}}<span class="kz-sep" aria-hidden="true"></span>
 {{end}}{{if $topics}}<nav class="kz-bar__nav" aria-label="Topics">{{template "kz-topics" dict "Cats" $cats "Path" $.Path}}</nav>
 {{end}}</div></div>

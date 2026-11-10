@@ -167,10 +167,14 @@ img, svg { max-width: 100%; }
 .kz-bar__list, .kz-sub { margin: 0; padding: 0; list-style: none; }
 .kz-bar__list > li { position: relative; }
 .kz-nav-label { color: var(--kz-muted); }
-/* submenus: shown on hover and focus-within, kept in the tab order while hidden, no script */
-.kz-bar .kz-sub { position: absolute; inset-block-start: 100%; inset-inline-start: -.75rem; z-index: 30; display: grid; gap: .15rem; min-inline-size: 12rem; margin-block-start: .5rem; padding: .5rem; border: 1px solid var(--kz-line); border-radius: var(--hm-radius-md); background: var(--kz-surface); clip-path: inset(50%); overflow: hidden; block-size: 1px; }
-.kz-bar .kz-sub::before { content: ""; position: absolute; inset: -.6rem 0 auto; block-size: .6rem; }
-.kz-bar li:hover > .kz-sub, .kz-bar li:focus-within > .kz-sub { clip-path: none; overflow: visible; block-size: auto; }
+/* submenus: a details toggle per parent, so a tap or Enter opens it, no script */
+.kz-disc { position: relative; }
+.kz-disc summary { list-style: none; cursor: pointer; color: var(--kz-muted); }
+.kz-disc summary::-webkit-details-marker { display: none; }
+.kz-disc summary::after { content: ""; display: inline-block; inline-size: .4em; block-size: .4em; margin-inline-start: .45em; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: translateY(-.15em) rotate(45deg); }
+.kz-disc[open] > summary, .kz-disc summary:hover { color: var(--hm-text); }
+.kz-bar .kz-sub { position: absolute; inset-block-start: 100%; inset-inline-start: -.75rem; z-index: 30; display: grid; gap: .15rem; min-inline-size: 12rem; margin-block-start: .5rem; padding: .5rem; border: 1px solid var(--kz-line); border-radius: var(--hm-radius-md); background: var(--kz-surface); }
+.kz-bar .kz-sub .kz-sub { position: static; margin: 0; padding: 0 0 0 .75rem; border: 0; min-inline-size: 0; }
 .kz-bar .kz-sub a { display: block; padding: .35rem .5rem; }
 .kz-bar a { position: relative; color: var(--kz-muted); text-decoration: none; }
 .kz-bar a:hover, .kz-bar a[aria-current] { color: var(--hm-text); }
