@@ -1,0 +1,19 @@
+/* Search and 404. */
+.mu-body .mu-search { display: flex; gap: .5rem; max-width: 40rem; margin-block-start: var(--mu-space-3); }
+.mu-body .mu-search input { flex: 1; min-width: 0; padding: 1rem 1.1rem; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-surface); color: var(--mu-ink); font: inherit; }
+.mu-body .mu-search input:focus-visible { outline: 2px solid var(--mu-primary); outline-offset: 2px; }
+.mu-body .mu-find__count { margin: var(--mu-space-3) 0 0; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .mu-find .hm-listing__header { margin-block-end: var(--mu-space-3); padding-block-end: 0; border-block-end: 0; }
+.mu-body .mu-find .hm-cards { grid-template-columns: minmax(0, 1fr); gap: 0; border-block-start: 1px solid var(--mu-ink); }
+.mu-body .mu-find .hm-cards > .hm-card, .mu-body .mu-find .hm-cards > .hm-card:first-child { display: block; grid-column: auto; padding: var(--mu-space-3) 0; border-block-end: 1px solid var(--mu-line); }
+.mu-body .mu-find .hm-card__media { display: none; }
+.mu-body .mu-find .hm-cards > .hm-card:first-child .hm-card__title { font-size: var(--mu-step-1); line-height: 1.15; letter-spacing: -.02em; }
+
+.mu-body .mu-lost { padding-block: var(--mu-space-6); }
+.mu-body .mu-lost__code { margin: 0; font: 700 clamp(7rem, 26vw, 20rem)/.8 var(--mu-font-display); letter-spacing: var(--mu-track-display); color: var(--mu-primary); }
+.mu-body .mu-lost__title { margin: var(--mu-space-4) 0 var(--mu-space-2); font-size: var(--mu-step-3); letter-spacing: -.035em; }
+.mu-body .mu-lost__lede { max-width: 44ch; margin: 0; font-size: var(--mu-step-1); line-height: 1.45; color: var(--mu-muted); }
+.mu-body .mu-lost__home { margin: var(--mu-space-3) 0 0; }
+.mu-body .mu-lost__recent { margin-block-start: var(--mu-space-5); }
+.mu-body .mu-lost__recent h2 { margin: 0 0 var(--mu-space-3); padding-block-start: var(--mu-space-3); border-block-start: 1px solid var(--mu-ink); font-size: var(--mu-step-2); letter-spacing: -.03em; }
+@media (max-width: 40rem) { .mu-body .mu-search { flex-direction: column; } }

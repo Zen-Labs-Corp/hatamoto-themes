@@ -1,0 +1,23 @@
+{{/* The /work index: a numbered list of ruled rows (number, big title, excerpt, category
+and date, square arrow). The whole row is the link. The thumbnail, category and date
+are all optional; nothing here needs a custom attribute on the project. */}}
+{{define "content"}}<div class="hm-container hm-listing mu-work-page">
+<header class="hm-listing__header">
+<p class="hm-listing__eyebrow">Selected work</p>
+<h1 class="hm-listing__title">{{.Page.Name}}</h1>
+{{with .Page.Description}}<p class="hm-listing__lede">{{.}}</p>{{end}}
+</header>
+{{if .Items}}<ol class="mu-work">
+{{range $i, $it := .Items}}<li class="mu-work__row">
+<span class="mu-work__no" aria-hidden="true">{{printf "%02d" (add $i 1)}}</span>
+<div class="mu-work__text">
+<h2 class="mu-work__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h2>
+{{with $it.Excerpt}}<p class="mu-work__excerpt">{{.}}</p>{{end}}
+</div>
+<p class="mu-work__meta">{{with $it.Category}}<span class="mu-work__cat">{{.}}</span>{{end}}{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "Jan 2006"}}</time>{{end}}</p>
+{{with $it.Image}}<img class="mu-work__thumb" src="{{imgsrc .}}" alt="" loading="lazy" decoding="async">{{end}}
+<span class="mu-work__go" aria-hidden="true">&rarr;</span>
+</li>
+{{end}}</ol>
+{{template "pagination" .}}{{else}}<p class="hm-empty">Nothing here yet. Check back soon.</p>{{end}}
+</div>{{end}}

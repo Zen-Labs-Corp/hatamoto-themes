@@ -1,0 +1,35 @@
+/* Portfolio: the /work index as ruled rows, and the project page (which shares the
+   article styles in murasaki-blog.css). */
+.mu-body .mu-work { margin: 0; padding: 0; list-style: none; border-block-start: 1px solid var(--mu-ink); counter-reset: none; }
+.mu-body .mu-work__row {
+  position: relative; display: grid; grid-template-columns: 5rem minmax(0, 1.4fr) minmax(0, .6fr) auto 44px; column-gap: var(--mu-space-3); align-items: center;
+  padding: var(--mu-space-3) 0; border-block-end: 1px solid var(--mu-line);
+}
+.mu-body .mu-work__row:first-child .mu-work__title a { color: var(--mu-primary-text); }
+.mu-body .mu-work__row:first-child .mu-work__go { background: var(--mu-primary); border-color: var(--mu-primary); color: var(--mu-on-primary); }
+.mu-body .mu-work__no { font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .02em; color: var(--mu-muted); }
+.mu-body .mu-work__title { margin: 0; font-size: clamp(1.75rem, 3.4vw, 2.75rem); line-height: 1; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.mu-body .mu-work__title a { color: var(--mu-ink); text-decoration: none; }
+.mu-body .mu-work__title a::after { content: ""; position: absolute; inset: 0; }
+.mu-body .mu-work__title a:focus-visible { outline: 0; }
+.mu-body .mu-work__row:focus-within { outline: 2px solid var(--mu-primary); outline-offset: 2px; }
+.mu-body .mu-work__excerpt { margin: .75rem 0 0; max-width: 52ch; font-size: .95rem; color: var(--mu-muted); }
+.mu-body .mu-work__meta { display: grid; gap: .25rem; margin: 0; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .mu-work__cat { color: var(--mu-primary-text); }
+.mu-body .mu-work__thumb { inline-size: 7.5rem; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--mu-radius-lg); background: var(--mu-snow); }
+.mu-body .mu-work__go { grid-column: 5; display: grid; place-items: center; inline-size: 44px; block-size: 44px; border: 1px solid var(--mu-line); border-radius: var(--mu-radius); font-family: var(--mu-font-mono); }
+.mu-body .mu-work__row:hover .mu-work__go { background: var(--mu-ink); border-color: var(--mu-ink); color: var(--mu-paper); }
+.mu-body .mu-work__row:first-child:hover .mu-work__go { background: var(--mu-primary); border-color: var(--mu-primary); color: var(--mu-on-primary); }
+
+/* A project has no side column: the prose sits under the meta row. */
+.mu-body .mu-project .mu-article__title { max-width: 14ch; }
+
+@media (max-width: 56rem) {
+  .mu-body .mu-work__row { grid-template-columns: minmax(0, 1fr) 44px; row-gap: .5rem; }
+  .mu-body .mu-work__no, .mu-body .mu-work__text, .mu-body .mu-work__meta { grid-column: 1; }
+  .mu-body .mu-work__thumb { display: none; }
+  .mu-body .mu-work__go { grid-column: 2; grid-row: 1 / span 3; }
+}
+
+/* The list rule replaces the header rule. */
+.mu-body .mu-work-page .hm-listing__header { margin-block-end: var(--mu-space-4); padding-block-end: 0; border-block-end: 0; }

@@ -1,0 +1,12 @@
+/* contact_form: 2px controls, hairline borders, the accent submit button. */
+.mu-body .hm-contact-form--split { gap: var(--mu-space-5); }
+.mu-body .hm-contact-form__subheading { font-size: var(--mu-step-1); line-height: 1.45; color: var(--mu-muted); }
+.mu-body .hm-form { gap: var(--mu-space-2); }
+.mu-body .hm-form__label, .mu-body .hm-form__group legend { font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .hm-form :is(input[type="text"], input[type="email"], input[type="tel"], textarea, select) {
+  padding: .8rem 1rem; background: var(--mu-surface); color: var(--mu-ink); border: 1px solid var(--mu-ink); border-radius: var(--mu-radius);
+}
+.mu-body .hm-form :is(input, textarea, select):focus-visible { outline: 2px solid var(--mu-primary); outline-offset: 2px; }
+.mu-body .hm-form__help { font-size: var(--mu-step--1); color: var(--mu-muted); }
+.mu-body .hm-form__error, .mu-body .hm-form__success { border-radius: var(--mu-radius); border-color: var(--mu-ink); }
+.mu-body .hm-form__success { background: var(--mu-snow); }

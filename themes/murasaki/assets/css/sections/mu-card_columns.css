@@ -1,0 +1,19 @@
+/* card_columns: three hairline cards, mono label, display title, ruled item list with
+   a vermilion square marker. Notes sit in a ruled row underneath. */
+.mu-body .hm-card-columns__grid { gap: var(--mu-space-3); background: none; border: 0; border-radius: 0; overflow: visible; }
+.mu-body .hm-card-columns__col {
+  display: flex; flex-direction: column; gap: .75rem; padding: var(--mu-space-4) var(--mu-space-3);
+  background: var(--mu-surface); border: 1px solid var(--mu-line); border-radius: var(--mu-radius-lg);
+}
+.mu-body .hm-card-columns__label { margin: 0; font-size: var(--mu-step--1); letter-spacing: .02em; color: var(--mu-muted); }
+.mu-body .hm-card-columns__title { margin: 0; font-size: var(--mu-step-2); line-height: 1.05; letter-spacing: -.03em; }
+.mu-body .hm-card-columns__description { margin: 0; color: var(--mu-muted); }
+.mu-body .hm-card-columns__items { margin-block-start: .5rem; border-top: 1px solid var(--mu-line); font-family: var(--mu-font-body); font-size: .95rem; }
+.mu-body .hm-card-columns__items li { display: flex; gap: .6rem; padding: .6rem 0; border-top: 0; border-bottom: 1px solid var(--mu-line); }
+.mu-body .hm-card-columns__items li::before { content: ""; flex: none; inline-size: 6px; block-size: 6px; margin-block-start: .55rem; background: var(--mu-primary); }
+.mu-body .hm-card-columns__notes { gap: var(--mu-space-3); margin-block-start: var(--mu-space-3); padding: var(--mu-space-3) 0 0; background: none; border: 0; border-top: 1px solid var(--mu-ink); border-radius: 0; }
+.mu-body .hm-card-columns__note-title { font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .hm-card-columns__note-text { font-size: .95rem; color: var(--mu-ink); }
+@media (max-width: 56rem) {
+  .mu-body .hm-card-columns__grid { grid-template-columns: minmax(0, 1fr); }
+}

@@ -1,0 +1,35 @@
+/* Home and shared section furniture: numbered eyebrows, the section header grid.
+   Everything is scoped with .mu-body so it wins over the built-in section CSS
+   whatever the bundle order. */
+
+/* The counter counts the eyebrows that render, in document order; a section without eyebrow text has no element and takes no number. */
+.mu-body main { counter-reset: mu-sec; }
+.mu-body :is(.mu-eyebrow, .hm-process__eyebrow, .hm-content__eyebrow, .hm-section-head__eyebrow) { counter-increment: mu-sec; }
+
+/* One look for every eyebrow: a small vermilion square, then "NN / label" in mono. */
+.mu-body :is(.mu-eyebrow, .hm-hero__eyebrow, .hm-process__eyebrow, .hm-content__eyebrow, .hm-section-head__eyebrow) {
+  display: block; margin: 0; padding-inline-start: 1.15rem;
+  background: linear-gradient(var(--mu-primary), var(--mu-primary)) no-repeat 0 .5em / .55rem .55rem;
+  font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; letter-spacing: .04em; text-transform: uppercase; line-height: 1.5; color: var(--mu-muted);
+}
+html[data-mu-numbers="on"] .mu-body :is(.mu-eyebrow, .hm-process__eyebrow, .hm-content__eyebrow, .hm-section-head__eyebrow)::before { content: counter(mu-sec, decimal-leading-zero) " / "; }
+
+/* Section header: label column, then the heading. */
+.mu-body :is(.hm-features__header, .hm-stats__header, .hm-testimonials__header) { max-width: none; margin-block-end: var(--mu-space-4); display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: var(--mu-space-4); row-gap: .75rem; align-items: start; }
+.mu-body :is(.hm-features__header, .hm-stats__header, .hm-testimonials__header) > :is(.mu-eyebrow, .hm-stats__heading, .hm-features__heading, .hm-testimonials__heading) { margin: 0; }
+.mu-body .hm-features__eyebrow { grid-column: 1; grid-row: 1; padding-block-start: .6rem; }
+.mu-body :is(.hm-features__heading, .hm-stats__heading, .hm-testimonials__heading) { grid-column: 2; grid-row: 1; }
+.mu-body :is(.hm-features__subheading, .hm-stats__subheading, .hm-testimonials__subheading) { grid-column: 2; margin: 0; color: var(--mu-muted); font-size: var(--mu-step-0); max-width: 52ch; }
+.mu-body .hm-hero__eyebrow { margin-block-end: 0; }
+
+@media (max-width: 56rem) {
+  .mu-body :is(.hm-features__header, .hm-stats__header, .hm-testimonials__header) { grid-template-columns: 1fr; }
+  .mu-body .hm-features__eyebrow,
+  .mu-body :is(.hm-features__heading, .hm-stats__heading, .hm-testimonials__heading),
+  .mu-body :is(.hm-features__subheading, .hm-stats__subheading, .hm-testimonials__subheading) { grid-column: 1; grid-row: auto; padding-block-start: 0; }
+}
+
+/* Sections no longer separated by the built-in hairline; bands and rules do it. */
+.mu-body .hm-section { border-top: 0; }
+.mu-body .hm-section--process_steps + .hm-section--testimonials,
+.mu-body .hm-section--testimonials + .hm-section--faq { padding-block-start: 0; }

@@ -1,0 +1,11 @@
+/* cta: a full-width vermilion band whatever the background style, the button in night ink. */
+.mu-body .hm-section--cta { padding-block: var(--mu-space-6); background: var(--mu-primary); color: var(--mu-on-primary); }
+.mu-body .hm-section--cta .hm-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--mu-space-4); align-items: end; padding: 0 var(--mu-gutter); border: 0; border-radius: 0; background: none; text-align: start; color: inherit; }
+.mu-body .hm-section--cta .hm-cta__headline { grid-column: 1; max-width: 11ch; margin: 0; font-size: var(--mu-step-4); color: inherit; overflow-wrap: anywhere; }
+.mu-body .hm-section--cta .hm-cta__subheadline { grid-column: 1; max-width: 36ch; margin: var(--mu-space-3) 0 0; font-size: var(--mu-step-1); color: inherit; opacity: .92; }
+.mu-body .hm-section--cta .hm-cta__actions { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+.mu-body .hm-section--cta .hm-btn { background: var(--mu-night); border-color: var(--mu-night); color: var(--mu-on-night); }
+@media (max-width: 56rem) {
+  .mu-body .hm-section--cta .hm-cta { grid-template-columns: minmax(0, 1fr); row-gap: var(--mu-space-3); }
+  .mu-body .hm-section--cta .hm-cta__actions { grid-column: 1; grid-row: auto; }
+}

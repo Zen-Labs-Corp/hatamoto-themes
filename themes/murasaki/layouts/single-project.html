@@ -1,0 +1,22 @@
+{{/* A project page: a back link to the archive (the trail's second crumb, so any archive path works; none when the trail has no archive), display title, a ruled meta row (date, reading time, category, each
+only when present), the optional featured image, then the body in the shared prose
+styles of the blog post. Block-built projects render through page-body. */}}
+{{define "content"}}{{if and .Entity (not (and .Blocks (not .Body)))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$m := readingTime .Body}}
+<article class="hm-container mu-article mu-project">
+<header class="mu-article__head">
+{{if gt (len .Breadcrumb) 2}}{{with index .Breadcrumb 1}}<p class="mu-article__kick"><a href="{{.URL}}"><span aria-hidden="true">&larr;</span> {{.Name}}</a></p>{{end}}{{end}}
+<h1 class="mu-article__title">{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="mu-article__lede">{{.}}</p>{{end}}
+<p class="hm-meta">{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "Jan 2006"}}</time>{{end}}{{if $m}}<span>{{$m}} min read</span>{{end}}{{range $e.Categories}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</p>
+</header>
+{{with $e.Image}}<figure class="mu-article__image"><img src="{{imgsrc .}}"{{with srcset .}} srcset="{{.}}" sizes="(min-width: 1360px) 1264px, 100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>{{end}}
+<div class="mu-article__cols mu-article__cols--solo">
+<div class="mu-article__main">
+{{if .Body}}<div class="hm-prose hm-entry mu-entry">{{$b.HTML}}</div>{{end}}
+{{range .Blocks}}{{template "section" .}}
+{{end}}
+{{with $e.Tags}}<footer class="mu-article__foot">{{template "term-chips" dict "Terms" . "Label" "Tags"}}</footer>{{end}}
+</div>
+</div>
+</article>
+{{else}}{{template "page-body" .}}{{end}}{{end}}

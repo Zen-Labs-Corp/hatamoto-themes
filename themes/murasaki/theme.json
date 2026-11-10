@@ -1,0 +1,60 @@
+{
+  "name": "murasaki",
+  "version": "0.1.0",
+  "description": "Studio theme for agencies and advisory firms. Oversized type, hairline index rows, numbered sections and one vermilion accent.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "What a first-time visitor sees. Auto follows the visitor's system. Visitors can still switch with the header toggle.",
+        "enum": ["light", "dark", "auto"],
+        "default": "auto"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      },
+      "footer_wordmark": {
+        "type": "boolean",
+        "title": "Footer wordmark",
+        "description": "Show the site name as a giant wordmark in the footer.",
+        "default": true
+      },
+      "section_numbers": {
+        "type": "boolean",
+        "title": "Section numbers",
+        "description": "Prefix section eyebrows with a number, like 01 /.",
+        "default": true
+      },
+      "header_cta_label": {
+        "type": "string",
+        "title": "Header button label",
+        "description": "Leave empty for no button. A button set in the site menu always wins.",
+        "default": ""
+      },
+      "header_cta_url": {
+        "type": "string",
+        "title": "Header button address",
+        "default": "/contact"
+      },
+      "hero_accent": {
+        "type": "boolean",
+        "title": "Hero accent",
+        "description": "Colour the last sentence of the home headline in the accent colour.",
+        "default": true
+      }
+    }
+  }
+}

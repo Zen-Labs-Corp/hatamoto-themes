@@ -1,0 +1,20 @@
+{{/* Same markup and field markers as the built-in hero. The one change: when the
+headline has more than one sentence, the last one sits in span.mu-hero__accent.
+The colour is switched on and off in CSS (html[data-mu-accent]), so the setting needs
+no read here. */}}
+{{define "section-hero"}}{{$c := .Content}}{{$layout := default "centered" $c.layout}}
+<div class="hm-container hm-hero hm-hero--{{if eq $layout "split"}}split{{else}}centered{{end}}">
+  <div class="hm-hero__body">
+    {{with $c.eyebrow}}<p class="hm-hero__eyebrow" {{hmf "eyebrow"}}>{{.}}</p>{{end}}
+    <h1 class="hm-hero__headline" {{hmf "headline"}}>{{$parts := split $c.headline ". "}}{{$last := sub (len $parts) 1}}{{if gt $last 0}}{{range $i, $p := $parts}}{{if eq $i $last}}<span class="mu-hero__accent">{{$p}}</span>{{else}}{{$p}}. {{end}}{{end}}{{else}}{{$c.headline}}{{end}}</h1>
+    {{with $c.subheadline}}<div class="hm-hero__subheadline" {{hmf "subheadline"}} data-hm-kind="richtext">{{.}}</div>{{end}}
+    {{if $c.ctas}}<div class="hm-hero__actions">{{range $i, $b := $c.ctas}}{{with $b.text}}<a class="hm-btn{{if ne $i 0}} hm-btn--secondary{{end}}" href="{{cta $b.url}}" {{hmf "ctas" $i "text"}}>{{.}}</a>{{end}}{{end}}</div>
+    {{else if or $c.primaryCta $c.secondaryCta}}<div class="hm-hero__actions">
+      {{with $c.primaryCta}}<a class="hm-btn" href="{{cta $c.ctaUrl}}" {{hmf "primaryCta"}}>{{.}}</a>{{end}}
+      {{with $c.secondaryCta}}<a class="hm-btn hm-btn--secondary" href="{{cta $c.secondaryCtaUrl}}" {{hmf "secondaryCta"}}>{{.}}</a>{{end}}
+    </div>{{end}}{{with $c.commandChip}}<code class="hm-hero__chip" {{hmf "commandChip"}}>{{.}}</code>{{end}}{{if $c.stripItems}}
+    <div class="hm-hero__strip">{{with $c.stripLabel}}<span class="hm-hero__strip-label" id="{{$.ID}}-strip-label" {{hmf "stripLabel"}}>{{.}}</span>{{end}}<ul class="hm-hero__strip-items"{{if $c.stripLabel}} aria-labelledby="{{.ID}}-strip-label"{{end}}>{{range $i, $t := $c.stripItems}}<li {{hmf "stripItems" $i}}>{{$t}}</li>{{end}}</ul></div>{{end}}
+  </div>
+  {{with $c.heroImage}}{{with imgsrc .}}<div class="hm-hero__media"><img class="hm-hero__image" src="{{.}}" alt="{{$c.imageAlt}}" loading="eager" decoding="async"></div>{{end}}{{end}}{{if and (eq $layout "split") (not $c.heroImage) $c.panel}}<div class="hm-hero__media hm-hero__media--panel">{{template "code-panel" $c}}</div>{{end}}
+</div>
+{{end}}

@@ -1,0 +1,17 @@
+/* contact_info: a ruled list of large display-type values. */
+.mu-body .hm-contact-info--card .hm-contact-info__body, .mu-body .hm-contact-info__body { gap: 0; padding: 0; background: none; border: 0; border-radius: 0; border-block-start: 1px solid var(--mu-ink); }
+.mu-body .hm-contact-info__body > * { padding: var(--mu-space-3) 0; border-block-end: 1px solid var(--mu-line); }
+.mu-body .hm-contact-info__address { font-size: var(--mu-step-1); line-height: 1.3; letter-spacing: -.01em; }
+.mu-body .hm-contact-info__channels { display: grid; gap: .5rem; }
+.mu-body .hm-contact-info__channels a { font: 600 var(--mu-step-1) var(--mu-font-display); letter-spacing: -.02em; color: var(--mu-ink); text-decoration: none; box-shadow: inset 0 -2px 0 var(--mu-primary); overflow-wrap: anywhere; }
+.mu-body .hm-contact-info__hours-row { max-width: none; padding: .35rem 0; border-block-end: 0; }
+.mu-body .hm-contact-info__hours dt { font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .hm-contact-info__hours dd { color: var(--mu-ink); }
+.mu-body .hm-contact-info__map iframe { border-radius: var(--mu-radius-lg); }
+
+/* As the first section of a page: headline left, the ruled list right. */
+@media (min-width: 56rem) {
+  .mu-body main > :is(.hm-section:first-child, .hm-visually-hidden:first-child + .hm-section) .hm-contact-info { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); column-gap: var(--mu-space-5); align-items: start; }
+  .mu-body main > :is(.hm-section:first-child, .hm-visually-hidden:first-child + .hm-section) .hm-contact-info__heading { grid-column: 1; }
+  .mu-body main > :is(.hm-section:first-child, .hm-visually-hidden:first-child + .hm-section) .hm-contact-info__body { grid-column: 2; grid-row: 1; margin-block-start: var(--mu-space-2); }
+}

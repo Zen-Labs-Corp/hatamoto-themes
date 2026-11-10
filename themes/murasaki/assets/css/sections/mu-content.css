@@ -1,0 +1,23 @@
+/* content: stack is a big headline and prose at a reading measure; essay puts the
+   aside label in the left column and the numbered eyebrow, headline and prose beside it. */
+.mu-body .hm-content { max-width: var(--mu-max); }
+.mu-body .hm-content__body { max-width: 62ch; font-size: var(--mu-step-1); line-height: 1.5; color: var(--mu-ink); }
+.mu-body .hm-content__body > p { margin: 0; }
+.mu-body .hm-content__body > p + p { margin-top: 1.25rem; }
+.mu-body .hm-content__body > p:first-child::first-line { font-weight: 600; }
+.mu-body .hm-content:not(.hm-content--essay) .hm-content__body { color: var(--mu-muted); }
+.mu-body .hm-content:not(.hm-content--essay) .hm-content__body > p:first-child::first-line { font-weight: inherit; }
+
+.mu-body .hm-content--essay { grid-template-columns: 200px minmax(0, 1fr); gap: var(--mu-space-4); }
+.mu-body .hm-content--essay .hm-content__aside { position: static; padding-block-start: .35rem; }
+.mu-body .hm-content__aside-text { font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .hm-content__glyph { color: var(--mu-primary); }
+.mu-body .hm-content__main > .hm-content__eyebrow { margin-block-end: var(--mu-space-3); }
+.mu-body .hm-content--essay .hm-content__headline { margin-block-end: var(--mu-space-4); }
+.mu-body .hm-content--essay .hm-prose { font-size: var(--mu-step-1); line-height: 1.5; }
+
+@media (max-width: 56rem) {
+  .mu-body .hm-content--essay { grid-template-columns: minmax(0, 1fr); }
+  .mu-body .hm-content--essay .hm-content__aside { display: block; }
+  .mu-body .hm-content__body { font-size: var(--mu-step-0); }
+}

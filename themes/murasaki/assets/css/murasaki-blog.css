@@ -1,0 +1,104 @@
+/* Blog: archive, category, author and single. The archive markup is the built-in
+   one (hm-listing, hm-cards, hm-card); the single is layouts/single-post.html. */
+
+/* Listing header: mono label, display title, lede. */
+.mu-body .hm-listing { padding-block: var(--mu-space-6) var(--mu-space-5); }
+.mu-body .hm-listing__header { margin-block-end: var(--mu-space-4); padding-block-end: var(--mu-space-5); border-block-end: 1px solid var(--mu-line); }
+.mu-body .hm-listing__eyebrow {
+  margin: 0 0 var(--mu-space-3); padding-inline-start: 1.15rem;
+  background: linear-gradient(var(--mu-primary), var(--mu-primary)) no-repeat 0 .5em / .55rem .55rem;
+  font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .04em; text-transform: uppercase; line-height: 1.5; color: var(--mu-muted);
+}
+.mu-body .hm-listing__title { max-width: 14ch; margin: 0; font-size: var(--mu-step-4); line-height: .98; letter-spacing: var(--mu-track-display); overflow-wrap: anywhere; }
+.mu-body .hm-listing__lede { max-width: 44ch; margin: var(--mu-space-3) 0 0; font-size: var(--mu-step-1); line-height: 1.45; color: var(--mu-muted); }
+.mu-body .hm-author-head { align-items: flex-start; gap: var(--mu-space-3); }
+.mu-body .hm-avatar { border-radius: var(--mu-radius); }
+
+/* Chips: square mono tags. */
+.mu-body .hm-chips { gap: .5rem; margin: var(--mu-space-3) 0 0; }
+.mu-body .hm-chip { padding: .45rem .8rem; border: 1px solid var(--mu-line); border-radius: var(--mu-radius); font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .02em; text-transform: uppercase; color: var(--mu-ink); }
+.mu-body .hm-chip:hover { border-color: var(--mu-ink); color: var(--mu-ink); }
+.mu-body .hm-chip[aria-current] { background: var(--mu-ink); border-color: var(--mu-ink); color: var(--mu-paper); }
+
+/* Cards: three columns, no box; the newest post runs full width on the first page. */
+.mu-body .hm-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--mu-space-4) var(--mu-space-3); align-items: start; }
+.mu-body .hm-card { border: 0; border-radius: 0; background: none; overflow: visible; transform: none; }
+.mu-body .hm-card:hover { border-color: transparent; transform: none; }
+.mu-body .hm-card__media { aspect-ratio: 3 / 2; margin-block-end: 1rem; border-radius: var(--mu-radius-lg); background: var(--mu-snow); }
+.mu-body .hm-card__body { padding: 0; }
+.mu-body .hm-card__cat { margin: 0 0 .5rem; font-size: var(--mu-step--1); letter-spacing: .04em; color: var(--mu-primary-text); }
+.mu-body .hm-card__title { margin: 0; font-size: var(--mu-step-1); font-weight: 650; letter-spacing: -.02em; line-height: 1.15; overflow-wrap: anywhere; }
+.mu-body .hm-card__title a { color: var(--mu-ink); }
+.mu-body .hm-card__excerpt { margin: .5rem 0 0; font-size: .95rem; color: var(--mu-muted); }
+.mu-body .hm-card .hm-meta { margin-block-start: .75rem; }
+.mu-body .hm-card__title a::after { content: ""; position: absolute; inset: 0; }
+.mu-body .hm-card { position: relative; }
+.mu-body .hm-card:focus-within { outline: 2px solid var(--mu-primary); outline-offset: 4px; }
+.mu-body .hm-meta { margin: 0; gap: .25rem 1.25rem; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .hm-meta a { color: var(--mu-muted); }
+.mu-body .hm-meta a:hover { color: var(--mu-ink); }
+
+.mu-body .hm-listing .hm-cards > .hm-card:first-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: var(--mu-space-4); align-items: end; padding-block-end: var(--mu-space-4); border-block-end: 1px solid var(--mu-line); }
+.mu-body .hm-listing .hm-cards > .hm-card:first-child .hm-card__media { margin: 0; }
+.mu-body .hm-listing .hm-cards > .hm-card:first-child:not(:has(.hm-card__media)) { grid-template-columns: minmax(0, 1fr); }
+.mu-body .hm-listing .hm-cards > .hm-card:first-child .hm-card__title { font-size: var(--mu-step-3); line-height: 1.02; letter-spacing: -.035em; }
+
+/* Pagination: a ruled row of numbers. */
+.mu-body .hm-pagination { margin-block-start: var(--mu-space-5); padding-block-start: var(--mu-space-3); border-block-start: 1px solid var(--mu-ink); }
+.mu-body .hm-pagination ul { justify-content: space-between; gap: .5rem; }
+.mu-body .hm-pagination :is(a, span) { border-radius: var(--mu-radius); border-color: var(--mu-line); font-family: var(--mu-font-mono); font-size: var(--mu-step--1); color: var(--mu-ink); }
+.mu-body .hm-pagination a:hover { border-color: var(--mu-ink); color: var(--mu-ink); }
+.mu-body .hm-pagination a[aria-current="page"] { background: var(--mu-ink); border-color: var(--mu-ink); color: var(--mu-paper); }
+.mu-body .hm-empty { color: var(--mu-muted); }
+
+/* Single: head, panorama image, then contents column + prose. */
+.mu-body .mu-article { max-width: var(--mu-max); padding-block: var(--mu-space-6) var(--mu-space-5); }
+.mu-body .mu-article__kick { margin: 0 0 var(--mu-space-3); font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .04em; text-transform: uppercase; }
+.mu-body .mu-article__kick a { color: var(--mu-muted); text-decoration: none; }
+.mu-body .mu-article__kick a:hover { color: var(--mu-ink); }
+.mu-body .mu-article__title { max-width: 16ch; margin: 0 0 var(--mu-space-3); font-size: clamp(2.5rem, 6vw, 5.25rem); line-height: .98; letter-spacing: var(--mu-track-display); overflow-wrap: anywhere; }
+.mu-body .mu-article__lede { max-width: 44ch; margin: 0 0 var(--mu-space-3); font-size: var(--mu-step-1); line-height: 1.45; color: var(--mu-muted); }
+.mu-body .mu-article__head > .hm-meta { padding-block-start: var(--mu-space-2); border-block-start: 1px solid var(--mu-line); }
+.mu-body .mu-article__image { margin: var(--mu-space-4) 0 0; aspect-ratio: 21 / 9; overflow: hidden; border-radius: var(--mu-radius-lg); background: var(--mu-snow); }
+.mu-body .mu-article__image img { width: 100%; height: 100%; object-fit: cover; }
+.mu-body .mu-article__cols { display: grid; grid-template-columns: 200px minmax(0, 68ch); gap: var(--mu-space-4); padding-block-start: var(--mu-space-5); }
+.mu-body .mu-article__cols--solo { grid-template-columns: minmax(0, 68ch); }
+.mu-body .mu-article__main { min-width: 0; }
+
+.mu-body .mu-toc { position: sticky; top: var(--mu-space-2); align-self: start; }
+.mu-body .mu-toc ol { margin: 0; padding: 0; list-style: none; }
+.mu-body .mu-toc li { margin: 0; }
+.mu-body .mu-toc a { display: block; padding: .35rem 0 .35rem .8rem; border-inline-start: 1px solid var(--mu-line); font-size: .9rem; line-height: 1.35; color: var(--mu-muted); text-decoration: none; }
+.mu-body .mu-toc a:hover, .mu-body .mu-toc a:focus-visible { border-color: var(--mu-primary); color: var(--mu-ink); }
+
+/* Prose: numbered h2s, accent-ruled quotes. Shared with the project page. */
+.mu-body .mu-entry { font-size: 1.125rem; line-height: 1.7; color: var(--mu-ink); }
+.mu-body .mu-entry > p:first-child { font-size: var(--mu-step-1); line-height: 1.5; }
+/* Prose headings (entries, rich text, html bodies, docs) use one scale, always below the page title. */
+.mu-body :is(.hm-entry, .hm-prose, .hm-html-body) h2 { margin: 2.5rem 0 .75rem; font-size: var(--mu-step-2); line-height: 1.15; letter-spacing: -.03em; scroll-margin-block-start: calc(72px + var(--mu-space-3)); }
+.mu-body :is(.hm-entry, .hm-prose, .hm-html-body) h3 { margin: 2rem 0 .5rem; font-size: var(--mu-step-1); }
+.mu-body :is(.hm-doc__title, .hm-article__title) { font-size: var(--mu-step-3); }
+.mu-body .mu-entry h2 { margin: 2.5rem 0 .25rem; font-size: var(--mu-step-2); line-height: 1.1; letter-spacing: -.03em; scroll-margin-block-start: calc(72px + var(--mu-space-3)); }
+.mu-body .mu-entry h3 { margin: 2rem 0 .5rem; font-size: var(--mu-step-1); letter-spacing: -.02em; }
+.mu-body .mu-entry p, .mu-body .mu-entry ul, .mu-body .mu-entry ol { margin: 0 0 1rem; }
+.mu-body .mu-entry a { color: var(--mu-ink); text-decoration-color: var(--mu-primary); text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.mu-body .mu-entry blockquote { margin: 2rem 0; padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--mu-primary); font: 500 var(--mu-step-1)/1.4 var(--mu-font-display); letter-spacing: -.015em; color: var(--mu-ink); }
+.mu-body .mu-entry pre { background: var(--mu-snow); border: 1px solid var(--mu-line); border-radius: var(--mu-radius-lg); }
+.mu-body .mu-entry :not(pre) > code { background: var(--mu-snow); border-radius: var(--mu-radius); }
+.mu-body .mu-entry img { border-radius: var(--mu-radius-lg); }
+.mu-body .mu-entry hr { border-color: var(--mu-line); }
+
+.mu-body .mu-article__foot { margin-block-start: var(--mu-space-4); padding-block-start: var(--mu-space-3); border-block-start: 1px solid var(--mu-line); }
+.mu-body .mu-author { padding: var(--mu-space-3); background: var(--mu-snow); border: 1px solid var(--mu-line); border-radius: var(--mu-radius-lg); }
+.mu-body .hm-author-box .hm-author-bio { color: var(--mu-muted); }
+.mu-body .mu-related { padding-block: 0 var(--mu-space-6); border: 0; }
+.mu-body .hm-related__title { margin-block-end: var(--mu-space-3); padding-block-start: var(--mu-space-4); border-block-start: 1px solid var(--mu-ink); font-size: var(--mu-step-2); letter-spacing: -.03em; }
+
+@media (max-width: 56rem) {
+  .mu-body .hm-cards { grid-template-columns: minmax(0, 1fr); }
+  .mu-body .hm-listing .hm-cards > .hm-card:first-child { grid-template-columns: minmax(0, 1fr); gap: var(--mu-space-2); }
+  .mu-body .mu-article__cols, .mu-body .mu-article__cols--solo { grid-template-columns: minmax(0, 1fr); gap: var(--mu-space-3); }
+  .mu-body .mu-toc { position: static; }
+  .mu-body .mu-article__image { aspect-ratio: 4 / 3; }
+  .mu-body .mu-entry { font-size: var(--mu-step-0); }
+}

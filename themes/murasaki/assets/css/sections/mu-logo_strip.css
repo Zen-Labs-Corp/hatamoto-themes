@@ -1,0 +1,11 @@
+/* logo strip: a mono label on the left, the logos in a quiet row, hairlines above and below. */
+.mu-body .hm-section--logo_strip { padding-block: var(--mu-space-4); border-block: 1px solid var(--mu-line); }
+.mu-body .hm-logo-strip { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: var(--mu-space-4); align-items: center; }
+.mu-body .hm-logo-strip__heading { margin: 0; text-align: start; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; letter-spacing: .02em; text-transform: uppercase; line-height: 1.4; color: var(--mu-muted); }
+.mu-body .hm-logo-strip__track { justify-content: space-between; gap: var(--mu-space-3) var(--mu-space-4); }
+.mu-body .hm-logo-strip__item img { filter: grayscale(1); opacity: .65; }
+.mu-body .hm-logo-strip__item img:hover { opacity: 1; }
+@media (max-width: 56rem) {
+  .mu-body .hm-logo-strip { grid-template-columns: 1fr; gap: var(--mu-space-2); }
+  .mu-body .hm-logo-strip__track { justify-content: flex-start; }
+}

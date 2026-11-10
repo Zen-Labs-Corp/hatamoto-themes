@@ -1,0 +1,29 @@
+/* Inner-page furniture shared by content, card_columns, pricing, team, contact_info
+   and contact_form: the section header (label column, then the heading), the first
+   section of a page as a page head, and the pricing card surface. */
+
+/* Section header: the label column is empty when there is no eyebrow, so the heading
+   keeps the same left edge as on the home page. */
+.mu-body :is(.hm-section-head, .hm-pricing__header, .hm-team__header) {
+  display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: var(--mu-space-4); row-gap: .75rem; align-items: start;
+  max-width: none; margin-block-end: var(--mu-space-4);
+}
+.mu-body .hm-section-head__lead { display: contents; }
+.mu-body :is(.hm-section-head__heading, .hm-pricing__heading, .hm-team__heading) { grid-column: 2; grid-row: 1; margin: 0; font-size: var(--mu-step-3); }
+.mu-body :is(.hm-section-head__subheading, .hm-pricing__subheading, .hm-team__subheading) { grid-column: 2; grid-row: 2; max-width: 52ch; margin: 0; font-size: var(--mu-step-0); line-height: 1.5; color: var(--mu-muted); }
+.mu-body .hm-section-head__eyebrow { grid-column: 1; grid-row: 1; padding-block-start: .6rem; }
+
+/* The first section of an inner page opens it: display-size headline, a hairline under it. */
+.mu-body main > :is(.hm-section:first-child, .hm-visually-hidden:first-child + .hm-section):is(.hm-section--content, .hm-section--contact_info, .hm-section--contact_form) { padding-block: var(--mu-space-6) var(--mu-space-5); }
+.mu-body main > :is(.hm-section:first-child, .hm-visually-hidden:first-child + .hm-section) :is(.hm-content__headline, .hm-contact-info__heading, .hm-contact-form__heading) {
+  max-width: 14ch; margin: 0 0 var(--mu-space-3); font-size: var(--mu-step-4); line-height: .98; letter-spacing: var(--mu-track-display); overflow-wrap: anywhere;
+}
+
+/* Pricing cards: surface, hairline, 4px corners (the popular tier is restyled in mu-pricing.css). */
+.mu-body .hm-pricing__tier { background: var(--mu-surface); border: 1px solid var(--mu-line); border-radius: var(--mu-radius-lg); box-shadow: none; }
+
+@media (max-width: 56rem) {
+  .mu-body :is(.hm-section-head, .hm-pricing__header, .hm-team__header) { grid-template-columns: minmax(0, 1fr); }
+  .mu-body .hm-section-head__lead { display: block; }
+  .mu-body :is(.hm-section-head__heading, .hm-pricing__heading, .hm-team__heading, .hm-section-head__subheading, .hm-pricing__subheading, .hm-team__subheading) { grid-column: 1; grid-row: auto; padding-block-start: 0; }
+}

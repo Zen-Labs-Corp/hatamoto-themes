@@ -1,0 +1,14 @@
+/* team: a ruled grid of portrait tiles with a short accent bar under the photo. */
+.mu-body .hm-team__list { gap: var(--mu-space-3); }
+.mu-body .hm-team__member { display: flex; flex-direction: column; }
+.mu-body .hm-team--cards .hm-team__member { padding: 0; background: none; border: 0; border-radius: 0; }
+.mu-body .hm-team__photo { aspect-ratio: 4 / 5; margin-block-end: 0; border-radius: var(--mu-radius-lg) var(--mu-radius-lg) 0 0; border-block-end: 4px solid var(--mu-primary); }
+.mu-body .hm-team__name { margin: 1rem 0 0; font-size: var(--mu-step-1); letter-spacing: -.02em; }
+.mu-body .hm-team__title { margin: .15rem 0 0; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .hm-team__bio { margin: .5rem 0 0; font-size: .95rem; color: var(--mu-muted); }
+/* Members without a photo get a ruled tile with the same accent bar. */
+.mu-body .hm-team__member:not(:has(.hm-team__photo)) { padding-block-start: var(--mu-space-2); border-block-start: 4px solid var(--mu-primary); background: var(--mu-snow); padding-inline: var(--mu-space-2); padding-block-end: var(--mu-space-2); border-radius: var(--mu-radius-lg); }
+.mu-body .hm-team__member:not(:has(.hm-team__photo)) .hm-team__name { margin-block-start: 0; }
+@media (max-width: 56rem) {
+  .mu-body .hm-team__photo { aspect-ratio: 1; }
+}

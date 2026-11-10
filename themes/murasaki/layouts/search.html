@@ -1,0 +1,9 @@
+{{define "content"}}<div class="hm-container hm-listing mu-find">
+<header class="hm-listing__header">
+<p class="hm-listing__eyebrow">Find</p>
+<h1 class="hm-listing__title">Search</h1>
+<form class="mu-search" role="search" action="/search" method="get"><label class="hm-visually-hidden" for="mu-q-page">Search the site</label><input id="mu-q-page" type="search" name="q" value="{{.Query}}" placeholder="Search posts and pages" autocomplete="off">{{with .SearchType}}<input type="hidden" name="type" value="{{.}}">{{end}}<button class="hm-btn" type="submit">Search</button></form>
+{{if .Query}}{{with .Pagination}}{{if gt .Total 0}}<p class="mu-find__count" role="status">{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}} for &ldquo;{{$.Query}}&rdquo;</p>{{end}}{{end}}{{end}}
+</header>
+{{if .Query}}{{if .Items}}{{template "post-list" .}}{{else}}<p class="hm-empty" role="status">No results for &ldquo;{{.Query}}&rdquo;. Try fewer words.</p>{{end}}{{else}}<p class="hm-empty">Type a word or phrase to search.</p>{{end}}
+</div>{{end}}

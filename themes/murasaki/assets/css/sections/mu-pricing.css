@@ -1,0 +1,20 @@
+/* pricing: hairline cards; the popular tier is a night card with the accent button. */
+.mu-body .hm-pricing__tiers { gap: var(--mu-space-3); }
+.mu-body .hm-pricing__tier { padding: var(--mu-space-4) var(--mu-space-3); gap: .75rem; }
+.mu-body .hm-pricing__name { margin: 0; font-family: var(--mu-font-mono); font-size: var(--mu-step--1); font-weight: 400; letter-spacing: .02em; text-transform: uppercase; color: var(--mu-muted); }
+.mu-body .hm-pricing__description { margin: 0; color: var(--mu-muted); }
+.mu-body .hm-pricing__price { margin: .5rem 0; }
+.mu-body .hm-pricing__amount { font-size: 3rem; font-weight: 650; line-height: 1; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.mu-body .hm-pricing__currency { font-size: 1.2rem; font-weight: 650; vertical-align: top; }
+.mu-body .hm-pricing__period { color: var(--mu-muted); }
+.mu-body .hm-pricing__features { margin: .5rem 0 var(--mu-space-2); border-top: 1px solid var(--mu-line); }
+.mu-body .hm-pricing__feature { display: flex; gap: .6rem; padding: .6rem 0; border-bottom: 1px solid var(--mu-line); font-size: .95rem; }
+.mu-body .hm-pricing__feature::before { content: ""; position: static; flex: none; inline-size: 6px; block-size: 6px; margin-block-start: .55rem; background: var(--mu-primary); }
+.mu-body .hm-pricing__feature--excluded::before { content: ""; background: var(--mu-line); }
+.mu-body .hm-pricing__cta { margin-block-start: auto; justify-content: space-between; text-align: start; background: transparent; color: var(--mu-ink); border-color: var(--mu-ink); }
+.mu-body .hm-pricing__tier--popular { background: var(--mu-night); color: var(--mu-on-night); border-color: var(--mu-night); box-shadow: none; }
+.mu-body .hm-pricing__tier--popular :is(.hm-pricing__name, .hm-pricing__description, .hm-pricing__period) { color: color-mix(in srgb, var(--mu-on-night) 66%, transparent); }
+.mu-body .hm-pricing__tier--popular .hm-pricing__badge { background: var(--mu-primary); color: var(--mu-on-primary); border-radius: var(--mu-radius); }
+.mu-body .hm-pricing__tier--popular .hm-pricing__features, .mu-body .hm-pricing__tier--popular .hm-pricing__feature { border-color: color-mix(in srgb, var(--mu-on-night) 18%, transparent); }
+.mu-body .hm-pricing__tier--popular .hm-pricing__cta { background: var(--mu-primary); color: var(--mu-on-primary); border-color: var(--mu-primary); }
+.mu-body .hm-pricing__badge { align-self: flex-start; margin: 0; }
