@@ -27,7 +27,7 @@
           "dark",
           "auto"
         ],
-        "default": "light"
+        "default": "auto"
       },
       "density": {
         "type": "string",
