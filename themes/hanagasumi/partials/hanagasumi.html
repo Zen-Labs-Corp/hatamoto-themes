@@ -9,3 +9,24 @@
 {{define "hg-subscribe"}}{{$l := default "Subscribe" .Label}}{{$u := "/feed.xml"}}{{with .Root.Site.HeaderCTA}}{{$u = cta .URL}}{{if not $.Label}}{{$l = .Label}}{{end}}{{end}}<a class="{{.Class}}" href="{{$u}}">{{$l}}</a>{{end}}
 {{/* hg-chip: a pill label, linked when it has an address. dict "Label" "" "URL" "" "Ghost" bool "Current" bool "Count" any */}}
 {{define "hg-chip"}}{{if .URL}}<a class="hg-chip{{if .Ghost}} hg-chip--ghost{{end}}" href="{{.URL}}"{{if .Current}} aria-current="page"{{end}}>{{.Label}}{{with .Count}}<span>{{.}}</span>{{end}}</a>{{else}}<span class="hg-chip{{if .Ghost}} hg-chip--ghost{{end}}">{{.Label}}</span>{{end}}{{end}}
+{{/* hg-date: a post's date as a <time>; nothing for an unset date. Pass the time value. */}}
+{{define "hg-date"}}{{if not .IsZero}}<time datetime="{{formatDate . "2006-01-02"}}">{{formatDate . "2 Jan 2006"}}</time>{{end}}{{end}}
+{{/* hg-thumb: a post image, or a tinted block with the title's first letter when it has none. dict "Item" . "Sizes" "" "Eager" bool */}}
+{{define "hg-thumb"}}{{$it := .Item}}{{if $it.Image}}<img src="{{imgsrc $it.Image}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="{{$.Sizes}}"{{end}} alt="" decoding="async"{{if not .Eager}} loading="lazy"{{end}}>{{else}}<span class="hg-ph" aria-hidden="true">{{slice (trim $it.Title) 0 1}}</span>{{end}}{{end}}
+{{/* hg-card: a rail card. dict "Item" . "No" 1 "Lead" bool */}}
+{{define "hg-card"}}{{$it := .Item}}<li class="hg-card{{if .Lead}} hg-card--lead{{end}}">
+<div class="hg-card__meta">{{with $it.Category}}{{template "hg-chip" dict "Label" .}}{{else}}<span></span>{{end}}<span class="hg-label">{{printf "%02d" .No}}</span></div>
+<a class="hg-card__img" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{template "hg-thumb" dict "Item" $it "Sizes" "(max-width: 860px) 78vw, 380px" "Eager" (le .No 2)}}</a>
+<h3 class="hg-card__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h3>
+{{if .Lead}}{{with $it.Excerpt}}<p class="hg-card__ex">{{.}}</p>{{end}}{{end}}
+<p class="hg-card__by">{{with $it.Author}}<span>{{.}}</span>{{end}}{{template "hg-date" $it.PublishedAt}}</p>
+</li>{{end}}
+{{/* hg-row: a journal list row. dict "Item" . */}}
+{{define "hg-row"}}{{$it := .Item}}<li class="hg-row">
+<a class="hg-row__img" href="{{$it.URL}}" tabindex="-1" aria-hidden="true">{{template "hg-thumb" dict "Item" $it "Sizes" "96px"}}</a>
+<h3 class="hg-row__title"><a href="{{$it.URL}}">{{$it.Title}}</a></h3>
+{{with $it.Category}}{{template "hg-chip" dict "Label" . "Ghost" true}}{{else}}<span></span>{{end}}
+<span class="hg-label hg-row__date">{{template "hg-date" $it.PublishedAt}}</span>
+</li>{{end}}
+{{/* hg-newsletter-field: the pill field that links to the subscribe target. dict "Root" . "Label" "Join" */}}
+{{define "hg-newsletter-field"}}<div class="hg-field"><span aria-hidden="true">you@example.com</span>{{template "hg-subscribe" dict "Root" .Root "Class" "hg-btn hg-btn--primary" "Label" .Label}}</div>{{end}}
