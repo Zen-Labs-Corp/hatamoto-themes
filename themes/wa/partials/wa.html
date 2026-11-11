@@ -1,0 +1,107 @@
+{{/* Wa library: dict-taking defines, all named wa-*. */}}
+{{/* wa-arrow: small up-right arrow, drawn (no font glyph) */}}
+{{define "wa-arrow"}}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{{end}}
+{{/* wa-cta: the header and menu button. The site's own header button wins, else the two newsletter settings; an empty label or address means no button. dict "Root" . "Class" "" */}}
+{{define "wa-cta"}}{{$l := ""}}{{$u := ""}}{{with .Root.Site.HeaderCTA}}{{$l = .Label}}{{$u = .URL}}{{end}}{{if not $u}}{{$l = trim .Root.Settings.newsletter_button}}{{$u = trim .Root.Settings.newsletter_url}}{{end}}{{if and $l $u}}<a class="wa-cta {{.Class}}" href="{{cta $u}}">{{$l}}</a>{{end}}{{end}}
+{{/* wa-nav-item: a top-level link; a parent without a link (empty or "#") is a plain label. dict "Item" . "Path" ... */}}
+{{define "wa-nav-item"}}{{$i := (navlink .).Item}}{{if and (or (not $i.Href) (eq $i.Href "#")) $i.Children}}<span class="wa-nav__label">{{$i.Label}}</span>{{else}}{{template "nav-link" .}}{{end}}{{end}}
+{{/* wa-nav-list: the primary menu, used by the bar and the mobile panel. dict "Root" . */}}
+{{define "wa-nav-list"}}{{$r := .Root}}<ul>{{range $r.Site.Nav}}<li>{{template "wa-nav-item" dict "Item" . "Path" $r.Path}}{{if .Children}}<ul class="wa-nav__sub">{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $r.Path}}</li>{{end}}</ul>{{end}}</li>{{end}}</ul>{{end}}
+{{/* wa-card: a notched card; the whole card is one stretched link. dict "Item" (listing item) "Size" "lg"|"md"|"sm" "N" serial (0 = none) "Path" "" "Chip" "" (signal chip text) "Excerpt" bool */}}
+{{define "wa-card"}}{{$it := .Item}}{{$img := imgsrc $it.Image}}<article class="wa-card wa-card--{{default "md" .Size}}{{if not $img}} wa-card--type{{end}}">
+{{if $img}}<span class="wa-card__media"><img src="{{$img}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="(min-width:900px) 50vw,100vw"{{end}} alt="" loading="lazy" decoding="async"></span>{{else}}<span class="wa-card__ch" aria-hidden="true">{{upper (printf "%.1s" $it.Title)}}</span>{{end}}
+<div class="wa-card__top"><span class="wa-card__pills">{{with .Chip}}<span class="wa-pill wa-pill--signal">{{.}}</span>{{end}}{{with $it.Category}}<span class="wa-pill">{{.}}</span>{{end}}</span>{{if not $it.PublishedAt.IsZero}}<span class="wa-pill"><time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time></span>{{end}}</div>
+<div class="wa-card__body">{{if gt .N 0}}<span class="wa-mono wa-card__n">{{printf "%03d" .N}}</span>{{end}}
+<h3><a class="wa-card__link" href="{{$it.URL}}">{{$it.Title}}</a></h3>
+{{if .Excerpt}}{{with $it.Excerpt}}<p class="wa-card__excerpt">{{.}}</p>{{end}}{{end}}
+{{template "wa-meta" dict "Item" $it "Date" false}}</div>
+<span class="wa-notch" aria-hidden="true"><span class="wa-arrow">{{template "wa-arrow"}}</span></span>
+</article>{{end}}
+{{/* wa-meta: date and reading time. dict "Item" . "Date" bool */}}
+{{define "wa-meta"}}{{$it := .Item}}{{if or (and .Date (not $it.PublishedAt.IsZero)) $it.ReadingTime}}<p class="wa-meta">{{if and .Date (not $it.PublishedAt.IsZero)}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}{{with $it.ReadingTime}}<span>{{.}} min read</span>{{end}}</p>{{end}}{{end}}
+{{/* wa-chips: the topic pill row. dict "Terms" (terms ...) "Cur" "all" or a term URL "All" url-of-all "Path" . */}}
+{{define "wa-chips"}}<ul class="wa-chips">
+{{with .All}}<li><a class="wa-chip" href="{{.}}"{{if eq $.Cur "all"}} aria-current="true"{{end}}>All</a></li>
+{{end}}{{range .Terms}}<li><a class="wa-chip" href="{{.URL}}"{{if eq $.Cur .URL}} aria-current="true"{{end}}>{{.Name}}{{if .Count}}<span>{{.Count}}</span>{{end}}</a></li>
+{{end}}</ul>{{end}}
+{{/* wa-pager: previous, numbered pages, next; only for more than one page. dict "Pg" .Pagination */}}
+{{define "wa-pager"}}{{with .Pg}}{{if gt .TotalPages 1}}<nav class="wa-pager" aria-label="Pagination">
+{{if .HasPrev}}<a class="wa-pager__dir" rel="prev" href="{{.PrevURL}}">&larr; Newer</a>{{else}}<span class="wa-pager__dir" aria-hidden="true">&larr; Newer</span>{{end}}
+<ul>{{range paginate .}}<li>{{if .Gap}}<span aria-hidden="true">&hellip;</span>{{else}}<a href="{{.URL}}"{{if .Current}} aria-current="page" aria-label="Page {{.N}}, current page"{{else}} aria-label="Page {{.N}}"{{end}}>{{.N}}</a>{{end}}</li>{{end}}</ul>
+{{if .HasNext}}<a class="wa-pager__dir" rel="next" href="{{.NextURL}}">Older &rarr;</a>{{else}}<span class="wa-pager__dir" aria-hidden="true">Older &rarr;</span>{{end}}
+</nav>{{end}}{{end}}{{end}}
+{{/* wa-search-form: GET /search. dict "Id" "x" "Query" "" "Type" "" (schema slug, optional) */}}
+{{define "wa-search-form"}}<form class="wa-search" role="search" action="/search" method="get">
+<label class="wa-search__label" for="hm-wa-q-{{.Id}}">Search</label>
+<input id="hm-wa-q-{{.Id}}" type="search" name="q" value="{{.Query}}" placeholder="Search the journal" autocomplete="off">{{with .Type}}<input type="hidden" name="type" value="{{.}}">{{end}}
+<button type="submit" class="wa-cta">Search</button>
+</form>{{end}}
+{{/* wa-heading: a heading with one italic accent word. dict "Pre" "" "Accent" "" "Post" "". All empty: no heading. */}}
+{{define "wa-heading"}}{{if or .Pre .Accent .Post}}<h2>{{.Pre}}{{with .Accent}} <em class="wa-it">{{.}}</em>{{end}}{{with .Post}} {{.}}{{end}}</h2>{{end}}{{end}}
+{{/* wa-star: small separator star, drawn */}}
+{{define "wa-star"}}<svg class="wa-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6z" fill="currentColor"/></svg>{{end}}
+{{/* wa-row: a numbered list row. dict "Item" . "N" serial */}}
+{{define "wa-row"}}{{$it := .Item}}{{$img := imgsrc $it.Image}}<li class="wa-row"><span class="wa-row__n" aria-hidden="true">{{printf "%02d" .N}}</span>
+<div class="wa-row__text">{{with $it.Category}}<span class="wa-row__cat">{{.}}</span>{{end}}<h3><a class="wa-row__link" href="{{$it.URL}}">{{$it.Title}}</a></h3>{{template "wa-meta" dict "Item" $it "Date" true}}</div>
+{{if $img}}<span class="wa-row__th"><img src="{{$img}}"{{with srcset $it.Image}} srcset="{{.}}" sizes="72px"{{end}} alt="" loading="lazy" decoding="async"></span>{{else}}<span class="wa-row__th wa-row__th--type" aria-hidden="true">{{upper (printf "%.1s" $it.Title)}}</span>{{end}}</li>{{end}}
+{{/* wa-listing: the band header (eyebrow, h1, lede, optional topic chips) and the card grid with pager. dict "Eyebrow" "" "Pre" "" "Accent" "" "Post" "" "Lede" "" "Terms" (terms ...) or nil "Cur" "all"|url "All" url "Items" . "Pg" .Pagination */}}
+{{define "wa-listing"}}<header class="wa-pagehd wa-on-band"><div class="wa-wrap">
+{{with .Eyebrow}}<p class="wa-eyebrow">{{.}}</p>{{end}}
+<h1>{{.Pre}}{{with .Accent}}<em class="wa-it">{{.}}</em>{{end}}{{.Post}}</h1>
+{{with .Lede}}<p class="wa-pagehd__lede">{{.}}</p>{{end}}
+{{if .Terms}}{{template "wa-chips" dict "Terms" .Terms "Cur" .Cur "All" .All}}{{end}}
+</div></header>
+{{template "wa-listbody" .}}{{end}}
+{{/* wa-listbody: grid of cards with excerpts, pager, empty state. dict "Items" . "Pg" .Pagination */}}
+{{define "wa-listbody"}}<div class="wa-sec wa-listbody"><div class="wa-wrap">
+{{if .Items}}<div class="wa-grid3">{{range .Items}}{{template "wa-card" dict "Item" . "Size" "md" "N" 0 "Excerpt" true}}{{end}}</div>
+{{template "wa-pager" dict "Pg" .Pg}}{{else}}<div class="wa-empty"><h2>Nothing here yet</h2><p>New stories will show up here as soon as they are published.</p></div>{{end}}
+</div></div>{{end}}
+{{/* wa-result: a search result row. dict "Item" . "N" serial */}}
+{{define "wa-result"}}{{$it := .Item}}<li class="wa-result"><span class="wa-result__n" aria-hidden="true">{{printf "%02d" .N}}</span>
+<div class="wa-result__text"><p class="wa-result__kick">{{with $it.Category}}<span>{{.}}</span>{{end}}{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan 2006"}}</time>{{end}}</p>
+<h2><a class="wa-result__link" href="{{$it.URL}}">{{$it.Title}}</a></h2>
+{{with $it.Excerpt}}<p class="wa-result__excerpt">{{.}}</p>{{end}}</div></li>{{end}}
+{{/* wa-entity: a post or a plain page on the band header; builder blocks go through page-body. Called by single-post.html and single-page.html with the page root. */}}
+{{define "wa-entity"}}{{if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{$e := .Entity}}{{$b := docBody .Body}}{{$post := ne $e.Schema "page"}}
+<article class="wa-article">
+<header class="wa-posthd wa-on-band{{if not $post}} wa-posthd--flat{{end}}"><div class="wa-wrap">
+<div class="wa-posthd__in">
+{{if $post}}<p class="wa-crumb">{{with $e.Categories}}{{with index . 0}}<a href="{{.URL}}">{{.Name}}</a>{{end}}{{end}}{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2 Jan 2006"}}</time>{{end}}{{with readingTime .Body}}<span>{{.}} min read</span>{{end}}</p>
+{{else}}<p class="wa-eyebrow wa-eyebrow--c">{{$.Site.Name}}</p>{{end}}
+<h1>{{$e.Title}}</h1>
+{{with $e.Excerpt}}<p class="wa-dek">{{.}}</p>{{end}}
+{{if $post}}{{with $e.Author}}<p class="wa-byline">{{with .Avatar}}<img class="wa-av" src="{{imgsrc .}}" alt="" width="40" height="40">{{else}}<span class="wa-av" aria-hidden="true">{{upper (printf "%.1s" .Name)}}</span>{{end}}<span>{{if .URL}}<a href="{{cta .URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</span></p>{{end}}{{end}}
+</div>
+{{if $post}}{{if $e.Image}}<figure class="wa-cover"><img src="{{imgsrc $e.Image}}"{{with srcset $e.Image}} srcset="{{.}}" sizes="(min-width:1280px) 1200px,100vw"{{end}} alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" fetchpriority="high"></figure>
+{{else}}<div class="wa-cover wa-cover--type wa-card--type" aria-hidden="true"><span class="wa-card__ch">{{upper (printf "%.1s" $e.Title)}}</span></div>{{end}}{{end}}
+</div></header>
+<div class="wa-wrap"><div class="wa-postbody{{if not $post}} wa-postbody--page{{end}}">
+{{if and $post $b.TOC}}<nav class="wa-toc" aria-label="Contents"><h2>Contents</h2>{{range $b.TOC}}<a href="#{{.ID}}">{{.Text}}</a>{{end}}</nav>{{else}}<span class="wa-rail-gap"></span>{{end}}
+<div class="wa-postmain">
+{{if .Body}}<div class="wa-prose hm-prose">{{$b.HTML}}</div>{{end}}
+{{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+{{if $post}}{{with $e.Tags}}<ul class="wa-tags" aria-label="Tags">{{range .}}<li><a href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul>{{end}}
+{{with $e.Author}}<aside class="wa-authorbox" aria-label="About the author">
+{{with .Avatar}}<img class="wa-av wa-av--lg" src="{{imgsrc .}}" alt="" width="64" height="64">{{else}}<span class="wa-av wa-av--lg" aria-hidden="true">{{upper (printf "%.1s" .Name)}}</span>{{end}}
+<div><p class="wa-authorbox__name"><span class="wa-eyebrow">Written by</span>{{if .URL}}<a href="{{cta .URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>
+{{with .JobTitle}}<p class="wa-authorbox__job">{{.}}</p>{{end}}{{with .Bio}}<p class="wa-authorbox__bio">{{.}}</p>{{end}}</div></aside>{{end}}{{end}}
+</div>
+{{if $post}}<div class="wa-share"><a class="wa-ibtn" href="mailto:?subject={{$e.Title | urlquery}}" aria-label="Share by email"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18v12H3zM3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></a><a class="wa-ibtn" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>{{else}}<span class="wa-rail-gap"></span>{{end}}
+</div></div>
+{{if $post}}
+{{$all := (query (dict "schema" "post" "limit" 100)).Items}}{{$prev := ""}}{{$next := ""}}
+{{range $i, $it := $all}}{{if eq $it.URL $e.URL}}{{if gt $i 0}}{{$next = index $all (add $i -1)}}{{end}}{{if lt (add $i 1) (len $all)}}{{$prev = index $all (add $i 1)}}{{end}}{{end}}{{end}}
+{{if or $prev $next}}<div class="wa-wrap"><nav class="wa-prevnext" aria-label="More posts">
+{{with $prev}}<a class="wa-prevnext__a" rel="prev" href="{{.URL}}"><small>&larr; Older</small><b>{{.Title}}</b></a>{{else}}<span></span>{{end}}
+{{with $next}}<a class="wa-prevnext__a wa-prevnext__a--next" rel="next" href="{{.URL}}"><small>Newer &rarr;</small><b>{{.Title}}</b></a>{{end}}
+</nav></div>{{end}}
+{{with $e.Categories}}{{with index . 0}}{{$c := .}}{{$more := query (dict "schema" "post" "term" (print "category:" $c.Slug) "limit" 4)}}{{$shown := 0}}
+{{if gt (len $more.Items) 1}}<section class="wa-sec wa-more" aria-label="More from {{$c.Name}}"><div class="wa-wrap">
+<p class="wa-eyebrow">Keep reading</p>
+<div class="wa-sec__h"><h2>More from <em class="wa-it">{{$c.Name}}</em></h2></div>
+<div class="wa-grid3">{{range $more.Items}}{{if and (ne .URL $e.URL) (lt $shown 3)}}{{$shown = add $shown 1}}{{template "wa-card" dict "Item" . "Size" "md" "N" 0}}{{end}}{{end}}</div>
+</div></section>{{end}}{{end}}{{end}}
+{{end}}
+</article>
+{{else}}{{template "page-body" .}}{{end}}{{end}}

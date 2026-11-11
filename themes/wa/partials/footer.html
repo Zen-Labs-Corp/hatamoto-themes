@@ -1,0 +1,19 @@
+{{define "footer"}}<footer class="wa-footer">
+<div class="wa-wrap">
+<div class="wa-footer__cols">
+<div class="wa-footer__about"><a class="wa-brand" href="/" aria-label="{{.Site.Name}}, home"><i class="wa-brand__dot" aria-hidden="true"></i><span class="wa-brand__name">{{.Site.Name}}</span></a>{{with .Site.Tagline}}<p>{{.}}</p>{{end}}</div>
+{{$flat := false}}{{range .Site.FooterNav}}{{if not .Children}}{{$flat = true}}{{end}}{{end}}{{if $flat}}<div class="wa-footer__col"><h2 class="wa-footer__title">Explore</h2>
+<ul>{{range .Site.FooterNav}}{{if not .Children}}<li>{{template "wa-nav-item" dict "Item" . "Path" $.Path}}</li>{{end}}{{end}}</ul>
+</div>
+{{end}}{{range .Site.FooterNav}}{{if .Children}}<div class="wa-footer__col">
+{{if and .Href (ne .Href "#")}}<h2 class="wa-footer__title">{{template "nav-link" dict "Item" . "Path" $.Path}}</h2>{{else}}<h2 class="wa-footer__title">{{.Label}}</h2>{{end}}
+<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>
+</div>
+{{end}}{{end}}</div>
+{{if .Site.SocialLinks}}<ul class="wa-social">
+{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
+{{end}}</ul>
+{{end}}{{$n := len .Site.Name}}<p class="wa-footer__word wa-footer__word--{{if le $n 8}}xs{{else if le $n 12}}s{{else if le $n 16}}m{{else if le $n 22}}l{{else}}xl{{end}}" aria-hidden="true">{{.Site.Name}}</p>
+<p class="wa-footer__legal"><span>&copy; {{year}} {{.Site.Name}}</span>{{with .Site.Feeds}}<span>{{range .}}<a href="{{.Href}}">{{if eq .Type "application/atom+xml"}}Atom{{else}}RSS{{end}}</a> {{end}}</span>{{end}}</p>
+</div>
+</footer>{{end}}

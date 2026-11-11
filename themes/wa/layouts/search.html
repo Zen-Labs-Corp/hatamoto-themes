@@ -1,0 +1,16 @@
+{{define "content"}}{{$total := 0}}{{$page := 1}}{{with .Pagination}}{{$total = .Total}}{{$page = .Page}}{{end}}{{$base := mul (add $page -1) 12}}
+<header class="wa-pagehd wa-on-band"><div class="wa-wrap">
+<p class="wa-eyebrow">Find</p>
+<h1>Search</h1>
+<div class="wa-pagehd__form">{{template "wa-search-form" dict "Id" "page" "Query" .Query "Type" .SearchType}}</div>
+</div></header>
+<div class="wa-sec wa-listbody"><div class="wa-wrap">
+{{if .Query}}<p class="wa-results-line" role="status">{{$total}} {{if eq $total 1}}result{{else}}results{{end}} for &ldquo;{{.Query}}&rdquo;</p>
+{{if .Items}}<ol class="wa-results">{{range $i, $it := .Items}}{{template "wa-result" dict "Item" $it "N" (add (add $base $i) 1)}}{{end}}</ol>
+{{template "wa-pager" dict "Pg" .Pagination}}
+{{else}}<div class="wa-noresults"><h2>Nothing found</h2><p>Try fewer or different words, or browse a topic instead.</p>
+{{with terms "category" 6}}{{template "wa-chips" dict "Terms" . "Cur" "" "All" ""}}{{end}}</div>{{end}}
+{{else}}<p class="wa-results-line">Type a word or phrase to search the journal.</p>
+{{with terms "category" 6}}<p class="wa-eyebrow">Or browse a topic</p>{{template "wa-chips" dict "Terms" . "Cur" "" "All" ""}}{{end}}{{end}}
+</div></div>
+{{end}}

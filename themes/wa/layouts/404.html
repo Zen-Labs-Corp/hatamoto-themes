@@ -1,0 +1,7 @@
+{{define "content"}}<section class="wa-404"><div class="wa-wrap">
+<p class="wa-404__num" aria-hidden="true">404</p>
+<h1>This page took a <em class="wa-it">wrong turn</em></h1>
+<p class="wa-404__lede">The link may be old, or the story moved. Search the journal or head back to the start.</p>
+<div class="wa-404__search">{{template "wa-search-form" dict "Id" "lost" "Query" ""}}</div>
+<p class="wa-404__btns"><a class="wa-cta" href="/">Back home</a><a class="wa-cta wa-cta--ghost" href="{{cta (default "/blog" .Settings.archive_url)}}">Browse the journal</a></p>
+</div></section>{{end}}

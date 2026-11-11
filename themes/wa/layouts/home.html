@@ -1,0 +1,68 @@
+{{define "content"}}{{$r := query (dict "schema" "post" "limit" 20)}}{{$items := $r.Items}}{{$n := len $items}}{{$nb := len .Blocks}}{{$mode := default "auto" .Settings.home_layout}}
+{{/* Auto: the owner's blocks win when the home has more than the one starter block, or when there are no posts to show. */}}
+{{$own := and (gt $nb 0) (or (eq $mode "blocks") (and (eq $mode "auto") (or (gt $nb 1) (eq $n 0))))}}
+{{if $own}}{{template "page-body" .}}{{else}}{{$cats := terms "category" 12}}{{$arch := default "/blog" .Settings.archive_url}}
+{{$showTick := ne (printf "%v" .Settings.show_ticker) "false"}}
+<h1 class="wa-sr">{{.Site.Name}}</h1>
+{{if eq $n 0}}<section class="wa-wrap wa-empty"><p class="wa-eyebrow">{{.Site.Name}}</p><h2>No posts yet</h2><p>New stories will show up here as soon as they are published.</p></section>
+{{else}}
+<section class="wa-hero wa-on-band" aria-label="Latest"><div class="wa-wrap">
+<div class="wa-mosaic{{if lt $n 5}} wa-mosaic--few{{end}}">
+{{range $k := seq 5}}{{if lt $k $n}}{{if eq $k 0}}{{template "wa-card" dict "Item" (index $items 0) "Size" "lg" "N" 1 "Chip" "Latest" "Excerpt" true}}{{else}}{{template "wa-card" dict "Item" (index $items $k) "Size" "md" "N" (add $k 1)}}{{end}}{{end}}{{end}}
+</div>
+{{with .Settings.announce_text}}<div class="wa-announce"><span class="wa-announce__tag">New</span><span class="wa-announce__text">{{.}}</span>{{if and $.Settings.announce_label $.Settings.announce_url}}<a class="wa-announce__btn" href="{{cta $.Settings.announce_url}}">{{$.Settings.announce_label}}</a>{{end}}</div>{{end}}
+</div></section>
+{{if gt $n 5}}{{$first := index $items 5}}{{$acc := trim .Settings.picks_accent}}{{if not $acc}}{{with trim $first.Author}}{{$acc = index (split . " ") 0}}{{end}}{{end}}{{if not $acc}}{{$acc = "us"}}{{end}}
+<section class="wa-sec" aria-label="Worth your evening"><div class="wa-wrap">
+<p class="wa-eyebrow">Worth your evening</p>
+<div class="wa-sec__h">{{template "wa-heading" dict "Pre" (default "Picked by" .Settings.picks_heading) "Accent" $acc "Post" ""}}<a class="wa-sec__more" href="{{cta $arch}}">All stories &rarr;</a></div>
+<div class="wa-picks">
+{{template "wa-card" dict "Item" $first "Size" "lg" "N" 6 "Chip" "Editor's pick" "Excerpt" true}}
+<ol class="wa-list">{{range $k := seq 4}}{{template "wa-row" dict "Item" (index $items (mod (add 6 $k) $n)) "N" (add $k 1)}}{{end}}</ol>
+</div>
+</div></section>
+{{end}}
+{{$tick := false}}{{if $showTick}}{{if or $cats (ge $n 1)}}{{$tick = true}}{{end}}{{end}}
+{{if $tick}}<div class="wa-ticker" aria-hidden="true"><div class="wa-wrap"><ul>{{range $cats}}<li>{{template "wa-star"}}{{.Name}}</li>{{end}}{{range $k := seq 4}}{{if lt $k $n}}<li>{{template "wa-star"}}{{(index $items $k).Title}}</li>{{end}}{{end}}</ul></div></div>{{end}}
+{{if and (ne (printf "%v" .Settings.show_topics) "false") $cats}}
+<section class="wa-sec wa-on-band wa-topics" aria-label="Topics"><div class="wa-wrap">
+<p class="wa-eyebrow">Browse topics</p>
+<div class="wa-sec__h">{{template "wa-heading" dict "Pre" "Explore by" "Accent" "topic" "Post" ""}}</div>
+{{template "wa-chips" dict "Terms" $cats "Cur" "" "All" ""}}
+</div></section>
+{{end}}
+{{$showArch := and (gt $n 5) (ne (printf "%v" .Settings.show_archive_band) "false")}}{{$showNews := ne (printf "%v" .Settings.show_newsletter) "false"}}
+{{if or $showArch $showNews}}<section class="wa-sec wa-night" aria-label="Archive and newsletter"><div class="wa-wrap">
+{{if $showArch}}{{$s := 10}}{{if lt $n 16}}{{$s = 0}}{{end}}
+<p class="wa-eyebrow">From the archive</p>
+<div class="wa-sec__h">{{template "wa-heading" dict "Pre" (default "Worth a" .Settings.archive_heading) "Accent" (default "second" .Settings.archive_accent) "Post" (default "read" .Settings.archive_tail)}}</div>
+<div class="wa-vault">
+{{range $k := seq 3}}{{$i := mod (add $s $k) $n}}{{if eq $k 0}}{{template "wa-card" dict "Item" (index $items $i) "Size" "lg" "N" (add $i 1) "Excerpt" true}}{{else}}{{template "wa-card" dict "Item" (index $items $i) "Size" "md" "N" (add $i 1)}}{{end}}{{end}}
+<div class="wa-vault__side"><h3>More from the archive</h3>
+{{range $k := seq 3}}{{$it := index $items (mod (add $s (add 3 $k)) $n)}}<a href="{{$it.URL}}"><span>{{$it.Title}}</span>{{if not $it.PublishedAt.IsZero}}<time datetime="{{formatDate $it.PublishedAt "2006-01-02"}}">{{formatDate $it.PublishedAt "2 Jan"}}</time>{{end}}</a>
+{{end}}</div>
+</div>
+{{end}}
+{{if $showNews}}<div class="wa-news{{if $showArch}} wa-news--sep{{end}}">
+<div><p class="wa-eyebrow">The letter</p>{{template "wa-heading" dict "Pre" (default "Stay in" .Settings.newsletter_heading) "Accent" (default "the loop" .Settings.newsletter_accent) "Post" (trim .Settings.newsletter_tail)}}
+<p class="wa-news__text">{{default "A short note when something new is published." .Settings.newsletter_text}}</p></div>
+<div>
+{{$newest := ""}}{{if gt $n 0}}{{$first := index $items 0}}{{if not $first.PublishedAt.IsZero}}{{$newest = formatDate $first.PublishedAt "2 Jan 2006"}}{{end}}{{end}}
+{{if or $r.Total (len $cats) $newest}}<dl class="wa-stats">{{if $r.Total}}<div><dt>{{if eq $r.Total 1}}story so far{{else}}stories so far{{end}}</dt><dd>{{$r.Total}}</dd></div>{{end}}{{if $cats}}<div><dt>{{if eq (len $cats) 1}}topic{{else}}topics{{end}}</dt><dd>{{len $cats}}</dd></div>{{end}}{{if $newest}}<div><dt>latest story</dt><dd>{{$newest}}</dd></div>{{end}}</dl>{{end}}
+{{$nl := trim .Settings.newsletter_button}}{{$nu := trim .Settings.newsletter_url}}{{if and $nl $nu}}<a class="wa-news__btn" href="{{cta $nu}}">{{$nl}} &rarr;</a>{{end}}
+</div>
+</div>{{end}}
+</div></section>
+{{end}}
+{{if gt $n 5}}
+<section class="wa-sec" aria-label="Reading queue"><div class="wa-wrap">
+<p class="wa-eyebrow">Reading queue</p>
+<div class="wa-sec__h">{{template "wa-heading" dict "Pre" (default "Don't" .Settings.queue_heading) "Accent" (default "miss" .Settings.queue_accent) "Post" (default "these" .Settings.queue_tail)}}<a class="wa-sec__more" href="{{cta $arch}}">All stories &rarr;</a></div>
+<div class="wa-grid4">
+{{range $k := seq 4}}{{$i := mod (add 16 $k) $n}}{{template "wa-card" dict "Item" (index $items $i) "Size" "md" "N" (add $i 1)}}{{end}}
+</div>
+</div></section>
+{{end}}
+{{end}}
+{{end}}
+{{end}}
