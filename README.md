@@ -5,9 +5,23 @@ signed and listed in the theme directory at hatamoto.dev from the commit a
 manifest in [hatamoto-plugins](https://github.com/Zen-Labs-Corp/hatamoto-plugins)
 pins.
 
-| Theme | Folder | Built for | What it is |
-|---|---|---|---|
-| `hanshi` | [themes/hanshi](themes/hanshi) | blog | Hairline frames, generated pattern covers, a page ruler and a post index |
+| Theme | Folder | Built for | Release | What it is |
+|---|---|---|---|---|
+| `hanagasumi` | [themes/hanagasumi](themes/hanagasumi) | blog | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/hanagasumi/v0.1.0) | Soft pastel blog theme: a split homepage with a sideways-scrolling story rail, rounded cards, pill chips and mono labels in rose on warm mist. |
+| `hanshi` | [themes/hanshi](themes/hanshi) | blog | [v1.0.1](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/hanshi/v1.0.1) | A blog theme: hairline frames, generated pattern covers, a page ruler for pagination and an index that follows you through every post. |
+| `hearth` | [themes/hearth](themes/hearth) | business | [v1.0.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/hearth/v1.0.0) | Warm, photo-led theme for home builders and trades: split heroes, full-bleed photo bands, a step-by-step process list and a terracotta footer. |
+| `kaizen` | [themes/kaizen](themes/kaizen) | blog | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/kaizen/v0.1.0) | A dark-first blog theme: a glowing horizon hero, a numbered index with sticky months, smooth page transitions and a live status strip in the footer. |
+| `kazahana` | [themes/kazahana](themes/kazahana) | blog | [v1.0.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/kazahana/v1.0.0) | Editorial blog theme with a masthead and topic strip, big EB Garamond headlines, hairline meta rows and a pine intro block, in snow white and camellia red. |
+| `kimyou` | [themes/kimyou](themes/kimyou) | blog | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/kimyou/v0.1.0) | Literary blog theme for writers: linen paper, oxblood and book-cloth green, posts as chapters, categories as spines on a shelf. |
+| `kogarashi` | [themes/kogarashi](themes/kogarashi) | blog | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/kogarashi/v0.1.0) | Split-screen blog theme. A fixed midnight image panel on one side, a scrolling grid of post cards on the other, cobalt accents. |
+| `komorebi` | [themes/komorebi](themes/komorebi) | blog | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/komorebi/v0.1.0) | Quiet, typographic blog theme: a two-tone split hero, a featured card with generated pixel art, hairline post lists and mono labels, in indigo and peach. |
+| `murasaki` | [themes/murasaki](themes/murasaki) | business | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/murasaki/v0.1.0) | Studio theme for agencies and advisory firms. Oversized type, hairline index rows, numbered sections and one vermilion accent. |
+| `nagi` | [themes/nagi](themes/nagi) | blog | [v1.0.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/nagi/v1.0.0) | A calm blog theme with light serif headlines, a featured cover, numbered topics, a picture mosaic and a ledger of posts with large dates. Light and dark. |
+| `shinrin-yoku` | [themes/shinrin-yoku](themes/shinrin-yoku) | blog | not released yet | Blog theme in forest green on cream: a split serif masthead, a sticky category sidebar and a two-column card grid on soft tinted panels, lime accents after dark. |
+| `tsundoku` | [themes/tsundoku](themes/tsundoku) | blog | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/tsundoku/v0.1.0) | Warm, playful blog theme: clay paper, plum ink and chartreuse, a rounded bento home and recent posts stacked as coloured book spines. |
+| `ukiyou` | [themes/ukiyou](themes/ukiyou) | blog | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/ukiyou/v0.1.0) | A dense magazine blog theme in indigo and saffron: centred masthead, lead story, three-column grid with a numbered sidebar, bold sans headlines over serif text. |
+| `wa` | [themes/wa](themes/wa) | blog | not released yet | Bold magazine blog theme: a mosaic hero of notched image cards, numbered picks, topic chips and a night band, in cobalt and lime on cool paper. |
+| `yukigeshiki` | [themes/yukigeshiki](themes/yukigeshiki) | blog | [v0.1.0](https://github.com/Zen-Labs-Corp/hatamoto-themes/releases/tag/yukigeshiki/v0.1.0) | Editorial blog theme: a sticky masthead and category sidebar, a two-column card grid on tinted panels, Bricolage Grotesque with Source Serif italics, in pine green. |
 
 A theme is templates, CSS, a few optional scripts and its assets: no build step.
 The theme contract is
