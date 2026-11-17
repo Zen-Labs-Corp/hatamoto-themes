@@ -1,0 +1,7 @@
+{{define "content"}}<p class="sumi-sec sumi-label">{{.Term.Kind}}</p>
+<h1>{{.Term.Name}}</h1>
+{{with .Term.Description}}<p class="sumi-lede-sm">{{.}}</p>{{end}}
+{{with .Pagination}}<p class="sumi-meta">{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}}</p>{{end}}
+{{if .Items}}<ol class="sumi-rows sumi-nocat">{{range .Items}}{{template "sumi-row" .}}{{end}}</ol>
+{{template "pagination" .}}{{else}}<p class="sumi-empty">Nothing here yet. Check back soon.</p>{{end}}
+{{end}}
