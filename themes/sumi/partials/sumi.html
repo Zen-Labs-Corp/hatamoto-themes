@@ -7,7 +7,7 @@
 {{define "sumi-nav-items"}}{{$p := .Path}}{{range .Items}}<li>{{template "nav-link" dict "Item" . "Path" $p}}{{with .Children}}<ul>{{template "sumi-nav-items" dict "Items" . "Path" $p}}</ul>{{end}}</li>{{end}}{{end}}
 
 {{define "sumi-more"}}{{$u := .URL}}{{$h := ""}}{{range .Nav}}{{if and (not $h) (hasPrefix $u (printf "%s/" .Href))}}{{$h = .Href}}{{end}}{{end}}{{range .Foot}}{{if and (not $h) (hasPrefix $u (printf "%s/" .Href))}}{{$h = .Href}}{{end}}{{end}}{{if $h}}<p class="sumi-more"><a href="{{$h}}">All {{.Total}} posts &rarr;</a></p>{{end}}{{end}}
-{{define "sumi-sub"}}{{$p := .P}}{{$slug := trim (printf "%v" $p.Settings.newsletter_form)}}<form class="sumi-sub{{if .Main}} sumi-sub-main{{end}}{{if .Below}} sumi-sub-below{{end}}" method="post" action="/forms/{{$slug}}/submit">
+{{define "sumi-sub"}}{{$p := .P}}{{$slug := trim $p.Settings.newsletter_form}}<form class="sumi-sub{{if .Main}} sumi-sub-main{{end}}{{if .Below}} sumi-sub-below{{end}}" method="post" action="/forms/{{$slug}}/submit">
 {{with $p.Settings.newsletter_text}}<label class="sumi-sub-l" for="sumi-sub-email">{{.}}</label>{{else}}<label class="hm-visually-hidden" for="sumi-sub-email">Email</label>{{end}}
 <span class="sumi-sub-f"><input id="sumi-sub-email" type="email" name="email" placeholder="{{$p.Settings.newsletter_placeholder}}" required autocomplete="email"><button type="submit">{{default "subscribe" $p.Settings.newsletter_button}}</button></span>
 <input type="hidden" name="_redirect" value="{{$p.Path}}"><input type="hidden" name="page_url" value="{{$p.Path}}">
