@@ -5,3 +5,5 @@
 {{define "sumi-hit"}}<li class="sumi-hit"><a class="sumi-t" href="{{.Item.URL}}">{{template "sumi-mark" dict "T" .Item.Title "Q" .Q}}</a>{{with .Item.Excerpt}}<p class="sumi-x">{{template "sumi-mark" dict "T" . "Q" $.Q}}</p>{{end}}</li>{{end}}
 
 {{define "sumi-nav-items"}}{{$p := .Path}}{{range .Items}}<li>{{template "nav-link" dict "Item" . "Path" $p}}{{with .Children}}<ul>{{template "sumi-nav-items" dict "Items" . "Path" $p}}</ul>{{end}}</li>{{end}}{{end}}
+
+{{define "sumi-more"}}{{$u := .URL}}{{$h := ""}}{{range .Nav}}{{if and (not $h) (hasPrefix $u (printf "%s/" .Href))}}{{$h = .Href}}{{end}}{{end}}{{range .Foot}}{{if and (not $h) (hasPrefix $u (printf "%s/" .Href))}}{{$h = .Href}}{{end}}{{end}}{{if $h}}<p class="sumi-more"><a href="{{$h}}">All {{.Total}} posts &rarr;</a></p>{{end}}{{end}}

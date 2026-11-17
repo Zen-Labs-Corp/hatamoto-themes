@@ -1,5 +1,5 @@
 {{define "content"}}<h1>{{.Page.Name}}</h1>
-{{with .Pagination}}<p class="sumi-meta">{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}} &middot; newest first &middot; <a href="/feed.xml">rss</a></p>{{end}}
+{{with .Pagination}}<p class="sumi-meta">{{.Total}} {{if eq .Total 1}}post{{else}}posts{{end}} &middot; newest first {{with $.Site.Feeds}}&middot; <a href="{{(index . 0).Href}}">rss</a>{{end}}</p>{{end}}
 {{if .Items}}{{$y := ""}}{{range .Items}}{{$cy := formatDate .PublishedAt "2006"}}{{if ne $cy $y}}{{if $y}}</ol>
 {{end}}{{$y = $cy}}<h2 class="sumi-sec">{{$cy}}</h2>
 <ol class="sumi-rows sumi-lite">{{end}}{{template "sumi-row-lite" .}}{{end}}</ol>
