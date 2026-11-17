@@ -47,8 +47,9 @@ page keeps rendering.
 | `color_mode` | `light`, `dark`, `auto` | `light` | the colour scheme; `auto` follows the visitor's system |
 | `density` | `comfortable`, `compact` | `comfortable` | `compact` tightens rows and sections |
 | `show_theme_line` | boolean | `true` | the footer line about the theme's size and requests |
-| `credit_text` | string | `Powered by Hatamoto CMS` | the footer credit text; empty hides the credit |
-| `credit_url` | string | `https://hatamoto.dev` | where the credit links; empty shows the text without a link |
+| `show_credit` | boolean | `true` | the credit after the copyright in the footer |
+| `credit_text` | string | `Powered by Hatamoto CMS` | the words after the copyright |
+| `credit_url` | string | `https://hatamoto.dev` | where the credit links |
 | `posts_on_home` | integer 3 to 20 | `6` | how many posts the home page lists |
 
 ## Colours

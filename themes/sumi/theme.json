@@ -33,16 +33,22 @@
         "description": "Show the footer line about the theme's size and requests",
         "default": true
       },
+      "show_credit": {
+        "type": "boolean",
+        "title": "Show the footer credit",
+        "description": "Show the credit after the copyright",
+        "default": true
+      },
       "credit_text": {
         "type": "string",
         "title": "Footer credit text",
-        "description": "Empty hides the credit.",
+        "description": "The words after the copyright.",
         "default": "Powered by Hatamoto CMS"
       },
       "credit_url": {
         "type": "string",
         "title": "Footer credit link",
-        "description": "Where the credit links. Empty shows the text without a link.",
+        "description": "Where the credit links.",
         "default": "https://hatamoto.dev"
       },
       "posts_on_home": {

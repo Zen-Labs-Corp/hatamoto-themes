@@ -3,8 +3,8 @@
 ## 0.2.0
 
 - Footer credit: "Powered by Hatamoto CMS" after the copyright, linking to hatamoto.dev.
-- New settings `credit_text` (empty hides the credit) and `credit_url` (empty shows the
-  text only).
+- New settings `show_credit` (hide the credit), `credit_text` (its words) and `credit_url`
+  (where it links).
 
 ## 0.1.0
 
