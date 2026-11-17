@@ -1,6 +1,6 @@
 {{define "sumi-css"}}<style>
 /* tokens */
-:root{--paper:#fafaf7;--ink:#1b1b19;--mute:#6b6a64;--rule:#e4e2da;--code:#f1efe8;--ok:#5d7a3a;--accent:var(--hm-primary,#b8432f);--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--measure:66ch;--radius:var(--hm-radius-sm,4px);--sp-1:.25rem;--sp-2:.5rem;--sp-3:1rem;--sp-4:1.5rem;--sp-5:2.5rem}
+:root{--paper:#fafaf7;--ink:#1b1b19;--mute:#6b6a64;--rule:#e4e2da;--code:#f1efe8;--ok:#5d7a3a;--accent:var(--hm-primary,#b8432f);--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--measure:38rem;--radius:var(--hm-radius-sm,4px);--sp-1:.25rem;--sp-2:.5rem;--sp-3:1rem;--sp-4:1.5rem;--sp-5:2.5rem}
 /* DARK-SLOT */
 /* base */
 *{box-sizing:border-box}
@@ -17,4 +17,17 @@ p,li,td,h1,h2,h3{overflow-wrap:anywhere}
 .hm-skip:focus{left:.5rem;top:.5rem}
 .hm-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+/* shell */
+.sumi-wrap,main{display:block;width:min(var(--measure),100% - 2.5rem);margin:0 auto}
+.sumi-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:var(--sp-1) var(--sp-3);padding-top:var(--sp-4);padding-bottom:.75rem;border-bottom:1px solid var(--rule);font-size:.9rem}
+.sumi-brand{color:var(--ink);font-weight:600;letter-spacing:.02em;text-decoration:none}
+.sumi-dot{color:var(--accent)}
+.sumi-nav a{color:var(--mute);text-decoration:none;margin-left:1.1rem}
+.sumi-nav a:first-child{margin-left:0}
+.sumi-nav a:hover,.sumi-nav a[aria-current]{color:var(--ink)}
+.sumi-footer{margin-top:3rem;margin-bottom:var(--sp-5);padding-top:var(--sp-3);border-top:1px solid var(--rule);font:.78rem/1.8 var(--mono);color:var(--mute)}
+.sumi-footer p{margin:0}
+.sumi-footnav a{color:var(--mute);margin-right:var(--sp-3)}
+.sumi-theme b{color:var(--ink);font-weight:500}
+.sumi-ok{color:var(--ok)}
 </style>{{end}}
