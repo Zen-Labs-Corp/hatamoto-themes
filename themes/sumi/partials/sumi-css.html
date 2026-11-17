@@ -41,7 +41,8 @@ p,li,td,h1,h2,h3{overflow-wrap:anywhere}
 .sumi-nav a:hover,.sumi-nav a[aria-current]{color:var(--ink)}
 .sumi-footer{margin-top:3rem;margin-bottom:var(--sp-5);padding-top:var(--sp-3);border-top:1px solid var(--rule);font:.78rem/1.8 var(--mono);color:var(--mute)}
 .sumi-footer p{margin:0}
-.sumi-footnav a{color:var(--mute)}
+.sumi-footnav a,.sumi-credit{color:var(--mute)}
+.sumi-credit:hover{color:var(--accent)}
 .sumi-theme b{color:var(--ink);font-weight:500}
 .sumi-ok{color:var(--ok)}
 /* type */
@@ -54,6 +55,7 @@ li{margin:.2rem 0}
 .sumi-meta a{color:var(--mute)}
 /* rows (home, archive, taxonomy, author, search) */
 .sumi-lede{font-size:1.25rem;line-height:1.45;font-weight:400;letter-spacing:0;margin:var(--sp-5) 0 .4rem}
+.sumi-lede+:not(.sumi-meta){margin-top:2rem}
 .sumi-sec{font:600 .8rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:2.4rem 0 .6rem}
 .sumi-rows{list-style:none;padding:0;margin:0}
 .sumi-row{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:.1rem 1rem;margin:0;padding:.8rem 0;border-bottom:1px solid var(--rule)}
