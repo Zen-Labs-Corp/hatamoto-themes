@@ -1,4 +1,4 @@
 {{define "header"}}<header class="sumi-wrap sumi-header">
 <a class="sumi-brand" href="/">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="28">{{else}}{{.Site.Name}}<span class="sumi-dot" aria-hidden="true">.</span>{{end}}</a>
-<nav class="sumi-nav" aria-label="Primary">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}<a href="/search"{{if eq .Path "/search"}} aria-current="page"{{end}}>search</a><a href="/feed.xml">rss</a>{{with .Site.HeaderCTA}}<a href="{{cta .URL}}">{{.Label}}</a>{{end}}</nav>
+<nav class="sumi-nav" aria-label="Primary"><ul class="sumi-menu">{{template "sumi-nav-items" dict "Items" .Site.Nav "Path" .Path}}<li><a href="/search"{{if eq .Path "/search"}} aria-current="page"{{end}}>search</a></li><li><a href="/feed.xml">rss</a></li>{{with .Site.HeaderCTA}}<li><a href="{{cta .URL}}">{{.Label}}</a></li>{{end}}</ul></nav>
 </header>{{end}}

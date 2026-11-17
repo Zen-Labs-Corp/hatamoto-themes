@@ -34,12 +34,14 @@ p,li,td,h1,h2,h3{overflow-wrap:anywhere}
 .sumi-brand{color:var(--ink);font-weight:600;letter-spacing:.02em;text-decoration:none}
 .sumi-brand img{display:block;height:28px;width:auto;max-width:min(12rem,60vw)}
 .sumi-dot{color:var(--accent)}
-.sumi-nav a{color:var(--mute);text-decoration:none;margin-left:1.1rem}
-.sumi-nav a:first-child{margin-left:0}
+.sumi-menu,.sumi-menu ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 1.1rem}
+.sumi-menu li{margin:0}
+.sumi-menu ul{gap:0 .9rem;font-size:.9em}
+.sumi-nav a{color:var(--mute);text-decoration:none}
 .sumi-nav a:hover,.sumi-nav a[aria-current]{color:var(--ink)}
 .sumi-footer{margin-top:3rem;margin-bottom:var(--sp-5);padding-top:var(--sp-3);border-top:1px solid var(--rule);font:.78rem/1.8 var(--mono);color:var(--mute)}
 .sumi-footer p{margin:0}
-.sumi-footnav a{color:var(--mute);margin-right:var(--sp-3)}
+.sumi-footnav a{color:var(--mute)}
 .sumi-theme b{color:var(--ink);font-weight:500}
 .sumi-ok{color:var(--ok)}
 /* type */

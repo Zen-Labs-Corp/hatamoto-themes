@@ -1,5 +1,5 @@
 {{define "footer"}}<footer class="sumi-wrap sumi-footer">
-<nav class="sumi-footnav" aria-label="Footer">{{range .Site.FooterNav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}<a href="/feed.xml">rss</a></nav>
+<nav class="sumi-footnav" aria-label="Footer"><ul class="sumi-menu">{{template "sumi-nav-items" dict "Items" .Site.FooterNav "Path" .Path}}<li><a href="/feed.xml">rss</a></li></ul></nav>
 {{if ne (printf "%v" .Settings.show_theme_line) "false"}}<p class="sumi-theme">this theme: <b>&le; 13.37 KB</b> &middot; 0 requests &middot; 0 JS &middot; 0 trackers <span class="sumi-ok">&check; 1 round trip</span></p>
 {{end}}<p>&copy; {{year}} {{.Site.Name}}</p>
 </footer>{{end}}
