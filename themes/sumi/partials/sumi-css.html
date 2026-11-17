@@ -87,4 +87,12 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5rem 0}
 .sumi-byline{display:flex;gap:var(--sp-3);align-items:flex-start}
 .sumi-byline p{margin:0 0 1.15rem}
 .sumi-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none}
+/* search */
+.sumi-search{display:flex;gap:var(--sp-2);margin:var(--sp-3) 0 0}
+.sumi-search input[type=search]{flex:1;min-width:0;font:inherit;color:var(--ink);background:none;border:1px solid var(--rule);border-radius:var(--radius);padding:.5rem .7rem}
+.sumi-search button{font:.85rem var(--mono);color:var(--paper);background:var(--ink);border:1px solid var(--ink);border-radius:var(--radius);padding:.5rem .9rem;cursor:pointer}
+.sumi-search+.sumi-meta{margin:.8rem 0 1rem}
+.sumi-hit{margin:0;padding:.8rem 0;border-bottom:1px solid var(--rule)}
+.sumi-hit .sumi-x{margin-top:.2rem}
+mark{background:none;color:var(--ink);box-shadow:inset 0 -.4em 0 color-mix(in srgb,var(--accent) 38%,transparent)}
 </style>{{end}}
