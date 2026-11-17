@@ -1,0 +1,7 @@
+{{define "content"}}<p class="sumi-404" aria-hidden="true">404</p>
+<h1>Page not found</h1>
+<p>The page may have moved, or the link was mistyped. Try a search, or start from the latest posts.</p>
+{{template "sumi-search" dict "Query" "" "Type" ""}}
+{{with recent "post" 3}}<h2 class="sumi-sec">Recent</h2>
+<ol class="sumi-rows sumi-lite">{{range .}}{{template "sumi-row-lite" .}}{{end}}</ol>{{end}}
+{{end}}

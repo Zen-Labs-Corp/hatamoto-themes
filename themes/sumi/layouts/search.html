@@ -1,0 +1,6 @@
+{{define "content"}}<h1>Search</h1>
+{{template "sumi-search" dict "Query" .Query "Type" .SearchType}}
+{{if .Query}}<p class="sumi-meta" role="status">{{with .Pagination}}{{.Total}} {{if eq .Total 1}}result{{else}}results{{end}}{{else}}0 results{{end}} for &ldquo;{{.Query}}&rdquo;</p>
+{{if .Items}}{{$q := .Query}}<ol class="sumi-rows sumi-results">{{range .Items}}{{template "sumi-hit" dict "Item" . "Q" $q}}{{end}}</ol>
+{{template "pagination" .}}{{else}}<p class="sumi-empty">Nothing matched. Try a shorter or different word.</p>{{end}}{{else}}<p class="sumi-empty">Type a word or phrase to search.</p>{{end}}
+{{end}}

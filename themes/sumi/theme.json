@@ -1,0 +1,45 @@
+{
+  "name": "sumi",
+  "version": "0.1.0",
+  "description": "A text-first blog theme under 13.37 KB with no requests, JavaScript or trackers of its own. System fonts, monospace dates, hairline rows and one vermilion accent.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": ["header", "footer", "single", "archive"]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "color_mode": {
+        "type": "string",
+        "title": "Colour mode",
+        "description": "Light, dark, or follow the visitor's system. There is no visitor toggle: it needs JavaScript.",
+        "enum": ["light", "dark", "auto"],
+        "default": "light"
+      },
+      "density": {
+        "type": "string",
+        "title": "Spacing",
+        "description": "Row and section spacing.",
+        "enum": ["comfortable", "compact"],
+        "default": "comfortable"
+      },
+      "show_theme_line": {
+        "type": "boolean",
+        "title": "Show the theme line",
+        "description": "Show the footer line about the theme's size and requests",
+        "default": true
+      },
+      "posts_on_home": {
+        "type": "integer",
+        "title": "Posts on the home page",
+        "minimum": 3,
+        "maximum": 20,
+        "default": 6
+      }
+    }
+  }
+}
