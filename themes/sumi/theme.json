@@ -81,13 +81,13 @@
       "newsletter_form": {
         "type": "string",
         "title": "Newsletter form",
-        "description": "Slug of a Hatamoto form (Forms > New > Newsletter signup). Leave empty to show no subscribe block. The form must have email as its only required field.",
+        "description": "Slug of a Hatamoto form (Forms > New > Newsletter signup). Leave empty to show no subscribe block. The form must have email as its only required field. If a builder footer part is assigned, it replaces the footer and the block: use above_posts/below_posts or add the form to the part.",
         "default": ""
       },
       "newsletter_position": {
         "type": "string",
         "title": "Newsletter position",
-        "description": "footer: top of the footer on every page. above_posts / below_posts: around the homepage post list (other pages keep the footer position).",
+        "description": "footer: top of the footer on every page. above_posts / below_posts: around the homepage post list (other pages keep the footer position). A builder footer part replaces the footer and the block: use above_posts/below_posts or add the form to the part.",
         "enum": ["footer", "above_posts", "below_posts"],
         "default": "footer"
       },

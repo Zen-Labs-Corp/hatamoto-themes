@@ -78,7 +78,9 @@ mode the accent is derived from it, lightened so it stays readable on the dark p
   sends only an `email` field, so `email` must be the form's only required field: with
   the Newsletter signup template, untick "consent" (or remove it). The thank-you and error
   notice is fixed text, shown for the whole page, so it also appears next to a contact
-  form on the same page. `above_posts` and `below_posts` apply to the homepage only.
+  form on the same page. `above_posts` and `below_posts` apply to the homepage only. A builder footer part
+  (Theme > Layout parts) replaces the footer and the block with it: use `above_posts` or
+  `below_posts`, or add the form to the part.
 
 ## Develop
 
