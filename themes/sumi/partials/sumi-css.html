@@ -134,6 +134,17 @@ table{display:block;max-width:100%;overflow:auto}
 .sumi-prose table,.hm-prose table{display:table}
 input,textarea,select{font:inherit;color:var(--ink);background:none;border:1px solid var(--rule);border-radius:var(--radius);padding:.45rem .6rem;max-width:100%}
 textarea{width:100%}
+input[type=checkbox],input[type=radio]{padding:0;border:0;accent-color:var(--accent)}
+.hm-form{max-width:100%}
+.hm-form__hp{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.hm-form__field{margin:0 0 .8rem}
+.hm-form__field input:not([type=checkbox],[type=radio]),.hm-form__field select{width:100%}
+.hm-form__group{border:0;padding:0;margin:0}
+.hm-form__group legend{font-size:.9rem;padding:0;margin:.6rem 0 .2rem}
+label.hm-form__check{display:flex;gap:var(--sp-2);align-items:baseline;margin:.2rem 0}
+.hm-form__help{display:block;color:var(--mute);font-size:.82rem;margin-top:.2rem}
+.hm-form__success,.hm-form__error{margin:0 0 1rem;padding:.5rem .8rem;border-left:2px solid var(--accent)}
+button.hm-btn{font:inherit;font-size:.92rem;color:var(--accent);background:none;cursor:pointer}
 label{display:block;font-size:.9rem;margin:.6rem 0 .2rem}
 figure{margin:0 0 1.4rem}
 .hm-chips{display:flex;flex-wrap:wrap;gap:var(--sp-2)}

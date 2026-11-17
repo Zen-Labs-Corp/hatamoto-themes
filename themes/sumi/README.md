@@ -16,7 +16,8 @@ fonts, tags) is not counted by this claim.
 - **Archive, category, author and search pages** as hairline rows, the archive grouped by
   year. Search is a plain form, with the match marked in titles and excerpts.
 - **404** with a search box and the latest posts.
-- **Pages and Page Builder sections** in plain typography.
+- **Pages and Page Builder sections** in plain typography, with the built-in contact form
+  styled to match (see Limits).
 - **Light by default**, dark or following the system through a setting. There is no
   visitor toggle: it would need JavaScript.
 
@@ -53,6 +54,12 @@ page keeps rendering.
 **Theme > Colours and fonts** restyles the theme. The primary colour drives the accent
 (links, the dot after the site name, quote rules); the default is a vermilion. In dark
 mode the accent is derived from it, lightened so it stays readable on the dark page.
+
+## Limits
+
+- **Forms with a captcha.** The theme loads no JavaScript, and the captcha widget comes
+  from the built-in script, so a contact form with a captcha switched on cannot submit.
+  Use a form without a captcha with this theme.
 
 ## Develop
 
