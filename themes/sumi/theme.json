@@ -16,15 +16,29 @@
       "color_mode": {
         "type": "string",
         "title": "Colour mode",
-        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
+        "description": "Light, dark, or follow the visitor's system. There is no visitor toggle: it needs JavaScript.",
         "enum": ["light", "dark", "auto"],
         "default": "light"
       },
       "density": {
         "type": "string",
         "title": "Spacing",
+        "description": "Row and section spacing.",
         "enum": ["comfortable", "compact"],
         "default": "comfortable"
+      },
+      "show_theme_line": {
+        "type": "boolean",
+        "title": "Show the theme line",
+        "description": "Show the footer line about the theme's size and requests",
+        "default": true
+      },
+      "posts_on_home": {
+        "type": "integer",
+        "title": "Posts on the home page",
+        "minimum": 3,
+        "maximum": 20,
+        "default": 6
       }
     }
   }

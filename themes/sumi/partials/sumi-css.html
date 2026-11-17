@@ -1,10 +1,18 @@
 {{define "sumi-css"}}<style>
 /* tokens */
 :root{--paper:#fafaf7;--ink:#1b1b19;--mute:#6b6a64;--rule:#e4e2da;--code:#f1efe8;--ok:#5d7a3a;--accent:var(--hm-primary,#b8432f);--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--measure:38rem;--radius:var(--hm-radius-sm,4px);--sp-1:.25rem;--sp-2:.5rem;--sp-3:1rem;--sp-4:1.5rem;--sp-5:2.5rem}
-/* DARK-SLOT */
+/* dark: color_mode dark, or auto with a dark system */
+:root[data-sumi-mode=dark]{--paper:#141413;--ink:#e6e4dc;--mute:#8e8c84;--rule:#2a2926;--code:#1d1c1a;--accent:var(--hm-primary,#e0775f);--ok:#9ab874;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root[data-sumi-mode=auto]{--paper:#141413;--ink:#e6e4dc;--mute:#8e8c84;--rule:#2a2926;--code:#1d1c1a;--accent:var(--hm-primary,#e0775f);--ok:#9ab874;color-scheme:dark}}
+@supports (color:color-mix(in srgb,red,blue)){:root[data-sumi-mode=dark]{--accent:color-mix(in srgb,var(--hm-primary,#d33d1a) 70%,#fff)}@media (prefers-color-scheme:dark){:root[data-sumi-mode=auto]{--accent:color-mix(in srgb,var(--hm-primary,#d33d1a) 70%,#fff)}}}
+/* density */
+:root[data-sumi-density=compact]{--sp-4:1rem;--sp-5:1.6rem}
+[data-sumi-density=compact] body{line-height:1.5}
+[data-sumi-density=compact] .sumi-row,[data-sumi-density=compact] .sumi-hit{padding:.4rem 0}
+[data-sumi-density=compact] .sumi-sec{margin-top:1.6rem}
 /* base */
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;color-scheme:light dark}
+html{-webkit-text-size-adjust:100%;color-scheme:light}
 body{margin:0;background:var(--hm-bg,var(--paper));color:var(--hm-text,var(--ink));font:17px/1.65 var(--hm-font,var(--sans))}
 a{color:var(--accent);text-underline-offset:.18em;text-decoration-thickness:1px}
 a:hover{text-decoration-thickness:2px}
@@ -121,6 +129,7 @@ ul[class^=hm-],ol[class^=hm-],[class^=hm-] ul,[class^=hm-] ol{list-style:none;pa
 .hm-section summary{cursor:pointer;font-weight:600}
 .hm-section blockquote{margin:0 0 .6rem;padding-left:1rem;border-left:2px solid var(--accent)}
 table{display:block;max-width:100%;overflow:auto}
+.sumi-prose table,.hm-prose table{display:table}
 input,textarea,select{font:inherit;color:var(--ink);background:none;border:1px solid var(--rule);border-radius:var(--radius);padding:.45rem .6rem;max-width:100%}
 textarea{width:100%}
 label{display:block;font-size:.9rem;margin:.6rem 0 .2rem}
