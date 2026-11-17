@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+
+- Footer credit: "Powered by Hatamoto CMS" after the copyright, linking to hatamoto.dev.
+- New settings `credit_text` (empty hides the credit) and `credit_url` (empty shows the
+  text only).
+
 ## 0.1.0
 
 - First version: a text-first blog theme with home, post, page, archive, category,
