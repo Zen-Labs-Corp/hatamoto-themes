@@ -1,0 +1,20 @@
+{{define "sumi-css"}}<style>
+/* tokens */
+:root{--paper:#fafaf7;--ink:#1b1b19;--mute:#6b6a64;--rule:#e4e2da;--code:#f1efe8;--ok:#5d7a3a;--accent:var(--hm-primary,#b8432f);--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--measure:66ch;--radius:var(--hm-radius-sm,4px);--sp-1:.25rem;--sp-2:.5rem;--sp-3:1rem;--sp-4:1.5rem;--sp-5:2.5rem}
+/* DARK-SLOT */
+/* base */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;color-scheme:light dark}
+body{margin:0;background:var(--hm-bg,var(--paper));color:var(--hm-text,var(--ink));font:17px/1.65 var(--hm-font,var(--sans))}
+a{color:var(--accent);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+a[aria-current=page]{color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+img,video,iframe,svg{max-width:100%;height:auto}
+pre{overflow:auto}
+p,li,td,h1,h2,h3{overflow-wrap:anywhere}
+.hm-skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:var(--sp-2) var(--sp-3);z-index:9}
+.hm-skip:focus{left:.5rem;top:.5rem}
+.hm-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>{{end}}
