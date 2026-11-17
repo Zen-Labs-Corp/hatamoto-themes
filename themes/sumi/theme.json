@@ -39,6 +39,20 @@
         "description": "The 'by <author> · rss' line under the tagline.",
         "default": true
       },
+      "home_list": {
+        "type": "string",
+        "title": "Homepage post list",
+        "description": "Show a summary line under each post, or titles only.",
+        "enum": ["summaries", "titles"],
+        "default": "summaries"
+      },
+      "home_title": {
+        "type": "string",
+        "title": "Homepage heading",
+        "description": "auto: tagline, or the site name when there is none. tagline: only when a tagline is set. hidden: no visible heading.",
+        "enum": ["auto", "tagline", "hidden"],
+        "default": "auto"
+      },
       "show_credit": {
         "type": "boolean",
         "title": "Show the footer credit",
