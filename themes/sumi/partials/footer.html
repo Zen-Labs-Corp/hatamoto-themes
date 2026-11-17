@@ -1,4 +1,5 @@
 {{define "footer"}}<footer class="sumi-wrap sumi-footer">
+{{$slug := trim (printf "%v" .Settings.newsletter_form)}}{{$pos := printf "%v" .Settings.newsletter_position}}{{if and $slug (not (and (eq .Kind "home") (or (eq $pos "above_posts") (eq $pos "below_posts"))))}}{{template "sumi-sub" dict "P" . "Main" false}}{{end}}
 <nav class="sumi-footnav" aria-label="Footer"><ul class="sumi-menu">{{template "sumi-nav-items" dict "Items" .Site.FooterNav "Path" .Path}}{{with .Site.Feeds}}<li><a href="{{(index . 0).Href}}">rss</a></li>{{end}}</ul></nav>
 {{if ne (printf "%v" .Settings.show_theme_line) "false"}}<p class="sumi-theme">this theme: <b>&le; 13.37 KB</b> &middot; 0 requests &middot; 0 JS &middot; 0 trackers <span class="sumi-ok">&check; 1 round trip</span></p>
 {{end}}<p>&copy; {{year}} {{.Site.Name}}{{if ne (printf "%v" .Settings.show_credit) "false"}}{{with .Settings.credit_text}} &middot; {{with $.Settings.credit_url}}<a class="sumi-credit" href="{{cta .}}">{{$.Settings.credit_text}}</a>{{else}}{{.}}{{end}}{{end}}{{end}}</p>
