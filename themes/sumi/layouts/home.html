@@ -1,7 +1,7 @@
 {{define "content"}}{{$n := 6}}{{with .Settings.posts_on_home}}{{$n = atoi (printf "%v" .)}}{{end}}{{if or (lt $n 3) (gt $n 20)}}{{$n = 6}}{{end}}{{$r := query (dict "schema" "post" "limit" $n)}}
 {{$hero := false}}{{range .Blocks}}{{if or (eq .Type "hero") (contains .Native "<h1")}}{{$hero = true}}{{end}}{{end}}
 {{$lede := default .Site.Name .Site.Tagline}}{{if $hero}}<p class="sumi-lede">{{$lede}}</p>{{else}}<h1 class="sumi-lede">{{$lede}}</h1>{{end}}
-<p class="sumi-meta">{{with $r.Items}}{{with (index . 0).Author}}by {{with (index $r.Items 0).AuthorURL}}<a href="{{.}}">{{end}}{{.}}{{with (index $r.Items 0).AuthorURL}}</a>{{end}} &middot; {{end}}{{end}}{{with .Site.Feeds}}<a href="{{(index . 0).Href}}">rss</a>{{end}}</p>
+{{if ne (printf "%v" .Settings.show_home_byline) "false"}}<p class="sumi-meta">{{with $r.Items}}{{with (index . 0).Author}}by {{with (index $r.Items 0).AuthorURL}}<a href="{{.}}">{{end}}{{.}}{{with (index $r.Items 0).AuthorURL}}</a>{{end}} &middot; {{end}}{{end}}{{with .Site.Feeds}}<a href="{{(index . 0).Href}}">rss</a>{{end}}</p>{{end}}
 {{if .Blocks}}{{template "page-body" .}}{{else}}{{with .Body}}<div class="sumi-prose">{{.}}</div>{{end}}{{end}}
 <h2 class="sumi-sec">Latest</h2>
 {{if $r.Items}}<ol class="sumi-rows sumi-feed">{{range $r.Items}}{{template "sumi-row" .}}{{end}}</ol>

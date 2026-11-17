@@ -5,6 +5,7 @@
 - Footer credit: "Powered by Hatamoto CMS" after the copyright, linking to hatamoto.dev.
 - New settings `show_credit` (hide the credit), `credit_text` (its words) and `credit_url`
   (where it links).
+- New setting `show_home_byline` (hide the "by author · rss" line under the tagline on the home page).
 
 ## 0.1.0
 

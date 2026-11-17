@@ -33,6 +33,12 @@
         "description": "Show the footer line about the theme's size and requests",
         "default": true
       },
+      "show_home_byline": {
+        "type": "boolean",
+        "title": "Show the byline on the homepage",
+        "description": "The 'by <author> · rss' line under the tagline.",
+        "default": true
+      },
       "show_credit": {
         "type": "boolean",
         "title": "Show the footer credit",
