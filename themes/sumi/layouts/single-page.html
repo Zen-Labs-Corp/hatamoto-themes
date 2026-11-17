@@ -1,6 +1,7 @@
-{{define "content"}}{{$e := .Entity}}
+{{define "content"}}{{$e := .Entity}}{{$hero := false}}{{range .Blocks}}{{if eq .Type "hero"}}{{$hero = true}}{{end}}{{end}}
 <article class="sumi-post">
-<h1>{{if $e}}{{$e.Title}}{{else}}{{.Page.Name}}{{end}}</h1>
+{{if not $hero}}<h1>{{if $e}}{{$e.Title}}{{else}}{{.Page.Name}}{{end}}</h1>
+{{end}}
 {{if .Blocks}}{{template "page-body" .}}{{else}}{{with .Body}}<div class="sumi-prose">{{.}}</div>{{end}}{{end}}
 </article>
 {{end}}
