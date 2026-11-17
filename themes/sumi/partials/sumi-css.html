@@ -37,7 +37,7 @@ p,li,td,h1,h2,h3{overflow-wrap:anywhere}
 .sumi-menu,.sumi-menu ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 1.1rem}
 .sumi-menu li{margin:0}
 .sumi-menu ul{gap:0 .9rem;font-size:.9em}
-.sumi-nav a{color:var(--mute);text-decoration:none}
+.sumi-nav a{color:var(--mute);text-decoration:none;text-transform:lowercase}
 .sumi-nav a:hover,.sumi-nav a[aria-current]{color:var(--ink)}
 .sumi-footer{margin-top:3rem;margin-bottom:var(--sp-5);padding-top:var(--sp-3);border-top:1px solid var(--rule);font:.78rem/1.8 var(--mono);color:var(--mute)}
 .sumi-footer p{margin:0}
@@ -60,7 +60,7 @@ li{margin:.2rem 0}
 .sumi-date{font:.82rem var(--mono);color:var(--mute);font-variant-numeric:tabular-nums}
 .sumi-t{color:var(--ink);text-decoration:none}
 .sumi-t:hover{color:var(--accent);text-decoration:underline}
-.sumi-cat{font:.78rem var(--mono);color:var(--mute)}
+.sumi-cat{font:.78rem var(--mono);color:var(--mute);text-transform:lowercase}
 .sumi-x{grid-column:2/4;margin:0;color:var(--mute);font-size:.92rem;line-height:1.5}
 .sumi-more{font-size:.9rem;margin-top:1.2rem}
 @media (max-width:600px){.sumi-cat{display:none}.sumi-x{grid-column:1/4}}
@@ -93,8 +93,6 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5rem 0}
 .hm-pagination li{margin:0}
 .hm-pagination a[aria-current=page]{color:var(--ink);text-decoration:none;font-weight:600}
 /* taxonomy */
-.sumi-label{margin:var(--sp-5) 0 0}
-.sumi-label+h1{margin-top:.6rem}
 .sumi-lede-sm{color:var(--mute);margin:0 0 .6rem}
 .sumi-nocat .sumi-cat{display:none}
 /* author */
