@@ -157,4 +157,16 @@ figure{margin:0 0 1.4rem}
 .hm-chips li,.hm-chip{padding:0;border:0;font:.78rem var(--mono)}
 .hm-author-box,.hm-error,.hm-empty{color:var(--mute)}
 .hm-avatar{border-radius:50%}
-</style>{{end}}
+{{if trim (printf "%v" .Settings.newsletter_form)}}.sumi-sub{display:flex;flex-direction:column;gap:.6rem;margin:0 0 var(--sp-4);padding-bottom:var(--sp-4);border-bottom:1px solid var(--rule)}
+.sumi-sub-l{font:400 1rem/1.4 var(--hm-font,var(--sans));color:var(--ink)}
+.sumi-sub-f{display:flex;gap:.5rem;align-items:stretch;flex:1;max-width:24rem}
+.sumi-sub input{flex:1;min-width:0;font:.85rem var(--mono);color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:var(--radius);padding:.35rem .55rem}
+.sumi-sub input::placeholder{color:var(--mute)}
+.sumi-sub input:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.sumi-sub button{font:600 .8rem var(--mono);text-transform:lowercase;color:var(--paper);background:var(--accent);border:0;border-radius:var(--radius);padding:.35rem .8rem;cursor:pointer}
+.sumi-sub button:hover{background:var(--ink)}
+.sumi-sub-note{margin:0;font:.85rem var(--mono);color:var(--mute)}
+.sumi-sub-main{margin:var(--sp-5) 0 0;padding:var(--sp-4) 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.sumi-sub-main+.sumi-sec{margin-top:var(--sp-4)}
+.sumi-sub-below{border-top:0;border-bottom:0;padding-bottom:0}
+{{end}}</style>{{end}}
