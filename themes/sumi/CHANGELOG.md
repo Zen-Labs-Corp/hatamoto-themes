@@ -6,7 +6,9 @@
   only, like the archive.
 - New setting `home_title` (`auto`, `tagline`, `hidden`): `tagline` shows the heading only
   when a tagline is set, `hidden` never shows it. A visually hidden `h1` with the site name
-  stays, so the page keeps one heading.
+  takes its place, unless the page has a hero or its own `h1`, so the page keeps one heading.
+- Fix: a home built from blocks no longer shows a doubled rule or sits flush to the header when
+  the heading is hidden. A whitespace-only tagline counts as empty.
 - Fix: the LATEST heading no longer gets the extra top margin when the byline is off and the
   home page has no body copy.
 
