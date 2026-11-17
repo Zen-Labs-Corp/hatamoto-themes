@@ -1,16 +1,16 @@
 {{define "content"}}{{$e := .Entity}}{{$b := docBody .Body}}
 <article class="sumi-post">
-<h1>{{$e.Title}}</h1>
-<p class="sumi-meta">{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2006-01-02"}}</time>{{end}}{{with readingTime .Body}} &middot; {{.}} min{{end}}{{range $e.Categories}} &middot; <a href="{{.URL}}">{{.Name}}</a>{{end}}{{with $e.Author}} &middot; {{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}{{end}}</p>
+<h1>{{if $e}}{{$e.Title}}{{else}}{{.Page.Name}}{{end}}</h1>
+{{if $e}}<p class="sumi-meta">{{if not $e.PublishedAt.IsZero}}<time datetime="{{formatDate $e.PublishedAt "2006-01-02"}}">{{formatDate $e.PublishedAt "2006-01-02"}}</time>{{end}}{{with readingTime .Body}} &middot; {{.}} min{{end}}{{range $e.Categories}} &middot; <a href="{{.URL}}">{{.Name}}</a>{{end}}{{with $e.Author}} &middot; {{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}{{end}}</p>
 {{with $e.Image}}<figure><img class="sumi-img" src="{{imgsrc .}}" alt="{{with $e.Attributes.featured_image_alt}}{{.}}{{end}}" width="1600" height="1000" loading="lazy" decoding="async"></figure>
-{{end}}<div class="sumi-prose">{{$b.HTML}}</div>
+{{end}}{{end}}<div class="sumi-prose">{{$b.HTML}}</div>
 {{range .Blocks}}{{template "section" .}}
 {{end}}</article>
-{{$all := query (dict "schema" "post" "limit" 50 "order" "-published_at")}}{{$newer := ""}}{{$older := ""}}{{$last := ""}}{{$seen := false}}
+{{if $e}}{{$all := query (dict "schema" "post" "limit" 50 "order" "-published_at")}}{{$newer := ""}}{{$older := ""}}{{$last := ""}}{{$seen := false}}
 {{range $all.Items}}{{if $seen}}{{if not $older}}{{$older = .}}{{end}}{{else if eq .URL $e.URL}}{{$seen = true}}{{$newer = $last}}{{else}}{{$last = .}}{{end}}{{end}}
 {{if or $newer $older}}<nav class="sumi-next" aria-label="Posts">{{with $newer}}<a href="{{.URL}}" rel="next"><span>&larr; newer</span>{{.Title}}</a>{{else}}<span></span>{{end}}{{with $older}}<a href="{{.URL}}" rel="prev"><span>older &rarr;</span>{{.Title}}</a>{{end}}</nav>
 {{end}}{{with $e.Categories}}{{$c := index . 0}}{{$more := query (dict "schema" "post" "term" (printf "category:%s" $c.Slug) "limit" 5)}}{{$shown := 0}}
 {{range $more.Items}}{{if and (ne .URL $e.URL) (lt $shown 4)}}{{if eq $shown 0}}<hr>
 <h2 class="sumi-sec">More in {{$c.Name}}</h2>
 <ol class="sumi-rows sumi-lite">{{end}}{{$shown = add $shown 1}}{{template "sumi-row-lite" .}}{{end}}{{end}}{{if $shown}}</ol>
-{{end}}{{end}}{{end}}
+{{end}}{{end}}{{end}}{{end}}

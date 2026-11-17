@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+
+- Fix: the admin preview of a draft post no longer fails with "preview failed" on cores
+  that render a draft without `.Entity`; the post layout falls back to the page name.
+
 ## 0.3.0
 
 - New setting `home_list` (`summaries`, `titles`): `titles` lists the home posts as titles
