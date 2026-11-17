@@ -81,6 +81,9 @@ mode the accent is derived from it, lightened so it stays readable on the dark p
   form on the same page. `above_posts` and `below_posts` apply to the homepage only. A builder footer part
   (Theme > Layout parts) replaces the footer and the block with it: use `above_posts` or
   `below_posts`, or add the form to the part.
+- **Coming-soon page.** While the site is behind the coming-soon/site-access page, clear
+  `newsletter_form`: newer cores draw that page through the theme, and the gate blocks
+  the form post.
 
 ## Develop
 
