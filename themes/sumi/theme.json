@@ -1,6 +1,6 @@
 {
   "name": "sumi",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A text-first blog theme under 13.37 KB with no requests, JavaScript or trackers of its own. System fonts, monospace dates, hairline rows and one vermilion accent.",
   "screenshot": "assets/screenshot.png",
   "csp": {
