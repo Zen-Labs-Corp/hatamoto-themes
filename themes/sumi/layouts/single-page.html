@@ -1,0 +1,6 @@
+{{define "content"}}{{$e := .Entity}}
+<article class="sumi-post">
+<h1>{{if $e}}{{$e.Title}}{{else}}{{.Page.Name}}{{end}}</h1>
+{{if .Blocks}}{{template "page-body" .}}{{else}}{{with .Body}}<div class="sumi-prose">{{.}}</div>{{end}}{{end}}
+</article>
+{{end}}

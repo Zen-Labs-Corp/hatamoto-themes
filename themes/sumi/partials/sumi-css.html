@@ -50,4 +50,27 @@ li{margin:.2rem 0}
 .sumi-x{grid-column:2/4;margin:0;color:var(--mute);font-size:.92rem;line-height:1.5}
 .sumi-more{font-size:.9rem;margin-top:1.2rem}
 @media (max-width:600px){.sumi-cat{display:none}.sumi-x{grid-column:1/4}}
+/* post and page */
+.sumi-prose,.hm-prose{overflow-wrap:anywhere}
+.sumi-prose a,.hm-prose a{color:var(--accent)}
+.sumi-prose>:last-child{margin-bottom:0}
+.sumi-prose h2,.hm-prose h2{margin-top:2.4rem}
+.sumi-prose ul,.sumi-prose ol,.hm-prose ul,.hm-prose ol{padding-left:1.4rem}
+.sumi-prose code,.hm-prose code{font:.86em var(--mono);background:var(--code);padding:.1em .3em;border-radius:3px}
+.sumi-prose pre,.hm-prose pre{font:.84rem/1.55 var(--mono);background:var(--code);padding:1rem 1.1rem;border-radius:var(--radius);margin:0 0 1.4rem}
+.sumi-prose pre code,.hm-prose pre code{background:none;padding:0;font-size:inherit}
+.sumi-prose blockquote,.hm-prose blockquote{margin:0 0 1.2rem;padding-left:1rem;border-left:2px solid var(--accent);color:var(--mute)}
+.sumi-prose table,.hm-prose table{border-collapse:collapse;width:100%;font-size:.88rem;margin:0 0 1.4rem;font-variant-numeric:tabular-nums}
+.sumi-prose th,.sumi-prose td,.hm-prose th,.hm-prose td{text-align:left;padding:.35rem .6rem .35rem 0;border-bottom:1px solid var(--rule)}
+.sumi-prose th,.hm-prose th{font-weight:600;color:var(--mute)}
+.sumi-prose td+td,.sumi-prose th+th,.hm-prose td+td,.hm-prose th+th{text-align:right}
+.sumi-prose figure,.hm-prose figure,.sumi-post figure{margin:0 0 1.6rem}
+.sumi-prose figcaption,.hm-prose figcaption{font:.78rem var(--mono);color:var(--mute);margin-top:.4rem}
+.sumi-prose .alignwide,.sumi-prose .alignfull,.hm-prose .alignwide,.hm-prose .alignfull{width:auto;max-width:100%;margin-left:0;margin-right:0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5rem 0}
+.sumi-img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:var(--radius)}
+.sumi-lite .sumi-row{padding:.4rem 0}
+.sumi-next{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin:var(--sp-5) 0 0;font-size:.92rem}
+.sumi-next span{display:block;font:.75rem var(--mono);color:var(--mute)}
+.sumi-next a:last-child{text-align:right}
 </style>{{end}}
