@@ -1,6 +1,6 @@
 {
   "name": "sumi",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A text-first blog theme under 13.37 KB with no requests, JavaScript or trackers of its own. System fonts, monospace dates, hairline rows and one vermilion accent.",
   "screenshot": "assets/screenshot.png",
   "csp": {
@@ -77,6 +77,37 @@
         "minimum": 3,
         "maximum": 20,
         "default": 6
+      },
+      "newsletter_form": {
+        "type": "string",
+        "title": "Newsletter form",
+        "description": "Slug of a Hatamoto form (Forms > New > Newsletter signup). Leave empty to show no subscribe block. The form must have email as its only required field.",
+        "default": ""
+      },
+      "newsletter_position": {
+        "type": "string",
+        "title": "Newsletter position",
+        "description": "footer: top of the footer on every page. above_posts / below_posts: around the homepage post list (other pages keep the footer position).",
+        "enum": ["footer", "above_posts", "below_posts"],
+        "default": "footer"
+      },
+      "newsletter_text": {
+        "type": "string",
+        "title": "Newsletter text",
+        "description": "The sentence above the field. Empty: no sentence.",
+        "default": "Get new posts by email. No more than one a week."
+      },
+      "newsletter_button": {
+        "type": "string",
+        "title": "Newsletter button",
+        "description": "The button label.",
+        "default": "subscribe"
+      },
+      "newsletter_placeholder": {
+        "type": "string",
+        "title": "Newsletter placeholder",
+        "description": "The hint inside the email field.",
+        "default": "you@example.com"
       }
     }
   }
