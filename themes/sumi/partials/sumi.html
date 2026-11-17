@@ -1,0 +1,1 @@
+{{define "sumi-row"}}<li class="sumi-row"><time class="sumi-date" datetime="{{formatDate .PublishedAt "2006-01-02"}}">{{formatDate .PublishedAt "01-02"}}</time><a class="sumi-t" href="{{.URL}}">{{.Title}}</a>{{with .Category}}<span class="sumi-cat">{{.}}</span>{{end}}{{with .Excerpt}}<p class="sumi-x">{{.}}</p>{{end}}</li>{{end}}

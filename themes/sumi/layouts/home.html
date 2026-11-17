@@ -1,0 +1,8 @@
+{{define "content"}}{{$n := 6}}{{with .Settings.posts_on_home}}{{$n = atoi (printf "%v" .)}}{{end}}{{if or (lt $n 3) (gt $n 20)}}{{$n = 6}}{{end}}{{$r := query (dict "schema" "post" "limit" $n)}}
+<h1 class="sumi-lede">{{default .Site.Name .Site.Tagline}}</h1>
+<p class="sumi-meta">{{with $r.Items}}{{with (index . 0).Author}}by {{with (index $r.Items 0).AuthorURL}}<a href="{{.}}">{{end}}{{.}}{{with (index $r.Items 0).AuthorURL}}</a>{{end}} &middot; {{end}}{{end}}<a href="/feed.xml">rss</a></p>
+{{if .Blocks}}{{template "page-body" .}}{{else}}{{with .Body}}<div class="sumi-prose">{{.}}</div>{{end}}{{end}}
+<h2 class="sumi-sec">Latest</h2>
+{{if $r.Items}}<ol class="sumi-rows sumi-feed">{{range $r.Items}}{{template "sumi-row" .}}{{end}}</ol>
+<p class="sumi-more"><a href="/blog">All {{$r.Total}} posts &rarr;</a></p>{{else}}<p class="sumi-empty">No posts yet.</p>{{end}}
+{{end}}
