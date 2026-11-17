@@ -11,3 +11,8 @@
 - Search marks the match in titles and excerpts with a template-only highlight that
   escapes everything and falls back to plain text for anything it cannot match safely.
 - Plain typography for Page Builder sections and the built-in partials.
+- The owner's Background and Text colours restyle the whole theme, light and dark.
+- Submenu items show in the header and footer menus; the rss and archive links follow
+  the site's feed and menu.
+- The built-in contact form is styled. Forms with a captcha need JavaScript, which the
+  theme does not load, so use a form without a captcha.
