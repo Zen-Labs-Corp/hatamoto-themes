@@ -1,6 +1,6 @@
 {
   "name": "sumi",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A text-first blog theme under 13.37 KB with no requests, JavaScript or trackers of its own. System fonts, monospace dates, hairline rows and one vermilion accent.",
   "screenshot": "assets/screenshot.png",
   "csp": {
@@ -38,6 +38,20 @@
         "title": "Show the byline on the homepage",
         "description": "The 'by <author> · rss' line under the tagline.",
         "default": true
+      },
+      "home_list": {
+        "type": "string",
+        "title": "Homepage post list",
+        "description": "Show a summary line under each post, or titles only.",
+        "enum": ["summaries", "titles"],
+        "default": "summaries"
+      },
+      "home_title": {
+        "type": "string",
+        "title": "Homepage heading",
+        "description": "auto: tagline, or the site name when there is none. tagline: only when a tagline is set. hidden: no visible heading.",
+        "enum": ["auto", "tagline", "hidden"],
+        "default": "auto"
       },
       "show_credit": {
         "type": "boolean",

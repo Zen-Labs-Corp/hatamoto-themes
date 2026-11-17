@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0
+
+- New setting `home_list` (`summaries`, `titles`): `titles` lists the home posts as titles
+  only, like the archive.
+- New setting `home_title` (`auto`, `tagline`, `hidden`): `tagline` shows the heading only
+  when a tagline is set, `hidden` never shows it. A visually hidden `h1` with the site name
+  takes its place, unless the page has a hero or its own `h1`, so the page keeps one heading.
+- Fix: a whitespace-only tagline counts as empty, so the home no longer prints an empty heading.
+- Fix: the LATEST heading no longer gets the extra top margin when the byline is off and the
+  home page has no body copy.
+
 ## 0.2.0
 
 - Footer credit: "Powered by Hatamoto CMS" after the copyright, linking to hatamoto.dev.

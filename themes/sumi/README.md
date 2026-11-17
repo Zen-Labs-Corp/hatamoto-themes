@@ -48,6 +48,8 @@ page keeps rendering.
 | `density` | `comfortable`, `compact` | `comfortable` | `compact` tightens rows and sections |
 | `show_theme_line` | boolean | `true` | the footer line about the theme's size and requests |
 | `show_home_byline` | boolean | `true` | the "by author · rss" line under the tagline on the home page |
+| `home_list` | `summaries`, `titles` | `summaries` | `titles` lists the home posts as titles only, without the summary line |
+| `home_title` | `auto`, `tagline`, `hidden` | `auto` | `auto`: tagline, or the site name when there is none. `tagline`: only when a tagline is set. `hidden`: no visible heading (a visually hidden `h1` with the site name is added, unless the page has a hero or its own `h1`) |
 | `show_credit` | boolean | `true` | the credit after the copyright in the footer |
 | `credit_text` | string | `Powered by Hatamoto CMS` | the words after the copyright |
 | `credit_url` | string | `https://hatamoto.dev` | where the credit links |
