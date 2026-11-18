@@ -299,5 +299,10 @@
    "name": "Note",
    "like": "page"
   }
- ]
+ ],
+ "theme_settings": {
+  "sumi": {
+   "newsletter_form": "newsletter"
+  }
+ }
 }

@@ -18,6 +18,8 @@ fonts, tags) is not counted by this claim.
 - **404** with a search box and the latest posts.
 - **Pages and Page Builder sections** in plain typography, with the built-in contact form
   styled to match (see Limits).
+- **Newsletter block** (optional): an email field posting to a Hatamoto form, in the
+  footer or around the homepage post list. Off until a form is named in the settings.
 - **Light by default**, dark or following the system through a setting. There is no
   visitor toggle: it would need JavaScript.
 
@@ -54,6 +56,11 @@ page keeps rendering.
 | `credit_text` | string | `Powered by Hatamoto CMS` | the words after the copyright |
 | `credit_url` | string | `https://hatamoto.dev` | where the credit links |
 | `posts_on_home` | integer 3 to 20 | `6` | how many posts the home page lists |
+| `newsletter_form` | string | empty | slug of the form the subscribe block posts to; empty shows no block |
+| `newsletter_position` | `footer`, `above_posts`, `below_posts` | `footer` | `footer`: top of the footer on every page. `above_posts` / `below_posts`: before or after the post list on the home page (other pages keep the footer) |
+| `newsletter_text` | string | `Get new posts by email. No more than one a week.` | the sentence above the field; empty removes it (the field keeps a hidden label) |
+| `newsletter_button` | string | `subscribe` | the button label |
+| `newsletter_placeholder` | string | `you@example.com` | the hint inside the email field |
 
 ## Colours
 
@@ -66,6 +73,17 @@ mode the accent is derived from it, lightened so it stays readable on the dark p
 - **Forms with a captcha.** The theme loads no JavaScript, and the captcha widget comes
   from the built-in script, so a contact form with a captcha switched on cannot submit.
   Use a form without a captcha with this theme.
+- **Newsletter block.** The form named in `newsletter_form` must exist and be active; the
+  theme cannot check it, and a wrong slug shows a form that fails on submit. The block
+  sends only an `email` field, so `email` must be the form's only required field: with
+  the Newsletter signup template, untick "consent" (or remove it). The thank-you and error
+  notice is fixed text, shown for the whole page, so it also appears next to a contact
+  form on the same page. `above_posts` and `below_posts` apply to the homepage only. A builder footer part
+  (Theme > Layout parts) replaces the footer and the block with it: use `above_posts` or
+  `below_posts`, or add the form to the part.
+- **Coming-soon page.** While the site is behind the coming-soon/site-access page, clear
+  `newsletter_form`: newer cores draw that page through the theme, and the gate blocks
+  the form post.
 
 ## Develop
 

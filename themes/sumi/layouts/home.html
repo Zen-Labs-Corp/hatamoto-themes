@@ -3,7 +3,9 @@
 {{$tag := trim .Site.Tagline}}{{$ht := printf "%v" .Settings.home_title}}{{if or (eq $ht "hidden") (and (eq $ht "tagline") (not $tag))}}{{if not $hero}}<h1 class="hm-visually-hidden">{{.Site.Name}}</h1>{{end}}{{else}}{{$lede := default .Site.Name $tag}}{{if $hero}}<p class="sumi-lede">{{$lede}}</p>{{else}}<h1 class="sumi-lede">{{$lede}}</h1>{{end}}{{end}}
 {{if ne (printf "%v" .Settings.show_home_byline) "false"}}<p class="sumi-meta">{{with $r.Items}}{{with (index . 0).Author}}by {{with (index $r.Items 0).AuthorURL}}<a href="{{.}}">{{end}}{{.}}{{with (index $r.Items 0).AuthorURL}}</a>{{end}} &middot; {{end}}{{end}}{{with .Site.Feeds}}<a href="{{(index . 0).Href}}">rss</a>{{end}}</p>{{end}}
 {{if .Blocks}}{{template "page-body" .}}{{else}}{{with .Body}}<div class="sumi-prose">{{.}}</div>{{end}}{{end}}
+{{$slug := trim .Settings.newsletter_form}}{{$pos := printf "%v" .Settings.newsletter_position}}{{if and $slug (eq $pos "above_posts")}}{{template "sumi-sub" dict "P" . "Main" true}}{{end -}}
 <h2 class="sumi-sec">Latest</h2>
 {{if $r.Items}}{{if eq (printf "%v" .Settings.home_list) "titles"}}<ol class="sumi-rows sumi-lite">{{range $r.Items}}{{template "sumi-row-lite" .}}{{end}}</ol>{{else}}<ol class="sumi-rows sumi-feed">{{range $r.Items}}{{template "sumi-row" .}}{{end}}</ol>{{end}}
 {{template "sumi-more" dict "Total" $r.Total "URL" (index $r.Items 0).URL "Nav" .Site.Nav "Foot" .Site.FooterNav}}{{else}}<p class="sumi-empty">No posts yet.</p>{{end}}
+{{if and $slug (eq $pos "below_posts")}}{{template "sumi-sub" dict "P" . "Main" true "Below" true}}{{end -}}
 {{end}}

@@ -7,3 +7,9 @@
 {{define "sumi-nav-items"}}{{$p := .Path}}{{range .Items}}<li>{{template "nav-link" dict "Item" . "Path" $p}}{{with .Children}}<ul>{{template "sumi-nav-items" dict "Items" . "Path" $p}}</ul>{{end}}</li>{{end}}{{end}}
 
 {{define "sumi-more"}}{{$u := .URL}}{{$h := ""}}{{range .Nav}}{{if and (not $h) (hasPrefix $u (printf "%s/" .Href))}}{{$h = .Href}}{{end}}{{end}}{{range .Foot}}{{if and (not $h) (hasPrefix $u (printf "%s/" .Href))}}{{$h = .Href}}{{end}}{{end}}{{if $h}}<p class="sumi-more"><a href="{{$h}}">All {{.Total}} posts &rarr;</a></p>{{end}}{{end}}
+{{define "sumi-sub"}}{{$p := .P}}{{$slug := trim $p.Settings.newsletter_form}}<form class="sumi-sub{{if .Main}} sumi-sub-main{{end}}{{if .Below}} sumi-sub-below{{end}}" method="post" action="/forms/{{$slug}}/submit">
+{{with trim $p.Settings.newsletter_text}}<label class="sumi-sub-l" for="sumi-sub-email">{{.}}</label>{{else}}<label class="hm-visually-hidden" for="sumi-sub-email">Email</label>{{end}}
+<span class="sumi-sub-f"><input id="sumi-sub-email" type="email" name="email" placeholder="{{$p.Settings.newsletter_placeholder}}" required autocomplete="email"><button type="submit">{{default "subscribe" (trim $p.Settings.newsletter_button)}}</button></span>
+<input type="hidden" name="_redirect" value="{{$p.Path}}"><input type="hidden" name="page_url" value="{{$p.Path}}">
+<div class="hm-visually-hidden" aria-hidden="true"><label>Website<input type="text" name="hm_website" tabindex="-1" autocomplete="off"></label></div>
+{{if $p.Submitted}}<p class="sumi-sub-note" role="status">Thanks, you are subscribed.</p>{{else if $p.FormError}}<p class="sumi-sub-note" role="alert">That did not go through. Check the address and try again.</p>{{end}}</form>{{end}}

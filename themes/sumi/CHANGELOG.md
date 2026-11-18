@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0
+
+- New setting `newsletter_form`: the slug of a Hatamoto form. When set, an email field with
+  a subscribe button is shown. Empty (the default) leaves the pages unchanged.
+- New setting `newsletter_position` (`footer`, `above_posts`, `below_posts`): the block sits
+  at the top of the footer, or before or after the post list on the home page.
+- New settings `newsletter_text`, `newsletter_button` and `newsletter_placeholder`: the
+  sentence (empty removes it), the button label and the field hint.
+
 ## 0.3.1
 
 - Fix: the admin preview of a draft post no longer fails with "preview failed" on cores
