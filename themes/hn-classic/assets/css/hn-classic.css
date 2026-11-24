@@ -168,7 +168,7 @@ div.hn-threads > h2 { margin: 6px 0 6px 10px; font: bold var(--hn-size) var(--hn
 div.hn-threads > p { margin: 6px 0 6px 10px; }
 div.hn-threads .hn-notice { color: var(--hn-text); font-weight: bold; }
 div.hn-threads .hn-c { margin-bottom: 0; padding: 6px 0 6px 10px; }
-div.hn-threads .hn-head { font-size: 8pt; color: var(--hn-muted); }
+div.hn-threads .hn-head { font-size: 8pt; color: var(--hn-muted); overflow-wrap: anywhere; }
 div.hn-threads .hn-head a, div.hn-threads .hn-head button { color: var(--hn-muted); }
 div.hn-threads .hn-head form { display: inline; margin: 0; }
 div.hn-threads .hn-head button { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
@@ -179,6 +179,8 @@ div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form 
 div.hn-threads .hn-vote-form button[title]::before { content: ""; position: absolute; inset: 0; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 div.hn-threads .hn-vote-form button[title=downvote]::before { clip-path: polygon(0 0, 100% 0, 50% 100%); }
 div.hn-threads .hn-vote-form button[title]:hover::before, div.hn-threads .hn-vote-form button[title]:focus-visible::before { background: var(--hn-text); }
+div.hn-threads .hn-vote-form button:not([title]) { padding: 0; border: 0; background: none; font: inherit; font-size: 8pt; color: var(--hn-muted); cursor: pointer; }
+div.hn-threads .hn-vote-form button:not([title]):hover, div.hn-threads .hn-vote-form button:not([title]):focus-visible { text-decoration: underline; }
 div.hn-threads .hn-text { font-size: var(--hn-size-comment); line-height: 1.35; margin: 3px 0 2px; max-width: 800px; overflow-wrap: anywhere; }
 div.hn-threads .hn-text p { margin: 6px 0 0; }
 div.hn-threads .hn-text p:first-child { margin-top: 0; }
@@ -194,6 +196,7 @@ div.hn-ub { margin: -6px 0 6px; padding: 0 6px 2px; text-align: right; backgroun
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
 @media (max-width: 750px) {
+  ol.hn-stories { padding-left: 4px; }
   .hn-story { grid-template-columns: 22px 14px 1fr; }
   .hn-item-text { margin-left: 38px; }
   .hn-more { padding-left: 38px; }
