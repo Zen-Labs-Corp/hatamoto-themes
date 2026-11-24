@@ -41,7 +41,7 @@ shown under the title; the entity body is the fallback) and `kind` (`story`, `as
 ## Markup the hn plugin prints
 
 The theme styles, but does not print, the markup of the hn plugin. Its section types are
-`hn_feed`, `hn_submit`, `hn_item`, `hn_login`, `hn_user` and `hn_userbar`. The class vocabulary:
+`hn_feed`, `hn_submit`, `hn_item`, `hn_login`, `hn_user`, `hn_userbar` and `hn_threads`. The class vocabulary:
 
 - Story list (`hn_feed`, and the head of `hn_item`): `ol.hn-stories > li.hn-story`, each row a grid of
   `.hn-rank`, `.hn-vote-cell` and `.hn-title` (with `.hn-site` for the host), then `.hn-sub`
@@ -54,9 +54,14 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
 - Login (`hn_login`): `div.hn-login` with a bold line, a form or link and a `.hn-note`.
 - User page (`hn_user`): `div.hn-user` holding a plain two-column `<th>`/`<td>` table; the owner's
   page is a form with inputs.
+- Threads and newest comments (`hn_threads`): `div.hn-threads` with an optional `h2`, a `.hn-notice`, one
+  `div.hn-c` per comment (`.hn-dead` and `.hn-faint` states) holding a `.hn-head` line, a `.hn-text` body
+  and a `.hn-reply` link, then a `.hn-more` link. The vote cell in the head line is `span.hn-vote` with
+  `form.hn-vote-form` buttons (up and down arrows, or an `unvote` text button). The theme gives these the
+  look of its own comment rows.
 - User bar (`hn_userbar`): on the pages the plugin serves, it injects `div.hn-ub` as the first section
   of `main`, straight under the header bar, not in the header. The theme zeroes the padding and rule
-  core puts on the plugin's `section.hm-section--hn_*` wrappers. The theme gives it the bar colour
+  core puts on every plugin wrapper (`section.hm-section` whose class starts `hm-section--hn_`). The theme gives it the bar colour
   and right-aligns it. The `.hn-userbar` span inside the header stays an empty slot.
 - Comments: `li.hn-c` with `.hn-c-row`, `.hn-vote`, `.hn-head`, `.hn-op`, `.hn-text` and `.hn-reply`;
   states `.hn-dead`, `.hn-faint` and `.hn-collapsed` go on the `li.hn-c`.
