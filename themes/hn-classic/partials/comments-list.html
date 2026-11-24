@@ -1,0 +1,4 @@
+{{define "comments/list"}}{{with $.Comments}}<div class="hn-thread-wrap">
+<ol class="hn-thread" id="hm-comments-list">{{range .Items}}{{template "comments/item" dict "Item" . "Strings" $.Strings "Actions" $.Settings.plugin_actions "Path" $.Path "Parent" "" "Root" ""}}{{end}}</ol>
+{{if .PageLinks}}<nav class="hn-pager" aria-label="{{t $ "comments_pager_label"}}"><span>{{t $ "comments_older"}}:</span>{{range .PageLinks}}{{if not .Page}}<span aria-hidden="true">…</span>{{else if .Current}}<span aria-current="page">{{.Page}}</span>{{else}}<a href="{{.URL}}"{{if eq .Page (add $.Comments.Page 1)}} rel="next"{{else if eq .Page (sub $.Comments.Page 1)}} rel="prev"{{end}}>{{.Page}}</a>{{end}}{{end}}{{if .NextURL}}<a class="hn-more" href="{{.NextURL}}" rel="next">More</a>{{end}}</nav>
+{{end}}</div>{{end}}{{end}}
