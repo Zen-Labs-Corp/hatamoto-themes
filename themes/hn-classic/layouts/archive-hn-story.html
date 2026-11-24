@@ -2,7 +2,7 @@
 {{if .Items}}<ol class="hn-stories">{{range $n, $i := .Items}}<li class="hn-story{{if eq $i.Attrs.kind "job"}} hn-job{{end}}">
 <span class="hn-rank">{{add $n 1}}.</span><span class="hn-vote"></span>
 <span class="hn-title"><a href="{{with $i.Attrs.url}}{{safeHref .}}{{else}}{{$i.URL}}{{end}}">{{$i.Title}}</a></span>
-<span class="hn-sub">{{with $i.Author}}{{if ne $i.Attrs.kind "job"}}by {{.}} {{end}}{{end}}{{if not $i.PublishedAt.IsZero}}<time datetime="{{formatDate $i.PublishedAt "2006-01-02T15:04:05Z07:00"}}">{{template "hn-ago" dict "T" $i.PublishedAt "Strings" $.Strings}}</time>{{end}}</span>
+<span class="hn-sub">{{with $i.Author}}{{if ne $i.Attrs.kind "job"}}by {{.}} {{end}}{{end}}{{if not $i.PublishedAt.IsZero}}<time datetime="{{formatDate $i.PublishedAt "2006-01-02T15:04:05Z07:00"}}">{{template "hn-ago" dict "T" $i.PublishedAt "Strings" $.Strings}}</time>{{end}} | <a href="{{$i.URL}}">discuss</a></span>
 </li>{{end}}</ol>
 {{with .Pagination}}{{if .HasNext}}<a class="hn-more" href="{{.NextURL}}" rel="next">More</a>{{end}}{{end}}
 {{else}}<p class="hn-note">{{t $ "nothing_here_yet"}}</p>{{end}}{{end}}
