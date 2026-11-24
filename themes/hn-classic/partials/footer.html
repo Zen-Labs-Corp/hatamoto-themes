@@ -1,0 +1,4 @@
+{{define "footer"}}<footer class="hn-footer">
+{{if .Site.FooterNav}}<nav class="hn-links" aria-label="Footer">{{range .Site.FooterNav}}{{if .Children}}{{range .Children}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{else}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{end}}</nav>
+{{end}}<form class="hn-search" method="get" action="/search" role="search"><label for="hn-q">Search:</label> <input id="hn-q" type="text" name="q" size="17"></form>
+</footer>{{end}}

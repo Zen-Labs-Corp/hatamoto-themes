@@ -1,0 +1,59 @@
+/* Comments: replaces the built-in comments stylesheet (markup in partials/comments-*.html). */
+.hn-comments { margin: 0; }
+.hn-thread { list-style: none; margin: 0; padding: 0; }
+.hn-thread .hn-thread { padding-left: var(--hn-indent, 40px); }
+.hn-c-row { display: grid; grid-template-columns: 14px 1fr; column-gap: 2px; padding: 6px 0; }
+.hn-vote-form { margin: 0; }
+.hn-arrow { border: 0; background: none; padding: 0; margin-top: 3px; cursor: pointer; line-height: 0; }
+.hn-arrow svg { fill: var(--hn-arrow); }
+.hn-head { margin: 0; font-size: 8pt; color: var(--hn-muted); }
+.hn-head a { color: var(--hn-muted); }
+.hn-op { color: var(--hn-op); }
+.hn-text { font-size: var(--hn-size-comment); line-height: 1.35; margin: 3px 0 2px; max-width: 800px; overflow-wrap: anywhere; }
+.hn-text p { margin: 6px 0 0; }
+.hn-text p:first-child { margin-top: 0; }
+.hn-text pre { font-family: var(--hn-mono); font-size: 9pt; white-space: pre-wrap; overflow-wrap: anywhere; }
+.hn-reply { margin: 0; font-size: var(--hn-size-sub); text-transform: lowercase; }
+.hn-reply a { text-decoration: underline; }
+.hn-inline { display: inline; margin: 0; }
+.hn-linkbtn { border: 0; background: none; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.hn-linkbtn:hover, .hn-linkbtn:focus-visible { text-decoration: underline; }
+.hn-edit { font-size: var(--hn-size-sub); }
+.hn-pager { padding: 8px 0 0 44px; }
+.hn-pager > * { margin-right: 6px; }
+.hn-pager .hn-more { padding: 0; }
+/* states, driven by the plugin */
+.hn-c.hn-dead .hn-text { color: var(--hn-dead); }
+.hn-c.hn-faint .hn-text { color: var(--hn-faint); }
+.hn-c.hn-collapsed .hn-text, .hn-c.hn-collapsed .hn-reply, .hn-c.hn-collapsed .hn-thread { display: none; }
+.hn-vote.hn-voted .hn-arrow { visibility: hidden; }
+#hm-comments, #hm-comment-form, .hn-c { scroll-margin-top: 8px; }
+@media (max-width: 750px) {
+  .hn-comments { padding: 0 8px; }
+  .hn-thread .hn-thread { padding-left: 14px; }
+  .hn-pager { padding-left: 16px; }
+}
+
+/* comment form */
+#hm-comment-form { margin: 6px 0 14px 44px; }
+#hm-comment-form .hn-form-tbl { margin-left: 0; }
+#hm-comment-form .hn-note { margin-left: 0; }
+.hn-hint { font-size: var(--hn-size-sub); color: var(--hn-muted); }
+.hn-textarea { display: block; width: 500px; max-width: 100%; height: 110px; margin-top: 6px; font-family: var(--hn-mono); font-size: 10pt; }
+.hn-extra, .hn-submit { margin: 8px 0 0; }
+.hn-extra { font-size: var(--hn-size-sub); color: var(--hn-muted); }
+.hn-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.hn-notice { color: var(--hn-text); }
+.hn-error { color: var(--hn-accent); }
+button { font: inherit; font-size: 10pt; padding: 1px 6px; }
+@media (max-width: 750px) {
+  #hm-comment-form { margin-left: 0; }
+  .hn-textarea, .hn-reply-form.hm-form textarea { width: 100%; }
+  .hn-form-tbl input { max-width: 100%; }
+}
+/* core's hm.js mounts the captcha on form.hm-form: neutralise the default grid look */
+.hn-reply-form.hm-form { display: block; gap: 0; }
+.hn-reply-form.hm-form input[type=text], .hn-reply-form.hm-form input[type=email], .hn-reply-form.hm-form textarea {
+  width: auto; padding: 1px 2px; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: #fff; border: 1px solid #888; border-radius: 0;
+}
+.hn-reply-form.hm-form textarea { width: 500px; max-width: 100%; padding: 1px 2px; }

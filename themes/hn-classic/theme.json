@@ -1,0 +1,39 @@
+{
+  "name": "hn-classic",
+  "version": "1.0.0",
+  "description": "A link-and-discussion theme: a coloured header bar, ranked story rows, threaded comments with no-JS vote and flag forms, Verdana, no JavaScript.",
+  "screenshot": "assets/screenshot.png",
+  "csp": {
+    "strictScripts": true
+  },
+  "builder": {
+    "tokens": true,
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
+  },
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "width": {
+        "type": "string",
+        "title": "Page width",
+        "description": "wide keeps the classic centred column (85%); full uses the whole window.",
+        "enum": [
+          "wide",
+          "full"
+        ],
+        "default": "wide"
+      },
+      "plugin_actions": {
+        "type": "boolean",
+        "title": "Comment vote and flag buttons",
+        "description": "Print the no-JavaScript vote and flag forms on comments. They post to the hn plugin; turn off on a site without it.",
+        "default": true
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{default "en" .Site.Language}}" data-hm-contract="1"{{if .Preview}} data-hm-preview="true"{{end}}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{template "head" .Head}}
+<link rel="stylesheet" href="{{.CSSHref}}">
+{{if .Tokens.Any}}<style>:root{ {{with .Tokens.Primary}}--hm-primary:{{.}};{{end}}{{with .Tokens.Background}}--hm-bg:{{.}};{{end}}{{with .Tokens.Text}}--hm-text:{{.}};{{end}}{{with .Tokens.Font}}--hm-font:{{.}};{{end}}{{with .Tokens.FontHeading}}--hm-font-heading:{{.}};{{end}}{{with .Tokens.RadiusSm}}--hm-radius-sm:{{.}};{{end}}{{with .Tokens.RadiusMd}}--hm-radius-md:{{.}};{{end}}{{with .Tokens.RadiusLg}}--hm-radius-lg:{{.}};{{end}} }</style>
+{{end}}{{template "plugin-head" .}}</head>
+<body class="hn-body hn-kind-{{.Kind}} hn-w-{{.Settings.width}}">
+<svg class="hn-sprite" width="0" height="0" aria-hidden="true" focusable="false"><symbol id="hn-up" viewBox="0 0 10 10"><polygon points="5,0 10,10 0,10"/></symbol><symbol id="hn-down" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,10"/></symbol></svg>
+<a class="hm-skip" href="#main-content">Skip to content</a>
+<div class="hn-page">
+{{template "header" .}}
+<main id="main-content" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>
+{{template "content" .}}
+</main>
+{{template "footer" .}}
+</div>
+{{template "scripts" .}}
+{{template "plugin-body" .}}</body>
+</html>
