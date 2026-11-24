@@ -359,7 +359,29 @@
    "days_ago": 5,
    "excerpt": "Twelve seats outside, sunset bookings from 19:30.",
    "featured_image": "{{media:fish.png}}",
-   "content": "<p>The terrace opens for the season on 1 May.</p>"
+   "content": "<p>The terrace opens for the season on 1 May.</p>",
+   "comments": [
+    {
+     "author": "Giulia Russo",
+     "days_ago": 0,
+     "hours_ago": 22,
+     "body": "<p>Lovely news. Can we book a terrace table for six, or is it walk-in only?</p>",
+     "replies": [
+      {
+       "site_author": true,
+       "days_ago": 0,
+       "hours_ago": 18,
+       "body": "<p>You can book it, Giulia. Choose the terrace on the booking page and we will hold the corner table if it is free.</p>"
+      }
+     ]
+    },
+    {
+     "author": "Sam Whitfield",
+     "days_ago": 0,
+     "hours_ago": 4,
+     "body": "<p>The grilled sardines last summer were the best thing we ate all year. Glad to hear they are back.</p>"
+    }
+   ]
   },
   {
    "name": "A new pasta shape every month",
