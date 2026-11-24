@@ -29,6 +29,7 @@
 .hn-vote.hn-voted .hn-arrow { visibility: hidden; }
 #hm-comments, #hm-comment-form, .hn-c { scroll-margin-top: 8px; }
 @media (max-width: 750px) {
+  .hn-comments { padding: 0 8px; }
   .hn-thread .hn-thread { padding-left: 14px; }
   .hn-pager { padding-left: 16px; }
 }
