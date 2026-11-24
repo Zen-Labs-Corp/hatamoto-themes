@@ -200,9 +200,14 @@ div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
 .hn-userbar div.hn-ub { margin: 0; padding: 0; background: none; color: inherit; text-align: right; }
 @media (max-width: 750px) {
   ol.hn-stories { padding-left: 4px; }
-  .hn-story { grid-template-columns: 22px 14px 1fr; }
-  .hn-item-text { margin-left: 38px; }
-  .hn-more { padding-left: 38px; }
+  .hn-story { grid-template-columns: 22px 24px 1fr; }
+  .hn-story > .hn-vote, .hn-vote-cell { display: grid; place-items: center; width: 24px; height: 24px; margin-top: -4px; }
+  button.hn-vote { width: 24px; height: 24px; }
+  button.hn-vote::before { inset: 7px; }
+  div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form button[title=downvote] { width: 24px; height: 24px; }
+  div.hn-threads .hn-vote-form button[title]::before { inset: 7px; }
+  .hn-item-text { margin-left: 50px; }
+  .hn-more { padding-left: 54px; }
   .hn-form-tbl { width: calc(100% - 10px); }
   .hn-form-tbl td:last-child { width: 100%; }
   .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl input[type=email], .hn-form-tbl textarea, div.hn-user input[type=text], div.hn-signin input[type=email] { width: 100%; }

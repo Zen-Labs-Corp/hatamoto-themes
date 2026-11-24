@@ -31,7 +31,10 @@
 @media (max-width: 750px) {
   .hn-comments { padding: 0 8px; }
   .hn-thread .hn-thread { padding-left: 14px; }
-  .hn-pager { padding-left: 16px; }
+  .hn-c-row { grid-template-columns: 24px 1fr; }
+  .hn-c-row > .hn-vote { width: 24px; height: 24px; margin-top: -4px; }
+  .hn-arrow { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-top: 0; }
+  .hn-pager { padding-left: 26px; }
 }
 
 /* comment form */
