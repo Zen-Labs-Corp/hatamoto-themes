@@ -143,8 +143,8 @@ p.hn-note, .hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0
 .hn-lbl { color: var(--hn-muted); text-align: right; white-space: nowrap; }
 .hn-form-tbl .hn-item-text { margin: 0 0 4px; }
 .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl textarea { max-width: 100%; }
-main > form > button { margin: 8px 0 0 10px; }
-.hn-form-tbl button, div.hn-login button, div.hn-user button, main > form > button { font: inherit; font-size: 10pt; color: var(--hn-text); background: #efefef; border: 1px solid #888; border-radius: 0; padding: 1px 6px; cursor: pointer; }
+main .hm-section--hn_submit form > button { margin: 8px 0 0 10px; }
+.hn-form-tbl button, div.hn-login button, div.hn-user button, .hm-section--hn_submit form > button { font: inherit; font-size: 10pt; color: var(--hn-text); background: #efefef; border: 1px solid #888; border-radius: 0; padding: 1px 6px; cursor: pointer; }
 div.hn-login, div.hn-user, div.hn-ub { font: var(--hn-size) var(--hn-font); }
 div.hn-login, div.hn-user { padding: 8px 10px; }
 div.hn-login p, div.hn-user > p { margin: 8px 0; }
@@ -155,6 +155,9 @@ div.hn-user th, div.hn-user td { padding: 2px 12px 2px 0; vertical-align: top; t
 div.hn-user th { color: var(--hn-muted); font-weight: normal; }
 div.hn-user input[type=text] { width: 30em; }
 div.hn-user input[type=number] { width: 5em; font-family: var(--hn-mono); font-size: 10pt; border: 1px solid #888; }
+/* core wraps every block in section.hm-section (4-7rem padding, hairline); the
+   plugin's blocks are dense, so drop both */
+.hm-section--hn_feed, .hm-section--hn_submit, .hm-section--hn_item, .hm-section--hn_login, .hm-section--hn_user, .hm-section--hn_userbar { padding: 0; border-top: 0; }
 /* the user bar: the plugin injects it as the first section of each page, so it
    sits straight under the header bar and carries the bar colour */
 div.hn-ub { margin: -6px 0 6px; padding: 0 6px 2px; text-align: right; background: var(--hn-accent); color: var(--hn-on-accent); }

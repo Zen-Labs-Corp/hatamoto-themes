@@ -54,8 +54,9 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
 - Login (`hn_login`): `div.hn-login` with a bold line, a form or link and a `.hn-note`.
 - User page (`hn_user`): `div.hn-user` holding a plain two-column `<th>`/`<td>` table; the owner's
   page is a form with inputs.
-- User bar (`hn_userbar`): the plugin injects `div.hn-ub` as the first section of each page, so it
-  sits in `main`, straight under the header bar, not in the header. The theme gives it the bar colour
+- User bar (`hn_userbar`): on the pages the plugin serves, it injects `div.hn-ub` as the first section
+  of `main`, straight under the header bar, not in the header. The theme zeroes the padding and rule
+  core puts on the plugin's `section.hm-section--hn_*` wrappers. The theme gives it the bar colour
   and right-aligns it. The `.hn-userbar` span inside the header stays an empty slot.
 - Comments: `li.hn-c` with `.hn-c-row`, `.hn-vote`, `.hn-head`, `.hn-op`, `.hn-text` and `.hn-reply`;
   states `.hn-dead`, `.hn-faint` and `.hn-collapsed` go on the `li.hn-c`.
