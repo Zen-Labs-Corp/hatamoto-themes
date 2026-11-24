@@ -70,13 +70,13 @@ main { padding: 6px 0 10px; }
 .hn-userbar { white-space: nowrap; padding-right: 4px; }
 .hn-menu { display: none; }
 @media (max-width: 750px) {
-  .hn-bar { padding-right: 56px; }
+  .hn-bar { row-gap: 0; padding-right: 56px; }
   .hn-nav { display: none; }
   .hn-userbar { margin-left: auto; }
   .hn-menu { display: block; order: 10; flex: 0 0 100%; }
   .hn-menu summary { position: absolute; top: 2px; right: 2px; list-style: none; cursor: pointer; border: 1px solid var(--hn-on-accent); padding: 0 6px; }
   .hn-menu summary::-webkit-details-marker { display: none; }
-  .hn-drawer { background: var(--hn-accent); margin-right: -54px; padding: 4px 6px 6px; border-top: 1px solid var(--hn-drawer-line); }
+  .hn-drawer { background: var(--hn-accent); margin: 2px -54px 0 0; padding: 4px 6px 6px; border-top: 1px solid var(--hn-drawer-line); }
   .hn-drawer a { display: inline-block; margin: 3px 10px 3px 0; }
 }
 .hn-footer { border-top: 2px solid var(--hn-border); margin-top: 10px; padding: 10px 0 14px; text-align: center; font-size: 8pt; }
