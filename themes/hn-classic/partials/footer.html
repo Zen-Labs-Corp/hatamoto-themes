@@ -1,17 +1,4 @@
 {{define "footer"}}<footer class="hn-footer">
-<div class="hn-wrap">
-<div class="hn-footer__top">
-<p class="hn-footer__brand">{{.Site.Name}}{{with .Site.Tagline}}<span>{{.}}</span>{{end}}</p>
-{{if .Site.FooterNav}}<nav class="hn-footer__nav" aria-label="Footer">
-{{range .Site.FooterNav}}<div class="hn-footer__col">
-{{if .Children}}<p class="hn-footer__title">{{.Label}}</p>
-<ul>{{range .Children}}<li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li>{{end}}</ul>{{else}}<ul><li>{{template "nav-link" dict "Item" . "Path" $.Path}}</li></ul>{{end}}
-</div>
-{{end}}</nav>
-{{end}}</div>
-{{if .Site.SocialLinks}}<ul class="hn-social">
-{{range .Site.SocialLinks}}<li><a href="{{cta .URL}}" target="_blank" rel="noopener noreferrer">{{.Label}}</a></li>
-{{end}}</ul>
-{{end}}<p class="hn-footer__legal">&copy; {{year}} {{.Site.Name}}</p>
-</div>
+{{if .Site.FooterNav}}<nav class="hn-links" aria-label="Footer">{{range .Site.FooterNav}}{{if .Children}}{{range .Children}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{else}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{end}}</nav>
+{{end}}<form class="hn-search" method="get" action="/search" role="search"><label for="hn-q">Search:</label> <input id="hn-q" type="text" name="q" size="17"></form>
 </footer>{{end}}

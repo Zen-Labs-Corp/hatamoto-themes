@@ -1,9 +1,6 @@
-{{define "header"}}<header class="hn-header">
-<div class="hn-wrap hn-header__inner">
-<a class="hn-brand" href="/" aria-label="{{.Site.Name}}, home">{{if .Site.LogoURL}}<img src="{{imgsrc .Site.LogoURL}}" alt="{{.Site.Name}}" height="28">{{else}}<span class="hn-brand__name">{{.Site.Name}}</span>{{end}}</a>
-{{if .Site.Nav}}<nav class="hn-nav" aria-label="Primary">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav>
-{{end}}<div class="hn-header__end">
-{{with .Site.HeaderCTA}}<a class="hm-btn hn-header__cta" href="{{cta .URL}}">{{.Label}}</a>
-{{end}}</div>
-</div>
+{{define "header"}}<header class="hn-bar">
+<a class="hn-brand" href="/">{{if .Site.LogoURL}}<img class="hn-logo-img" src="{{imgsrc .Site.LogoURL}}" alt="" width="18" height="18">{{else}}<span class="hn-logo" aria-hidden="true">{{printf "%.1s" .Site.Name}}</span>{{end}}<span class="hn-name">{{.Site.Name}}</span></a>
+{{if .Site.Nav}}<nav class="hn-nav" aria-label="Primary">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav>{{else}}<span class="hn-nav"></span>{{end}}
+<span class="hn-userbar"></span>
+{{if .Site.Nav}}<details class="hn-menu"><summary>menu</summary><nav class="hn-drawer" aria-label="Menu">{{range .Site.Nav}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}</nav></details>{{end}}
 </header>{{end}}
