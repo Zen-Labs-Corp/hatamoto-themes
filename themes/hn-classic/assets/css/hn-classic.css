@@ -67,12 +67,12 @@ main { padding: 6px 0 10px; }
 .hn-nav { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hn-nav a + a::before, .hn-links a + a::before { content: " | "; display: inline-block; white-space: pre; text-decoration: none; }
 .hn-nav a[aria-current="page"] { font-weight: bold; }
-.hn-userbar { white-space: nowrap; padding-right: 4px; }
+.hn-userbar { white-space: nowrap; padding-right: 4px; min-width: 0; }
 .hn-menu { display: none; }
 @media (max-width: 750px) {
   .hn-bar { row-gap: 0; padding-right: 56px; }
   .hn-nav { display: none; }
-  .hn-userbar { margin-left: auto; }
+  .hn-userbar { margin-left: auto; white-space: normal; }
   .hn-menu { display: block; order: 10; flex: 0 0 100%; }
   .hn-menu summary { position: absolute; top: 2px; right: 2px; list-style: none; cursor: pointer; border: 1px solid var(--hn-on-accent); padding: 0 6px; }
   .hn-menu summary::-webkit-details-marker { display: none; }
@@ -190,11 +190,14 @@ div.hn-threads .hn-faint .hn-text { color: var(--hn-faint); }
 div.hn-threads .hn-reply { margin: 0; font-size: var(--hn-size-sub); }
 div.hn-threads .hn-reply a { text-decoration: underline; }
 div.hn-threads .hn-more { padding: 8px 0 0; }
-/* the user bar: the plugin injects it as the first section of each page, so it
-   sits straight under the header bar and carries the bar colour */
+/* the user bar (div.hn-ub) has two positions. Without the plugin script it stays
+   at the top of main, straight under the header bar, as a strip in the bar colour.
+   With the script it moves into the header slot (.hn-userbar): plain white text
+   on the bar itself. */
 div.hn-ub { margin: -6px 0 6px; padding: 0 6px 2px; text-align: right; background: var(--hn-accent); color: var(--hn-on-accent); }
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
+.hn-userbar div.hn-ub { margin: 0; padding: 0; background: none; color: inherit; text-align: right; }
 @media (max-width: 750px) {
   ol.hn-stories { padding-left: 4px; }
   .hn-story { grid-template-columns: 22px 14px 1fr; }
