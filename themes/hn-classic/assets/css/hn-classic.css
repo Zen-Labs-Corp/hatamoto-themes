@@ -115,3 +115,8 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
   .hn-item-text { margin-left: 38px; }
   .hn-more { padding-left: 38px; }
 }
+
+/* ---- 404 ---- */
+.hn-e404 { padding: 30px 10px; text-align: center; }
+.hn-e404__title { font-family: var(--hn-font); font-size: var(--hn-size); font-weight: bold; letter-spacing: normal; margin: 0 0 1em; }
+.hn-e404 a { text-decoration: underline; }
