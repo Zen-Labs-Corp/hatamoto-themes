@@ -55,6 +55,9 @@ The comment rows the theme prints itself carry two forms for the plugin:
 - `POST /p/hn/vote/comment/<id>` with hidden `how=up` and `next`
 - `POST /p/hn/flag/comment/<id>` with hidden `next`
 
+The vote cell on each comment row is `<span class="hn-vote" data-hn-comment="<id>">`, printed whether
+or not the forms are, so the plugin script can mark the arrows the visitor already used.
+
 `<id>` is the comment id, the same as the row's `id="comment-<id>"`. Neither form is printed for
 the visitor's own comment.
 
