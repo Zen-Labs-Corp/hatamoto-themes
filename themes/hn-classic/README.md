@@ -25,10 +25,41 @@ page keeps rendering.
 
 | Setting | Default | What it does |
 | --- | --- | --- |
-| Colour mode | `light` | what a first visit shows: `light`, `dark` or `auto` (follows the system); visitors can still switch |
-| Spacing | `comfortable` | `compact` tightens the space between sections |
+| Page width | `wide` | `wide` is the centred 85% column, `full` uses the whole window (always full width under 750 px) |
+| Comment vote and flag buttons | on | prints the no-JavaScript vote and flag forms on comments, posting to `/p/hn/...`; turn off on a site without the hn plugin |
 
-Colours, fonts and corners follow **Theme > Colours and fonts**.
+Colours, fonts and corners follow **Theme > Colours and fonts** (the header bar uses the
+primary colour).
+
+## Markup the hn plugin prints
+
+The theme styles, but does not print, the markup of the hn plugin. The class vocabulary:
+
+- Story list: `ol.hn-stories > li.hn-story` with `.hn-rank`, `.hn-vote` (add `.hn-voted` once voted),
+  `.hn-title` (with `.hn-site` for the host) and `.hn-sub`; `.hn-more` is the "More" link.
+- Comments: `li.hn-c` with `.hn-c-row`, `.hn-vote`, `.hn-head`, `.hn-op`, `.hn-text` and `.hn-reply`;
+  states `.hn-dead`, `.hn-faint` and `.hn-collapsed` go on the `li.hn-c`.
+- Header: `.hn-userbar` is an empty slot in the bar for the user name, karma and logout.
+- Forms and tables: `.hn-form-tbl`, `.hn-lbl`, `.hn-note`, `.hn-user-tbl`, `.hn-login`.
+- Arrow sprite, available on every page: `<svg><use href="#hn-up"/></svg>` and `#hn-down`.
+
+The comment rows the theme prints itself carry two forms for the plugin:
+
+- `POST /p/hn/vote/comment/<id>` with hidden `how=up` and `next`
+- `POST /p/hn/flag/comment/<id>` with hidden `next`
+
+`<id>` is the comment id, the same as the row's `id="comment-<id>"`. Neither form is printed for
+the visitor's own comment.
+
+## Known gaps
+
+- The grey sub line (`#828282` on `#f6f6ef`) is about 3.4:1, below WCAG AA for small text. It is
+  kept from the approved design; links underline on hover and focus and nothing relies on colour
+  alone. A later version may darken it.
+- Dead, faint and collapsed comments, a vouch form and a sign-in page are styled but need fields
+  core does not expose yet (comment status, a sign-in layout, a locked name field). Follow-ups.
+- Story rank restarts at 1 on archive pages after the first.
+- No dark mode, by design.
 
 ## Develop
 
@@ -36,7 +67,7 @@ From the root of the `hatamoto-themes` repository:
 
 ```sh
 scripts/dev-site.sh blog themes/hn-classic --serve   # a seeded local site with this theme, live reload
-scripts/check.sh themes/hn-classic                            # the full check: package, render, browser, screenshot
+scripts/check.sh themes/hn-classic                   # the full check: package, render, browser, screenshot
 ```
 
 `dev/` is not part of the package.
