@@ -40,14 +40,25 @@ shown under the title; the entity body is the fallback) and `kind` (`story`, `as
 
 ## Markup the hn plugin prints
 
-The theme styles, but does not print, the markup of the hn plugin. The class vocabulary:
+The theme styles, but does not print, the markup of the hn plugin. Its section types are
+`hn_feed`, `hn_submit`, `hn_item`, `hn_login`, `hn_user` and `hn_userbar`. The class vocabulary:
 
-- Story list: `ol.hn-stories > li.hn-story` with `.hn-rank`, `.hn-vote` (add `.hn-voted` once voted),
-  `.hn-title` (with `.hn-site` for the host) and `.hn-sub`; `.hn-more` is the "More" link.
+- Story list (`hn_feed`, and the head of `hn_item`): `ol.hn-stories > li.hn-story`, each row a grid of
+  `.hn-rank`, `.hn-vote-cell` and `.hn-title` (with `.hn-site` for the host), then `.hn-sub`
+  (`.hn-score`, `a.hn-user`, the age, `.hn-act` forms holding `.hn-unvote`, `.hn-edit` or `.hn-delete`
+  buttons or links). The vote cell holds `form.hn-vote-form > button.hn-vote` (drawn as the grey arrow),
+  an empty `span.hn-vote` or, once voted, `span.hn-vote.hn-voted` (arrow hidden). `.hn-more` is the
+  "More" link, `.hn-heading` a line above the list, `.hn-notice` a status line and `.hn-note` a grey note.
+- Item page (`hn_item`): `.hn-item-head > .hn-story`, then `.hn-item-text` with one `<p>` per paragraph.
+- Submit (`hn_submit`): `table.hn-form-tbl` with `.hn-lbl` label cells, then a `.hn-note`.
+- Login (`hn_login`): `div.hn-login` with a bold line, a form or link and a `.hn-note`.
+- User page (`hn_user`): `div.hn-user` holding a plain two-column `<th>`/`<td>` table; the owner's
+  page is a form with inputs.
+- User bar (`hn_userbar`): the plugin injects `div.hn-ub` as the first section of each page, so it
+  sits in `main`, straight under the header bar, not in the header. The theme gives it the bar colour
+  and right-aligns it. The `.hn-userbar` span inside the header stays an empty slot.
 - Comments: `li.hn-c` with `.hn-c-row`, `.hn-vote`, `.hn-head`, `.hn-op`, `.hn-text` and `.hn-reply`;
   states `.hn-dead`, `.hn-faint` and `.hn-collapsed` go on the `li.hn-c`.
-- Header: `.hn-userbar` is an empty slot in the bar for the user name, karma and logout.
-- Forms and tables: `.hn-form-tbl`, `.hn-lbl`, `.hn-note`, `.hn-user-tbl`, `.hn-login`.
 - Arrow sprite, available on every page: `<svg><use href="#hn-up"/></svg>` and `#hn-down`.
 
 The comment rows the theme prints itself carry two forms for the plugin:
