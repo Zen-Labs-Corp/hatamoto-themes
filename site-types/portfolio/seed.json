@@ -422,7 +422,29 @@
    "name": "How I price a design project",
    "days_ago": 20,
    "excerpt": "Fixed prices, three rounds and a kill fee. Why it works for both sides.",
-   "content": "<p>I price by project, never by hour.</p><h2>Why</h2><p>Clients know the cost before we start, and I am paid for the result, not the time.</p>"
+   "content": "<p>I price by project, never by hour.</p><h2>Why</h2><p>Clients know the cost before we start, and I am paid for the result, not the time.</p>",
+   "comments": [
+    {
+     "author": "Lena Vogel",
+     "days_ago": 0,
+     "hours_ago": 28,
+     "body": "<p>Pricing the outcome instead of the hours took me years to learn. Wish I had read this earlier.</p>",
+     "replies": [
+      {
+       "site_author": true,
+       "days_ago": 0,
+       "hours_ago": 20,
+       "body": "<p>It took me a while too, Lena. The first quote at a fixed price was the scariest email I have sent.</p>"
+      }
+     ]
+    },
+    {
+     "author": "Ravi Mehta",
+     "days_ago": 0,
+     "hours_ago": 2,
+     "body": "<p>How do you handle a client who wants three extra rounds of changes?</p>"
+    }
+   ]
   }
  ],
  "menus": {
@@ -480,6 +502,10 @@
   {
    "name": "notes",
    "path": "/blog"
+  },
+  {
+   "name": "post",
+   "path": "/blog/how-i-price-a-design-project"
   },
   {
    "name": "not-found",

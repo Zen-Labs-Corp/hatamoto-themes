@@ -37,7 +37,10 @@ when present, replaces the type's seed for that theme.
      "sections": [...]}                                        // or "content": "<p>html</p>"
   ],
   "posts": [{"name": "...", "days_ago": 3, "category": "News", "category_slug": "news",
-             "excerpt": "...", "featured_image": "{{media:x.png}}", "content": "<p>...</p>"}],
+             "excerpt": "...", "featured_image": "{{media:x.png}}", "content": "<p>...</p>",
+             "comments": [                                     // optional, on any page, post or entry:
+               {"author": "...", "hours_ago": 20, "body": "<p>...</p>",  // turns comments on for the
+                "replies": [{"site_author": true, ...}]}]}],   // site; site_author = the owner's reply
   "entries": {"doc": [{"name": "...", "slug": "...", "content": "...", "parent": "<slug>"}]},
   "menus": {                                                   // header, footer, sidebar
     "header": [{"label": "...", "page": "<slug>"},             // page, archive (schema slug), url

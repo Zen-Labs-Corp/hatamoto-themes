@@ -12,7 +12,7 @@ Env: DATABASE_URL (must point at this machine), BASE (the running server),
      HATAMOTO_BIN (default hatamoto), PSQL (default psql).
 Usage: python3 scripts/seed-site.py site-types/<type>/seed.json
 """
-import atexit, datetime, http.cookiejar, json, os, re, shutil, struct, subprocess, sys, tempfile, urllib.error, urllib.parse, urllib.request, uuid, zlib
+import atexit, datetime, time, http.cookiejar, json, os, re, shutil, struct, subprocess, sys, tempfile, urllib.error, urllib.parse, urllib.request, uuid, zlib
 
 DB = os.environ.get("DATABASE_URL", "")
 BASE = os.environ.get("BASE", "").rstrip("/")
@@ -159,6 +159,15 @@ def ok(step, code):
 r = sh(BIN, "user", "create", "--email", OWNER["email"], "--name", OWNER["name"], "--role", "owner",
        "--password-stdin", stdin=OWNER["password"])
 print("owner:", "created" if r.returncode == 0 else "exists (" + r.stderr.strip()[:80] + ")")
+COMMENTS_ON = 0
+if "\"comments\"" in json.dumps(S):
+    # Before the first request: the server caches the comment settings for 30 s.
+    sql("""update hatamoto_comment_settings set enabled = true,
+           settings = settings || '{"auto_close_days": 0}'::jsonb, updated_at = now()""")
+    sql("""update hatamoto_entity_schemas set settings = settings || '{"comments": {"mode": "hidden"}}'::jsonb
+           where slug = 'page'""")
+    COMMENTS_ON = time.monotonic()
+    print("comments: on (hidden on pages)")
 token("/admin/login")
 ok("login", form("/admin/login", email=OWNER["email"], password=OWNER["password"]))
 token("/admin")
@@ -231,6 +240,7 @@ def page_doc(sections):
 
 
 IDS = {}
+COMMENTS = []  # (entity id, comment list) in seed order
 now = datetime.datetime.now(datetime.timezone.utc).replace(hour=9, minute=0, second=0, microsecond=0)
 
 
@@ -269,6 +279,8 @@ def create(schema, e):
         sql("update hatamoto_entities set parent_id = (select id from hatamoto_entities where slug = :'v2') where id = :'v1'",
             eid, e["parent"])
     IDS[slug or e["name"]] = eid
+    if e.get("comments"):
+        COMMENTS.append((eid, e["comments"]))
     print(schema, e["name"])
 
 
@@ -279,6 +291,43 @@ for p in S.get("posts", []):
 for schema, items in S.get("entries", {}).items():
     for e in items:
         create(schema, e)
+
+
+# ---- comments ------------------------------------------------------------------------------
+# An entry's "comments" list turns comments on for the site (open, never auto-closed,
+# hidden on plain pages the way most sites run it) and adds approved comments with nested "replies". "site_author": true
+# marks a reply as the owner's (the author badge).
+
+def add_comment(eid, c, parent_id="", parent_path="", depth=1):
+    when = (now - datetime.timedelta(days=c.get("days_ago", 1), hours=c.get("hours_ago", 0))).isoformat()
+    owner = sql("select id from hatamoto_users where email = :'v1'", OWNER["email"]) if c.get("site_author") else ""
+    row = sql("""with s as (select nextval('hatamoto_comments_seq') as v)
+        insert into hatamoto_comments (seq, entity_id, parent_id, path, depth, status, body_raw, body_html,
+            author_name, author_user_id, created_at, updated_at, confirmed_at, approved_at)
+        select s.v, :'v1', nullif(:'v2','')::uuid,
+            case when :'v3' = '' then '' else :'v3' || '.' end || lpad(to_hex(s.v), 12, '0'),
+            :'v4'::smallint, 'approved', :'v5', :'v6', :'v7', nullif(:'v8','')::uuid,
+            :'v9'::timestamptz, :'v9'::timestamptz, :'v9'::timestamptz, :'v9'::timestamptz
+        from s returning id || ' ' || path""",
+              eid, parent_id, parent_path, str(depth), re.sub(r"<[^>]+>", "", c["body"]), c["body"],
+              OWNER["name"] if c.get("site_author") else c["author"], owner, when)
+    cid, path = row.split(" ", 1)
+    for r in c.get("replies", []):
+        add_comment(eid, r, cid, path, depth + 1)
+
+
+if COMMENTS:
+    for eid, items in COMMENTS:
+        for c in items:
+            add_comment(eid, c)
+        sql("""insert into hatamoto_comment_entities (entity_id, comment_count)
+               select :'v1', count(*) from hatamoto_comments where entity_id = :'v1' and status = 'approved'
+               on conflict (entity_id) do update set comment_count = excluded.comment_count, updated_at = now()""", eid)
+    print("comments", sum(1 for _ in COMMENTS), "entries")
+if COMMENTS_ON:
+    # The server keeps the comment settings it read at start for 30 s; wait them out
+    # so the first page renders already carry the thread.
+    time.sleep(max(0, 31 - (time.monotonic() - COMMENTS_ON)))
 
 
 # ---- theme settings ----------------------------------------------------------------------------

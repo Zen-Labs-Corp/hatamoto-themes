@@ -120,7 +120,37 @@
    "days_ago": 1,
    "excerpt": "Why the first walk matters more than any sight, and how to spend it.",
    "content": "<p>The first morning in a new city is the only one you get for free. After that you have routines, favourite cafés and a way home that you no longer notice.</p>\n<h2>Before you leave</h2>\n<p>Pack less than you think. Every trip we have regretted was one where the bag decided the day.</p>\n<ul><li>One pair of shoes you can walk in all day.</li><li>A paper notebook, because a phone is for maps.</li><li>A small bag that folds into a pocket.</li></ul>\n<blockquote><p>Walk until you are a little lost, then ask for directions to somewhere you have never heard of.</p></blockquote>\n<h2>The first walk</h2>\n<ol><li>Leave the map in your pocket for the first hour.</li><li>Follow the busiest street until it stops being busy.</li><li>Sit somewhere with a view of people, not of buildings.</li></ol>\n<h3>What to write down</h3>\n<p>Names of streets you liked, prices of coffee, the time the light changed. They make better notes than sights.</p>\n<h2>A small budget table</h2>\n<table><thead><tr><th>Item</th><th>Low</th><th>High</th></tr></thead><tbody><tr><td>Coffee</td><td>1.50</td><td>4.00</td></tr><tr><td>Lunch</td><td>6.00</td><td>18.00</td></tr><tr><td>Local transport, day</td><td>3.00</td><td>9.00</td></tr></tbody></table>\n<h2>For the spreadsheet people</h2>\n<pre><code>daily = coffee * 2 + lunch + dinner + transport\nprint(f\"{daily:.2f} per day\")</code></pre>\n<p>Then forget the number and go outside.</p>",
-   "featured_image": "{{media:walk.png}}"
+   "featured_image": "{{media:walk.png}}",
+   "comments": [
+    {
+     "author": "Marta Okafor",
+     "days_ago": 0,
+     "hours_ago": 20,
+     "body": "<p>The bit about walking until the bakeries open is exactly how I learn a city too. The first coffee always tastes like the place.</p>",
+     "replies": [
+      {
+       "site_author": true,
+       "days_ago": 0,
+       "hours_ago": 16,
+       "body": "<p>Thank you, Marta. I still remember that first cup more clearly than the museum we saw that afternoon.</p>",
+       "replies": [
+        {
+         "author": "Marta Okafor",
+         "days_ago": 0,
+         "hours_ago": 12,
+         "body": "<p>Same here. Museums blur, breakfasts stay.</p>"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "author": "Tom Lindqvist",
+     "days_ago": 0,
+     "hours_ago": 3,
+     "body": "<p>Which neighbourhood did you stay in? We are going in the spring and would love a quiet base.</p>"
+    }
+   ]
   },
   {
    "name": "Bread, slowly: a year of sourdough",
