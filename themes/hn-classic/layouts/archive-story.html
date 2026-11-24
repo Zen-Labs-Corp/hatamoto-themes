@@ -1,0 +1,8 @@
+{{define "content"}}<h1 class="hn-sr">{{.Page.Name}}</h1>
+{{if .Items}}<ol class="hn-stories">{{range $n, $i := .Items}}<li class="hn-story">
+<span class="hn-rank">{{add $n 1}}.</span><span class="hn-vote"></span>
+<span class="hn-title"><a href="{{$i.URL}}">{{$i.Title}}</a>{{with $i.Attrs.site}} <span class="hn-site">({{.}})</span>{{end}}</span>
+<span class="hn-sub">{{with $i.Author}}by {{.}} {{end}}{{if not $i.PublishedAt.IsZero}}<time datetime="{{formatDate $i.PublishedAt "2006-01-02T15:04:05Z07:00"}}">{{template "hn-ago" dict "T" $i.PublishedAt "Strings" $.Strings}}</time>{{end}}</span>
+</li>{{end}}</ol>
+{{with .Pagination}}{{if .HasNext}}<a class="hn-more" href="{{.NextURL}}" rel="next">More</a>{{end}}{{end}}
+{{else}}<p class="hn-note">{{t $ "nothing_here_yet"}}</p>{{end}}{{end}}
