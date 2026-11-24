@@ -158,8 +158,36 @@ div.hn-user th { color: var(--hn-muted); font-weight: normal; }
 div.hn-user input[type=text] { width: 30em; }
 div.hn-user input[type=number] { width: 5em; font-family: var(--hn-mono); font-size: 10pt; border: 1px solid #888; }
 /* core wraps every block in section.hm-section (4-7rem padding, hairline); the
-   plugin's blocks are dense, so drop both */
-.hm-section--hn_feed, .hm-section--hn_submit, .hm-section--hn_item, .hm-section--hn_login, .hm-section--hn_user, .hm-section--hn_userbar { padding: 0; border-top: 0; }
+   plugin's blocks are dense, so drop both for every plugin section type */
+.hm-section[class*="hm-section--hn_"] { padding: 0; border-top: 0; }
+/* threads and newest comments (hn_threads): the plugin's own comment rows, with
+   the look of the theme's rows. div.hn-threads outranks the plugin's inline
+   style; every rule is scoped to it, so the theme's own comment rows are not touched. */
+div.hn-threads { font: var(--hn-size) var(--hn-font); padding: 0 8px 0 0; }
+div.hn-threads > h2 { margin: 6px 0 6px 10px; font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; }
+div.hn-threads > p { margin: 6px 0 6px 10px; }
+div.hn-threads .hn-notice { color: var(--hn-text); font-weight: bold; }
+div.hn-threads .hn-c { margin-bottom: 0; padding: 6px 0 6px 10px; }
+div.hn-threads .hn-head { font-size: 8pt; color: var(--hn-muted); }
+div.hn-threads .hn-head a, div.hn-threads .hn-head button { color: var(--hn-muted); }
+div.hn-threads .hn-head form { display: inline; margin: 0; }
+div.hn-threads .hn-head button { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+div.hn-threads .hn-head form:not(.hn-vote-form) button:hover, div.hn-threads .hn-head form:not(.hn-vote-form) button:focus-visible { text-decoration: underline; }
+div.hn-threads .hn-vote { display: inline-flex; width: auto; height: auto; margin: 0 4px 0 0; gap: 2px; vertical-align: middle; }
+div.hn-threads .hn-vote-form { display: inline-block; }
+div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form button[title=downvote] { position: relative; display: block; width: 10px; height: 10px; font-size: 0; line-height: 0; color: transparent; }
+div.hn-threads .hn-vote-form button[title]::before { content: ""; position: absolute; inset: 0; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+div.hn-threads .hn-vote-form button[title=downvote]::before { clip-path: polygon(0 0, 100% 0, 50% 100%); }
+div.hn-threads .hn-vote-form button[title]:hover::before, div.hn-threads .hn-vote-form button[title]:focus-visible::before { background: var(--hn-text); }
+div.hn-threads .hn-text { font-size: var(--hn-size-comment); line-height: 1.35; margin: 3px 0 2px; max-width: 800px; overflow-wrap: anywhere; }
+div.hn-threads .hn-text p { margin: 6px 0 0; }
+div.hn-threads .hn-text p:first-child { margin-top: 0; }
+div.hn-threads .hn-text pre { font-family: var(--hn-mono); font-size: 9pt; white-space: pre-wrap; overflow-wrap: anywhere; }
+div.hn-threads .hn-dead .hn-text { color: var(--hn-dead); }
+div.hn-threads .hn-faint .hn-text { color: var(--hn-faint); }
+div.hn-threads .hn-reply { margin: 0; font-size: var(--hn-size-sub); }
+div.hn-threads .hn-reply a { text-decoration: underline; }
+div.hn-threads .hn-more { padding: 8px 0 0; }
 /* the user bar: the plugin injects it as the first section of each page, so it
    sits straight under the header bar and carries the bar colour */
 div.hn-ub { margin: -6px 0 6px; padding: 0 6px 2px; text-align: right; background: var(--hn-accent); color: var(--hn-on-accent); }
