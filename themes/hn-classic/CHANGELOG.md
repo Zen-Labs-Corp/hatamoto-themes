@@ -2,4 +2,4 @@
 
 ## 1.0.0
 
-- First release: a link-and-discussion theme with a coloured header bar, ranked story rows and threaded comments.
+- First release: header bar with a mobile menu, ranked story rows, threaded comments with no-JavaScript vote and flag forms, a plain comment form, a 404 page, and the settings `width` and `plugin_actions`.

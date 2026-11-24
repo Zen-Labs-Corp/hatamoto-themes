@@ -1,0 +1,428 @@
+{
+ "owner": {
+  "email": "owner@example.com",
+  "name": "Mara Lindqvist",
+  "password": "theme-dev-password"
+ },
+ "site": {
+  "name": "Hilltop News",
+  "tagline": "Links and discussion",
+  "colour": "#c23b22"
+ },
+ "pages": [
+  {
+   "home": true,
+   "name": "Home",
+   "content": "<p>Hilltop News collects links worth reading and the discussion around them. The latest stories are on the <a href=\"/news\">news</a> page.</p>"
+  },
+  {
+   "slug": "guidelines",
+   "name": "Guidelines",
+   "content": "<p>Be kind. Link to the original source. Say what you learned, not what you feel.</p><p>Comments that only insult are removed.</p>"
+  },
+  {
+   "slug": "faq",
+   "name": "FAQ",
+   "content": "<p>Questions and answers about how the site works.</p><p>Is there an account? Not to read. To comment you give a name and an email address; the address is never shown.</p>"
+  }
+ ],
+ "schemas": [
+  {
+   "slug": "story",
+   "name": "Stories",
+   "like": "post",
+   "settings": {
+    "url_pattern": "/item/{slug}",
+    "archive_path": "/news"
+   }
+  }
+ ],
+ "entries": {
+  "story": [
+   {
+    "name": "A tiny Postgres extension for append-only audit tables",
+    "slug": "postgres-audit-extension",
+    "content": "<p>An extension that makes a table append-only and records who changed what, in about three hundred lines of C.</p>",
+    "days_ago": 1,
+    "excerpt": "A tiny Postgres extension for append-only audit tables",
+    "attributes": {
+     "site": "example.com"
+    },
+    "comments": [
+     {
+      "author": "tomasz",
+      "hours_ago": 20,
+      "body": "<p>Related reading, no spaces on purpose: https://example.com/a-very-long-path-segment-without-any-break-a-very-long-path-segment-without-any-break-a-very-long-path-segment-without-any-break-end</p>",
+      "replies": [
+       {
+        "author": "lindqvist",
+        "hours_ago": 19,
+        "body": "<p>Thanks, that is a very long link.</p>"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Show: a static blog as a single Go binary",
+    "slug": "static-blog-single-binary",
+    "content": "<p>I rebuilt my blog as one binary that embeds the templates and the posts.</p>",
+    "days_ago": 1,
+    "excerpt": "Show: a static blog as a single Go binary",
+    "attributes": {
+     "site": "blog.example.org"
+    },
+    "comments": [
+     {
+      "author": "saoirse",
+      "hours_ago": 3,
+      "body": "<p>Nice write-up. The binary size surprised me.</p>"
+     },
+     {
+      "author": "mkersten",
+      "hours_ago": 2,
+      "body": "<p>Do you serve the static files from the binary too?</p>"
+     }
+    ]
+   },
+   {
+    "name": "Ask: how do you keep a small team's on-call sane?",
+    "slug": "small-team-on-call",
+    "content": "<p>We are five engineers and a pager. Rotations burn people out within a quarter. What has actually worked for you, and what did you stop doing?</p>",
+    "days_ago": 1,
+    "excerpt": "Ask: how do you keep a small team's on-call sane?",
+    "comments": [
+     {
+      "author": "mkersten",
+      "hours_ago": 9,
+      "body": "<p>Two rules saved us: nobody carries the pager two weeks in a row, and every page that was not actionable gets deleted the next morning.</p><p>The second one cut our pages by half in a month.</p>",
+      "replies": [
+       {
+        "author": "quietops",
+        "hours_ago": 8,
+        "body": "<p>How do you decide what counts as actionable? We argue about that more than we fix things.</p>",
+        "site_author": true,
+        "replies": [
+         {
+          "author": "lindqvist",
+          "hours_ago": 7,
+          "body": "<p>If the runbook step is <i>wait and see</i>, it is not a page. It is a ticket.</p>",
+          "replies": [
+           {
+            "author": "saoirse",
+            "hours_ago": 6,
+            "body": "<p>That rule is easy to say and hard to enforce when a customer is on the phone.</p>",
+            "replies": [
+             {
+              "author": "tomasz",
+              "hours_ago": 5,
+              "body": "<p>We moved the phone to a separate rota. Engineers only get paged when the alert has a named owner and a first step.</p>",
+              "replies": [
+               {
+                "author": "quietops",
+                "hours_ago": 4,
+                "body": "<p>That is a good split. Writing the first step down was the hard part for us.</p>",
+                "site_author": true
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "author": "pg_reader",
+      "hours_ago": 5,
+      "body": "<p>A short script that lists last week's pages sorted by how often they fired helped us pick what to delete:</p><pre>psql -At -c \"select alert, count(*) from pages where fired_at &gt; now() - interval '7 days' group by alert order by 2 desc limit 20\" example_ops_database_with_a_long_connection_string</pre>"
+     }
+    ]
+   },
+   {
+    "name": "The surprising cost of a 10 ms page in 2026",
+    "slug": "ten-ms-page",
+    "content": "",
+    "days_ago": 2,
+    "excerpt": "The surprising cost of a 10 ms page in 2026",
+    "attributes": {
+     "site": "perf.example.org"
+    },
+    "comments": [
+     {
+      "author": "lindqvist",
+      "hours_ago": 30,
+      "body": "<p>The chart in the second section uses p50. At p99 the story is very different.</p>",
+      "replies": [
+       {
+        "author": "pg_reader",
+        "hours_ago": 29,
+        "body": "<p>Fair. Adding a p99 chart.</p>"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "WebAssembly plugins without a runtime tax",
+    "slug": "wasm-plugins",
+    "content": "",
+    "days_ago": 2,
+    "excerpt": "WebAssembly plugins without a runtime tax",
+    "attributes": {
+     "site": "notes.example.net"
+    },
+    "comments": [
+     {
+      "author": "saoirse",
+      "hours_ago": 3,
+      "body": "<p>Nice write-up. The binary size surprised me.</p>"
+     }
+    ]
+   },
+   {
+    "name": "Eight siblings: what does your release checklist look like?",
+    "slug": "release-checklist",
+    "content": "<p>Short answers welcome. Ours has eleven items and nobody remembers the last three.</p>",
+    "days_ago": 2,
+    "excerpt": "Eight siblings: what does your release checklist look like?",
+    "comments": [
+     {
+      "author": "saoirse",
+      "hours_ago": 12,
+      "body": "<p>I would start with the simplest thing: a shared calendar and a rule that swaps are always honoured.</p>"
+     },
+     {
+      "author": "mkersten",
+      "hours_ago": 11,
+      "body": "<p>Our pager rotation is one week in six. Anything more frequent and people stopped answering.</p>"
+     },
+     {
+      "author": "tomasz",
+      "hours_ago": 10,
+      "body": "<p>Write a runbook for every alert, or delete the alert. There is no third option.</p>",
+      "replies": [
+       {
+        "author": "pg_reader",
+        "hours_ago": 9,
+        "body": "<p>Agreed, and <a href=\"https://example.com/runbooks\">a template</a> helps.</p>"
+       }
+      ]
+     },
+     {
+      "author": "lindqvist",
+      "hours_ago": 9,
+      "body": "<p>Pay for it. Time off in lieu works better than a bonus.</p>"
+     },
+     {
+      "author": "pg_reader",
+      "hours_ago": 8,
+      "body": "<p>We keep a log of every night wake-up and review it monthly. Numbers end arguments.</p>",
+      "replies": [
+       {
+        "author": "quietops",
+        "hours_ago": 7,
+        "body": "<p>Do you share the numbers with the whole team?</p>",
+        "site_author": true
+       }
+      ]
+     },
+     {
+      "author": "quietops",
+      "hours_ago": 7,
+      "body": "<p>Follow-the-sun is the real fix, if you can hire for it. A team of five cannot.</p>"
+     },
+     {
+      "author": "saoirse",
+      "hours_ago": 6,
+      "body": "<p>Test the pager. A page that goes to a phone on silent is the same as no page.</p>"
+     },
+     {
+      "author": "mkersten",
+      "hours_ago": 5,
+      "body": "<p>Shadow shifts for new people before they carry it alone made a big difference.</p>"
+     }
+    ]
+   },
+   {
+    "name": "Why we stopped writing our own date parser",
+    "slug": "stopped-writing-date-parser",
+    "content": "",
+    "days_ago": 3,
+    "excerpt": "Why we stopped writing our own date parser",
+    "attributes": {
+     "site": "dates.example.com"
+    }
+   },
+   {
+    "name": "Notes on running a tiny mail server in 2026",
+    "slug": "tiny-mail-server",
+    "content": "",
+    "days_ago": 3,
+    "excerpt": "Notes on running a tiny mail server in 2026",
+    "attributes": {
+     "site": "mail.example.net"
+    },
+    "comments": [
+     {
+      "author": "mkersten",
+      "hours_ago": 2,
+      "body": "<p>Do you serve the static files from the binary too?</p>"
+     }
+    ]
+   },
+   {
+    "name": "Northwind Robotics is hiring a firmware engineer",
+    "slug": "northwind-firmware-engineer",
+    "content": "<p>Northwind builds small warehouse robots. We need someone who is happy near a logic analyser.</p>",
+    "days_ago": 1,
+    "excerpt": "Northwind Robotics is hiring a firmware engineer",
+    "attributes": {
+     "site": "careers.northwind.example.com"
+    }
+   },
+   {
+    "name": "Harbourlight Labs is hiring a database engineer",
+    "slug": "harbourlight-database-engineer",
+    "content": "",
+    "days_ago": 2,
+    "excerpt": "Harbourlight Labs is hiring a database engineer",
+    "attributes": {
+     "site": "jobs.harbourlight.example.org"
+    }
+   },
+   {
+    "name": "Quillfeather is hiring a technical writer",
+    "slug": "quillfeather-technical-writer",
+    "content": "",
+    "days_ago": 4,
+    "excerpt": "Quillfeather is hiring a technical writer",
+    "attributes": {
+     "site": "jobs.quillfeather.example.net"
+    }
+   },
+   {
+    "name": "Show: a keyboard-first RSS reader",
+    "slug": "keyboard-rss-reader",
+    "content": "<p>A small reader for people who live in the terminal.</p>",
+    "days_ago": 4,
+    "excerpt": "Show: a keyboard-first RSS reader",
+    "attributes": {
+     "site": "rss.example.com"
+    },
+    "comments": [
+     {
+      "author": "saoirse",
+      "hours_ago": 3,
+      "body": "<p>Nice write-up. The binary size surprised me.</p>"
+     }
+    ]
+   }
+  ]
+ },
+ "menus": {
+  "header": [
+   {
+    "label": "new",
+    "archive": "story"
+   },
+   {
+    "label": "past",
+    "url": "/past"
+   },
+   {
+    "label": "comments",
+    "url": "/comments"
+   },
+   {
+    "label": "ask",
+    "url": "/ask"
+   },
+   {
+    "label": "show",
+    "url": "/show"
+   },
+   {
+    "label": "jobs",
+    "url": "/jobs"
+   },
+   {
+    "label": "submit",
+    "url": "/submit"
+   }
+  ],
+  "footer": [
+   {
+    "label": "Guidelines",
+    "page": "guidelines"
+   },
+   {
+    "label": "FAQ",
+    "page": "faq"
+   },
+   {
+    "label": "Lists",
+    "url": "/lists"
+   },
+   {
+    "label": "API",
+    "url": "/api-docs"
+   },
+   {
+    "label": "RSS",
+    "url": "/feed.xml"
+   },
+   {
+    "label": "Contact",
+    "url": "/contact"
+   }
+  ]
+ },
+ "screenshot": "/news",
+ "shots": [
+  {
+   "name": "home",
+   "path": "/"
+  },
+  {
+   "name": "news",
+   "path": "/news"
+  },
+  {
+   "name": "item-deep",
+   "path": "/item/small-team-on-call"
+  },
+  {
+   "name": "item-wide",
+   "path": "/item/release-checklist"
+  },
+  {
+   "name": "item-long",
+   "path": "/item/postgres-audit-extension"
+  },
+  {
+   "name": "item-job",
+   "path": "/item/northwind-firmware-engineer"
+  },
+  {
+   "name": "guidelines",
+   "path": "/guidelines"
+  },
+  {
+   "name": "search",
+   "path": "/search?q=postgres"
+  },
+  {
+   "name": "not-found",
+   "path": "/nope",
+   "status": 404
+  }
+ ],
+ "theme_settings": {
+  "hn-classic": {
+   "plugin_actions": false
+  }
+ }
+}
