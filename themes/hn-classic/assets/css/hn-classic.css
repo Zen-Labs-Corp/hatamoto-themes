@@ -62,7 +62,7 @@ main { padding: 6px 0 10px; }
 .hn-bar :focus-visible { outline-color: var(--hn-on-accent); }
 .hn-brand { display: inline-flex; align-items: center; }
 .hn-logo { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--hn-on-accent); font-weight: bold; }
-.hn-logo-img { display: block; width: 18px; height: 18px; }
+.hn-logo-img { display: block; width: auto; height: 18px; max-width: 120px; object-fit: contain; }
 .hn-name { font-weight: bold; margin: 0 6px 0 4px; }
 .hn-nav { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hn-nav a + a::before, .hn-links a + a::before { content: " | "; display: inline-block; white-space: pre; text-decoration: none; }
