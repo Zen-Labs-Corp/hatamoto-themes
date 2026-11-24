@@ -136,8 +136,8 @@ button.hn-vote:hover, button.hn-vote:focus-visible { background: var(--hn-text);
 .hn-sub .hn-act button:hover, .hn-sub .hn-act button:focus-visible { text-decoration: underline; }
 .hn-notice { margin: 6px 0 6px 10px; font-weight: bold; color: var(--hn-accent); }
 .hn-heading { margin: 6px 0 6px 10px; font-weight: bold; }
-p.hn-note, .hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0 10px; }
-.hn-item-head .hn-item-text p { margin: 0 0 8px; }
+.hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0 10px; }
+.hn-item-text p { margin: 0 0 8px; }
 .hn-form-tbl { margin: 8px 0 0 10px; border-collapse: collapse; }
 .hn-form-tbl td { padding: 3px 6px 3px 0; vertical-align: top; }
 .hn-lbl { color: var(--hn-muted); text-align: right; white-space: nowrap; }
