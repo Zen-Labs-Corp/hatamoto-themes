@@ -160,8 +160,9 @@ r = sh(BIN, "user", "create", "--email", OWNER["email"], "--name", OWNER["name"]
        "--password-stdin", stdin=OWNER["password"])
 print("owner:", "created" if r.returncode == 0 else "exists (" + r.stderr.strip()[:80] + ")")
 COMMENTS_ON = 0
-if "\"comments\"" in json.dumps(S):
+if "\"comments\"" in json.dumps(S) and sql("select to_regclass('hatamoto_comment_settings') is not null") == "t":
     # Before the first request: the server caches the comment settings for 30 s.
+    # A core without comments (an older HATAMOTO_BIN) has no such table: the seed skips them.
     sql("""update hatamoto_comment_settings set enabled = true,
            settings = settings || '{"auto_close_days": 0}'::jsonb, updated_at = now()""")
     sql("""update hatamoto_entity_schemas set settings = settings || '{"comments": {"mode": "hidden"}}'::jsonb
@@ -316,7 +317,7 @@ def add_comment(eid, c, parent_id="", parent_path="", depth=1):
         add_comment(eid, r, cid, path, depth + 1)
 
 
-if COMMENTS:
+if COMMENTS and COMMENTS_ON:
     for eid, items in COMMENTS:
         for c in items:
             add_comment(eid, c)
