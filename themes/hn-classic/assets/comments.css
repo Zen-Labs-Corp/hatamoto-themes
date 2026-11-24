@@ -23,8 +23,8 @@
 .hn-pager > * { margin-right: 6px; }
 .hn-pager .hn-more { padding: 0; }
 /* states, driven by the plugin */
-.hn-c.hn-dead .hn-text { color: var(--hn-dead); }
-.hn-c.hn-faint .hn-text { color: var(--hn-faint); }
+.hn-c.hn-dead > .hn-c-row .hn-text { color: var(--hn-dead); }
+.hn-c.hn-faint > .hn-c-row .hn-text { color: var(--hn-faint); }
 .hn-c.hn-collapsed .hn-text, .hn-c.hn-collapsed .hn-reply, .hn-c.hn-collapsed .hn-thread { display: none; }
 .hn-vote.hn-voted .hn-arrow { visibility: hidden; }
 #hm-comments, #hm-comment-form, .hn-c { scroll-margin-top: 8px; }
