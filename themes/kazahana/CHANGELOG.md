@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+- Comments: when the owner turns comments on, posts and pages show the comment form and the thread
+  below the text, styled with the theme's own type and colours in light and dark.
+- Needs a Hatamoto core with comments; older cores refuse to install this version.
+
 ## 1.0.0
 
 - First release: masthead header with a topic row and a mobile menu that works without JavaScript.

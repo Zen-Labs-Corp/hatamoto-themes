@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0
+
+- Comments: when the owner turns comments on, posts and pages show the comment form and the thread
+  below the text, in Sumi's monospace labels and hairline rows. The few rules are inline and
+  only on pages with comments, so the theme still makes no request of its own.
+- Needs a Hatamoto core with comments; older cores refuse to install this version.
+
 ## 0.4.0
 
 - New setting `newsletter_form`: the slug of a Hatamoto form. When set, an email field with

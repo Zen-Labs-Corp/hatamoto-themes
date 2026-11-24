@@ -16,6 +16,7 @@ styles of the blog post. Block-built projects render through page-body. */}}
 {{range .Blocks}}{{template "section" .}}
 {{end}}
 {{with $e.Tags}}<footer class="mu-article__foot">{{template "term-chips" dict "Terms" . "Label" "Tags"}}</footer>{{end}}
+{{template "mu-comments" .}}
 </div>
 </div>
 </article>

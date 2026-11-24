@@ -38,6 +38,7 @@
 {{with $e.Tags}}<div class="hs-tags"><span class="hs-eyebrow">Tags</span>{{range .}}<a class="hs-chip" href="{{.URL}}">{{.Name}}</a>{{end}}</div>{{end}}
 {{with $e.Author}}<aside class="hs-authorbox" aria-label="About the author">{{with .Avatar}}<img class="hs-avatar" src="{{imgsrc .}}" alt="" width="48" height="48">{{else}}<span class="hs-avatar" aria-hidden="true">{{printf "%.1s" .Name}}</span>{{end}}<div><p>Written by {{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>{{with .JobTitle}}<p>{{.}}</p>{{end}}{{with .Bio}}<p>{{.}}</p>{{end}}</div></aside>{{end}}
 </footer>
+{{template "hs-comments" .}}
 </div>
 </div>
 </article>

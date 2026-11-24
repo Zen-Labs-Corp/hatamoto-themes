@@ -1,6 +1,6 @@
 {
   "name": "hanagasumi",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Soft pastel blog theme: a split homepage with a sideways-scrolling story rail, rounded cards, pill chips and mono labels in rose on warm mist.",
   "screenshot": "assets/screenshot.png",
   "csp": {

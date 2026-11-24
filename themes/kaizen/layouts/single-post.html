@@ -19,6 +19,7 @@
 {{with .Blocks}}<div class="kz-blocks">{{range .}}{{template "section" .}}
 {{end}}</div>{{end}}
 {{if or $e.Categories $e.Tags}}<div class="kz-chips">{{range $e.Categories}}<a class="kz-chip" href="{{.URL}}">{{.Name}}</a>{{end}}{{range $e.Tags}}<a class="kz-chip kz-chip--tag" href="{{.URL}}">{{.Name}}</a>{{end}}</div>{{end}}
+{{template "kz-comments" .}}
 </div>
 {{if $toc}}<aside class="kz-aside"><nav class="kz-toc" id="kz-toc" aria-label="On this page">
 <h2 class="kz-mono">On this page <b id="kz-toc-pct">0%</b></h2>

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+- Comments: the comment form and thread on posts and pages now use Hearth's own type, colours and
+  underlined fields instead of the core's default look. They show only when comments are on.
+
 ## 1.0.0
 
 - Figtree type, a paper and terracotta palette, light and dark modes.

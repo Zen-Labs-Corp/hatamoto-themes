@@ -23,6 +23,7 @@
 <div><p class="km-label">Written by</p><p class="km-authorbox__name">{{if .URL}}<a href="{{safeHref .URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>
 {{with .JobTitle}}<p class="km-authorbox__job">{{.}}</p>{{end}}{{with .Bio}}<p class="km-authorbox__bio">{{.}}</p>{{end}}</div>
 </aside>{{end}}
+{{template "km-comments" .}}
 {{if or $newer $older}}<nav class="km-pager km-wrap" aria-label="Chapters">
 {{with $newer}}<a class="km-pager__prev" href="{{.URL}}" rel="prev"><span class="km-label">&larr; Previous chapter</span><strong>{{.Title}}</strong></a>{{end}}
 {{with $older}}<a class="km-pager__next" href="{{.URL}}" rel="next"><span class="km-label">Next chapter &rarr;</span><strong>{{.Title}}</strong></a>{{end}}

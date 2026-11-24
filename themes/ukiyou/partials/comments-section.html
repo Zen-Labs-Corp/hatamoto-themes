@@ -1,0 +1,6 @@
+{{/* The comment form and thread, printed only when the owner has comments on for this entry. Styles load from assets/comments.css on these pages only. */}}
+{{define "uk-comments"}}{{with .Comments}}<section id="hm-comments" class="hm-comments uk-comments" aria-labelledby="hm-comments-h">
+<link rel="stylesheet" href="/theme/assets/comments.css">
+<h2 id="hm-comments-h" class="hm-comments__title">{{t $ "comments_title"}}</h2>
+{{template "comments/form" $}}{{template "comments/list" $}}</section>
+{{end}}{{end}}

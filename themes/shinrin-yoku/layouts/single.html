@@ -10,6 +10,7 @@
 {{if .Body}}<div class="sy-prose hm-prose">{{$b.HTML}}</div>{{end}}
 {{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
 {{with $e.Tags}}<footer class="sy-article__tags"><h2 class="sy-sr">Tags</h2><p>{{range .}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</p></footer>{{end}}
+{{template "sy-comments" .}}
 </article>
 {{if $post}}{{with call .Related 2}}<section class="sy-wrap sy-related" aria-labelledby="sy-related-h">
 <h2 id="sy-related-h">More posts</h2>
