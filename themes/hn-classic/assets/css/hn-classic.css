@@ -4,80 +4,46 @@
    default theme it falls back to. So this file restyles the default's markup
    (hm-* classes) and styles this theme's own (hn-* classes).
    Rules: only --hm-* tokens for colour, type and radius, so Theme > Colours and
-   fonts keeps working; no request to another host (fonts live in
-   assets/fonts/, added with scripts/add-font.sh). */
+   fonts keeps working; no request to another host. */
 
 :root {
-  /* ---- palette (light) ---- */
-  --hm-primary: #1f5f8b;          /* the owner's primary colour replaces this */
-  --hm-bg: #ffffff;
-  --hm-text: #16181d;
-  --hn-muted: #5d636e;
-  --hn-line: #e4e6ea;
-  --hn-surface: #f6f7f9;
+  --hm-primary: #c23b22;
+  --hm-bg: #f6f6ef;
+  --hm-text: #000;
+  --hm-font: Verdana, Geneva, "DejaVu Sans", sans-serif;
+  --hm-font-heading: var(--hm-font);
+  --hm-radius-sm: 0;
+  --hm-radius-md: 0;
+  --hm-radius-lg: 0;
+  --hn-accent: var(--hm-primary);
+  --hn-bg: var(--hm-bg);
+  --hn-text: var(--hm-text);
+  --hn-font: var(--hm-font);
+  --hn-border: var(--hn-accent);
+  --hn-muted: #828282;
+  --hn-link-visited: #828282;
+  --hn-dead: #bfbfbf;
+  --hn-arrow: #9a9a9a;
+  --hn-op: #3c963c;
+  --hn-faint: #5a5a5a;
+  --hn-on-accent: #fff;
+  --hn-drawer-line: #a8321d;
+  --hn-mono: "Courier New", Courier, monospace;
+  --hn-size: 10pt;
+  --hn-size-sub: 7pt;
+  --hn-size-comment: 9pt;
+  --hn-indent: 40px;
+  --hn-width: 85%;
   /* the default theme's names, so its sections follow this palette */
   --hm-sumi: var(--hm-text);
   --hm-hai: var(--hn-muted);
   --hm-label: var(--hn-muted);
-  --hm-hair: var(--hn-line);
-  --hm-shiro: var(--hn-surface);
-  --hm-kasumi: var(--hn-surface);
+  --hm-hair: #d8d8cc;
+  --hm-shiro: var(--hm-bg);
+  --hm-kasumi: var(--hm-bg);
   --hm-shu: var(--hm-primary);
-
-  /* ---- type ---- */
-  --hm-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --hm-font-heading: var(--hm-font);
-
-  /* ---- shape and rhythm ---- */
-  --hm-radius-sm: 6px;
-  --hm-radius-md: 10px;
-  --hm-radius-lg: 16px;
-  --hm-container: 72rem;
-  --hn-gap: clamp(1rem, 3vw, 2rem);
-  --hn-section: clamp(4rem, 9vw, 7rem);
 }
 
-:root[data-theme="dark"] {
-  --hm-bg: #0f1115;
-  --hm-text: #e8eaee;
-  --hn-muted: #9aa1ad;
-  --hn-line: #262a31;
-  --hn-surface: #161920;
-  color-scheme: dark;
-}
-
-[data-hn-density="compact"] { --hn-section: clamp(2.5rem, 6vw, 4.5rem); }
-.hm-section { padding-block: var(--hn-section); }
-
-/* ---- shell ---- */
-.hn-wrap { width: min(100% - 2 * var(--hn-gap), var(--hm-container)); margin-inline: auto; }
-
-.hn-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--hm-bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--hn-line); }
-.hn-header__inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
-.hn-brand { display: inline-flex; align-items: center; gap: .5rem; color: var(--hm-text); text-decoration: none; font-weight: 650; letter-spacing: -.01em; }
-.hn-nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin-inline-start: auto; }
-.hn-nav a { color: var(--hn-muted); text-decoration: none; font-size: .95rem; }
-.hn-nav a:hover, .hn-nav a[aria-current="page"] { color: var(--hm-text); }
-.hn-header__end { display: flex; align-items: center; gap: .75rem; }
-.hn-mode { display: inline-grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border: 1px solid var(--hn-line); border-radius: 999px; background: none; color: var(--hm-text); cursor: pointer; }
-.hn-mode svg { inline-size: 1rem; block-size: 1rem; }
-.hn-sun, [data-theme="dark"] .hn-moon { display: none; }
-[data-theme="dark"] .hn-sun { display: block; }
-
-.hn-footer { margin-block-start: var(--hn-section); padding-block: 3rem 2rem; border-top: 1px solid var(--hn-line); color: var(--hn-muted); font-size: .9rem; }
-.hn-footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
-.hn-footer__brand { margin: 0; color: var(--hm-text); font-weight: 650; }
-.hn-footer__brand span { display: block; margin-top: .25rem; color: var(--hn-muted); font-weight: 400; }
-.hn-footer__nav { display: flex; flex-wrap: wrap; gap: 2rem 3rem; }
-.hn-footer__nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
-.hn-footer__title { margin: 0 0 .5rem; color: var(--hm-text); font-weight: 600; }
-.hn-footer a { color: inherit; text-decoration: none; }
-.hn-footer a:hover { color: var(--hm-text); }
-.hn-social { display: flex; gap: 1rem; list-style: none; padding: 0; margin: 2rem 0 0; }
-.hn-footer__legal { margin: 2rem 0 0; }
-
-@media (max-width: 720px) {
-  .hn-header__inner { flex-wrap: wrap; padding-block: .75rem; gap: .75rem; }
-  .hn-nav { order: 3; inline-size: 100%; margin: 0; overflow-x: auto; flex-wrap: nowrap; padding-bottom: .25rem; }
-  .hn-header__end { margin-inline-start: auto; }
-}
+body { margin: 0; background: var(--hn-bg); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
+.hn-w-full { --hn-width: 100%; }
+@media (max-width: 750px) { :root { --hn-width: 100%; --hn-indent: 14px; } }

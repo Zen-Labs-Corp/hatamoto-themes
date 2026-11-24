@@ -1,14 +1,13 @@
 <!doctype html>
-<html lang="{{default "en" .Site.Language}}" data-hm-contract="1"{{if .Preview}} data-hm-preview="true"{{end}} data-hn-mode="{{default "light" .Settings.color_mode}}" data-hn-density="{{default "comfortable" .Settings.density}}">
+<html lang="{{default "en" .Site.Language}}" data-hm-contract="1"{{if .Preview}} data-hm-preview="true"{{end}}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{template "head" .Head}}
 <link rel="stylesheet" href="{{.CSSHref}}">
 {{if .Tokens.Any}}<style>:root{ {{with .Tokens.Primary}}--hm-primary:{{.}};{{end}}{{with .Tokens.Background}}--hm-bg:{{.}};{{end}}{{with .Tokens.Text}}--hm-text:{{.}};{{end}}{{with .Tokens.Font}}--hm-font:{{.}};{{end}}{{with .Tokens.FontHeading}}--hm-font-heading:{{.}};{{end}}{{with .Tokens.RadiusSm}}--hm-radius-sm:{{.}};{{end}}{{with .Tokens.RadiusMd}}--hm-radius-md:{{.}};{{end}}{{with .Tokens.RadiusLg}}--hm-radius-lg:{{.}};{{end}} }</style>
-{{end}}<script src="/theme/assets/js/hn-classic-head.js"></script>
-{{template "plugin-head" .}}</head>
-<body class="hn-body hn-kind-{{.Kind}}">
+{{end}}{{template "plugin-head" .}}</head>
+<body class="hn-body hn-kind-{{.Kind}} hn-w-{{.Settings.width}}">
 <a class="hm-skip" href="#main-content">Skip to content</a>
 {{template "header" .}}
 <main id="main-content" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>

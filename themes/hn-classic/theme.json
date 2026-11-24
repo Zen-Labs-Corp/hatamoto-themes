@@ -8,23 +8,31 @@
   },
   "builder": {
     "tokens": true,
-    "parts": ["header", "footer", "single", "archive"]
+    "parts": [
+      "header",
+      "footer",
+      "single",
+      "archive"
+    ]
   },
   "settings_schema": {
     "type": "object",
     "properties": {
-      "color_mode": {
+      "width": {
         "type": "string",
-        "title": "Colour mode",
-        "description": "What a first-time visitor sees. Visitors can still switch with the header toggle.",
-        "enum": ["light", "dark", "auto"],
-        "default": "light"
+        "title": "Page width",
+        "description": "wide keeps the classic centred column (85%); full uses the whole window.",
+        "enum": [
+          "wide",
+          "full"
+        ],
+        "default": "wide"
       },
-      "density": {
-        "type": "string",
-        "title": "Spacing",
-        "enum": ["comfortable", "compact"],
-        "default": "comfortable"
+      "plugin_actions": {
+        "type": "boolean",
+        "title": "Comment vote and flag buttons",
+        "description": "Print the no-JavaScript vote and flag forms on comments. They post to the hn plugin; turn off on a site without it.",
+        "default": true
       }
     }
   }
