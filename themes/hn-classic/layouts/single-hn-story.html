@@ -1,0 +1,9 @@
+{{define "content"}}{{$e := .Entity}}<div class="hn-item-head"><div class="hn-story">
+<span class="hn-rank"></span><span class="hn-vote"></span>
+<h1 class="hn-title">{{with .Attrs.url}}<a href="{{safeHref .}}">{{if $e}}{{$e.Title}}{{else}}{{$.Page.Name}}{{end}}</a>{{else}}{{if $e}}{{$e.Title}}{{else}}{{.Page.Name}}{{end}}{{end}}</h1>
+<span class="hn-sub">{{with $e}}{{with .Author}}{{if ne $.Attrs.kind "job"}}by {{.Name}} {{end}}{{end}}{{if not .PublishedAt.IsZero}}<time datetime="{{formatDate .PublishedAt "2006-01-02T15:04:05Z07:00"}}">{{template "hn-ago" dict "T" .PublishedAt "Strings" $.Strings}}</time>{{end}}{{end}}{{if .Comments}} | <a href="#hm-comments">{{.CommentCount}} comments</a>{{end}}</span>
+</div>
+{{with .Attrs.text}}<div class="hn-item-text hn-plain">{{.}}</div>{{else}}{{if .Body}}<div class="hn-item-text">{{.Body}}</div>{{end}}{{end}}</div>
+{{with .Comments}}<section id="hm-comments" class="hn-comments" aria-labelledby="hm-comments-h"><link rel="stylesheet" href="/theme/assets/comments.css">
+<h2 id="hm-comments-h" class="hn-sr">{{t $ "comments_title"}}</h2>
+{{template "comments/form" $}}{{template "comments/list" $}}</section>{{end}}{{end}}

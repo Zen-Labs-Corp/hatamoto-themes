@@ -31,6 +31,13 @@ page keeps rendering.
 Colours, fonts and corners follow **Theme > Colours and fonts** (the header bar uses the
 primary colour).
 
+## Story pages
+
+`layouts/single-hn-story.html` and `layouts/archive-hn-story.html` render the `hn-story` schema
+(`url_pattern` `/item/{slug}`) with the attributes `url` (the story link), `text` (plain text,
+shown under the title; the entity body is the fallback) and `kind` (`story`, `ask`, `show`,
+`job`; a `job` row has no author). Other schemas use the built-in layouts.
+
 ## Markup the hn plugin prints
 
 The theme styles, but does not print, the markup of the hn plugin. The class vocabulary:

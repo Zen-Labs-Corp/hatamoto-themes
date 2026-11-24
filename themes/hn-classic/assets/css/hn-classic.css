@@ -99,6 +99,7 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
 .hn-item-head { padding: 0 0 8px; }
 .hn-item-head .hn-story { padding-bottom: 0; }
 .hn-item-text { margin: 4px 0 8px 44px; max-width: 700px; overflow-wrap: anywhere; }
+.hn-plain { white-space: pre-wrap; }
 
 /* ---- markup printed by the hn plugin ---- */
 .hn-form-tbl { margin: 8px 0 0 10px; border-collapse: collapse; }

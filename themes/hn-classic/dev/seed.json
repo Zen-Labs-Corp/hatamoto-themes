@@ -28,7 +28,7 @@
  ],
  "schemas": [
   {
-   "slug": "story",
+   "slug": "hn-story",
    "name": "Stories",
    "like": "post",
    "settings": {
@@ -38,15 +38,17 @@
   }
  ],
  "entries": {
-  "story": [
+  "hn-story": [
    {
     "name": "A tiny Postgres extension for append-only audit tables",
     "slug": "postgres-audit-extension",
-    "content": "<p>An extension that makes a table append-only and records who changed what, in about three hundred lines of C.</p>",
+    "content": "",
     "days_ago": 1,
     "excerpt": "A tiny Postgres extension for append-only audit tables",
     "attributes": {
-     "site": "example.com"
+     "url": "https://example.com/postgres-audit-extension",
+     "kind": "story",
+     "text": "An extension that makes a table append-only and records who changed what, in about three hundred lines of C."
     },
     "comments": [
      {
@@ -66,11 +68,13 @@
    {
     "name": "Show: a static blog as a single Go binary",
     "slug": "static-blog-single-binary",
-    "content": "<p>I rebuilt my blog as one binary that embeds the templates and the posts.</p>",
+    "content": "",
     "days_ago": 1,
     "excerpt": "Show: a static blog as a single Go binary",
     "attributes": {
-     "site": "blog.example.org"
+     "url": "https://blog.example.org/static-blog-single-binary",
+     "kind": "show",
+     "text": "I rebuilt my blog as one binary that embeds the templates and the posts."
     },
     "comments": [
      {
@@ -88,7 +92,7 @@
    {
     "name": "Ask: how do you keep a small team's on-call sane?",
     "slug": "small-team-on-call",
-    "content": "<p>We are five engineers and a pager. Rotations burn people out within a quarter. What has actually worked for you, and what did you stop doing?</p>",
+    "content": "",
     "days_ago": 1,
     "excerpt": "Ask: how do you keep a small team's on-call sane?",
     "comments": [
@@ -139,7 +143,11 @@
       "hours_ago": 5,
       "body": "<p>A short script that lists last week's pages sorted by how often they fired helped us pick what to delete:</p><pre>psql -At -c \"select alert, count(*) from pages where fired_at &gt; now() - interval '7 days' group by alert order by 2 desc limit 20\" example_ops_database_with_a_long_connection_string</pre>"
      }
-    ]
+    ],
+    "attributes": {
+     "kind": "ask",
+     "text": "We are five engineers and a pager. Rotations burn people out within a quarter. What has actually worked for you, and what did you stop doing?"
+    }
    },
    {
     "name": "The surprising cost of a 10 ms page in 2026",
@@ -148,7 +156,8 @@
     "days_ago": 2,
     "excerpt": "The surprising cost of a 10 ms page in 2026",
     "attributes": {
-     "site": "perf.example.org"
+     "url": "https://perf.example.org/ten-ms-page",
+     "kind": "story"
     },
     "comments": [
      {
@@ -172,7 +181,8 @@
     "days_ago": 2,
     "excerpt": "WebAssembly plugins without a runtime tax",
     "attributes": {
-     "site": "notes.example.net"
+     "url": "https://notes.example.net/wasm-plugins",
+     "kind": "story"
     },
     "comments": [
      {
@@ -185,7 +195,7 @@
    {
     "name": "Eight siblings: what does your release checklist look like?",
     "slug": "release-checklist",
-    "content": "<p>Short answers welcome. Ours has eleven items and nobody remembers the last three.</p>",
+    "content": "",
     "days_ago": 2,
     "excerpt": "Eight siblings: what does your release checklist look like?",
     "comments": [
@@ -244,7 +254,11 @@
       "hours_ago": 5,
       "body": "<p>Shadow shifts for new people before they carry it alone made a big difference.</p>"
      }
-    ]
+    ],
+    "attributes": {
+     "kind": "story",
+     "text": "Short answers welcome. Ours has eleven items and nobody remembers the last three."
+    }
    },
    {
     "name": "Why we stopped writing our own date parser",
@@ -253,7 +267,8 @@
     "days_ago": 3,
     "excerpt": "Why we stopped writing our own date parser",
     "attributes": {
-     "site": "dates.example.com"
+     "url": "https://dates.example.com/stopped-writing-date-parser",
+     "kind": "story"
     }
    },
    {
@@ -263,7 +278,8 @@
     "days_ago": 3,
     "excerpt": "Notes on running a tiny mail server in 2026",
     "attributes": {
-     "site": "mail.example.net"
+     "url": "https://mail.example.net/tiny-mail-server",
+     "kind": "story"
     },
     "comments": [
      {
@@ -276,11 +292,13 @@
    {
     "name": "Northwind Robotics is hiring a firmware engineer",
     "slug": "northwind-firmware-engineer",
-    "content": "<p>Northwind builds small warehouse robots. We need someone who is happy near a logic analyser.</p>",
+    "content": "",
     "days_ago": 1,
     "excerpt": "Northwind Robotics is hiring a firmware engineer",
     "attributes": {
-     "site": "careers.northwind.example.com"
+     "url": "https://careers.northwind.example.com/northwind-firmware-engineer",
+     "kind": "job",
+     "text": "Northwind builds small warehouse robots. We need someone who is happy near a logic analyser."
     }
    },
    {
@@ -290,7 +308,8 @@
     "days_ago": 2,
     "excerpt": "Harbourlight Labs is hiring a database engineer",
     "attributes": {
-     "site": "jobs.harbourlight.example.org"
+     "url": "https://jobs.harbourlight.example.org/harbourlight-database-engineer",
+     "kind": "job"
     }
    },
    {
@@ -300,17 +319,20 @@
     "days_ago": 4,
     "excerpt": "Quillfeather is hiring a technical writer",
     "attributes": {
-     "site": "jobs.quillfeather.example.net"
+     "url": "https://jobs.quillfeather.example.net/quillfeather-technical-writer",
+     "kind": "job"
     }
    },
    {
     "name": "Show: a keyboard-first RSS reader",
     "slug": "keyboard-rss-reader",
-    "content": "<p>A small reader for people who live in the terminal.</p>",
+    "content": "",
     "days_ago": 4,
     "excerpt": "Show: a keyboard-first RSS reader",
     "attributes": {
-     "site": "rss.example.com"
+     "url": "https://rss.example.com/keyboard-rss-reader",
+     "kind": "show",
+     "text": "A small reader for people who live in the terminal."
     },
     "comments": [
      {
@@ -326,7 +348,7 @@
   "header": [
    {
     "label": "new",
-    "archive": "story"
+    "archive": "hn-story"
    },
    {
     "label": "past",
