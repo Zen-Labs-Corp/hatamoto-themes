@@ -47,6 +47,12 @@
 button { font: inherit; font-size: 10pt; padding: 1px 6px; }
 @media (max-width: 750px) {
   #hm-comment-form { margin-left: 0; }
-  .hn-textarea { width: 100%; }
+  .hn-textarea, .hn-reply-form.hm-form textarea { width: 100%; }
   .hn-form-tbl input { max-width: 100%; }
 }
+/* core's hm.js mounts the captcha on form.hm-form: neutralise the default grid look */
+.hn-reply-form.hm-form { display: block; gap: 0; }
+.hn-reply-form.hm-form input[type=text], .hn-reply-form.hm-form input[type=email], .hn-reply-form.hm-form textarea {
+  width: auto; padding: 1px 2px; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: #fff; border: 1px solid #888; border-radius: 0;
+}
+.hn-reply-form.hm-form textarea { width: 500px; max-width: 100%; padding: 1px 2px; }
