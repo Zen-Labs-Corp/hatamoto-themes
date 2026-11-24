@@ -121,20 +121,52 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
 .hm-empty { padding: 8px 0; font-size: var(--hn-size-sub); }
 @media (max-width: 750px) { .hm-listing { padding-left: 14px; padding-right: 8px; } }
 
-/* ---- markup printed by the hn plugin ---- */
+/* ---- markup printed by the hn plugin ----
+   Story rows share the rules above (rank | vote | title grid). The plugin's
+   own inline <style> blocks use element-plus-class selectors here so the
+   theme's fonts and colours win. */
+.hn-vote-cell { display: block; }
+.hn-vote-form { margin: 0; }
+button.hn-vote { display: block; padding: 0; border: 0; background: var(--hn-arrow); font-size: 0; line-height: 0; color: transparent; cursor: pointer; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+button.hn-vote:hover, button.hn-vote:focus-visible { background: var(--hn-text); }
+.hn-score { white-space: nowrap; }
+.hn-story > .hn-sub { min-width: 0; overflow-wrap: anywhere; }
+.hn-sub form.hn-act { display: inline; margin: 0; }
+.hn-sub .hn-act button { padding: 0; border: 0; background: none; font: inherit; color: var(--hn-muted); cursor: pointer; }
+.hn-sub .hn-act button:hover, .hn-sub .hn-act button:focus-visible { text-decoration: underline; }
+.hn-notice { margin: 6px 0 6px 10px; font-weight: bold; color: var(--hn-accent); }
+.hn-heading { margin: 6px 0 6px 10px; font-weight: bold; }
+p.hn-note, .hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0 10px; }
+.hn-item-head .hn-item-text p { margin: 0 0 8px; }
 .hn-form-tbl { margin: 8px 0 0 10px; border-collapse: collapse; }
 .hn-form-tbl td { padding: 3px 6px 3px 0; vertical-align: top; }
 .hn-lbl { color: var(--hn-muted); text-align: right; white-space: nowrap; }
-.hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0 10px; }
-.hn-user-tbl { margin: 8px 0 0 10px; }
-.hn-user-tbl td { padding: 2px 8px 2px 0; }
-.hn-user-tbl td:first-child { color: var(--hn-muted); }
-.hn-login { padding: 12px 10px; }
-.hn-login h2 { font-size: 10pt; margin: 0 0 6px; }
+.hn-form-tbl .hn-item-text { margin: 0 0 4px; }
+.hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl textarea { max-width: 100%; }
+main > form > button { margin: 8px 0 0 10px; }
+.hn-form-tbl button, div.hn-login button, div.hn-user button, main > form > button { font: inherit; font-size: 10pt; color: var(--hn-text); background: #efefef; border: 1px solid #888; border-radius: 0; padding: 1px 6px; cursor: pointer; }
+div.hn-login, div.hn-user, div.hn-ub { font: var(--hn-size) var(--hn-font); }
+div.hn-login, div.hn-user { padding: 8px 10px; }
+div.hn-login p, div.hn-user > p { margin: 8px 0; }
+div.hn-login .hn-note { margin: 8px 0; }
+div.hn-login input[type=text], div.hn-user input[type=text] { max-width: 100%; }
+div.hn-user table { border-collapse: collapse; }
+div.hn-user th, div.hn-user td { padding: 2px 12px 2px 0; vertical-align: top; text-align: left; }
+div.hn-user th { color: var(--hn-muted); font-weight: normal; }
+div.hn-user input[type=text] { width: 30em; }
+div.hn-user input[type=number] { width: 5em; font-family: var(--hn-mono); font-size: 10pt; border: 1px solid #888; }
+/* the user bar: the plugin injects it as the first section of each page, so it
+   sits straight under the header bar and carries the bar colour */
+div.hn-ub { margin: -6px 0 6px; padding: 0 6px 2px; text-align: right; background: var(--hn-accent); color: var(--hn-on-accent); }
+div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
+div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
 @media (max-width: 750px) {
   .hn-story { grid-template-columns: 22px 14px 1fr; }
   .hn-item-text { margin-left: 38px; }
   .hn-more { padding-left: 38px; }
+  .hn-form-tbl { width: calc(100% - 10px); }
+  .hn-form-tbl td:last-child { width: 100%; }
+  .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl textarea, div.hn-user input[type=text] { width: 100%; }
 }
 
 /* ---- 404 ---- */
