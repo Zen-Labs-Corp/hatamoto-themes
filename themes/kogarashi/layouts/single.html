@@ -10,6 +10,7 @@
 {{if .Body}}<div class="kg-prose hm-prose">{{$b.HTML}}</div>{{end}}
 {{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
 {{with $e.Tags}}<ul class="kg-tags" aria-label="Tags">{{range .}}<li><a class="kg-chip" href="{{.URL}}">{{.Name}}</a></li>{{end}}</ul>{{end}}
+{{template "kg-comments" .}}
 {{if $post}}{{template "kg-neighbours" dict "Self" $e.URL "Root" .}}{{end}}
 </article>
 {{else}}{{template "page-body" .}}{{end}}{{end}}

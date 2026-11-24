@@ -1,6 +1,6 @@
 {
   "name": "yukigeshiki",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Editorial blog theme: a sticky masthead and category sidebar, a two-column card grid on tinted panels, Bricolage Grotesque with Source Serif italics, in pine green.",
   "screenshot": "assets/screenshot.png",
   "csp": {

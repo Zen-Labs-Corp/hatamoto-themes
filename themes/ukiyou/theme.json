@@ -1,6 +1,6 @@
 {
   "name": "ukiyou",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A dense magazine blog theme in indigo and saffron: centred masthead, lead story, three-column grid with a numbered sidebar, bold sans headlines over serif text.",
   "screenshot": "assets/screenshot.png",
   "csp": {

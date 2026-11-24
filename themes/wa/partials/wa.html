@@ -86,6 +86,7 @@
 {{with .Avatar}}<img class="wa-av wa-av--lg" src="{{imgsrc .}}" alt="" width="64" height="64">{{else}}<span class="wa-av wa-av--lg" aria-hidden="true">{{upper (printf "%.1s" .Name)}}</span>{{end}}
 <div><p class="wa-authorbox__name"><span class="wa-eyebrow">Written by</span>{{if .URL}}<a href="{{cta .URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>
 {{with .JobTitle}}<p class="wa-authorbox__job">{{.}}</p>{{end}}{{with .Bio}}<p class="wa-authorbox__bio">{{.}}</p>{{end}}</div></aside>{{end}}{{end}}
+{{template "wa-comments" .}}
 </div>
 {{if $post}}<div class="wa-share"><a class="wa-ibtn" href="mailto:?subject={{$e.Title | urlquery}}" aria-label="Share by email"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18v12H3zM3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></a><a class="wa-ibtn" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>{{else}}<span class="wa-rail-gap"></span>{{end}}
 </div></div>

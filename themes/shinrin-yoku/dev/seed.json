@@ -123,7 +123,37 @@
       "featured_image": "{{media:walk.png}}",
       "attributes": {
         "author": "Ana Ferreira"
-      }
+      },
+      "comments": [
+        {
+          "author": "Marta Okafor",
+          "days_ago": 0,
+          "hours_ago": 20,
+          "body": "<p>The bit about walking until the bakeries open is exactly how I learn a city too. The first coffee always tastes like the place.</p>",
+          "replies": [
+            {
+              "site_author": true,
+              "days_ago": 0,
+              "hours_ago": 16,
+              "body": "<p>Thank you, Marta. I still remember that first cup more clearly than the museum we saw that afternoon.</p>",
+              "replies": [
+                {
+                  "author": "Marta Okafor",
+                  "days_ago": 0,
+                  "hours_ago": 12,
+                  "body": "<p>Same here. Museums blur, breakfasts stay.</p>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "author": "Tom Lindqvist",
+          "days_ago": 0,
+          "hours_ago": 3,
+          "body": "<p>Which neighbourhood did you stay in? We are going in the spring and would love a quiet base.</p>"
+        }
+      ]
     },
     {
       "name": "Bread, slowly: a year of sourdough",

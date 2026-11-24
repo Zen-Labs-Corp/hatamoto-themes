@@ -23,6 +23,7 @@ the body has at least two headings. */}}
 <div><p>Written by {{if $e.Author.URL}}<a href="{{$e.Author.URL}}">{{$e.Author.Name}}</a>{{else}}{{$e.Author.Name}}{{end}}</p>
 {{with $e.Author.JobTitle}}<p class="hm-meta">{{.}}</p>{{end}}{{with $e.Author.Bio}}<p class="hm-author-bio">{{.}}</p>{{end}}</div>
 </aside>{{end}}
+{{template "mu-comments" .}}
 </div>
 </div>
 </article>

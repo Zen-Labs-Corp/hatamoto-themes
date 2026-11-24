@@ -10,6 +10,7 @@
 {{if .Body}}<div class="yk-prose hm-entry">{{$b.HTML}}</div>{{end}}
 {{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
 {{with $e.Tags}}<footer class="yk-article__foot"><h2 class="yk-article__foot-h">Tags</h2><p class="yk-tags">{{range .}}<a href="{{.URL}}">{{.Name}}</a>{{end}}</p></footer>{{end}}
+{{template "yk-comments" .}}
 </article>
 {{if $post}}{{with call .Related 3}}<section class="yk-wrap yk-related" aria-labelledby="yk-related-h">
 <h2 id="yk-related-h" class="yk-related__h">More posts</h2>

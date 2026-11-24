@@ -537,7 +537,29 @@
    "days_ago": 3,
    "excerpt": "If the numbers arrive after the decisions, the close is too slow. Here is how to tell, and what to fix first.",
    "featured_image": "{{media:case.png}}",
-   "content": "<p>A close that takes three weeks means every decision in that month is made on old numbers.</p><h2>1. Reports arrive after the meeting</h2><p>If the board pack is late, the close is the bottleneck.</p><h2>2. The same corrections every month</h2><p>Recurring journals are a sign the process, not the people, needs work.</p><h2>3. One person holds it together</h2><p>A close that depends on one person is a risk, not a process.</p>"
+   "content": "<p>A close that takes three weeks means every decision in that month is made on old numbers.</p><h2>1. Reports arrive after the meeting</h2><p>If the board pack is late, the close is the bottleneck.</p><h2>2. The same corrections every month</h2><p>Recurring journals are a sign the process, not the people, needs work.</p><h2>3. One person holds it together</h2><p>A close that depends on one person is a risk, not a process.</p>",
+   "comments": [
+    {
+     "author": "Priya Nair",
+     "days_ago": 0,
+     "hours_ago": 30,
+     "body": "<p>Sign three hit home. We still wait on two spreadsheets every month before anyone can start reconciling.</p>",
+     "replies": [
+      {
+       "site_author": true,
+       "days_ago": 0,
+       "hours_ago": 26,
+       "body": "<p>That is the most common one we see. Moving those two sheets into the ledger usually saves two days on its own.</p>"
+      }
+     ]
+    },
+    {
+     "author": "Daniel Brooks",
+     "days_ago": 0,
+     "hours_ago": 5,
+     "body": "<p>Useful list. Do you have a rule of thumb for how many days a close should take at our size, around 40 people?</p>"
+    }
+   ]
   },
   {
    "name": "What an operations review actually looks at",

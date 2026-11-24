@@ -6,6 +6,7 @@
 <h1 class="km-page__title">{{$e.Title}}</h1>
 {{if .Body}}<div class="km-prose">{{$b.HTML}}</div>{{end}}
 {{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
+{{template "km-comments" .}}
 </div>
 </article>
 {{else}}{{template "page-body" .}}{{end}}{{end}}

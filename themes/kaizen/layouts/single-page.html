@@ -7,6 +7,7 @@
 {{with $e.Excerpt}}<p class="kz-excerpt">{{.}}</p>{{end}}
 </header>
 {{with .Body}}<div class="kz-cols kz-cols--solo"><div class="kz-main"><div class="hm-prose kz-prose">{{.}}</div></div></div>{{end}}
+{{template "kz-comments" .}}
 </div>
 </article>
 {{else if and .Entity (not (and .Blocks (or (not .Body) (eq .SchemaSlug "page"))))}}{{template "article" .}}{{else}}{{$h1 := false}}{{range .Blocks}}{{if eq .Type "hero"}}{{$h1 = true}}{{end}}{{end}}{{if and .Blocks (not $h1)}}<h1 class="kz-sr">{{if .Entity}}{{.Entity.Title}}{{else}}{{.Page.Name}}{{end}}</h1>

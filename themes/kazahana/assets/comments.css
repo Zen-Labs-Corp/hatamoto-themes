@@ -1,0 +1,105 @@
+/* Kazahana: comments, the form and the thread. Loaded only on pages that show
+   them, so pages without comments do not pay for these rules. Every colour,
+   font and radius comes from the theme's tokens, so Theme > Colours and fonts
+   restyles it too. */
+#hm-comments, #hm-comment-form, .hm-comment { scroll-margin-top: var(--c-scroll, 5rem); }
+.hm-comments { color: var(--c-ink); }
+.hm-comments .hm-comments__title { margin: 0 0 1.5rem; font: var(--c-title); letter-spacing: var(--c-title-track, normal); color: var(--c-ink); text-transform: var(--c-title-case, none); }
+
+/* the form */
+.hm-comments .hm-form { display: grid; gap: 1.15rem; margin: 0 0 3rem; padding: 0; border: 0; background: none; box-shadow: none; }
+.hm-comments .hm-form__field { display: grid; gap: .45rem; margin: 0; }
+.hm-comments .hm-form__label { margin: 0; font: var(--c-label); letter-spacing: var(--c-label-track, normal); text-transform: var(--c-label-case, none); color: var(--c-label-ink, var(--c-ink)); }
+.hm-comments input[type="text"], .hm-comments input[type="email"], .hm-comments textarea {
+  inline-size: 100%; box-sizing: border-box; margin: 0; padding: var(--c-field-pad, .75rem .9rem);
+  font: 400 1rem/1.5 var(--c-body); color: var(--c-ink); background: var(--c-field);
+  border: var(--c-field-border, 1px solid var(--c-line)); border-radius: var(--c-radius); box-shadow: none;
+  transition: border-color .15s, background-color .15s; }
+.hm-comments textarea { min-block-size: 9rem; resize: vertical; }
+.hm-comments input[type="text"]:hover, .hm-comments input[type="email"]:hover, .hm-comments textarea:hover { border-color: var(--c-line-strong, var(--c-muted)); }
+.hm-comments input:focus-visible, .hm-comments textarea:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 1px; border-color: var(--c-accent); }
+.hm-comments .hm-form__help { font-size: .8125rem; line-height: 1.4; color: var(--c-muted); }
+.hm-comments .hm-form__check { display: flex; align-items: center; gap: .6rem; font: 400 .9375rem/1.4 var(--c-body); color: var(--c-ink); cursor: pointer; }
+.hm-comments .hm-form__check input { flex: none; inline-size: 1.05rem; block-size: 1.05rem; margin: 0; accent-color: var(--c-accent); }
+.hm-comments .hm-form__hp { position: absolute; left: -9999px; inline-size: 1px; block-size: 1px; overflow: hidden; }
+.hm-comments .hm-form__submit {
+  justify-self: start; display: inline-flex; align-items: center; justify-content: center; margin: .25rem 0 0;
+  padding: var(--c-btn-pad, .8rem 1.35rem); font: var(--c-btn-font); letter-spacing: var(--c-btn-track, normal); text-transform: var(--c-btn-case, none);
+  color: var(--c-btn-ink); background: var(--c-btn-bg); border: var(--c-btn-border, 1px solid transparent); border-radius: var(--c-btn-radius);
+  box-shadow: none; cursor: pointer; transition: filter .15s, background-color .15s, color .15s; }
+.hm-comments .hm-form__submit:hover { filter: brightness(.92); }
+.hm-comments .hm-form__submit:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.hm-comments .hm-form__success, .hm-comments .hm-form__error { margin: 0 0 1.25rem; padding: .85rem 1rem; font: 400 .9375rem/1.45 var(--c-body); color: var(--c-ink); border: 1px solid var(--c-line); border-radius: var(--c-radius); background: var(--c-soft); }
+.hm-comments .hm-form__error { border-color: var(--c-accent); border-inline-start-width: 3px; }
+.hm-comments__replying, .hm-comments__closed { margin: 0; font: 400 .9375rem/1.5 var(--c-body); color: var(--c-muted); }
+.hm-comments__replying strong { color: var(--c-ink); }
+.hm-comments__replying a { margin-inline-start: .35rem; color: var(--c-link); }
+
+/* the thread */
+.hm-comments .hm-comments__count { margin: 0 0 1.75rem; padding-block-start: 1.75rem; border-block-start: 1px solid var(--c-line); font: var(--c-count); letter-spacing: var(--c-count-track, normal); text-transform: var(--c-count-case, none); color: var(--c-count-ink, var(--c-ink)); }
+.hm-comments__list { display: grid; gap: 2rem; margin: 0; padding: 0; list-style: none; }
+.hm-comments__list--nested { gap: 1.5rem; margin-block-start: 1.5rem; padding-inline-start: 1.35rem; border-inline-start: 2px solid var(--c-thread, var(--c-line)); }
+.hm-comment { margin: 0; padding: 0; }
+.hm-comment::before, .hm-comment::marker { content: none; }
+.hm-comment__meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .65rem; margin: 0 0 .45rem; font: var(--c-meta); letter-spacing: var(--c-meta-track, normal); text-transform: var(--c-meta-case, none); color: var(--c-muted); }
+.hm-comment__author { font: var(--c-author); letter-spacing: normal; text-transform: none; color: var(--c-ink); }
+.hm-comment__badge { align-self: center; padding: .2rem .5rem; font: var(--c-badge-font, 600 .6875rem/1 var(--c-body)); letter-spacing: .06em; text-transform: uppercase; color: var(--c-badge-ink, var(--c-link)); background: var(--c-badge-bg, var(--c-soft)); border: var(--c-badge-border, 0); border-radius: var(--c-badge-radius, 999px); }
+.hm-comment__body { font: 400 var(--c-body-size, 1rem)/1.65 var(--c-body); color: var(--c-body-ink, var(--c-ink)); overflow-wrap: anywhere; }
+.hm-comment__body > :first-child { margin-block-start: 0; }
+.hm-comment__body > :last-child { margin-block-end: 0; }
+.hm-comment__body p { margin: 0 0 .75em; }
+.hm-comment__body a { color: var(--c-link); text-decoration: underline; text-underline-offset: 2px; }
+.hm-comment__actions { margin: .55rem 0 0; font: var(--c-action); letter-spacing: var(--c-action-track, normal); text-transform: var(--c-action-case, none); }
+.hm-comment__actions a { color: var(--c-link); text-decoration: none; }
+.hm-comment__actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.hm-comment__edit { margin-block-start: .65rem; }
+.hm-comment__edit summary { inline-size: max-content; font: var(--c-action); color: var(--c-link); cursor: pointer; }
+.hm-comments .hm-comment__edit .hm-form { gap: .65rem; margin: .65rem 0 0; }
+.hm-comment__delete { margin-block-start: .5rem; }
+.hm-comments .hm-comment__delete .hm-form__submit { color: var(--c-ink); background: transparent; border: 1px solid var(--c-line); }
+.hm-comments__pager { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9rem; margin-block-start: 2.25rem; font: var(--c-meta); color: var(--c-muted); }
+.hm-comments__pager a { color: var(--c-link); }
+.hm-comments__pager [aria-current] { color: var(--c-ink); font-weight: 700; }
+
+/* Kazahana tokens */
+.hm-comments {
+  --c-ink: var(--kz-ink);
+  --c-muted: var(--kz-muted);
+  --c-line: var(--kz-line);
+  --c-accent: var(--kz-primary);
+  --c-link: var(--kz-primary-text);
+  --c-field: var(--kz-surface);
+  --c-soft: var(--kz-surface);
+  --c-radius: var(--hm-radius-sm);
+  --c-body: var(--hm-font);
+  --c-body-size: 1.0625rem;
+  --c-title: 500 2rem/1.15 var(--hm-font-heading);
+  --c-label: 600 .7rem/1 var(--kz-mono);
+  --c-label-track: .1em;
+  --c-label-case: uppercase;
+  --c-label-ink: var(--kz-muted);
+  --c-btn-bg: var(--hm-text);
+  --c-btn-ink: var(--hm-bg);
+  --c-btn-radius: var(--hm-radius-sm);
+  --c-btn-font: 600 .875rem/1 var(--hm-font);
+  --c-btn-pad: .8rem 1.2rem;
+  --c-count: 600 .72rem/1.3 var(--kz-mono);
+  --c-count-track: .1em;
+  --c-count-case: uppercase;
+  --c-count-ink: var(--kz-muted);
+  --c-meta: 400 .75rem/1.3 var(--kz-mono);
+  --c-author: 500 1.15rem/1.2 var(--hm-font-heading);
+  --c-badge-bg: transparent;
+  --c-badge-border: 1px solid currentColor;
+  --c-badge-ink: var(--kz-primary-text);
+  --c-badge-font: 600 .625rem/1 var(--kz-mono);
+  --c-thread: var(--kz-primary);
+  --c-action: 600 .72rem/1 var(--kz-mono);
+  --c-action-track: .1em;
+  --c-action-case: uppercase;
+}
+
+/* Kazahana */
+.kz-comments { margin-block-start: 3rem; padding-block-start: 2.25rem; border-block-start: 1px solid var(--kz-line); }
+.kz-comments .hm-comments__count b, .kz-comments .hm-comments__count { font-weight: 600; }
+.kz-comments .hm-comments__list--nested { border-inline-start-width: 1px; }

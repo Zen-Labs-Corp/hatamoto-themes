@@ -18,8 +18,9 @@
 {{with .Blocks}}{{range .}}{{template "section" .}}{{end}}{{end}}
 {{if $post}}{{with $e.Tags}}<div class="kz-tags"><h2 class="kz-label">Tags</h2><div class="kz-chips">{{range .}}<a class="kz-chip" href="{{.URL}}">{{.Name}}</a>{{end}}</div></div>{{end}}
 {{with $e.Author}}<aside class="kz-author" aria-label="About the author"><span class="kz-ava" aria-hidden="true"></span>
-<div><p class="kz-author__name">{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>{{with .JobTitle}}<p class="kz-author__job">{{.}}</p>{{end}}{{with .Bio}}<p class="kz-author__bio">{{.}}</p>{{end}}</div></aside>{{end}}
-{{$all := query (dict "schema" "post" "limit" 100 "order" "-published_at")}}{{$older := ""}}{{$newer := ""}}{{$seen := false}}
+<div><p class="kz-author__name">{{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>{{with .JobTitle}}<p class="kz-author__job">{{.}}</p>{{end}}{{with .Bio}}<p class="kz-author__bio">{{.}}</p>{{end}}</div></aside>{{end}}{{end}}
+{{template "kz-comments" .}}
+{{if $post}}{{$all := query (dict "schema" "post" "limit" 100 "order" "-published_at")}}{{$older := ""}}{{$newer := ""}}{{$seen := false}}
 {{range $all.Items}}{{if eq .URL $e.URL}}{{$seen = true}}{{else if $seen}}{{if not $older}}{{$older = .}}{{end}}{{else}}{{$newer = .}}{{end}}{{end}}
 {{if $seen}}<nav class="kz-pn" aria-label="More notes">
 {{with $older}}<a rel="prev" href="{{.URL}}"><small>&larr; Older</small><span>{{.Title}}</span></a>{{end}}

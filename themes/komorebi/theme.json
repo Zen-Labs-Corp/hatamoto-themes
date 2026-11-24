@@ -1,6 +1,6 @@
 {
   "name": "komorebi",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Quiet, typographic blog theme: a two-tone split hero, a featured card with generated pixel art, hairline post lists and mono labels, in indigo and peach.",
   "screenshot": "assets/screenshot.png",
   "csp": {

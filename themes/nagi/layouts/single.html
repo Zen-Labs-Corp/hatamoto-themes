@@ -15,6 +15,7 @@
 <div><p class="ng-author__name">Written by {{if $e.Author.URL}}<a href="{{$e.Author.URL}}">{{$e.Author.Name}}</a>{{else}}{{$e.Author.Name}}{{end}}</p>
 {{with $e.Author.JobTitle}}<p class="ng-author__job">{{.}}</p>{{end}}{{with $e.Author.Bio}}<p class="ng-author__bio">{{.}}</p>{{end}}</div>
 </aside>{{end}}
+{{template "ng-comments" .}}
 </article>
 {{if $post}}{{with call .Related 3}}<section class="ng-sec ng-related" aria-labelledby="ng-related-h"><div class="ng-wrap">
 <div class="ng-sh"><h2 id="ng-related-h">Keep reading</h2></div>

@@ -1,6 +1,6 @@
 {
   "name": "kaizen",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A dark-first blog theme: a glowing horizon hero, a numbered index with sticky months, smooth page transitions and a live status strip in the footer.",
   "screenshot": "assets/screenshot.png",
   "csp": {

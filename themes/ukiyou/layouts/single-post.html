@@ -20,7 +20,7 @@
 {{with .Avatar}}<img src="{{imgsrc .}}" alt="" width="64" height="64">{{end}}
 <div><p class="uk-author__name"><span>Written by</span> {{if .URL}}<a href="{{.URL}}">{{.Name}}</a>{{else}}{{.Name}}{{end}}</p>{{with .JobTitle}}<p class="uk-author__job">{{.}}</p>{{end}}{{with .Bio}}<p class="uk-author__bio">{{.}}</p>{{end}}</div>
 </aside>
-{{end}}</article>
+{{end}}{{template "uk-comments" .}}</article>
 {{if or $prev $next}}<nav class="uk-pn" aria-label="More stories">
 {{with $prev}}<a class="uk-pn__prev" href="{{.URL}}" rel="prev"><span class="uk-cat">Previous</span><span class="uk-pn__t">{{.Title}}</span></a>{{end}}{{with $next}}<a class="uk-pn__next" href="{{.URL}}" rel="next"><span class="uk-cat">Next</span><span class="uk-pn__t">{{.Title}}</span></a>{{end}}
 </nav>

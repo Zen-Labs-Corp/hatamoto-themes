@@ -1,6 +1,6 @@
 {
   "name": "nagi",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A calm blog theme with light serif headlines, a featured cover, numbered topics, a picture mosaic and a ledger of posts with large dates. Light and dark.",
   "screenshot": "assets/screenshot.png",
   "csp": {
