@@ -1,0 +1,17 @@
+{{define "content"}}{{with .CommentSignIn}}<div class="hn-login hn-signin">
+{{if eq .State "invalid"}}<h1 class="hn-signin__h">{{t $ "comment_link_expired_title"}}</h1>
+<p class="hn-note">{{t $ "comment_signin_invalid"}}</p>
+{{else}}<h1 class="hn-signin__h">Login</h1>
+{{if eq .State "sent"}}<p class="hn-note" role="status">{{t $ "comment_signin_sent"}}</p>
+{{else if eq .State "out"}}<p class="hn-note" role="status">{{t $ "comment_signin_out"}}</p>
+{{else if eq .State "in"}}<p class="hn-note">{{t $ "comment_signin_in"}}</p>
+<form method="post" action="{{.Action}}">{{with .Token}}<input type="hidden" name="hm_ct" value="{{.}}">{{end}}<button type="submit">{{t $ "comment_sign_out"}}</button></form>
+{{else if eq .State "link"}}<p class="hn-note">{{t $ "comment_signin_link"}}</p>
+<form method="post" action="{{.Action}}">{{with .Token}}<input type="hidden" name="hm_ct" value="{{.}}">{{end}}<button type="submit">{{t $ "comment_sign_in"}}</button></form>
+{{else}}{{if .Error}}<p class="hn-note hn-error" role="alert">{{t $ "comment_signin_error"}}</p>
+{{end}}<form method="post" action="{{.Action}}">{{with .Token}}<input type="hidden" name="hm_ct" value="{{.}}">{{end}}<table class="hn-form-tbl">
+<tr><td class="hn-lbl"><label for="{{.EmailName}}">email</label></td><td><input id="{{.EmailName}}" name="{{.EmailName}}" type="email" size="30" autocomplete="email" maxlength="254"{{with .Email}} value="{{.}}"{{end}} required></td></tr>
+<tr><td></td><td><button type="submit">send me a sign-in link</button></td></tr>
+</table></form>
+<p class="hn-note">We email you a link. Open it on this device and you are signed in. No password.</p>
+{{end}}{{end}}</div>{{end}}{{end}}
