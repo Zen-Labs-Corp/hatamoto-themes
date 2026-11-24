@@ -20,7 +20,7 @@
   --hn-text: var(--hm-text);
   --hn-font: var(--hm-font);
   --hn-border: var(--hn-accent);
-  --hn-muted: #828282;
+  --hn-muted: #6b6b6b;
   --hn-link-visited: #828282;
   --hn-dead: #bfbfbf;
   --hn-arrow: #9a9a9a;
@@ -123,8 +123,7 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
 
 /* ---- markup printed by the hn plugin ----
    Story rows share the rules above (rank | vote | title grid). The plugin's
-   own inline <style> blocks use element-plus-class selectors here so the
-   theme's fonts and colours win. */
+   own rules have zero specificity (:where()), so the theme's rules win. */
 .hn-vote-cell { display: block; }
 .hn-vote-form { margin: 0; }
 button.hn-vote { position: relative; display: block; padding: 0; border: 0; background: none; font-size: 0; line-height: 0; color: transparent; cursor: pointer; }
@@ -161,8 +160,8 @@ div.hn-user input[type=number] { width: 5em; font-family: var(--hn-mono); font-s
    plugin's blocks are dense, so drop both for every plugin section type */
 .hm-section[class*="hm-section--hn_"] { padding: 0; border-top: 0; }
 /* threads and newest comments (hn_threads): the plugin's own comment rows, with
-   the look of the theme's rows. div.hn-threads outranks the plugin's inline
-   style; every rule is scoped to it, so the theme's own comment rows are not touched. */
+   the look of the theme's rows. Every rule is scoped to div.hn-threads, so the
+   theme's own comment rows are not touched. */
 div.hn-threads { font: var(--hn-size) var(--hn-font); padding: 0 8px 0 0; }
 div.hn-threads > h2 { margin: 6px 0 6px 10px; font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; }
 div.hn-threads > p { margin: 6px 0 6px 10px; }
