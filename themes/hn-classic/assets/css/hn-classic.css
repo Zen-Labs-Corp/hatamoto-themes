@@ -150,7 +150,7 @@ div.hn-login, div.hn-user, div.hn-ub { font: var(--hn-size) var(--hn-font); }
 div.hn-login, div.hn-user { padding: 8px 10px; }
 div.hn-login p, div.hn-user > p { margin: 8px 0; }
 div.hn-login .hn-note { margin: 8px 0; }
-div.hn-login input[type=text], div.hn-user input[type=text] { max-width: 100%; }
+div.hn-login input[type=text], div.hn-login input[type=email], div.hn-user input[type=text] { max-width: 100%; }
 div.hn-user table { border-collapse: collapse; }
 div.hn-user td { overflow-wrap: anywhere; }
 div.hn-user th, div.hn-user td { padding: 2px 12px 2px 0; vertical-align: top; text-align: left; }
@@ -199,8 +199,15 @@ div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
   .hn-more { padding-left: 38px; }
   .hn-form-tbl { width: calc(100% - 10px); }
   .hn-form-tbl td:last-child { width: 100%; }
-  .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl input[type=email], .hn-form-tbl textarea, div.hn-user input[type=text] { width: 100%; }
+  .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl input[type=email], .hn-form-tbl textarea, div.hn-user input[type=text], div.hn-signin input[type=email] { width: 100%; }
 }
+
+/* ---- comment sign-in page (core /-/comments/signin) ---- */
+div.hn-signin { padding: 12px 10px; }
+.hn-signin__h { font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; margin: 0 0 6px; }
+div.hn-signin .hn-form-tbl, div.hn-signin .hn-note { margin-left: 0; }
+div.hn-signin .hn-error { color: var(--hn-accent); }
+div.hn-signin form { margin: 8px 0 0; }
 
 /* ---- 404 ---- */
 .hn-e404 { padding: 30px 10px; text-align: center; }
