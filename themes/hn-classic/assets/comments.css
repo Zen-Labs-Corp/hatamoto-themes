@@ -32,3 +32,21 @@
   .hn-thread .hn-thread { padding-left: 14px; }
   .hn-pager { padding-left: 16px; }
 }
+
+/* comment form */
+#hm-comment-form { margin: 6px 0 14px 44px; }
+#hm-comment-form .hn-form-tbl { margin-left: 0; }
+#hm-comment-form .hn-note { margin-left: 0; }
+.hn-hint { font-size: var(--hn-size-sub); color: var(--hn-muted); }
+.hn-textarea { display: block; width: 500px; max-width: 100%; height: 110px; margin-top: 6px; font-family: var(--hn-mono); font-size: 10pt; }
+.hn-extra, .hn-submit { margin: 8px 0 0; }
+.hn-extra { font-size: var(--hn-size-sub); color: var(--hn-muted); }
+.hn-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.hn-notice { color: var(--hn-text); }
+.hn-error { color: var(--hn-accent); }
+button { font: inherit; font-size: 10pt; padding: 1px 6px; }
+@media (max-width: 750px) {
+  #hm-comment-form { margin-left: 0; }
+  .hn-textarea { width: 100%; }
+  .hn-form-tbl input { max-width: 100%; }
+}

@@ -1,0 +1,17 @@
+{{define "comments/form"}}<div id="hm-comment-form">
+{{with $.Comments}}{{if .Notice}}<p class="hn-note hn-notice" role="status">{{if eq .Notice "check_email"}}{{t $ "comment_notice_check_email"}}{{else}}{{t $ "comment_notice_posted"}}{{end}}</p>
+{{end}}{{if .Error}}<p class="hn-note hn-error" role="alert">{{if eq .Error "body_empty"}}{{t $ "comment_error_body_empty"}}{{else if eq .Error "body_long"}}{{t $ "comment_error_body_long"}}{{else if eq .Error "name"}}{{t $ "comment_error_name"}}{{else if eq .Error "email"}}{{t $ "comment_error_email"}}{{else if eq .Error "email_domain"}}{{t $ "comment_error_email_domain"}}{{else}}{{t $ "comment_error_closed"}}{{end}}</p>
+{{end}}{{end}}{{if $.CommentForm}}{{with $.CommentForm}}<form class="hn-reply-form" method="post" action="{{.Action}}" data-hm-cform hx-post="{{.Action}}" hx-target="#hm-comment-form" hx-swap="outerHTML">
+<input type="hidden" name="hm_ct" value="{{.Token}}">
+<input type="hidden" name="parent" value="{{.ParentID}}">
+{{if .ReplyTo}}<p class="hn-note">{{t $ "comment_reply"}}: <strong>{{.ReplyTo}}</strong> <a href="#hm-comments">{{t $ "comment_cancel_reply"}}</a></p>
+{{end}}<table class="hn-form-tbl">
+<tr><td class="hn-lbl"><label for="{{.Name}}">{{t $ "comment_name"}}</label></td><td><input id="{{.Name}}" name="{{.Name}}" type="text" size="24" autocomplete="name" maxlength="80"{{if eq .Focus "name"}} autofocus{{end}}{{with .NameValue}} value="{{.}}"{{end}} required></td></tr>
+<tr><td class="hn-lbl"><label for="{{.Email}}">{{t $ "comment_email"}}</label></td><td><input id="{{.Email}}" name="{{.Email}}" type="email" size="24" autocomplete="email" maxlength="254"{{if eq .Focus "email"}} autofocus{{end}}{{with .EmailValue}} value="{{.}}"{{end}} required> <span class="hn-hint">{{t $ "comment_email_hint"}}</span></td></tr>
+</table>
+<label class="hn-sr" for="{{.Body}}">{{t $ "comment_body"}}</label>
+<textarea class="hn-textarea" id="{{.Body}}" name="{{.Body}}" rows="6"{{if .MaxBody}} maxlength="{{.MaxBody}}"{{end}}{{if eq .Focus "body"}} autofocus{{end}} required>{{.BodyValue}}</textarea>
+{{block "comments/form-extra" .}}<p class="hn-extra"><label><input type="checkbox" id="{{.Extra}}" name="{{.Extra}}" value="1"{{if .Notify}} checked{{end}}> {{t $ "comment_notify_replies"}}</label></p>
+{{end}}<div class="hn-hp" aria-hidden="true"><label>{{t $ "comment_hp_label"}}<input type="text" name="{{.Honeypot}}" tabindex="-1" autocomplete="off"></label></div>
+{{with .Captcha}}<div data-hm-captcha="{{.Provider}}" data-sitekey="{{.SiteKey}}"></div>{{end}}<p class="hn-submit"><button type="submit">add comment</button></p>
+</form>{{end}}{{else if $.Comments}}<p class="hn-note">{{t $ "comments_closed"}}</p>{{end}}</div>{{end}}
