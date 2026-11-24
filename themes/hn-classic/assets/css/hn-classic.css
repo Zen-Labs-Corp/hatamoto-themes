@@ -127,8 +127,9 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
    theme's fonts and colours win. */
 .hn-vote-cell { display: block; }
 .hn-vote-form { margin: 0; }
-button.hn-vote { display: block; padding: 0; border: 0; background: var(--hn-arrow); font-size: 0; line-height: 0; color: transparent; cursor: pointer; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-button.hn-vote:hover, button.hn-vote:focus-visible { background: var(--hn-text); }
+button.hn-vote { position: relative; display: block; padding: 0; border: 0; background: none; font-size: 0; line-height: 0; color: transparent; cursor: pointer; }
+button.hn-vote::before { content: ""; position: absolute; inset: 0; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+button.hn-vote:hover::before, button.hn-vote:focus-visible::before { background: var(--hn-text); }
 .hn-score { white-space: nowrap; }
 .hn-story > .hn-sub { min-width: 0; overflow-wrap: anywhere; }
 .hn-sub form.hn-act { display: inline; margin: 0; }
@@ -151,6 +152,7 @@ div.hn-login p, div.hn-user > p { margin: 8px 0; }
 div.hn-login .hn-note { margin: 8px 0; }
 div.hn-login input[type=text], div.hn-user input[type=text] { max-width: 100%; }
 div.hn-user table { border-collapse: collapse; }
+div.hn-user td { overflow-wrap: anywhere; }
 div.hn-user th, div.hn-user td { padding: 2px 12px 2px 0; vertical-align: top; text-align: left; }
 div.hn-user th { color: var(--hn-muted); font-weight: normal; }
 div.hn-user input[type=text] { width: 30em; }
@@ -169,7 +171,7 @@ div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
   .hn-more { padding-left: 38px; }
   .hn-form-tbl { width: calc(100% - 10px); }
   .hn-form-tbl td:last-child { width: 100%; }
-  .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl textarea, div.hn-user input[type=text] { width: 100%; }
+  .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl input[type=email], .hn-form-tbl textarea, div.hn-user input[type=text] { width: 100%; }
 }
 
 /* ---- 404 ---- */
