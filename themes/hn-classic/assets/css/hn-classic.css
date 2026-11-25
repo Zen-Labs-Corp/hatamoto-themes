@@ -102,7 +102,8 @@
 :root[data-hn-mode="light"] { color-scheme: light; }
 
 body { margin: 0; background: var(--hn-canvas); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
-.hn-w-full { --hn-width: 100%; }
+.hn-w-full { --hn-width: 100%; --hn-gutter: 48px; }
+.hn-w-full .hn-story { grid-template-columns: 34px 14px 1fr; }
 @media (max-width: 750px) { :root { --hn-width: 100%; --hn-indent: 14px; } }
 * { box-sizing: border-box; }
 a { color: var(--hn-text); text-decoration: none; }
@@ -279,7 +280,7 @@ div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
   :root { --hn-gutter: 10px; --hn-size-sub: 9pt; --hn-size-comment: 10pt; }
   main > div.hn-ub:first-child { margin-top: -6px; }
   ol.hn-stories { padding-left: 2px; }
-  .hn-story { grid-template-columns: 22px 22px 1fr; }
+  .hn-story, .hn-w-full .hn-story { grid-template-columns: 34px 22px 1fr; }
   .hn-rank { padding-right: 2px; font-size: 11pt; }
   .hn-story > .hn-vote { display: grid; place-items: center; width: 22px; height: 22px; margin-top: -4px; }
   .hn-vote-cell { display: block; width: 22px; }
