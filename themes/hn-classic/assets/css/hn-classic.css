@@ -279,12 +279,12 @@ div.hn-ub a { display: inline-block; }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
 .hn-userbar > section.hm-section { display: contents; }
 div.hn-ub form.hn-out { display: inline; margin: 0; }
-div.hn-ub .hn-out button { display: inline-block; min-height: 24px; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; font: inherit; line-height: inherit; color: var(--hn-on-accent); cursor: pointer; }
+div.hn-ub .hn-out button { display: inline-block; text-decoration: none; min-height: 24px; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; font: inherit; line-height: inherit; color: var(--hn-on-accent); cursor: pointer; }
 div.hn-ub .hn-out button:hover, div.hn-ub .hn-out button:focus-visible { text-decoration: underline; }
 @media (max-width: 750px) {
   :root { --hn-gutter: 10px; --hn-size-sub: 9pt; --hn-size-comment: 10pt; }
   main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -6px; }
-  .hn-userbar div.hn-ub { height: auto; min-height: 24px; white-space: normal; overflow-wrap: anywhere; }
+  .hn-userbar div.hn-ub { height: auto; min-height: 24px; padding-right: 6px; white-space: normal; overflow-wrap: anywhere; }
   ol.hn-stories { padding-left: 2px; }
   .hn-story, .hn-w-full .hn-story { grid-template-columns: 34px 22px 1fr; }
   .hn-rank { padding-right: 2px; font-size: 11pt; }

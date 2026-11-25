@@ -73,7 +73,7 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
   prints it inside the header bar at the right (`div.hn-userbar > section.hm-section--hn_userbar > div.hn-ub`,
   white text, no strip) and skips it in `main`; logout is `form.hn-out` with a link-styled button.
   Without the plugin the slot stays empty. A site that replaces the header with a builder part has no
-  user bar. The page's `<main>` carries the entity marker the plugin's script reads.
+  user bar, unless its part holds the same slot (`<div class="hn-userbar">` with the `hn_userbar` range from `partials/header.html`). The page's `<main>` carries the entity marker the plugin's script reads.
 - Comments: `li.hn-c` with `.hn-c-row`, `.hn-vote`, `.hn-head`, `.hn-op`, `.hn-text` and `.hn-reply`;
   states `.hn-dead`, `.hn-faint` and `.hn-collapsed` go on the `li.hn-c`.
 - Arrow sprite, available on every page: `<svg><use href="#hn-up"/></svg>` and `#hn-down`.
