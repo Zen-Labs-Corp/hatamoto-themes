@@ -5,7 +5,7 @@
 - The hn user bar (your name, karma and logout, or login) now renders inside the header bar on the server, without JavaScript, on desktop and phones, in light and dark. It no longer shows as a strip at the top of the page.
 - The logout button looks like the other header links.
 - A page whose only plugin block is the user bar shows its own text again.
-- A site whose header is a builder part (a header override) gets no user bar. Put `<div class="hn-userbar">{{range .Blocks}}{{if eq .Type "hn_userbar"}}{{template "section" .}}{{end}}{{end}}</div>` in that part to show it.
+- The user bar cannot render inside a builder header part. A site that overrides the header with a builder part shows no hn user bar. Add a Login button or link node (to `/login`) in the part, or remove the part to get the theme header back.
 - On phones the login and logout links keep a small gap from the menu button.
 
 ## 1.1.0
