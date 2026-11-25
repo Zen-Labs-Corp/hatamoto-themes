@@ -272,14 +272,14 @@ div.hn-threads .hn-more { padding: 8px 0 0 14px; }
    so the text never lands on paper.
    display:block, not flex: the plugin's text nodes lose their spaces in a flex box. */
 div.hn-ub { display: block; height: 24px; line-height: 24px; margin: 0; padding: 0 8px; background: var(--hn-accent); white-space: nowrap; text-align: right; color: var(--hn-on-accent); }
-main > section.hm-section--hn_userbar { margin-top: -8px; }
+main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -8px; }
 .hn-userbar div.hn-ub { margin: -3px 0; padding: 0; background: none; }
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
 div.hn-ub a { display: inline-block; }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
 @media (max-width: 750px) {
   :root { --hn-gutter: 10px; --hn-size-sub: 9pt; --hn-size-comment: 10pt; }
-  main > section.hm-section--hn_userbar { margin-top: -6px; }
+  main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -6px; }
   ol.hn-stories { padding-left: 2px; }
   .hn-story, .hn-w-full .hn-story { grid-template-columns: 34px 22px 1fr; }
   .hn-rank { padding-right: 2px; font-size: 11pt; }
