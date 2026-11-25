@@ -34,6 +34,12 @@
         "description": "Print the no-JavaScript vote and flag forms on comments. They post to the hn plugin; turn off on a site without it.",
         "default": true
       },
+      "reply_page": {
+        "type": "boolean",
+        "title": "Reply links open the hn reply page",
+        "description": "Send comment reply links to the hn plugin's /reply page. Needs hn 1.2.0 with the hn kit 1.0.2 applied; leave off otherwise.",
+        "default": false
+      },
       "powered_by": {
         "type": "boolean",
         "title": "Powered-by link",
