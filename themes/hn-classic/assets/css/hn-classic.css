@@ -119,11 +119,12 @@ main { padding: 8px 0 10px; }
 .hn-bar { position: relative; background: var(--hn-accent); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 24px; padding: 3px 4px 3px 2px; line-height: 18px; color: var(--hn-on-accent); }
 .hn-bar a, .hn-bar a:visited, .hn-bar summary { color: var(--hn-on-accent); }
 .hn-bar :focus-visible { outline-color: var(--hn-on-accent); }
-.hn-brand { display: inline-flex; align-items: center; gap: 5px; }
+.hn-brand { display: inline-flex; align-items: center; gap: 5px; min-height: 24px; margin: -3px 0; }
 .hn-logo { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--hn-on-accent); background: var(--hn-logo-fill); font-weight: bold; font-size: 10pt; line-height: 1; }
 .hn-logo-img { display: block; width: auto; height: 18px; max-width: 120px; object-fit: contain; }
 .hn-name { font-weight: bold; margin: 0 6px 0 0; }
-.hn-nav { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hn-nav { flex: 1; min-width: 0; margin: -3px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hn-nav a { display: inline-block; padding: 3px 0; }
 .hn-nav a + a::before, .hn-links a + a::before { content: " | "; display: inline-block; white-space: pre; text-decoration: none; }
 .hn-nav a[aria-current="page"] { font-weight: bold; text-decoration: underline; text-underline-offset: 3px; }
 .hn-userbar { white-space: nowrap; padding-right: 4px; min-width: 0; }
@@ -136,20 +137,23 @@ main { padding: 8px 0 10px; }
   .hn-nav { display: none; }
   .hn-userbar { margin-left: auto; white-space: normal; }
   .hn-menu { display: block; order: 10; flex: 0 0 100%; }
-  .hn-menu summary { position: absolute; top: 5px; right: 4px; list-style: none; cursor: pointer; border: 1px solid var(--hn-on-accent); padding: 0 8px; line-height: 22px; }
+  .hn-menu summary { position: absolute; top: 4px; right: 4px; list-style: none; cursor: pointer; border: 1px solid var(--hn-on-accent); padding: 0 8px; line-height: 24px; }
   .hn-menu summary::-webkit-details-marker { display: none; }
   .hn-drawer { background: var(--hn-accent); margin: 2px -56px -5px -4px; padding: 6px 4px 4px; border-top: 1px solid var(--hn-drawer-line); }
-  .hn-drawer a { display: inline-block; margin: 4px 14px 4px 0; }
+  .hn-drawer a { display: inline-block; margin: 0 12px 0 0; padding: 4px 2px; }
 }
 .hn-footer { border-top: 2px solid var(--hn-rule); margin-top: 12px; padding: 12px 0 16px; text-align: center; font-size: 8pt; }
-.hn-footer > * + * { margin-top: 10px; }
+.hn-footer > * + * { margin-top: 2px; }
+.hn-links a, .hn-mode button { display: inline-block; }
+.hn-links a { padding: 4px 0; }
 
 /* ---- colour mode switch (footer; shown by assets/js/hn-mode.js) ---- */
 .hn-mode { color: var(--hn-muted); }
-.hn-mode button { padding: 0; border: 0; background: none; font: inherit; color: var(--hn-text); cursor: pointer; }
+.hn-mode button { min-width: 24px; padding: 4px 0; border: 0; background: none; font: inherit; color: var(--hn-text); cursor: pointer; }
 .hn-mode button:hover, .hn-mode button:focus-visible { text-decoration: underline; }
 .hn-mode button[aria-pressed="true"] { font-weight: bold; }
 .hn-search { margin: 0; color: var(--hn-muted); }
+.hn-search input[type=text] { padding: 4px 2px; }
 input[type=text], input[type=email], input[type=url], textarea { font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); padding: 1px 2px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
@@ -161,10 +165,10 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
 .hn-vote { width: 14px; height: 14px; margin: 2px 0 0; }
 .hn-vote svg { display: block; width: 10px; height: 10px; margin: 2px; fill: var(--hn-arrow); }
 .hn-vote.hn-voted svg { visibility: hidden; }
-.hn-title { font-family: var(--hn-font); font-size: var(--hn-size); font-weight: normal; letter-spacing: normal; margin: 0; line-height: 1.25; overflow-wrap: anywhere; }
+.hn-title { position: relative; font-family: var(--hn-font); font-size: var(--hn-size); font-weight: normal; letter-spacing: normal; margin: 0; line-height: 1.25; overflow-wrap: anywhere; }
 .hn-site { font-size: 8pt; color: var(--hn-muted); }
 .hn-sub { grid-column: 3; font-size: var(--hn-size-sub); color: var(--hn-muted); line-height: 1.25; padding: 1px 0 6px; }
-.hn-sub a { color: var(--hn-muted); }
+.hn-sub a { color: var(--hn-muted); padding: 6px 0; }
 .hn-more { display: inline-block; padding: 10px 0 4px var(--hn-gutter); }
 .hn-item-head { padding: 0 0 6px; }
 .hn-item-head .hn-sub { padding-bottom: 0; }
@@ -195,13 +199,14 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
    own rules have zero specificity (:where()), so the theme's rules win. */
 .hn-vote-cell { display: block; }
 .hn-vote-form { margin: 0; }
-button.hn-vote { position: relative; display: block; width: 14px; height: 14px; margin: 2px 0 0; padding: 0; border: 0; background: none; font-size: 0; line-height: 0; color: transparent; cursor: pointer; }
-button.hn-vote::before { content: ""; position: absolute; inset: 2px; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+/* 24px tap box, the 10px arrow drawn in its middle; negative margins keep the 14px column and the row height */
+button.hn-vote { position: relative; display: block; width: 24px; height: 24px; margin: -3px -5px -5px; padding: 0; border: 0; background: none; font-size: 0; line-height: 0; color: transparent; cursor: pointer; }
+button.hn-vote::before { content: ""; position: absolute; inset: 7px; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 button.hn-vote:hover::before, button.hn-vote:focus-visible::before { background: var(--hn-text); }
 .hn-score { white-space: nowrap; }
 .hn-story > .hn-sub { min-width: 0; overflow-wrap: anywhere; }
 .hn-sub form.hn-act { display: inline; margin: 0; }
-.hn-sub .hn-act button { padding: 0; border: 0; background: none; font: inherit; color: var(--hn-muted); cursor: pointer; }
+.hn-sub .hn-act button { padding: 6px 0; border: 0; background: none; font: inherit; color: var(--hn-muted); cursor: pointer; }
 .hn-sub .hn-act button:hover, .hn-sub .hn-act button:focus-visible { text-decoration: underline; }
 .hn-notice { margin: 6px 0 6px var(--hn-gutter); font-weight: bold; color: var(--hn-ink); }
 .hn-heading { margin: 6px 0 6px var(--hn-gutter); font-weight: bold; }
@@ -213,7 +218,7 @@ button.hn-vote:hover::before, button.hn-vote:focus-visible::before { background:
 .hn-form-tbl .hn-item-text { margin: 0 0 4px; }
 .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl textarea { max-width: 100%; }
 main .hm-section--hn_submit form > button { margin: 8px 0 0 var(--hn-gutter); }
-.hn-form-tbl button, div.hn-login button, div.hn-user button, .hm-section--hn_submit form > button { font: inherit; font-size: 10pt; color: var(--hn-text); background: var(--hn-btn); border: 1px solid var(--hn-field-line); border-radius: 0; padding: 1px 6px; cursor: pointer; }
+.hn-form-tbl button, div.hn-login button, div.hn-user button, .hm-section--hn_submit form > button { font: inherit; font-size: 10pt; color: var(--hn-text); background: var(--hn-btn); border: 1px solid var(--hn-field-line); border-radius: 0; padding: 1px 6px; min-height: 24px; cursor: pointer; }
 div.hn-login, div.hn-user, div.hn-ub { font: var(--hn-size) var(--hn-font); }
 div.hn-login, div.hn-user { padding: 2px 0 8px var(--hn-gutter); }
 div.hn-login p, div.hn-user > p { margin: 10px 0; }
@@ -239,13 +244,15 @@ div.hn-threads .hn-c { margin-bottom: 0; padding: 5px 0 6px 14px; }
 div.hn-threads .hn-head { font-size: 8pt; line-height: 1.3; color: var(--hn-muted); overflow-wrap: anywhere; }
 div.hn-threads .hn-head a, div.hn-threads .hn-head button { color: var(--hn-muted); }
 div.hn-threads .hn-head form { display: inline; margin: 0; }
-div.hn-threads .hn-head button { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+div.hn-threads .hn-head button { padding: 5px 0; margin: -5px 0; border: 0; background: none; font: inherit; cursor: pointer; }
 div.hn-threads .hn-head form:not(.hn-vote-form) button:hover, div.hn-threads .hn-head form:not(.hn-vote-form) button:focus-visible { text-decoration: underline; }
 div.hn-threads .hn-vote { display: inline-flex; width: auto; height: auto; margin: 0 4px 0 0; gap: 2px; vertical-align: middle; }
 div.hn-threads .hn-vote-form { display: inline-block; }
 div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form button[title=downvote] { position: relative; display: block; width: 10px; height: 10px; font-size: 0; line-height: 0; color: transparent; }
+div.hn-threads .hn-vote-form button[title=upvote] { width: 24px; height: 24px; margin: -7px; }
 div.hn-threads .hn-vote-form button[title]::before { content: ""; position: absolute; inset: 0; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 div.hn-threads .hn-vote-form button[title=downvote]::before { clip-path: polygon(0 0, 100% 0, 50% 100%); }
+div.hn-threads .hn-vote-form button[title=upvote]::before { inset: 7px; }
 div.hn-threads .hn-vote-form button[title]:hover::before, div.hn-threads .hn-vote-form button[title]:focus-visible::before { background: var(--hn-text); }
 div.hn-threads .hn-vote-form button:not([title]) { padding: 0; border: 0; background: none; font: inherit; font-size: 8pt; color: var(--hn-muted); cursor: pointer; }
 div.hn-threads .hn-vote-form button:not([title]):hover, div.hn-threads .hn-vote-form button:not([title]):focus-visible { text-decoration: underline; }
@@ -263,6 +270,7 @@ div.hn-threads .hn-more { padding: 8px 0 0 14px; }
    display:block, not flex: the plugin's text nodes lose their spaces in a flex box. */
 div.hn-ub { position: absolute; top: 0; right: 0; z-index: 1; display: block; height: 24px; line-height: 24px; margin: 0; padding: 0 8px 0 0; background: none; white-space: nowrap; text-align: right; color: var(--hn-on-accent); }
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
+div.hn-ub a { display: inline-block; }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
 @media (max-width: 750px) {
   :root { --hn-gutter: 10px; --hn-size-sub: 8pt; }
@@ -271,13 +279,12 @@ div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
   .hn-story { grid-template-columns: 22px 22px 1fr; }
   .hn-rank { padding-right: 2px; }
   .hn-story > .hn-vote { display: grid; place-items: center; width: 22px; height: 22px; margin-top: -4px; }
-  .hn-vote-cell { display: block; width: 22px; height: 22px; }
-  button.hn-vote { width: 22px; height: 22px; margin: -4px 0 0; }
+  .hn-vote-cell { display: block; width: 22px; }
+  button.hn-vote { margin: -5px -1px -3px; }
   button.hn-vote::before { inset: 6px; }
   .hn-title { font-size: 10.5pt; }
   .hn-sub { padding-bottom: 8px; }
-  div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form button[title=downvote] { width: 22px; height: 22px; }
-  div.hn-threads .hn-vote-form button[title]::before { inset: 6px; }
+  div.hn-threads .hn-vote-form button[title=upvote]::before { inset: 6px; }
   .hn-item-text { margin-left: 44px; margin-right: 8px; }
   .hn-more { padding-left: 46px; }
   div.hn-threads { padding-left: 2px; }

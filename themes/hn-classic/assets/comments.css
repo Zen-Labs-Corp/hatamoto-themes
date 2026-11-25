@@ -4,8 +4,8 @@
 .hn-thread .hn-thread { padding-left: var(--hn-indent, 40px); }
 .hn-c-row { display: grid; grid-template-columns: 14px 1fr; column-gap: 0; padding: 5px 0 6px; }
 .hn-vote-form { margin: 0; }
-.hn-arrow { display: block; width: 14px; height: 14px; border: 0; background: none; padding: 0; margin: 2px 0 0; cursor: pointer; line-height: 0; }
-.hn-arrow svg { display: block; margin: 2px; fill: var(--hn-arrow); }
+.hn-arrow { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 0; background: none; padding: 0; margin: -3px -5px -5px; cursor: pointer; line-height: 0; }
+.hn-arrow svg { display: block; fill: var(--hn-arrow); }
 .hn-head { margin: 0; font-size: 8pt; line-height: 1.3; color: var(--hn-muted); }
 .hn-head a { color: var(--hn-muted); }
 .hn-op { color: var(--hn-op); }
@@ -16,7 +16,7 @@
 .hn-reply { margin: 6px 0 0; font-size: var(--hn-size-sub); text-transform: lowercase; }
 .hn-reply a { text-decoration: underline; }
 .hn-inline { display: inline; margin: 0; font-size: var(--hn-size-sub); color: var(--hn-muted); }
-.hn-linkbtn { border: 0; background: none; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.hn-linkbtn { border: 0; background: none; padding: 5px 0; margin: -5px 0; font: inherit; color: inherit; cursor: pointer; }
 .hn-linkbtn:hover, .hn-linkbtn:focus-visible { text-decoration: underline; }
 .hn-edit { font-size: var(--hn-size-sub); color: var(--hn-muted); }
 .hn-edit summary { cursor: pointer; }
@@ -33,9 +33,9 @@
   .hn-comments { padding: 0 8px 0 2px; }
   .hn-thread .hn-thread { padding-left: 14px; }
   .hn-c-row { grid-template-columns: 22px 1fr; }
-  .hn-c-row > .hn-vote { width: 22px; height: 22px; }
-  .hn-arrow { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin: -3px 0 0; }
-  .hn-arrow svg { margin: 0; }
+  .hn-c-row > .hn-vote { width: 22px; }
+  .hn-arrow { margin: -4px -1px -4px; }
+  .hn-arrow svg { width: 12px; height: 12px; }
   .hn-head { font-size: 8.5pt; }
   .hn-text { font-size: 10pt; }
   .hn-reply { font-size: 8.5pt; }
@@ -56,7 +56,7 @@
 .hn-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .hn-notice { color: var(--hn-text); }
 .hn-error { color: var(--hn-ink); }
-button { font: inherit; font-size: 10pt; padding: 1px 6px; color: var(--hn-text); background: var(--hn-btn); border: 1px solid var(--hn-field-line); border-radius: 0; }
+button { font: inherit; font-size: 10pt; padding: 1px 6px; min-height: 24px; color: var(--hn-text); background: var(--hn-btn); border: 1px solid var(--hn-field-line); border-radius: 0; }
 @media (max-width: 750px) {
   #hm-comment-form { margin-left: 22px; }
   .hn-textarea, .hn-reply-form.hm-form textarea { width: 100%; }
