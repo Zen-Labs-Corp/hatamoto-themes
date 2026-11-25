@@ -79,3 +79,6 @@ button { font: inherit; font-size: 10pt; padding: 1px 6px; min-height: 24px; col
   border: 1px solid var(--hn-field-line); border-radius: 0;
 }
 .hn-reply-form.hm-form textarea:disabled { color: var(--hn-muted); border-style: dashed; }
+@media (max-width: 750px) {
+  .hn-reply-form.hm-form textarea { font-size: 16px; }
+}
