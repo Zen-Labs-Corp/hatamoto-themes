@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1
+
+- The hn user bar (your name, karma and logout, or login) now renders inside the header bar on the server, without JavaScript, on desktop and phones, in light and dark. It no longer shows as a strip at the top of the page.
+- The logout button looks like the other header links.
+- A page whose only plugin block is the user bar shows its own text again.
+
 ## 1.1.0
 
 - New colours: a deep indigo header bar (#1f3a5f) with white text, cool grey paper on a white page, indigo title links; no orange or red.
