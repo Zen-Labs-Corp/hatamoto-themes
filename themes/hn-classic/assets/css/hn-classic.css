@@ -406,7 +406,7 @@ div.hn-signin form { margin: 8px 0 0; }
 
 /* ---- small: comment actions keep AA colour in both modes ---- */
 .hn-head, .hn-head a, .hn-sub, .hn-sub a { color: var(--hn-muted); }
-@media (forced-colors: active) { button.hn-vote::before, .hn-arrow svg { forced-color-adjust: auto; background: ButtonText; fill: ButtonText; } }
+@media (forced-colors: active) { button.hn-vote::before { forced-color-adjust: auto; background: ButtonText; } .hn-arrow svg { forced-color-adjust: auto; fill: ButtonText; } }
 
 /* ---- 404 ---- */
 .hn-e404 { padding: 30px 10px; text-align: center; }
