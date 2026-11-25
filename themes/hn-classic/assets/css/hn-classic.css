@@ -101,7 +101,7 @@
 }
 :root[data-hn-mode="light"] { color-scheme: light; }
 
-body { margin: 0; background: var(--hn-bg); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
+body { margin: 0; background: var(--hn-canvas); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
 .hn-w-full { --hn-width: 100%; }
 @media (max-width: 750px) { :root { --hn-width: 100%; --hn-indent: 14px; } }
 * { box-sizing: border-box; }
@@ -114,32 +114,36 @@ a:hover, a:focus-visible { text-decoration: underline; }
 .hn-sprite { position: absolute; }
 
 /* ---- shell ---- */
-.hn-page { width: var(--hn-width); margin: 0 auto; background: var(--hn-bg); }
-main { padding: 6px 0 10px; }
-.hn-bar { position: relative; background: var(--hn-accent); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 2px; color: var(--hn-on-accent); }
+.hn-page { position: relative; width: var(--hn-width); margin: 8px auto 0; background: var(--hn-bg); }
+main { padding: 8px 0 10px; }
+.hn-bar { position: relative; background: var(--hn-accent); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 24px; padding: 3px 4px 3px 2px; line-height: 18px; color: var(--hn-on-accent); }
 .hn-bar a, .hn-bar a:visited, .hn-bar summary { color: var(--hn-on-accent); }
 .hn-bar :focus-visible { outline-color: var(--hn-on-accent); }
-.hn-brand { display: inline-flex; align-items: center; }
-.hn-logo { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--hn-on-accent); background: var(--hn-logo-fill); font-weight: bold; }
+.hn-brand { display: inline-flex; align-items: center; gap: 5px; }
+.hn-logo { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--hn-on-accent); background: var(--hn-logo-fill); font-weight: bold; font-size: 10pt; line-height: 1; }
 .hn-logo-img { display: block; width: auto; height: 18px; max-width: 120px; object-fit: contain; }
-.hn-name { font-weight: bold; margin: 0 6px 0 4px; }
+.hn-name { font-weight: bold; margin: 0 6px 0 0; }
 .hn-nav { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hn-nav a + a::before, .hn-links a + a::before { content: " | "; display: inline-block; white-space: pre; text-decoration: none; }
-.hn-nav a[aria-current="page"] { font-weight: bold; }
+.hn-nav a[aria-current="page"] { font-weight: bold; text-decoration: underline; text-underline-offset: 3px; }
 .hn-userbar { white-space: nowrap; padding-right: 4px; min-width: 0; }
 .hn-menu { display: none; }
 @media (max-width: 750px) {
-  .hn-bar { row-gap: 0; padding-right: 56px; }
+  :root { --bar-h: 34px; }
+  .hn-page { margin-top: 0; }
+  main { padding-top: 6px; }
+  .hn-bar { row-gap: 0; min-height: var(--bar-h); padding: 5px 56px 5px 4px; }
   .hn-nav { display: none; }
   .hn-userbar { margin-left: auto; white-space: normal; }
   .hn-menu { display: block; order: 10; flex: 0 0 100%; }
-  .hn-menu summary { position: absolute; top: 2px; right: 2px; list-style: none; cursor: pointer; border: 1px solid var(--hn-on-accent); padding: 0 6px; }
+  .hn-menu summary { position: absolute; top: 5px; right: 4px; list-style: none; cursor: pointer; border: 1px solid var(--hn-on-accent); padding: 0 8px; line-height: 22px; }
   .hn-menu summary::-webkit-details-marker { display: none; }
-  .hn-drawer { background: var(--hn-accent); margin: 2px -54px 0 0; padding: 4px 6px 6px; border-top: 1px solid var(--hn-drawer-line); }
-  .hn-drawer a { display: inline-block; margin: 3px 10px 3px 0; }
+  .hn-drawer { background: var(--hn-accent); margin: 2px -56px -5px -4px; padding: 6px 4px 4px; border-top: 1px solid var(--hn-drawer-line); }
+  .hn-drawer a { display: inline-block; margin: 4px 14px 4px 0; }
 }
-.hn-footer { border-top: 2px solid var(--hn-rule); margin-top: 10px; padding: 10px 0 14px; text-align: center; font-size: 8pt; }
-.hn-search { margin-top: 10px; color: var(--hn-muted); }
+.hn-footer { border-top: 2px solid var(--hn-rule); margin-top: 12px; padding: 12px 0 16px; text-align: center; font-size: 8pt; }
+.hn-footer > * + * { margin-top: 10px; }
+.hn-search { margin: 0; color: var(--hn-muted); }
 input[type=text], input[type=email], input[type=url], textarea { font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); padding: 1px 2px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
@@ -248,15 +252,14 @@ div.hn-threads .hn-faint .hn-text { color: var(--hn-faint); }
 div.hn-threads .hn-reply { margin: 0; font-size: var(--hn-size-sub); }
 div.hn-threads .hn-reply a { text-decoration: underline; }
 div.hn-threads .hn-more { padding: 8px 0 0; }
-/* the user bar (div.hn-ub) has two positions. Without the plugin script it stays
-   at the top of main, straight under the header bar, as a strip in the bar colour.
-   With the script it moves into the header slot (.hn-userbar): plain white text
-   on the bar itself. */
-div.hn-ub { margin: -6px 0 6px; padding: 0 6px 2px; text-align: right; background: var(--hn-accent); color: var(--hn-on-accent); }
+/* the user bar (div.hn-ub): plain text laid over the right end of the header bar,
+   with or without the plugin script (it may sit in main or move into .hn-userbar).
+   display:block, not flex: the plugin's text nodes lose their spaces in a flex box. */
+div.hn-ub { position: absolute; top: 0; right: 0; z-index: 1; display: block; height: 24px; line-height: 24px; margin: 0; padding: 0 8px 0 0; background: none; white-space: nowrap; text-align: right; color: var(--hn-on-accent); }
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
-.hn-userbar div.hn-ub { margin: 0; padding: 0; background: none; color: inherit; text-align: right; }
 @media (max-width: 750px) {
+  div.hn-ub { right: 68px; padding: 0; height: 34px; line-height: 34px; }
   ol.hn-stories { padding-left: 4px; }
   .hn-story { grid-template-columns: 22px 24px 1fr; }
   .hn-story > .hn-vote, .hn-vote-cell { display: grid; place-items: center; width: 24px; height: 24px; margin-top: -4px; }
