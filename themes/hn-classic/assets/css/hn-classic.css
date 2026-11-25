@@ -143,6 +143,12 @@ main { padding: 8px 0 10px; }
 }
 .hn-footer { border-top: 2px solid var(--hn-rule); margin-top: 12px; padding: 12px 0 16px; text-align: center; font-size: 8pt; }
 .hn-footer > * + * { margin-top: 10px; }
+
+/* ---- colour mode switch (footer; shown by assets/js/hn-mode.js) ---- */
+.hn-mode { color: var(--hn-muted); }
+.hn-mode button { padding: 0; border: 0; background: none; font: inherit; color: var(--hn-text); cursor: pointer; }
+.hn-mode button:hover, .hn-mode button:focus-visible { text-decoration: underline; }
+.hn-mode button[aria-pressed="true"] { font-weight: bold; }
 .hn-search { margin: 0; color: var(--hn-muted); }
 input[type=text], input[type=email], input[type=url], textarea { font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); padding: 1px 2px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
