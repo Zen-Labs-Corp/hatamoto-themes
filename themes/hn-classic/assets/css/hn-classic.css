@@ -240,24 +240,15 @@ button.hn-vote:hover::before, button.hn-vote:focus-visible::before { background:
 .hn-heading { margin: 6px 0 6px var(--hn-gutter); font-weight: bold; }
 .hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0 var(--hn-gutter); }
 .hn-item-text p { margin: 0 0 8px; }
-.hn-form-tbl { margin: 4px 0 0 var(--hn-gutter); border-collapse: collapse; }
-.hn-form-tbl td { padding: 3px 8px 3px 0; vertical-align: top; }
-.hn-lbl { color: var(--hn-muted); text-align: right; white-space: nowrap; }
-.hn-form-tbl .hn-item-text { margin: 0 0 4px; }
-.hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl textarea { max-width: 100%; }
-main .hm-section--hn_submit form > button { margin: 8px 0 0 var(--hn-gutter); }
 .hn-form-tbl button, div.hn-login button, div.hn-user button, .hm-section--hn_submit form > button { font: inherit; font-size: 10pt; color: var(--hn-text); background: var(--hn-btn); border: 1px solid var(--hn-field-line); border-radius: 0; padding: 1px 6px; min-height: 24px; cursor: pointer; }
 div.hn-login, div.hn-user, div.hn-ub { font: var(--hn-size) var(--hn-font); }
 div.hn-login, div.hn-user { padding: 2px 0 8px var(--hn-gutter); }
 div.hn-login p, div.hn-user > p { margin: 10px 0; }
 div.hn-login .hn-note { margin: 10px 0; }
-div.hn-login input[type=text], div.hn-login input[type=email], div.hn-user input[type=text] { max-width: 100%; }
 div.hn-user table { border-collapse: collapse; }
 div.hn-user td { overflow-wrap: anywhere; }
 div.hn-user th, div.hn-user td { padding: 2px 14px 2px 0; vertical-align: top; text-align: left; }
 div.hn-user th { color: var(--hn-muted); font-weight: normal; }
-div.hn-user input[type=text] { width: 30em; }
-div.hn-user input[type=number] { width: 5em; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); }
 /* core wraps every block in section.hm-section (4-7rem padding, hairline); the
    plugin's blocks are dense, so drop both for every plugin section type */
 .hm-section[class*="hm-section--hn_"] { padding: 0; border-top: 0; }
@@ -330,18 +321,84 @@ div.hn-ub .hn-out button:hover, div.hn-ub .hn-out button:focus-visible { text-de
   div.hn-threads > h2, div.hn-threads > p { margin-left: 8px; }
   div.hn-threads .hn-c { padding-left: 22px; }
   div.hn-threads .hn-more { padding-left: 22px; }
-  .hn-form-tbl { width: calc(100% - 20px); margin-right: 10px; }
-  .hn-form-tbl, .hn-form-tbl tbody, .hn-form-tbl tr, .hn-form-tbl td { display: block; }
-  .hn-form-tbl td { padding-right: 0; }
-  .hn-lbl { text-align: left; }
   div.hn-login, div.hn-user { padding-right: 10px; }
-  .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl input[type=email], .hn-form-tbl textarea, div.hn-user input[type=text], div.hn-signin input[type=email] { width: 100%; }
+}
+
+/* ---- one form layout: label column | control column | button under the controls ---- */
+/* 3. ONE form-table style: label column | control column | button under the controls.
+   The plugin prints a table (login, create account, submit, sign-in), a table with th (profile),
+   and a bare label (claim); all of them become the same two-column grid. */
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form {
+  display: grid; grid-template-columns: var(--hn-lbl-w) minmax(0, var(--hn-fw)); column-gap: 8px; row-gap: 6px;
+  align-items: center; margin: 8px 0 0; max-width: 100%;
+}
+.hm-section--hn_submit form, div.hn-user form { --hn-fw: var(--hn-fw-wide); }
+main .hm-section--hn_submit form { margin-left: var(--hn-gutter); }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form :is(table, tbody, tr) { display: contents; }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form :is(td, th) { display: flex; flex-wrap: wrap; align-items: center; min-height: var(--hn-ctl-h); padding: 0; min-width: 0; font-weight: normal; text-align: left; }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form :is(td:first-child, th) { color: var(--hn-muted); white-space: nowrap; }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form tr > td:nth-child(2) { color: var(--hn-text); }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form :is(input:not([type=hidden]):not([type=checkbox]), select, textarea) { width: 100%; max-width: none; }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form > :is(p, button) { grid-column: 2; margin: 4px 0 0; }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form > p:has(> label > input:not([type=checkbox])) { display: contents; }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form > p > label:has(> input:not([type=checkbox])) { display: contents; color: var(--hn-muted); }
+:is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form .hn-note { grid-column: 2; margin: 2px 0 0; }
+.hn-form-tbl .hn-item-text { margin: 0 0 6px; max-width: none; }
+/* one gutter, once: the container pads, the form does not add its own (labels were indented twice) */
+div.hn-login, div.hn-user, div.hn-signin { padding-left: var(--hn-gutter); }
+div.hn-login > b, div.hn-signin .hn-signin__h { display: block; margin: 16px 0 0; font: bold var(--hn-size) var(--hn-font); }
+div.hn-login > b:first-child, div.hn-login > p:first-child + b { margin-top: 6px; }
+div.hn-login > p, div.hn-user > p { margin: 10px 0; }
+/* the "other user" table uses the same two columns */
+div.hn-user > table { table-layout: fixed; width: min(100%, calc(var(--hn-lbl-w) + 8px + var(--hn-fw-wide))); margin: 8px 0 0; border-collapse: collapse; }
+div.hn-user > table th { width: calc(var(--hn-lbl-w) + 8px); padding: 3px 8px 3px 0; }
+div.hn-user > table td { padding: 3px 0; }
+/* helper text: 12px minimum, lined up with the control column */
+.hn-note, .hn-extra, .hn-hint, div.hn-login .hn-note { font-size: var(--hn-note); line-height: 1.4; }
+div.hn-login > .hn-note, div.hn-signin > .hn-note { margin: 8px 0 0 var(--hn-fcol); max-width: var(--hn-fw-wide); }
+main .hm-section--hn_submit > .hn-note { margin: 8px 0 0 calc(var(--hn-gutter) + var(--hn-fcol)); max-width: var(--hn-fw-wide); }
+div.hn-user > .hn-notice, div.hn-login > .hn-notice { margin-left: 0; }
+div.hn-signin .hn-form-tbl, div.hn-signin .hn-note { margin-left: 0; }
+div.hn-signin > .hn-note { margin-left: var(--hn-fcol); }
+
+/* theme comment form: the name / e-mail table on the same two columns */
+#hm-comment-form .hn-form-tbl { display: grid; grid-template-columns: var(--hn-lbl-w) minmax(0, var(--hn-fw)); column-gap: 8px; row-gap: 6px; margin: 0; }
+#hm-comment-form .hn-form-tbl :is(tbody, tr) { display: contents; }
+#hm-comment-form .hn-form-tbl td { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 0; min-height: var(--hn-ctl-h); }
+#hm-comment-form .hn-form-tbl td:first-child { color: var(--hn-muted); }
+#hm-comment-form .hn-form-tbl input { width: 100%; }
+/* submit: a multi-line text box, when the plugin prints one */
+.hm-section--hn_submit form textarea { min-height: 8.5em; resize: vertical; }
+/* reply page: the comment form's left edge, the same controls */
+.hn-reply-page .hn-replyform { margin: 8px 0 14px 14px; }
+.hn-reply-page .hn-replyform p { margin: 8px 0 0; }
+.hn-reply-page .hn-replyform :is(input[type=text], textarea) { width: min(100%, var(--hn-fw-wide)); }
+.hn-reply-page .hn-replyform textarea { min-height: 8.5em; }
+.hn-reply-page > :is(p, .hn-note, .hn-notice) { margin: 8px 14px 0; }
+@media (max-width: 750px) {
+  :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form { grid-template-columns: minmax(0, 1fr); row-gap: 2px; padding-right: 0; }
+  main .hm-section--hn_submit form { margin-right: 10px; }
+  :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form :is(td:first-child, th) { margin-top: 8px; }
+  :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form > :is(p, button), :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form .hn-note { grid-column: 1; }
+  :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form > p:has(> label > input:not([type=checkbox])) { display: block; }
+  :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form > p > label:has(> input:not([type=checkbox])) { display: block; }
+  :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form > p > label > input { display: block; width: 100%; margin-top: 2px; }
+  :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit) form :is(td, th) { min-height: 0; }
+  div.hn-login > .hn-note, div.hn-signin > .hn-note, main .hm-section--hn_submit > .hn-note, div.hn-signin .hn-note { margin-left: 0; margin-right: 10px; }
+  main .hm-section--hn_submit > .hn-note { margin-left: var(--hn-gutter); }
+  div.hn-user > table { width: calc(100% - 10px); }
+  div.hn-user > table th { width: 7.5em; }
+  #hm-comment-form .hn-form-tbl { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+  #hm-comment-form .hn-form-tbl td { min-height: 0; }
+  #hm-comment-form .hn-form-tbl td:first-child { margin-top: 6px; }
+  .hn-reply-page .hn-replyform { margin: 8px 8px 14px var(--hn-gutter); }
+  .hn-reply-page .hn-replyform :is(input[type=text], textarea) { width: 100%; }
+  div.hn-login, div.hn-user, div.hn-signin { padding-right: 10px; }
 }
 
 /* ---- comment sign-in page (core /-/comments/signin) ---- */
 div.hn-signin { padding-top: 12px; }
 .hn-signin__h { font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; margin: 0 0 6px; }
-div.hn-signin .hn-form-tbl, div.hn-signin .hn-note { margin-left: 0; }
 div.hn-signin .hn-error { color: var(--hn-ink); }
 div.hn-signin form { margin: 8px 0 0; }
 
