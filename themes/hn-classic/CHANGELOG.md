@@ -3,7 +3,7 @@
 ## 1.2.0
 
 - One form layout for login, create account, username, submit, profile, e-mail sign-in, the comment form and the hn reply page: one label column, equal control widths, the button under the controls, 12px helper text.
-- With the hn plugin actions on (`plugin_actions`), a comment's reply link opens the hn reply page (`/reply?id=...`). With them off, the link keeps core's inline reply form.
+- New setting `reply_page`, off by default: on hn story pages a comment's reply link opens the hn reply page (`/reply?id=...`). It needs hn 1.2.0 with the hn kit 1.0.2 applied. Off, or on any other page, the link is core's reply link as before.
 - The page fills the window, so the footer sits at the bottom of a short page.
 - Dark mode: password, number, select and checkbox fields are styled; borders, disabled controls and dead comments are readable (AA) in light and dark.
 - On phones every field is 16px text (no zoom on focus) and taller to tap; buttons are taller.

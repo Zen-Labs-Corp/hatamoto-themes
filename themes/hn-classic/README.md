@@ -27,6 +27,7 @@ page keeps rendering.
 | --- | --- | --- |
 | Page width | `wide` | `wide` is the centred 85% column, `full` uses the whole window (always full width under 750 px) |
 | Comment vote and flag buttons | on | prints the no-JavaScript vote and flag forms on comments, posting to `/p/hn/...`; turn off on a site without the hn plugin |
+| Reply links open the hn reply page | off | on hn story pages, reply links go to the hn plugin's `/reply?id=<id>` page instead of core's reply link; needs hn 1.2.0 with the hn kit 1.0.2 applied |
 | Powered-by link | on | prints a link under the footer menu |
 | Powered-by link text | `Run your own Hacker News on Hatamoto` | text of the footer link (blank uses the default) |
 | Powered-by link address | `https://hatamoto.dev` | where the footer link points (blank or invalid uses the default) |
