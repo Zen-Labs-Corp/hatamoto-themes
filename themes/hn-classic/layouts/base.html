@@ -14,7 +14,7 @@
 <div class="hn-page">
 {{template "header" .}}
 <main id="main-content" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>
-{{if eq .Kind "page"}}{{$hn := false}}{{range .Blocks}}{{if and (hasPrefix .Type "hn_") (ne .Type "hn_userbar")}}{{$hn = true}}{{end}}{{end}}{{if $hn}}<h1 class="hn-sr">{{.Page.Name}}</h1>
+{{if and (or (eq .Kind "single") (eq .Kind "home") (eq .Kind "page")) (ne .SchemaSlug "hn-story")}}{{$hn := false}}{{range .Blocks}}{{if and (hasPrefix .Type "hn_") (ne .Type "hn_userbar")}}{{$hn = true}}{{end}}{{end}}{{if $hn}}<h1 class="hn-sr">{{.Page.Name}}</h1>
 {{end}}{{end}}{{template "content" .}}
 </main>
 {{template "footer" .}}
