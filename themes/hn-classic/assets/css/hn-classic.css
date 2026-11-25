@@ -150,24 +150,24 @@ input[type=text], input[type=email], input[type=url], textarea { font-family: va
 /* ---- story rows (list and item head) ---- */
 .hn-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 ol.hn-stories { list-style: none; margin: 0; padding: 0; }
-.hn-story { display: grid; grid-template-columns: 28px 14px 1fr; column-gap: 2px; padding: 2px 0; }
-.hn-rank { color: var(--hn-muted); text-align: right; padding-right: 2px; }
-.hn-vote { width: 10px; height: 10px; margin-top: 3px; }
-.hn-vote svg { display: block; width: 10px; height: 10px; fill: var(--hn-arrow); }
+.hn-story { display: grid; grid-template-columns: 22px 14px 1fr; column-gap: 0; padding: 0; line-height: 1.25; }
+.hn-rank { color: var(--hn-muted); text-align: right; padding-right: 3px; line-height: 1.25; }
+.hn-vote { width: 14px; height: 14px; margin: 2px 0 0; }
+.hn-vote svg { display: block; width: 10px; height: 10px; margin: 2px; fill: var(--hn-arrow); }
 .hn-vote.hn-voted svg { visibility: hidden; }
 .hn-title { font-family: var(--hn-font); font-size: var(--hn-size); font-weight: normal; letter-spacing: normal; margin: 0; line-height: 1.25; overflow-wrap: anywhere; }
 .hn-site { font-size: 8pt; color: var(--hn-muted); }
-.hn-sub { grid-column: 3; font-size: var(--hn-size-sub); color: var(--hn-muted); padding: 1px 0 5px; }
+.hn-sub { grid-column: 3; font-size: var(--hn-size-sub); color: var(--hn-muted); line-height: 1.25; padding: 1px 0 6px; }
 .hn-sub a { color: var(--hn-muted); }
-.hn-more { display: inline-block; padding: 8px 0 0 44px; }
-.hn-item-head { padding: 0 0 8px; }
-.hn-item-head .hn-story { padding-bottom: 0; }
-.hn-item-text { margin: 4px 0 8px 44px; max-width: 700px; overflow-wrap: anywhere; }
+.hn-more { display: inline-block; padding: 10px 0 4px var(--hn-gutter); }
+.hn-item-head { padding: 0 0 6px; }
+.hn-item-head .hn-sub { padding-bottom: 0; }
+.hn-item-text { margin: 8px 0 8px var(--hn-gutter); max-width: 700px; overflow-wrap: anywhere; font-size: var(--hn-size-comment); line-height: 1.35; }
 .hn-plain { white-space: pre-wrap; }
 .hn-item-text pre { max-width: 100%; overflow-x: auto; font-family: var(--hn-mono); }
 
 /* ---- search and other core listings: compact, no cards ---- */
-.hm-listing { max-width: none; padding: 6px 0 10px 44px; }
+.hm-listing { max-width: none; padding: 6px 0 10px var(--hn-gutter); }
 .hm-listing__header { margin-bottom: 8px; }
 .hm-listing__title { font-family: var(--hn-font); font-size: var(--hn-size); font-weight: bold; letter-spacing: normal; margin: 0 0 6px; }
 .hm-listing__lede { font-size: var(--hn-size-sub); margin: 6px 0 0; color: var(--hn-muted); }
@@ -182,15 +182,15 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
 .hn-kind-search .hm-card__excerpt { font-size: var(--hn-size-sub); margin: 0; color: var(--hn-muted); }
 .hn-kind-search .hm-card .hm-meta { font-size: var(--hn-size-sub); color: var(--hn-muted); padding-bottom: 5px; }
 .hm-empty { padding: 8px 0; font-size: var(--hn-size-sub); }
-@media (max-width: 750px) { .hm-listing { padding-left: 14px; padding-right: 8px; } }
+@media (max-width: 750px) { .hm-listing { padding-left: var(--hn-gutter); padding-right: 8px; } }
 
 /* ---- markup printed by the hn plugin ----
    Story rows share the rules above (rank | vote | title grid). The plugin's
    own rules have zero specificity (:where()), so the theme's rules win. */
 .hn-vote-cell { display: block; }
 .hn-vote-form { margin: 0; }
-button.hn-vote { position: relative; display: block; padding: 0; border: 0; background: none; font-size: 0; line-height: 0; color: transparent; cursor: pointer; }
-button.hn-vote::before { content: ""; position: absolute; inset: 0; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+button.hn-vote { position: relative; display: block; width: 14px; height: 14px; margin: 2px 0 0; padding: 0; border: 0; background: none; font-size: 0; line-height: 0; color: transparent; cursor: pointer; }
+button.hn-vote::before { content: ""; position: absolute; inset: 2px; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 button.hn-vote:hover::before, button.hn-vote:focus-visible::before { background: var(--hn-text); }
 .hn-score { white-space: nowrap; }
 .hn-story > .hn-sub { min-width: 0; overflow-wrap: anywhere; }
@@ -251,7 +251,7 @@ div.hn-threads .hn-dead .hn-text { color: var(--hn-dead); }
 div.hn-threads .hn-faint .hn-text { color: var(--hn-faint); }
 div.hn-threads .hn-reply { margin: 0; font-size: var(--hn-size-sub); }
 div.hn-threads .hn-reply a { text-decoration: underline; }
-div.hn-threads .hn-more { padding: 8px 0 0; }
+div.hn-threads .hn-more { padding: 8px 0 0 var(--hn-gutter); }
 /* the user bar (div.hn-ub): plain text laid over the right end of the header bar,
    with or without the plugin script (it may sit in main or move into .hn-userbar).
    display:block, not flex: the plugin's text nodes lose their spaces in a flex box. */
@@ -259,16 +259,21 @@ div.hn-ub { position: absolute; top: 0; right: 0; z-index: 1; display: block; he
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
 @media (max-width: 750px) {
+  :root { --hn-gutter: 10px; --hn-size-sub: 8pt; }
   div.hn-ub { right: 68px; padding: 0; height: 34px; line-height: 34px; }
-  ol.hn-stories { padding-left: 4px; }
-  .hn-story { grid-template-columns: 22px 24px 1fr; }
-  .hn-story > .hn-vote, .hn-vote-cell { display: grid; place-items: center; width: 24px; height: 24px; margin-top: -4px; }
-  button.hn-vote { width: 24px; height: 24px; }
-  button.hn-vote::before { inset: 7px; }
-  div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form button[title=downvote] { width: 24px; height: 24px; }
-  div.hn-threads .hn-vote-form button[title]::before { inset: 7px; }
-  .hn-item-text { margin-left: 50px; }
-  .hn-more { padding-left: 54px; }
+  ol.hn-stories { padding-left: 2px; }
+  .hn-story { grid-template-columns: 22px 22px 1fr; }
+  .hn-rank { padding-right: 2px; }
+  .hn-story > .hn-vote { display: grid; place-items: center; width: 22px; height: 22px; margin-top: -4px; }
+  .hn-vote-cell { display: block; width: 22px; height: 22px; }
+  button.hn-vote { width: 22px; height: 22px; margin: -4px 0 0; }
+  button.hn-vote::before { inset: 6px; }
+  .hn-title { font-size: 10.5pt; }
+  .hn-sub { padding-bottom: 8px; }
+  div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form button[title=downvote] { width: 22px; height: 22px; }
+  div.hn-threads .hn-vote-form button[title]::before { inset: 6px; }
+  .hn-item-text { margin-left: 44px; margin-right: 8px; }
+  .hn-more { padding-left: 46px; }
   .hn-form-tbl { width: calc(100% - 10px); }
   .hn-form-tbl td:last-child { width: 100%; }
   .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl input[type=email], .hn-form-tbl textarea, div.hn-user input[type=text], div.hn-signin input[type=email] { width: 100%; }
