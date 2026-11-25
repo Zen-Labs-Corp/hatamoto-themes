@@ -9,6 +9,8 @@
 - Tap targets are at least 24 px: vote arrows (the arrow stays small), header and footer links, the phone menu button, the sub-line links, the colour switch, buttons and the search box. Rows do not move.
 - Your own comment's Edit and Delete sit on one row under the comment and look like the reply link.
 - Every list, story, submit, login and profile page has one heading for screen readers (visually hidden, so nothing changes on screen); "1 comment" is singular on the story page.
+- Phones: larger rank, title, sub-line and comment text; story text lines up with the title, forms use one left edge.
+- The comment form is an 80x8 box (about 660 px wide) and comment text uses normal line height, as on the original.
 
 ## 1.0.1
 
