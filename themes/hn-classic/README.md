@@ -27,6 +27,11 @@ page keeps rendering.
 | --- | --- | --- |
 | Page width | `wide` | `wide` is the centred 85% column, `full` uses the whole window (always full width under 750 px) |
 | Comment vote and flag buttons | on | prints the no-JavaScript vote and flag forms on comments, posting to `/p/hn/...`; turn off on a site without the hn plugin |
+| Powered-by link | on | prints a link under the footer menu |
+| Powered-by link text | `Run your own Hacker News on Hatamoto` | text of the footer link (blank uses the default) |
+| Powered-by link address | `https://hatamoto.dev` | where the footer link points (blank or invalid uses the default) |
+
+A builder footer part replaces the theme footer, so the powered-by link is absent on a site that uses one.
 
 Colours, fonts and corners follow **Theme > Colours and fonts**. The header bar uses the
 primary colour in light and dark. A custom primary keeps white bar text (`--hn-on-accent` is
@@ -51,7 +56,7 @@ shown under the title; the entity body is the fallback) and `kind` (`story`, `as
 ## Markup the hn plugin prints
 
 The theme styles, but does not print, the markup of the hn plugin. Its section types are
-`hn_feed`, `hn_submit`, `hn_item`, `hn_login`, `hn_user`, `hn_userbar` and `hn_threads`. The class vocabulary:
+`hn_feed`, `hn_submit`, `hn_item`, `hn_login`, `hn_user`, `hn_userbar`, `hn_threads` and `hn_reply`. The class vocabulary:
 
 - Story list (`hn_feed`, and the head of `hn_item`): `ol.hn-stories > li.hn-story`, each row a grid of
   `.hn-rank`, `.hn-vote-cell` and `.hn-title` (with `.hn-site` for the host), then `.hn-sub`
@@ -60,8 +65,10 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
   an empty `span.hn-vote` or, once voted, `span.hn-vote.hn-voted` (arrow hidden). `.hn-more` is the
   "More" link, `.hn-heading` a line above the list, `.hn-notice` a status line and `.hn-note` a grey note.
 - Item page (`hn_item`): `.hn-item-head > .hn-story`, then `.hn-item-text` with one `<p>` per paragraph.
+- Forms share one grid (label column `--hn-lbl-w`, control column `--hn-fw`, or `--hn-fw-wide` for submit and profile, button under the controls). The plugin's tables, the profile table with `<th>` labels and the bare-label claim form all become that grid in the theme; helper text lines up with the controls.
 - Submit (`hn_submit`): `table.hn-form-tbl` with `.hn-lbl` label cells, then a `.hn-note`.
 - Login (`hn_login`): `div.hn-login` with a bold line, a form or link and a `.hn-note`.
+- Reply (`hn_reply`): `div.hn-reply-page > form.hn-replyform` with a text control and a button (signed-out visitors get a `div.hn-login`); it takes the comment form's left edge and control width.
 - User page (`hn_user`): `div.hn-user` holding a plain two-column `<th>`/`<td>` table; the owner's
   page is a form with inputs.
 - Threads and newest comments (`hn_threads`): `div.hn-threads` with an optional `h2`, a `.hn-notice`, one
@@ -100,7 +107,7 @@ shows who is signed in with a sign-in or sign-out link instead of the name and e
 
 ## Known gaps
 
-- Dead text (`#bfbfbf` on `#f4f6f9` light, `#4a5263` on `#141a24` dark) and input borders are below 3:1 / AA by design, as in the approved look.
+- The submit text and the reply are one line until the hn plugin prints a textarea.
 - "discuss", "comments" and the header menu labels are English only.
 - Story rank restarts at 1 on archive pages after the first.
 

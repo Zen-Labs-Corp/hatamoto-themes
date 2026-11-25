@@ -50,6 +50,8 @@ Front list, item page, comment rows, comment form, 404 ("Unknown."), mobile
 
 - `width`: `wide` (default) or `full`
 - `plugin_actions`: print the no-JavaScript vote and flag forms on comments
+- `powered_by`: show the footer link (default on)
+- `powered_by_label`, `powered_by_href`: its text and address
 
 ## Signature details
 

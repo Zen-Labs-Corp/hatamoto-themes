@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0
+
+- One form layout for login, create account, username, submit, profile, e-mail sign-in, the comment form and the hn reply page: one label column, equal control widths, the button under the controls, 12px helper text.
+- The page fills the window, so the footer sits at the bottom of a short page.
+- Dark mode: password, number, select and checkbox fields are styled; borders, disabled controls and dead comments are readable (AA) in light and dark.
+- On phones every field is 16px text (no zoom on focus) and taller to tap; buttons are taller.
+- Story rows are 34px apart on desktop.
+- The footer text is 12px, and a new link, "Run your own Hacker News on Hatamoto", sits under the footer menu. The settings `powered_by`, `powered_by_label` and `powered_by_href` turn it off or change it. A builder footer part replaces the theme footer, so the link is absent there.
+
 ## 1.1.1
 
 - The hn user bar (your name, karma and logout, or login) now renders inside the header bar on the server, without JavaScript, on desktop and phones, in light and dark. It no longer shows as a strip at the top of the page.
