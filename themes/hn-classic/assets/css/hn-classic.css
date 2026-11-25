@@ -127,7 +127,7 @@ main { padding: 8px 0 10px; }
 .hn-nav a { display: inline-block; padding: 3px 0; }
 .hn-nav a + a::before, .hn-links a + a::before { content: " | "; display: inline-block; white-space: pre; text-decoration: none; }
 .hn-nav a[aria-current="page"] { font-weight: bold; text-decoration: underline; text-underline-offset: 3px; }
-.hn-userbar { white-space: nowrap; padding-right: 4px; min-width: 0; }
+.hn-userbar { margin-left: auto; white-space: nowrap; padding-right: 4px; min-width: 0; }
 .hn-menu { display: none; }
 @media (max-width: 750px) {
   :root { --bar-h: 34px; }
@@ -265,16 +265,19 @@ div.hn-threads .hn-faint .hn-text { color: var(--hn-faint); }
 div.hn-threads .hn-reply { margin: 6px 0 0; font-size: var(--hn-size-sub); }
 div.hn-threads .hn-reply a { text-decoration: underline; }
 div.hn-threads .hn-more { padding: 8px 0 0 14px; }
-/* the user bar (div.hn-ub): plain text laid over the right end of the header bar,
-   with or without the plugin script (it may sit in main or move into .hn-userbar).
+/* the user bar (div.hn-ub): in flow, either moved into the header slot by the plugin script
+   (a flex item, no background) or, without it or under a header part, a bar strip of its own
+   so the text never lands on paper.
    display:block, not flex: the plugin's text nodes lose their spaces in a flex box. */
-div.hn-ub { position: absolute; top: 0; right: 0; z-index: 1; display: block; height: 24px; line-height: 24px; margin: 0; padding: 0 8px 0 0; background: none; white-space: nowrap; text-align: right; color: var(--hn-on-accent); }
+div.hn-ub { display: block; height: 24px; line-height: 24px; margin: 0; padding: 0 8px; background: var(--hn-accent); white-space: nowrap; text-align: right; color: var(--hn-on-accent); }
+main > div.hn-ub:first-child { margin-top: -8px; }
+.hn-userbar div.hn-ub { margin: -3px 0; padding: 0; background: none; }
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
 div.hn-ub a { display: inline-block; }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
 @media (max-width: 750px) {
   :root { --hn-gutter: 10px; --hn-size-sub: 9pt; --hn-size-comment: 10pt; }
-  div.hn-ub { right: 68px; padding: 0; height: 34px; line-height: 34px; }
+  main > div.hn-ub:first-child { margin-top: -6px; }
   ol.hn-stories { padding-left: 2px; }
   .hn-story { grid-template-columns: 22px 22px 1fr; }
   .hn-rank { padding-right: 2px; font-size: 11pt; }
