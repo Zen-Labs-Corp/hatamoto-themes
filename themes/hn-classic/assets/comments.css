@@ -1,26 +1,33 @@
 /* Comments: replaces the built-in comments stylesheet (markup in partials/comments-*.html). */
-.hn-comments { margin: 0; }
+.hn-comments { margin: 0; padding: 0 8px 0 22px; }
 .hn-thread { list-style: none; margin: 0; padding: 0; }
 .hn-thread .hn-thread { padding-left: var(--hn-indent, 40px); }
-.hn-c-row { display: grid; grid-template-columns: 14px 1fr; column-gap: 2px; padding: 6px 0; }
+.hn-c-row { display: grid; grid-template-columns: 14px 1fr; column-gap: 0; padding: 5px 0 6px; }
 .hn-vote-form { margin: 0; }
-.hn-arrow { border: 0; background: none; padding: 0; margin-top: 3px; cursor: pointer; line-height: 0; }
-.hn-arrow svg { fill: var(--hn-arrow); }
-.hn-head { margin: 0; font-size: 8pt; color: var(--hn-muted); }
+.hn-arrow { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 0; background: none; padding: 0; margin: -3px -5px -5px; cursor: pointer; line-height: 0; }
+.hn-arrow svg { display: block; fill: var(--hn-arrow); }
+.hn-head { margin: 0; font-size: 8pt; line-height: 1.3; color: var(--hn-muted); }
 .hn-head a { color: var(--hn-muted); }
 .hn-op { color: var(--hn-op); }
-.hn-text { font-size: var(--hn-size-comment); line-height: 1.35; margin: 3px 0 2px; max-width: 800px; overflow-wrap: anywhere; }
-.hn-text p { margin: 6px 0 0; }
+.hn-text { font-size: var(--hn-size-comment); line-height: normal; margin: 3px 0 0; max-width: 800px; overflow-wrap: anywhere; }
+.hn-text p { margin: 8px 0 0; }
 .hn-text p:first-child { margin-top: 0; }
 .hn-text pre { font-family: var(--hn-mono); font-size: 9pt; white-space: pre-wrap; overflow-wrap: anywhere; }
-.hn-reply { margin: 0; font-size: var(--hn-size-sub); text-transform: lowercase; }
+.hn-reply { margin: 6px 0 0; font-size: var(--hn-size-sub); text-transform: lowercase; }
 .hn-reply a { text-decoration: underline; }
 .hn-inline { display: inline; margin: 0; font-size: var(--hn-size-sub); color: var(--hn-muted); }
-.hn-linkbtn { border: 0; background: none; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.hn-linkbtn { border: 0; background: none; padding: 5px 0; margin: -5px 0; font: inherit; color: inherit; cursor: pointer; }
 .hn-linkbtn:hover, .hn-linkbtn:focus-visible { text-decoration: underline; }
-.hn-edit { font-size: var(--hn-size-sub); color: var(--hn-muted); }
-.hn-edit summary { cursor: pointer; }
-.hn-pager { padding: 8px 0 0 44px; }
+/* own comment: Edit and Delete read like the reply link (sub size, lowercase, underlined, same row) */
+.hn-own { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 12px; margin: 6px 0 0; font-size: var(--hn-size-sub); text-transform: lowercase; }
+.hn-own .hn-inline { color: var(--hn-text); }
+.hn-own .hn-linkbtn { text-decoration: underline; text-transform: inherit; }
+.hn-edit[open] { flex: 0 0 100%; }
+.hn-edit summary { display: block; width: fit-content; list-style: none; cursor: pointer; text-decoration: underline; }
+.hn-edit summary::-webkit-details-marker { display: none; }
+.hn-own summary, .hn-own .hn-linkbtn { padding: 4px 0; margin: 0; }
+.hn-edit form { margin: 6px 0 0; text-transform: none; }
+.hn-pager { padding: 8px 0 0 14px; }
 .hn-pager > * { margin-right: 6px; }
 .hn-pager .hn-more { padding: 0; }
 /* states, driven by the plugin */
@@ -30,20 +37,23 @@
 .hn-vote.hn-voted .hn-arrow { visibility: hidden; }
 #hm-comments, #hm-comment-form, .hn-c { scroll-margin-top: 8px; }
 @media (max-width: 750px) {
-  .hn-comments { padding: 0 8px; }
+  .hn-comments { padding: 0 8px 0 2px; }
   .hn-thread .hn-thread { padding-left: 14px; }
-  .hn-c-row { grid-template-columns: 24px 1fr; }
-  .hn-c-row > .hn-vote { width: 24px; height: 24px; margin-top: -4px; }
-  .hn-arrow { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-top: 0; }
-  .hn-pager { padding-left: 26px; }
+  .hn-c-row { grid-template-columns: 22px 1fr; }
+  .hn-c-row > .hn-vote { width: 22px; }
+  .hn-arrow { margin: -4px -1px -4px; }
+  .hn-arrow svg { width: 12px; height: 12px; }
+  .hn-head { font-size: 8.5pt; }
+  .hn-reply { font-size: 8.5pt; }
+  .hn-pager { padding-left: 22px; }
 }
 
 /* comment form */
-#hm-comment-form { margin: 6px 0 14px 44px; }
+#hm-comment-form { margin: 8px 0 14px 14px; }
 #hm-comment-form .hn-form-tbl { margin-left: 0; }
 #hm-comment-form .hn-note { margin-left: 0; }
 .hn-hint { font-size: var(--hn-size-sub); color: var(--hn-muted); }
-.hn-textarea { display: block; width: 500px; max-width: 100%; height: 110px; margin-top: 6px; font-family: var(--hn-mono); font-size: 10pt; }
+.hn-textarea { display: block; width: 660px; max-width: 100%; box-sizing: border-box; margin-top: 6px; line-height: normal; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); }
 .hn-extra, .hn-submit { margin: 8px 0 0; }
 .hn-cstate { margin: 8px 0 0; }
 .hn-cstate a { text-decoration: underline; }
@@ -51,16 +61,16 @@
 .hn-extra { font-size: var(--hn-size-sub); color: var(--hn-muted); }
 .hn-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .hn-notice { color: var(--hn-text); }
-.hn-error { color: var(--hn-accent); }
-button { font: inherit; font-size: 10pt; padding: 1px 6px; }
+.hn-error { color: var(--hn-ink); }
+button { font: inherit; font-size: 10pt; padding: 1px 6px; min-height: 24px; color: var(--hn-text); background: var(--hn-btn); border: 1px solid var(--hn-field-line); border-radius: 0; }
 @media (max-width: 750px) {
-  #hm-comment-form { margin-left: 0; }
+  #hm-comment-form { margin: 8px 8px 14px var(--hn-gutter); }
   .hn-textarea, .hn-reply-form.hm-form textarea { width: 100%; }
   .hn-form-tbl input { max-width: 100%; }
 }
 /* core's hm.js mounts the captcha on form.hm-form: neutralise the default grid look */
 .hn-reply-form.hm-form { display: block; gap: 0; }
 .hn-reply-form.hm-form input[type=text], .hn-reply-form.hm-form input[type=email], .hn-reply-form.hm-form textarea {
-  width: auto; padding: 1px 2px; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: #fff; border: 1px solid #888; border-radius: 0;
+  width: auto; padding: 1px 2px; line-height: normal; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); border-radius: 0;
 }
-.hn-reply-form.hm-form textarea { width: 500px; max-width: 100%; padding: 1px 2px; }
+.hn-reply-form.hm-form textarea { width: 660px; max-width: 100%; padding: 1px 2px; }

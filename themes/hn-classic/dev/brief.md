@@ -10,18 +10,27 @@ conversation under each one. Dense, quick to scan, no decoration.
 
 ## Vibe
 
-Plain, dense, utilitarian. Not glossy, not card-based, not dark.
+Plain, dense, utilitarian. Not glossy, not card-based. Cool ink-blue, no warm
+accent colours. Light and dark, the reader can switch in the footer.
 
-## Palette (single light scheme, no dark mode)
+## Palette (light and dark, auto by default)
 
-- Header bar `#c23b22` with white text and a white-bordered "H" box as the logo
-- Page `#f6f6ef`, text `#000000`
-- Muted text and visited links `#828282`
-- Dead comments `#bfbfbf`, vote arrow `#9a9a9a`, `[op]` tag `#3c963c`, faint comments `#5a5a5a`
+Light:
+- Header bar `#1f3a5f` with white text and a white-bordered "H" box as the logo
+- Page `#f4f6f9`, canvas `#ffffff`, text `#171c26`
+- Title links `#1f3a5f`, visited links `#5f6b80`, accent text `#2a5aa8`, subtext `#566174`
+- Dead comments `#bfbfbf`, vote arrow `#7886a0`, `[op]` tag `#2e7d32`, faint comments `#4f5866`
+
+Dark:
+- Header bar `#244470`, page `#141a24`, canvas `#0d1118`, text `#e4e8ef`
+- Title links `#c5d5ee`, visited links `#8f9db4`, accent text `#8fb4f0`, subtext `#9ba7ba`
+- Dead comments `#4a5263`, vote arrow `#7d8ba3`, `[op]` tag `#7cc47c`, faint comments `#a3adbd`
+
+A footer switch `theme: auto | light | dark` lets the reader force a scheme.
 
 ## Type
 
-Verdana, Geneva, "DejaVu Sans", sans-serif; no webfonts. 10pt base, 7pt sub line,
+Verdana, Geneva, "DejaVu Sans", sans-serif; no webfonts. 10pt base, 7.5pt sub line,
 9pt comment text, "Courier New" for form fields and code.
 
 ## Geometry

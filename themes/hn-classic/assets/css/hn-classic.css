@@ -7,9 +7,10 @@
    fonts keeps working; no request to another host. */
 
 :root {
-  --hm-primary: #c23b22;
-  --hm-bg: #f6f6ef;
-  --hm-text: #000;
+  color-scheme: light dark;
+  --hm-primary: #1f3a5f;
+  --hm-bg: #f4f6f9;
+  --hm-text: #171c26;
   --hm-font: Verdana, Geneva, "DejaVu Sans", sans-serif;
   --hm-font-heading: var(--hm-font);
   --hm-radius-sm: 0;
@@ -19,98 +20,172 @@
   --hn-bg: var(--hm-bg);
   --hn-text: var(--hm-text);
   --hn-font: var(--hm-font);
-  --hn-border: var(--hn-accent);
-  --hn-muted: #6b6b6b;
-  --hn-link-visited: #828282;
-  --hn-dead: #bfbfbf;
-  --hn-arrow: #9a9a9a;
-  --hn-op: #3c963c;
-  --hn-faint: #5a5a5a;
+  --hn-canvas: #fff;
   --hn-on-accent: #fff;
-  --hn-drawer-line: #a8321d;
+  --hn-logo-fill: rgba(255, 255, 255, .14);
+  --hn-drawer-line: rgba(255, 255, 255, .25);
+  --hn-link: var(--hn-owner-text, #1f3a5f);
+  --hn-link-visited: var(--hn-owner-visited, #5f6b80);
+  --hn-ink: #2a5aa8;
+  --hn-muted: var(--hn-owner-muted, #566174);
+  --hn-arrow: #7886a0;
+  --hn-rule: var(--hn-accent);
+  --hn-focus: #1f3a5f;
+  --hn-field: #fff;
+  --hn-field-line: #8c97a8;
+  --hn-btn: #e8ecf2;
+  --hn-op: #2e7d32;
+  --hn-faint: #4f5866;
+  --hn-dead: #bfbfbf;
   --hn-mono: "Courier New", Courier, monospace;
   --hn-size: 10pt;
-  --hn-size-sub: 7pt;
+  --hn-size-sub: 7.5pt;
   --hn-size-comment: 9pt;
   --hn-indent: 40px;
   --hn-width: 85%;
+  --hn-gutter: 36px;
   /* the default theme's names, so its sections follow this palette */
-  --hm-sumi: var(--hm-text);
+  --hm-sumi: var(--hn-text);
   --hm-hai: var(--hn-muted);
   --hm-label: var(--hn-muted);
-  --hm-hair: #d8d8cc;
-  --hm-shiro: var(--hm-bg);
-  --hm-kasumi: var(--hm-bg);
-  --hm-shu: var(--hm-primary);
+  --hm-hair: #d5dbe4;
+  --hm-shiro: var(--hn-bg);
+  --hm-kasumi: var(--hn-bg);
+  --hm-shu: var(--hn-accent);
 }
+/* dark: the same list twice (system dark unless forced light; forced dark).
+   --hm-primary is not set here, so an owner primary survives (--hn-owner-primary). */
+@media (prefers-color-scheme: dark) {
+:root:not([data-hn-mode="light"]) {
+  color-scheme: dark;
+  --hm-bg: #141a24;
+  --hm-text: #e4e8ef;
+  --hn-accent: var(--hn-owner-primary, #244470);
+  --hn-canvas: #0d1118;
+  --hn-link: #c5d5ee;
+  --hn-link-visited: #8f9db4;
+  --hn-ink: #8fb4f0;
+  --hn-muted: #9ba7ba;
+  --hn-arrow: #7d8ba3;
+  --hn-rule: #3a5a88;
+  --hn-focus: #9ebcf0;
+  --hn-field: #1c2431;
+  --hn-field-line: #56627a;
+  --hn-btn: #27313f;
+  --hn-op: #7cc47c;
+  --hn-faint: #a3adbd;
+  --hn-dead: #4a5263;
+  --hm-hair: #2a3342;
+}
+}
+:root[data-hn-mode="dark"] {
+  color-scheme: dark;
+  --hm-bg: #141a24;
+  --hm-text: #e4e8ef;
+  --hn-accent: var(--hn-owner-primary, #244470);
+  --hn-canvas: #0d1118;
+  --hn-link: #c5d5ee;
+  --hn-link-visited: #8f9db4;
+  --hn-ink: #8fb4f0;
+  --hn-muted: #9ba7ba;
+  --hn-arrow: #7d8ba3;
+  --hn-rule: #3a5a88;
+  --hn-focus: #9ebcf0;
+  --hn-field: #1c2431;
+  --hn-field-line: #56627a;
+  --hn-btn: #27313f;
+  --hn-op: #7cc47c;
+  --hn-faint: #a3adbd;
+  --hn-dead: #4a5263;
+  --hm-hair: #2a3342;
+}
+:root[data-hn-mode="light"] { color-scheme: light; }
 
-body { margin: 0; background: var(--hn-bg); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
+body { margin: 0; background: var(--hn-canvas); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
 .hn-w-full { --hn-width: 100%; }
+@media (min-width: 751px) { .hn-w-full { --hn-gutter: 48px; } }
+.hn-w-full .hn-story { grid-template-columns: 34px 14px 1fr; }
 @media (max-width: 750px) { :root { --hn-width: 100%; --hn-indent: 14px; } }
 * { box-sizing: border-box; }
 a { color: var(--hn-text); text-decoration: none; }
 a:visited { color: var(--hn-link-visited); }
+.hn-title a { color: var(--hn-link); }
+.hn-title a:visited { color: var(--hn-link-visited); }
 a:hover, a:focus-visible { text-decoration: underline; }
-:focus-visible { outline: 2px solid var(--hn-text); outline-offset: 1px; }
+:focus-visible { outline: 2px solid var(--hn-focus); outline-offset: 1px; }
 .hn-sprite { position: absolute; }
 
 /* ---- shell ---- */
-.hn-page { width: var(--hn-width); margin: 0 auto; background: var(--hn-bg); }
-main { padding: 6px 0 10px; }
-.hn-bar { position: relative; background: var(--hn-accent); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 2px; color: var(--hn-on-accent); }
+.hn-page { position: relative; width: var(--hn-width); margin: 8px auto 0; background: var(--hn-bg); }
+main { padding: 8px 0 10px; }
+.hn-bar { position: relative; background: var(--hn-accent); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 24px; padding: 3px 4px 3px 2px; line-height: 18px; color: var(--hn-on-accent); }
 .hn-bar a, .hn-bar a:visited, .hn-bar summary { color: var(--hn-on-accent); }
 .hn-bar :focus-visible { outline-color: var(--hn-on-accent); }
-.hn-brand { display: inline-flex; align-items: center; }
-.hn-logo { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--hn-on-accent); font-weight: bold; }
+.hn-brand { display: inline-flex; align-items: center; gap: 5px; min-height: 24px; margin: -3px 0; }
+.hn-logo { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--hn-on-accent); background: var(--hn-logo-fill); font-weight: bold; font-size: 10pt; line-height: 1; }
 .hn-logo-img { display: block; width: auto; height: 18px; max-width: 120px; object-fit: contain; }
-.hn-name { font-weight: bold; margin: 0 6px 0 4px; }
-.hn-nav { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hn-name { font-weight: bold; margin: 0 6px 0 0; }
+.hn-nav { flex: 1; min-width: 0; margin: -6px 0; padding: 3px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hn-nav a { display: inline-block; padding: 3px 0; }
 .hn-nav a + a::before, .hn-links a + a::before { content: " | "; display: inline-block; white-space: pre; text-decoration: none; }
-.hn-nav a[aria-current="page"] { font-weight: bold; }
-.hn-userbar { white-space: nowrap; padding-right: 4px; min-width: 0; }
+.hn-nav a[aria-current="page"] { font-weight: bold; text-decoration: underline; text-underline-offset: 3px; }
+.hn-userbar { margin-left: auto; white-space: nowrap; padding-right: 4px; min-width: 0; }
 .hn-menu { display: none; }
 @media (max-width: 750px) {
-  .hn-bar { row-gap: 0; padding-right: 56px; }
+  :root { --bar-h: 34px; }
+  .hn-page { margin-top: 0; }
+  main { padding-top: 6px; }
+  .hn-bar { row-gap: 0; min-height: var(--bar-h); padding: 5px 56px 5px 4px; }
   .hn-nav { display: none; }
   .hn-userbar { margin-left: auto; white-space: normal; }
   .hn-menu { display: block; order: 10; flex: 0 0 100%; }
-  .hn-menu summary { position: absolute; top: 2px; right: 2px; list-style: none; cursor: pointer; border: 1px solid var(--hn-on-accent); padding: 0 6px; }
+  .hn-menu summary { position: absolute; top: 4px; right: 4px; list-style: none; cursor: pointer; border: 1px solid var(--hn-on-accent); padding: 0 8px; line-height: 24px; }
   .hn-menu summary::-webkit-details-marker { display: none; }
-  .hn-drawer { background: var(--hn-accent); margin: 2px -54px 0 0; padding: 4px 6px 6px; border-top: 1px solid var(--hn-drawer-line); }
-  .hn-drawer a { display: inline-block; margin: 3px 10px 3px 0; }
+  .hn-drawer { background: var(--hn-accent); margin: 2px -56px -5px -4px; padding: 6px 4px 4px; border-top: 1px solid var(--hn-drawer-line); }
+  .hn-drawer a { display: inline-block; margin: 0 12px 0 0; padding: 4px 2px; }
 }
-.hn-footer { border-top: 2px solid var(--hn-border); margin-top: 10px; padding: 10px 0 14px; text-align: center; font-size: 8pt; }
-.hn-search { margin-top: 10px; color: var(--hn-muted); }
-input[type=text], input[type=email], input[type=url], textarea { font-family: var(--hn-mono); font-size: 10pt; border: 1px solid #888; padding: 1px 2px; }
+.hn-footer { border-top: 2px solid var(--hn-rule); margin-top: 12px; padding: 12px 0 16px; text-align: center; font-size: 8pt; }
+.hn-footer > * + * { margin-top: 2px; }
+.hn-links a, .hn-mode button { display: inline-block; }
+.hn-links a { padding: 4px 0; }
+
+/* ---- colour mode switch (footer; shown by assets/js/hn-mode.js) ---- */
+.hn-mode { color: var(--hn-muted); }
+.hn-mode button { min-width: 24px; padding: 4px 0; border: 0; background: none; font: inherit; color: var(--hn-text); cursor: pointer; }
+.hn-mode button:hover, .hn-mode button:focus-visible { text-decoration: underline; }
+.hn-mode button[aria-pressed="true"] { font-weight: bold; }
+.hn-search { margin: 0; color: var(--hn-muted); }
+.hn-search input[type=text] { padding: 4px 2px; }
+input[type=text], input[type=email], input[type=url], textarea { font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); padding: 1px 2px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
 /* ---- story rows (list and item head) ---- */
 .hn-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 ol.hn-stories { list-style: none; margin: 0; padding: 0; }
-.hn-story { display: grid; grid-template-columns: 28px 14px 1fr; column-gap: 2px; padding: 2px 0; }
-.hn-rank { color: var(--hn-muted); text-align: right; padding-right: 2px; }
-.hn-vote { width: 10px; height: 10px; margin-top: 3px; }
-.hn-vote svg { display: block; width: 10px; height: 10px; fill: var(--hn-arrow); }
+.hn-story { display: grid; grid-template-columns: 22px 14px 1fr; column-gap: 0; padding: 0; line-height: 1.25; }
+.hn-rank { color: var(--hn-muted); text-align: right; justify-self: end; white-space: nowrap; padding-right: 3px; line-height: 1.25; }
+.hn-vote { width: 14px; height: 14px; margin: 2px 0 0; }
+.hn-vote svg { display: block; width: 10px; height: 10px; margin: 2px; fill: var(--hn-arrow); }
 .hn-vote.hn-voted svg { visibility: hidden; }
-.hn-title { font-family: var(--hn-font); font-size: var(--hn-size); font-weight: normal; letter-spacing: normal; margin: 0; line-height: 1.25; overflow-wrap: anywhere; }
+.hn-title { position: relative; font-family: var(--hn-font); font-size: var(--hn-size); font-weight: normal; letter-spacing: normal; margin: 0; line-height: 1.25; overflow-wrap: anywhere; }
 .hn-site { font-size: 8pt; color: var(--hn-muted); }
-.hn-sub { grid-column: 3; font-size: var(--hn-size-sub); color: var(--hn-muted); padding: 1px 0 5px; }
-.hn-sub a { color: var(--hn-muted); }
-.hn-more { display: inline-block; padding: 8px 0 0 44px; }
-.hn-item-head { padding: 0 0 8px; }
-.hn-item-head .hn-story { padding-bottom: 0; }
-.hn-item-text { margin: 4px 0 8px 44px; max-width: 700px; overflow-wrap: anywhere; }
+.hn-sub { grid-column: 3; font-size: var(--hn-size-sub); color: var(--hn-muted); line-height: 1.25; padding: 1px 0 6px; }
+.hn-sub a { color: var(--hn-muted); padding: 6px 0; }
+.hn-more { display: inline-block; padding: 10px 0 4px var(--hn-gutter); }
+.hn-item-head { padding: 0 0 6px; }
+.hn-item-head .hn-sub { padding-bottom: 0; }
+.hn-item-text { margin: 8px 0 8px var(--hn-gutter); max-width: 700px; overflow-wrap: anywhere; font-size: var(--hn-size-comment); line-height: 1.35; }
 .hn-plain { white-space: pre-wrap; }
 .hn-item-text pre { max-width: 100%; overflow-x: auto; font-family: var(--hn-mono); }
 
 /* ---- search and other core listings: compact, no cards ---- */
-.hm-listing { max-width: none; padding: 6px 0 10px 44px; }
+.hm-listing { max-width: none; padding: 6px 0 10px var(--hn-gutter); }
 .hm-listing__header { margin-bottom: 8px; }
 .hm-listing__title { font-family: var(--hn-font); font-size: var(--hn-size); font-weight: bold; letter-spacing: normal; margin: 0 0 6px; }
 .hm-listing__lede { font-size: var(--hn-size-sub); margin: 6px 0 0; color: var(--hn-muted); }
 .hm-search { max-width: none; gap: 6px; margin: 0; align-items: center; }
-.hm-search__input { flex: 0 1 300px; min-height: 0; padding: 1px 2px; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: #fff; border: 1px solid #888; border-radius: 0; }
-.hm-search .hm-btn { min-height: 0; line-height: normal; padding: 1px 6px; font: inherit; font-size: 10pt; color: var(--hn-text); background: #efefef; border: 1px solid #888; border-radius: 0; filter: none; }
+.hm-search__input { flex: 0 1 300px; min-height: 0; padding: 1px 2px; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); border-radius: 0; }
+.hm-search .hm-btn { min-height: 0; line-height: normal; padding: 1px 6px; font: inherit; font-size: 10pt; color: var(--hn-text); background: var(--hn-btn); border: 1px solid var(--hn-field-line); border-radius: 0; filter: none; }
 .hn-kind-search .hm-cards { display: block; }
 .hn-kind-search .hm-card { display: block; border: 0; border-radius: 0; background: none; overflow: visible; padding: 2px 0; transition: none; transform: none; }
 .hn-kind-search .hm-card:hover { transform: none; }
@@ -119,104 +194,122 @@ ol.hn-stories { list-style: none; margin: 0; padding: 0; }
 .hn-kind-search .hm-card__excerpt { font-size: var(--hn-size-sub); margin: 0; color: var(--hn-muted); }
 .hn-kind-search .hm-card .hm-meta { font-size: var(--hn-size-sub); color: var(--hn-muted); padding-bottom: 5px; }
 .hm-empty { padding: 8px 0; font-size: var(--hn-size-sub); }
-@media (max-width: 750px) { .hm-listing { padding-left: 14px; padding-right: 8px; } }
+@media (max-width: 750px) { .hm-listing { padding-left: var(--hn-gutter); padding-right: 8px; } }
 
 /* ---- markup printed by the hn plugin ----
    Story rows share the rules above (rank | vote | title grid). The plugin's
    own rules have zero specificity (:where()), so the theme's rules win. */
 .hn-vote-cell { display: block; }
 .hn-vote-form { margin: 0; }
-button.hn-vote { position: relative; display: block; padding: 0; border: 0; background: none; font-size: 0; line-height: 0; color: transparent; cursor: pointer; }
-button.hn-vote::before { content: ""; position: absolute; inset: 0; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+/* 24px tap box, the 10px arrow drawn in its middle; negative margins keep the 14px column and the row height */
+button.hn-vote { position: relative; display: block; width: 24px; height: 24px; margin: -3px -5px -5px; padding: 0; border: 0; background: none; font-size: 0; line-height: 0; color: transparent; cursor: pointer; }
+button.hn-vote::before { content: ""; position: absolute; inset: 7px; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 button.hn-vote:hover::before, button.hn-vote:focus-visible::before { background: var(--hn-text); }
 .hn-score { white-space: nowrap; }
 .hn-story > .hn-sub { min-width: 0; overflow-wrap: anywhere; }
 .hn-sub form.hn-act { display: inline; margin: 0; }
-.hn-sub .hn-act button { padding: 0; border: 0; background: none; font: inherit; color: var(--hn-muted); cursor: pointer; }
+.hn-sub .hn-act button { padding: 6px 0; border: 0; background: none; font: inherit; color: var(--hn-muted); cursor: pointer; }
 .hn-sub .hn-act button:hover, .hn-sub .hn-act button:focus-visible { text-decoration: underline; }
-.hn-notice { margin: 6px 0 6px 10px; font-weight: bold; color: var(--hn-accent); }
-.hn-heading { margin: 6px 0 6px 10px; font-weight: bold; }
-.hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0 10px; }
+.hn-notice { margin: 6px 0 6px var(--hn-gutter); font-weight: bold; color: var(--hn-ink); }
+.hn-heading { margin: 6px 0 6px var(--hn-gutter); font-weight: bold; }
+.hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0 var(--hn-gutter); }
 .hn-item-text p { margin: 0 0 8px; }
-.hn-form-tbl { margin: 8px 0 0 10px; border-collapse: collapse; }
-.hn-form-tbl td { padding: 3px 6px 3px 0; vertical-align: top; }
+.hn-form-tbl { margin: 4px 0 0 var(--hn-gutter); border-collapse: collapse; }
+.hn-form-tbl td { padding: 3px 8px 3px 0; vertical-align: top; }
 .hn-lbl { color: var(--hn-muted); text-align: right; white-space: nowrap; }
 .hn-form-tbl .hn-item-text { margin: 0 0 4px; }
 .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl textarea { max-width: 100%; }
-main .hm-section--hn_submit form > button { margin: 8px 0 0 10px; }
-.hn-form-tbl button, div.hn-login button, div.hn-user button, .hm-section--hn_submit form > button { font: inherit; font-size: 10pt; color: var(--hn-text); background: #efefef; border: 1px solid #888; border-radius: 0; padding: 1px 6px; cursor: pointer; }
+main .hm-section--hn_submit form > button { margin: 8px 0 0 var(--hn-gutter); }
+.hn-form-tbl button, div.hn-login button, div.hn-user button, .hm-section--hn_submit form > button { font: inherit; font-size: 10pt; color: var(--hn-text); background: var(--hn-btn); border: 1px solid var(--hn-field-line); border-radius: 0; padding: 1px 6px; min-height: 24px; cursor: pointer; }
 div.hn-login, div.hn-user, div.hn-ub { font: var(--hn-size) var(--hn-font); }
-div.hn-login, div.hn-user { padding: 8px 10px; }
-div.hn-login p, div.hn-user > p { margin: 8px 0; }
-div.hn-login .hn-note { margin: 8px 0; }
+div.hn-login, div.hn-user { padding: 2px 0 8px var(--hn-gutter); }
+div.hn-login p, div.hn-user > p { margin: 10px 0; }
+div.hn-login .hn-note { margin: 10px 0; }
 div.hn-login input[type=text], div.hn-login input[type=email], div.hn-user input[type=text] { max-width: 100%; }
 div.hn-user table { border-collapse: collapse; }
 div.hn-user td { overflow-wrap: anywhere; }
-div.hn-user th, div.hn-user td { padding: 2px 12px 2px 0; vertical-align: top; text-align: left; }
+div.hn-user th, div.hn-user td { padding: 2px 14px 2px 0; vertical-align: top; text-align: left; }
 div.hn-user th { color: var(--hn-muted); font-weight: normal; }
 div.hn-user input[type=text] { width: 30em; }
-div.hn-user input[type=number] { width: 5em; font-family: var(--hn-mono); font-size: 10pt; border: 1px solid #888; }
+div.hn-user input[type=number] { width: 5em; font-family: var(--hn-mono); font-size: 10pt; color: var(--hn-text); background: var(--hn-field); border: 1px solid var(--hn-field-line); }
 /* core wraps every block in section.hm-section (4-7rem padding, hairline); the
    plugin's blocks are dense, so drop both for every plugin section type */
 .hm-section[class*="hm-section--hn_"] { padding: 0; border-top: 0; }
 /* threads and newest comments (hn_threads): the plugin's own comment rows, with
    the look of the theme's rows. Every rule is scoped to div.hn-threads, so the
    theme's own comment rows are not touched. */
-div.hn-threads { font: var(--hn-size) var(--hn-font); padding: 0 8px 0 0; }
-div.hn-threads > h2 { margin: 6px 0 6px 10px; font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; }
-div.hn-threads > p { margin: 6px 0 6px 10px; }
+div.hn-threads { font: var(--hn-size) var(--hn-font); padding: 0 8px 0 22px; }
+div.hn-threads > h2 { margin: 6px 0 6px 14px; font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; }
+div.hn-threads > p { margin: 6px 0 6px 14px; }
 div.hn-threads .hn-notice { color: var(--hn-text); font-weight: bold; }
-div.hn-threads .hn-c { margin-bottom: 0; padding: 6px 0 6px 10px; }
-div.hn-threads .hn-head { font-size: 8pt; color: var(--hn-muted); overflow-wrap: anywhere; }
+div.hn-threads .hn-c { margin-bottom: 0; padding: 5px 0 6px 14px; }
+div.hn-threads .hn-head { font-size: 8pt; line-height: 1.3; color: var(--hn-muted); overflow-wrap: anywhere; }
 div.hn-threads .hn-head a, div.hn-threads .hn-head button { color: var(--hn-muted); }
 div.hn-threads .hn-head form { display: inline; margin: 0; }
-div.hn-threads .hn-head button { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+div.hn-threads .hn-head button { padding: 5px 0; margin: -5px 0; border: 0; background: none; font: inherit; cursor: pointer; }
 div.hn-threads .hn-head form:not(.hn-vote-form) button:hover, div.hn-threads .hn-head form:not(.hn-vote-form) button:focus-visible { text-decoration: underline; }
 div.hn-threads .hn-vote { display: inline-flex; width: auto; height: auto; margin: 0 4px 0 0; gap: 2px; vertical-align: middle; }
 div.hn-threads .hn-vote-form { display: inline-block; }
 div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form button[title=downvote] { position: relative; display: block; width: 10px; height: 10px; font-size: 0; line-height: 0; color: transparent; }
+div.hn-threads .hn-vote-form button[title=upvote] { width: 24px; height: 24px; margin: -7px; }
 div.hn-threads .hn-vote-form button[title]::before { content: ""; position: absolute; inset: 0; background: var(--hn-arrow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 div.hn-threads .hn-vote-form button[title=downvote]::before { clip-path: polygon(0 0, 100% 0, 50% 100%); }
+div.hn-threads .hn-vote-form button[title=upvote]::before { inset: 7px; }
 div.hn-threads .hn-vote-form button[title]:hover::before, div.hn-threads .hn-vote-form button[title]:focus-visible::before { background: var(--hn-text); }
 div.hn-threads .hn-vote-form button:not([title]) { padding: 0; border: 0; background: none; font: inherit; font-size: 8pt; color: var(--hn-muted); cursor: pointer; }
 div.hn-threads .hn-vote-form button:not([title]):hover, div.hn-threads .hn-vote-form button:not([title]):focus-visible { text-decoration: underline; }
-div.hn-threads .hn-text { font-size: var(--hn-size-comment); line-height: 1.35; margin: 3px 0 2px; max-width: 800px; overflow-wrap: anywhere; }
-div.hn-threads .hn-text p { margin: 6px 0 0; }
+div.hn-threads .hn-text { font-size: var(--hn-size-comment); line-height: normal; margin: 3px 0 0; max-width: 800px; overflow-wrap: anywhere; }
+div.hn-threads .hn-text p { margin: 8px 0 0; }
 div.hn-threads .hn-text p:first-child { margin-top: 0; }
 div.hn-threads .hn-text pre { font-family: var(--hn-mono); font-size: 9pt; white-space: pre-wrap; overflow-wrap: anywhere; }
 div.hn-threads .hn-dead .hn-text { color: var(--hn-dead); }
 div.hn-threads .hn-faint .hn-text { color: var(--hn-faint); }
-div.hn-threads .hn-reply { margin: 0; font-size: var(--hn-size-sub); }
+div.hn-threads .hn-reply { margin: 6px 0 0; font-size: var(--hn-size-sub); }
 div.hn-threads .hn-reply a { text-decoration: underline; }
-div.hn-threads .hn-more { padding: 8px 0 0; }
-/* the user bar (div.hn-ub) has two positions. Without the plugin script it stays
-   at the top of main, straight under the header bar, as a strip in the bar colour.
-   With the script it moves into the header slot (.hn-userbar): plain white text
-   on the bar itself. */
-div.hn-ub { margin: -6px 0 6px; padding: 0 6px 2px; text-align: right; background: var(--hn-accent); color: var(--hn-on-accent); }
+div.hn-threads .hn-more { padding: 8px 0 0 14px; }
+/* the user bar (div.hn-ub): in flow, either moved into the header slot by the plugin script
+   (a flex item, no background) or, without it or under a header part, a bar strip of its own
+   so the text never lands on paper.
+   display:block, not flex: the plugin's text nodes lose their spaces in a flex box. */
+div.hn-ub { display: block; height: 24px; line-height: 24px; margin: 0; padding: 0 8px; background: var(--hn-accent); white-space: nowrap; text-align: right; color: var(--hn-on-accent); }
+main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -8px; }
+.hn-userbar div.hn-ub { margin: -3px 0; padding: 0; background: none; }
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
+div.hn-ub a { display: inline-block; }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
-.hn-userbar div.hn-ub { margin: 0; padding: 0; background: none; color: inherit; text-align: right; }
 @media (max-width: 750px) {
-  ol.hn-stories { padding-left: 4px; }
-  .hn-story { grid-template-columns: 22px 24px 1fr; }
-  .hn-story > .hn-vote, .hn-vote-cell { display: grid; place-items: center; width: 24px; height: 24px; margin-top: -4px; }
-  button.hn-vote { width: 24px; height: 24px; }
-  button.hn-vote::before { inset: 7px; }
-  div.hn-threads .hn-vote-form button[title=upvote], div.hn-threads .hn-vote-form button[title=downvote] { width: 24px; height: 24px; }
-  div.hn-threads .hn-vote-form button[title]::before { inset: 7px; }
-  .hn-item-text { margin-left: 50px; }
-  .hn-more { padding-left: 54px; }
-  .hn-form-tbl { width: calc(100% - 10px); }
-  .hn-form-tbl td:last-child { width: 100%; }
+  :root { --hn-gutter: 10px; --hn-size-sub: 9pt; --hn-size-comment: 10pt; }
+  main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -6px; }
+  ol.hn-stories { padding-left: 2px; }
+  .hn-story, .hn-w-full .hn-story { grid-template-columns: 34px 22px 1fr; }
+  .hn-rank { padding-right: 2px; font-size: 11pt; }
+  .hn-story > .hn-vote { display: grid; place-items: center; width: 22px; height: 22px; margin-top: -4px; }
+  .hn-vote-cell { display: block; width: 22px; }
+  button.hn-vote { margin: -5px -1px -3px; }
+  button.hn-vote::before { inset: 6px; }
+  .hn-title { font-size: 11pt; }
+  .hn-sub { padding-bottom: 8px; }
+  div.hn-threads .hn-vote-form button[title=upvote]::before { inset: 6px; }
+  .hn-item-head { padding-left: 2px; }
+  .hn-item-text { margin-left: 56px; margin-right: 8px; }
+  .hn-more { padding-left: 58px; }
+  div.hn-threads { padding-left: 2px; }
+  div.hn-threads > h2, div.hn-threads > p { margin-left: 8px; }
+  div.hn-threads .hn-c { padding-left: 22px; }
+  div.hn-threads .hn-more { padding-left: 22px; }
+  .hn-form-tbl { width: calc(100% - 20px); margin-right: 10px; }
+  .hn-form-tbl, .hn-form-tbl tbody, .hn-form-tbl tr, .hn-form-tbl td { display: block; }
+  .hn-form-tbl td { padding-right: 0; }
+  .hn-lbl { text-align: left; }
+  div.hn-login, div.hn-user { padding-right: 10px; }
   .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl input[type=email], .hn-form-tbl textarea, div.hn-user input[type=text], div.hn-signin input[type=email] { width: 100%; }
 }
 
 /* ---- comment sign-in page (core /-/comments/signin) ---- */
-div.hn-signin { padding: 12px 10px; }
+div.hn-signin { padding-top: 12px; }
 .hn-signin__h { font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; margin: 0 0 6px; }
 div.hn-signin .hn-form-tbl, div.hn-signin .hn-note { margin-left: 0; }
-div.hn-signin .hn-error { color: var(--hn-accent); }
+div.hn-signin .hn-error { color: var(--hn-ink); }
 div.hn-signin form { margin: 8px 0 0; }
 
 /* ---- 404 ---- */

@@ -13,7 +13,7 @@
 <tr><td class="hn-lbl"><label for="{{.Email}}">{{t $ "comment_email"}}</label></td><td><input id="{{.Email}}" name="{{.Email}}" type="email" size="24" autocomplete="email" maxlength="254"{{if eq .Focus "email"}} autofocus{{end}}{{with .EmailValue}} value="{{.}}"{{end}} required> <span class="hn-hint">{{t $ "comment_email_hint"}}</span></td></tr>
 </table>
 {{end}}<label class="hn-sr" for="{{.Body}}">{{t $ "comment_body"}}</label>
-<textarea class="hn-textarea" id="{{.Body}}" name="{{.Body}}" rows="6"{{if .Locked}} __hmcf_boff__{{end}}{{if .MaxBody}} maxlength="{{.MaxBody}}"{{end}}{{if eq .Focus "body"}} autofocus{{end}} required>{{.BodyValue}}</textarea>
+<textarea class="hn-textarea" id="{{.Body}}" name="{{.Body}}" cols="80" rows="8"{{if .Locked}} __hmcf_boff__{{end}}{{if .MaxBody}} maxlength="{{.MaxBody}}"{{end}}{{if eq .Focus "body"}} autofocus{{end}} required>{{.BodyValue}}</textarea>
 {{block "comments/form-extra" .}}<p class="hn-extra"><label><input type="checkbox" id="{{.Extra}}" name="{{.Extra}}" value="1"{{if .Notify}} checked{{end}}> {{t $ "comment_notify_replies"}}</label></p>
 {{end}}<div class="hn-hp" aria-hidden="true"><label>{{t $ "comment_hp_label"}}<input type="text" name="{{.Honeypot}}" tabindex="-1" autocomplete="off"></label></div>
 {{with .Captcha}}<div data-hm-captcha="{{.Provider}}" data-sitekey="{{.SiteKey}}"></div>{{end}}<p class="hn-submit"><button type="submit"{{if .Locked}} __hmcf_boff__{{end}}>add comment</button></p>

@@ -1,7 +1,7 @@
 {
   "name": "hn-classic",
-  "version": "1.0.1",
-  "description": "A link-and-discussion theme: a coloured header bar, ranked story rows, threaded comments with no-JS vote and flag forms, Verdana, no JavaScript.",
+  "version": "1.1.0",
+  "description": "A link-and-discussion theme: a coloured header bar, ranked story rows, threaded comments with no-JS vote and flag forms, Verdana, light and dark with a reader switch, works without JavaScript.",
   "screenshot": "assets/screenshot.png",
   "csp": {
     "strictScripts": true
