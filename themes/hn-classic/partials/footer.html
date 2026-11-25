@@ -1,5 +1,6 @@
 {{define "footer"}}<footer class="hn-footer">
 {{if .Site.FooterNav}}<nav class="hn-links" aria-label="Footer">{{range .Site.FooterNav}}{{if .Children}}{{range .Children}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{else}}{{template "nav-link" dict "Item" . "Path" $.Path}}{{end}}{{end}}</nav>
+{{end}}{{if .Settings.powered_by}}{{$h := printf "%s" (cta (default "https://hatamoto.dev" .Settings.powered_by_href))}}{{if eq $h "#"}}{{$h = "https://hatamoto.dev"}}{{end}}<p class="hn-powered"><a href="{{cta $h}}">{{default "Run your own Hacker News on Hatamoto" .Settings.powered_by_label}}</a></p>
 {{end}}<p class="hn-mode" role="group" aria-label="Colour mode" hidden>theme: <button type="button" data-hn-mode-set="auto" aria-pressed="true">auto</button> | <button type="button" data-hn-mode-set="light" aria-pressed="false">light</button> | <button type="button" data-hn-mode-set="dark" aria-pressed="false">dark</button></p>
 <form class="hn-search" method="get" action="/search" role="search"><label for="hn-q">Search:</label> <input id="hn-q" type="text" name="q" size="17"></form>
 </footer>{{end}}
