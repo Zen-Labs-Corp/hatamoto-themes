@@ -39,7 +39,7 @@ The theme follows the system (`prefers-color-scheme`) by default. The footer lin
 `theme: auto | light | dark` lets a reader choose: it sets `data-hn-mode` on `<html>` and stores the
 choice in `localStorage` (key `hn-mode`). The stored choice is applied before the first paint, so
 the page does not flash. Without JavaScript the switch is hidden and the system choice applies.
-`assets/js/hn-mode.js` is the only script, loaded from the theme; there is no inline script.
+`assets/js/hn-mode.js` is the only script this theme ships (the platform's own `hm.js` and the hn plugin's script load too); there is no inline script. It also ignores the dark choice the built-in theme's header toggle may have stored (`hm-theme`).
 
 ## Story pages
 
@@ -73,7 +73,7 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
   of `main`. The theme zeroes the padding and rule core puts on every plugin wrapper
   (`section.hm-section` whose class starts `hm-section--hn_`). The header has an empty
   `div.hn-userbar` slot: with the plugin's script the bar moves into it, inside the header bar at the
-  right (white text, no strip); without the script it stays at the top of `main`. Both positions are
+  right (white text, no strip); without the script it stays at the top of `main`, on a bar-coloured strip. Both positions are
   styled. The page's `<main>` carries the entity marker the plugin's script reads.
 - Comments: `li.hn-c` with `.hn-c-row`, `.hn-vote`, `.hn-head`, `.hn-op`, `.hn-text` and `.hn-reply`;
   states `.hn-dead`, `.hn-faint` and `.hn-collapsed` go on the `li.hn-c`.

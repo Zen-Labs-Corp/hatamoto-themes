@@ -9,6 +9,9 @@
     for (var i = 0; i < b.length; i++) b[i].setAttribute('aria-pressed', b[i].getAttribute('data-hn-mode-set') === m ? 'true' : 'false');
   }
   apply(get());
+  /* the built-in theme's hm.js sets data-theme="dark" from its own stored choice; this theme has its own switch */
+  function drop() { if (r.hasAttribute('data-theme')) r.removeAttribute('data-theme'); }
+  drop(); new MutationObserver(drop).observe(r, { attributes: true, attributeFilter: ['data-theme'] });
   document.addEventListener('DOMContentLoaded', function () {
     var box = document.querySelector('.hn-mode');
     if (!box) return;
