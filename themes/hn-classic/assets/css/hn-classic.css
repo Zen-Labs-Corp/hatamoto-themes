@@ -361,6 +361,8 @@ div.hn-user > .hn-notice, div.hn-login > .hn-notice { margin-left: 0; }
 div.hn-signin .hn-form-tbl, div.hn-signin .hn-note { margin-left: 0; }
 div.hn-signin > .hn-note { margin-left: var(--hn-fcol); }
 
+/* signed out, /submit prints the login form inside the submit section: it keeps the login layout */
+main .hm-section--hn_submit div.hn-login form { --hn-fw: 20rem; margin: 8px 0 0; }
 /* theme comment form: the name / e-mail table on the same two columns */
 #hm-comment-form .hn-form-tbl { display: grid; grid-template-columns: var(--hn-lbl-w) minmax(0, var(--hn-fw)); column-gap: 8px; row-gap: 6px; margin: 0; }
 #hm-comment-form .hn-form-tbl :is(tbody, tr) { display: contents; }
