@@ -69,12 +69,10 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
   and a `.hn-reply` link, then a `.hn-more` link. The vote cell in the head line is `span.hn-vote` with
   `form.hn-vote-form` buttons (up and down arrows, or an `unvote` text button). The theme gives these the
   look of its own comment rows.
-- User bar (`hn_userbar`): on the pages the plugin serves, it injects `div.hn-ub` as the first section
-  of `main`. The theme zeroes the padding and rule core puts on every plugin wrapper
-  (`section.hm-section` whose class starts `hm-section--hn_`). The header has an empty
-  `div.hn-userbar` slot: with the plugin's script the bar moves into it, inside the header bar at the
-  right (white text, no strip); without the script it stays at the top of `main`, on a bar-coloured strip. Both positions are
-  styled. The page's `<main>` carries the entity marker the plugin's script reads.
+- User bar (`hn_userbar`): the plugin adds it as the first block of the pages it serves. The theme
+  prints it inside the header bar at the right (`div.hn-userbar > section.hm-section--hn_userbar > div.hn-ub`,
+  white text, no strip) and skips it in `main`; logout is `form.hn-out` with a link-styled button.
+  Without the plugin the slot stays empty. The user bar cannot render inside a builder header part (builder parts hold nodes, not template code). A site that replaces the header with a builder part shows no hn user bar: add a Login button or link node to `/login` in the part, or remove the part to get the theme header back. The page's `<main>` carries the entity marker the plugin's script reads.
 - Comments: `li.hn-c` with `.hn-c-row`, `.hn-vote`, `.hn-head`, `.hn-op`, `.hn-text` and `.hn-reply`;
   states `.hn-dead`, `.hn-faint` and `.hn-collapsed` go on the `li.hn-c`.
 - Arrow sprite, available on every page: `<svg><use href="#hn-up"/></svg>` and `#hn-down`.

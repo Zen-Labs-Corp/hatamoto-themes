@@ -267,9 +267,9 @@ div.hn-threads .hn-faint .hn-text { color: var(--hn-faint); }
 div.hn-threads .hn-reply { margin: 6px 0 0; font-size: var(--hn-size-sub); }
 div.hn-threads .hn-reply a { text-decoration: underline; }
 div.hn-threads .hn-more { padding: 8px 0 0 14px; }
-/* the user bar (div.hn-ub): in flow, either moved into the header slot by the plugin script
-   (a flex item, no background) or, without it or under a header part, a bar strip of its own
-   so the text never lands on paper.
+/* the user bar (div.hn-ub) renders server-side inside the header slot (div.hn-userbar), white
+   on the bar. The in-main rules stay one release for hn builds that still print it in main,
+   where it is a bar strip of its own.
    display:block, not flex: the plugin's text nodes lose their spaces in a flex box. */
 div.hn-ub { display: block; height: 24px; line-height: 24px; margin: 0; padding: 0 8px; background: var(--hn-accent); white-space: nowrap; text-align: right; color: var(--hn-on-accent); }
 main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -8px; }
@@ -277,9 +277,14 @@ main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -8px; }
 div.hn-ub a, div.hn-ub a:visited { color: var(--hn-on-accent); }
 div.hn-ub a { display: inline-block; }
 div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
+.hn-userbar > section.hm-section { display: contents; }
+div.hn-ub form.hn-out { display: inline; margin: 0; }
+div.hn-ub .hn-out button { display: inline-block; text-decoration: none; min-height: 24px; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; font: inherit; line-height: inherit; color: var(--hn-on-accent); cursor: pointer; }
+div.hn-ub .hn-out button:hover, div.hn-ub .hn-out button:focus-visible { text-decoration: underline; }
 @media (max-width: 750px) {
   :root { --hn-gutter: 10px; --hn-size-sub: 9pt; --hn-size-comment: 10pt; }
   main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -6px; }
+  .hn-userbar div.hn-ub { height: auto; min-height: 24px; padding-right: 6px; white-space: normal; overflow-wrap: anywhere; }
   ol.hn-stories { padding-left: 2px; }
   .hn-story, .hn-w-full .hn-story { grid-template-columns: 34px 22px 1fr; }
   .hn-rank { padding-right: 2px; font-size: 11pt; }
