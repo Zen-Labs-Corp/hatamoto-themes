@@ -465,6 +465,14 @@
    "path": "/search?q=postgres"
   },
   {
+   "name": "signin",
+   "path": "/-/comments/signin"
+  },
+  {
+   "name": "faq",
+   "path": "/faq"
+  },
+  {
    "name": "not-found",
    "path": "/nope",
    "status": 404

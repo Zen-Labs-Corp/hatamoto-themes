@@ -366,7 +366,7 @@ main .hm-section--hn_submit div.hn-login form { --hn-fw: 20rem; margin: 8px 0 0;
 /* theme comment form: the name / e-mail table on the same two columns */
 #hm-comment-form .hn-form-tbl { display: grid; grid-template-columns: var(--hn-lbl-w) minmax(0, var(--hn-fw)); column-gap: 8px; row-gap: 6px; margin: 0; }
 #hm-comment-form .hn-form-tbl :is(tbody, tr) { display: contents; }
-#hm-comment-form .hn-form-tbl td { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 0; min-height: var(--hn-ctl-h); }
+#hm-comment-form .hn-form-tbl td { display: flex; flex-wrap: wrap; align-items: center; align-self: start; gap: 4px 8px; padding: 0; min-height: var(--hn-ctl-h); }
 #hm-comment-form .hn-form-tbl td:first-child { color: var(--hn-muted); }
 #hm-comment-form .hn-form-tbl input { width: 100%; }
 /* submit: a multi-line text box, when the plugin prints one */

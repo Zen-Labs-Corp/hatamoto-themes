@@ -437,6 +437,14 @@
    "path": "/search?q=postgres"
   },
   {
+   "name": "signin",
+   "path": "/-/comments/signin"
+  },
+  {
+   "name": "faq",
+   "path": "/faq"
+  },
+  {
    "name": "not-found",
    "path": "/nope",
    "status": 404
@@ -444,7 +452,8 @@
  ],
  "theme_settings": {
   "hn-classic": {
-   "plugin_actions": false
+   "plugin_actions": false,
+   "powered_by": false
   }
  }
 }
