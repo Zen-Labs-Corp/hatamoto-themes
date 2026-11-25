@@ -291,8 +291,8 @@ div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
   .hn-sub { padding-bottom: 8px; }
   div.hn-threads .hn-vote-form button[title=upvote]::before { inset: 6px; }
   .hn-item-head { padding-left: 2px; }
-  .hn-item-text { margin-left: 44px; margin-right: 8px; }
-  .hn-more { padding-left: 46px; }
+  .hn-item-text { margin-left: 56px; margin-right: 8px; }
+  .hn-more { padding-left: 58px; }
   div.hn-threads { padding-left: 2px; }
   div.hn-threads > h2, div.hn-threads > p { margin-left: 8px; }
   div.hn-threads .hn-c { padding-left: 22px; }
