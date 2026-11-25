@@ -18,7 +18,21 @@
   {
    "slug": "guidelines",
    "name": "Guidelines",
-   "content": "<p>Be kind. Link to the original source. Say what you learned, not what you feel.</p><p>Comments that only insult are removed.</p>"
+   "content": "<p>Be kind. Link to the original source. Say what you learned, not what you feel.</p><p>Comments that only insult are removed.</p>",
+   "sections": [
+    {
+     "id": "hn_userbar",
+     "type": "hn_userbar",
+     "content": {
+      "state": "named",
+      "name": "alice",
+      "karma": 42,
+      "user_href": "/user?id=alice",
+      "login_href": "/login",
+      "logout_href": "/login"
+     }
+    }
+   ]
   },
   {
    "slug": "faq",
@@ -258,7 +272,21 @@
     "attributes": {
      "kind": "story",
      "text": "Short answers welcome. Ours has eleven items and nobody remembers the last three."
-    }
+    },
+    "sections": [
+     {
+      "id": "hn_userbar",
+      "type": "hn_userbar",
+      "content": {
+       "state": "named",
+       "name": "alice",
+       "karma": 42,
+       "user_href": "/user?id=alice",
+       "login_href": "/login",
+       "logout_href": "/login"
+      }
+     }
+    ]
    },
    {
     "name": "Why we stopped writing our own date parser",
