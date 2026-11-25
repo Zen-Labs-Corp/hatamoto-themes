@@ -225,12 +225,12 @@ div.hn-user input[type=number] { width: 5em; font-family: var(--hn-mono); font-s
 /* threads and newest comments (hn_threads): the plugin's own comment rows, with
    the look of the theme's rows. Every rule is scoped to div.hn-threads, so the
    theme's own comment rows are not touched. */
-div.hn-threads { font: var(--hn-size) var(--hn-font); padding: 0 8px 0 0; }
-div.hn-threads > h2 { margin: 6px 0 6px 10px; font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; }
-div.hn-threads > p { margin: 6px 0 6px 10px; }
+div.hn-threads { font: var(--hn-size) var(--hn-font); padding: 0 8px 0 22px; }
+div.hn-threads > h2 { margin: 6px 0 6px 14px; font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; }
+div.hn-threads > p { margin: 6px 0 6px 14px; }
 div.hn-threads .hn-notice { color: var(--hn-text); font-weight: bold; }
-div.hn-threads .hn-c { margin-bottom: 0; padding: 6px 0 6px 10px; }
-div.hn-threads .hn-head { font-size: 8pt; color: var(--hn-muted); overflow-wrap: anywhere; }
+div.hn-threads .hn-c { margin-bottom: 0; padding: 5px 0 6px 14px; }
+div.hn-threads .hn-head { font-size: 8pt; line-height: 1.3; color: var(--hn-muted); overflow-wrap: anywhere; }
 div.hn-threads .hn-head a, div.hn-threads .hn-head button { color: var(--hn-muted); }
 div.hn-threads .hn-head form { display: inline; margin: 0; }
 div.hn-threads .hn-head button { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
@@ -243,15 +243,15 @@ div.hn-threads .hn-vote-form button[title=downvote]::before { clip-path: polygon
 div.hn-threads .hn-vote-form button[title]:hover::before, div.hn-threads .hn-vote-form button[title]:focus-visible::before { background: var(--hn-text); }
 div.hn-threads .hn-vote-form button:not([title]) { padding: 0; border: 0; background: none; font: inherit; font-size: 8pt; color: var(--hn-muted); cursor: pointer; }
 div.hn-threads .hn-vote-form button:not([title]):hover, div.hn-threads .hn-vote-form button:not([title]):focus-visible { text-decoration: underline; }
-div.hn-threads .hn-text { font-size: var(--hn-size-comment); line-height: 1.35; margin: 3px 0 2px; max-width: 800px; overflow-wrap: anywhere; }
-div.hn-threads .hn-text p { margin: 6px 0 0; }
+div.hn-threads .hn-text { font-size: var(--hn-size-comment); line-height: 1.35; margin: 3px 0 0; max-width: 800px; overflow-wrap: anywhere; }
+div.hn-threads .hn-text p { margin: 8px 0 0; }
 div.hn-threads .hn-text p:first-child { margin-top: 0; }
 div.hn-threads .hn-text pre { font-family: var(--hn-mono); font-size: 9pt; white-space: pre-wrap; overflow-wrap: anywhere; }
 div.hn-threads .hn-dead .hn-text { color: var(--hn-dead); }
 div.hn-threads .hn-faint .hn-text { color: var(--hn-faint); }
-div.hn-threads .hn-reply { margin: 0; font-size: var(--hn-size-sub); }
+div.hn-threads .hn-reply { margin: 6px 0 0; font-size: var(--hn-size-sub); }
 div.hn-threads .hn-reply a { text-decoration: underline; }
-div.hn-threads .hn-more { padding: 8px 0 0 var(--hn-gutter); }
+div.hn-threads .hn-more { padding: 8px 0 0 14px; }
 /* the user bar (div.hn-ub): plain text laid over the right end of the header bar,
    with or without the plugin script (it may sit in main or move into .hn-userbar).
    display:block, not flex: the plugin's text nodes lose their spaces in a flex box. */
@@ -274,6 +274,10 @@ div.hn-ub :focus-visible { outline-color: var(--hn-on-accent); }
   div.hn-threads .hn-vote-form button[title]::before { inset: 6px; }
   .hn-item-text { margin-left: 44px; margin-right: 8px; }
   .hn-more { padding-left: 46px; }
+  div.hn-threads { padding-left: 2px; }
+  div.hn-threads > h2, div.hn-threads > p { margin-left: 8px; }
+  div.hn-threads .hn-c { padding-left: 22px; }
+  div.hn-threads .hn-more { padding-left: 22px; }
   .hn-form-tbl { width: calc(100% - 10px); }
   .hn-form-tbl td:last-child { width: 100%; }
   .hn-form-tbl input[type=text], .hn-form-tbl input[type=url], .hn-form-tbl input[type=email], .hn-form-tbl textarea, div.hn-user input[type=text], div.hn-signin input[type=email] { width: 100%; }
