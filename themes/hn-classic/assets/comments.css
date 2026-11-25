@@ -73,4 +73,9 @@ button { font: inherit; font-size: 10pt; padding: 1px 6px; min-height: 24px; col
 .hn-reply-form.hm-form input[type=text], .hn-reply-form.hm-form input[type=email], .hn-reply-form.hm-form textarea {
   width: auto; line-height: normal;
 }
-.hn-reply-form.hm-form textarea { width: min(100%, var(--hn-fw-wide)); min-height: 8.5em; padding: 4px 6px; }
+.hn-reply-form.hm-form textarea {
+  width: min(100%, var(--hn-fw-wide)); min-height: 8.5em; padding: 4px 6px;
+  font: 10pt var(--hn-mono); color: var(--hn-text); background: var(--hn-field);
+  border: 1px solid var(--hn-field-line); border-radius: 0;
+}
+.hn-reply-form.hm-form textarea:disabled { color: var(--hn-muted); border-style: dashed; }
