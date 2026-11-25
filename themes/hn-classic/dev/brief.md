@@ -50,6 +50,9 @@ Front list, item page, comment rows, comment form, 404 ("Unknown."), mobile
 
 - `width`: `wide` (default) or `full`
 - `plugin_actions`: print the no-JavaScript vote and flag forms on comments
+- `reply_page` (default off): on hn story pages, reply links open the hn plugin's `/reply?id=<id>` page (needs hn 1.2.0, kit 1.0.2)
+- `powered_by`: show the footer link (default on)
+- `powered_by_label`, `powered_by_href`: its text and address
 
 ## Signature details
 

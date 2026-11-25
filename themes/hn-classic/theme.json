@@ -1,6 +1,6 @@
 {
   "name": "hn-classic",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A link-and-discussion theme: a coloured header bar, ranked story rows, threaded comments with no-JS vote and flag forms, Verdana, light and dark with a reader switch, works without JavaScript.",
   "screenshot": "assets/screenshot.png",
   "csp": {
@@ -33,6 +33,30 @@
         "title": "Comment vote and flag buttons",
         "description": "Print the no-JavaScript vote and flag forms on comments. They post to the hn plugin; turn off on a site without it.",
         "default": true
+      },
+      "reply_page": {
+        "type": "boolean",
+        "title": "Reply links open the hn reply page",
+        "description": "Send comment reply links to the hn plugin's /reply page. Needs hn 1.2.0 with the hn kit 1.0.2 applied; leave off otherwise.",
+        "default": false
+      },
+      "powered_by": {
+        "type": "boolean",
+        "title": "Powered-by link",
+        "description": "Show a link to Hatamoto under the footer menu.",
+        "default": true
+      },
+      "powered_by_label": {
+        "type": "string",
+        "title": "Powered-by link text",
+        "description": "Text of the footer link.",
+        "default": "Run your own Hacker News on Hatamoto"
+      },
+      "powered_by_href": {
+        "type": "string",
+        "title": "Powered-by link address",
+        "description": "Where the footer link points.",
+        "default": "https://hatamoto.dev"
       }
     }
   }
