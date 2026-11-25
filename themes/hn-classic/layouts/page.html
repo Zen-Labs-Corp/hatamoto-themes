@@ -1,2 +1,0 @@
-{{define "content"}}{{$hn := false}}{{range .Blocks}}{{if and (hasPrefix .Type "hn_") (ne .Type "hn_userbar")}}{{$hn = true}}{{end}}{{end}}{{if $hn}}<h1 class="hn-sr">{{.Page.Name}}</h1>
-{{end}}{{template "page-body" .}}{{end}}

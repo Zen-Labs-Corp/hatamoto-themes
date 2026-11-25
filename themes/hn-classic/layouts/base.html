@@ -14,7 +14,8 @@
 <div class="hn-page">
 {{template "header" .}}
 <main id="main-content" tabindex="-1"{{with .EntityID}} {{hment .}}{{end}}>
-{{template "content" .}}
+{{if eq .Kind "page"}}{{$hn := false}}{{range .Blocks}}{{if and (hasPrefix .Type "hn_") (ne .Type "hn_userbar")}}{{$hn = true}}{{end}}{{end}}{{if $hn}}<h1 class="hn-sr">{{.Page.Name}}</h1>
+{{end}}{{end}}{{template "content" .}}
 </main>
 {{template "footer" .}}
 </div>
