@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1
+
+- Story pages show the blocks a plugin places on them (the user bar, the story row with its vote arrow, points and actions, and notices); without blocks the page keeps its own story header.
+- Your own comment's Edit and Delete controls use the small grey sub-line text.
+
 ## 1.0.0
 
 - First release: header bar with a mobile menu, ranked story rows, threaded comments with no-JavaScript vote and flag forms, a plain comment form, a 404 page, and the settings `width` and `plugin_actions`.
