@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+
+- New colours: a deep indigo header bar (#1f3a5f) with white text, cool grey paper on a white page, indigo title links; no orange or red.
+- Dark mode: follows the system by default; readers pick auto, light or dark in the footer (remembered in the browser; hidden without JavaScript, which keeps the system choice). No flash on load.
+- Spacing: tighter story rows, one left edge for titles, item text, comments and forms, the user bar inside the header bar, a canvas gap above the page.
+- The OP name colour is darker for AA contrast.
+
 ## 1.0.1
 
 - Story pages show the blocks a plugin places on them (the user bar, the story row with its vote arrow, points and actions, and notices); without blocks the page keeps its own story header.

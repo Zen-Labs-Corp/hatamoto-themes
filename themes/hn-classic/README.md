@@ -1,6 +1,6 @@
 # HN Classic
 
-A link-and-discussion theme: a coloured header bar, ranked story rows, threaded comments with no-JS vote and flag forms, Verdana, no JavaScript.
+A link-and-discussion theme: a coloured header bar, ranked story rows, threaded comments with no-JS vote and flag forms, Verdana, light and dark with a reader switch, works without JavaScript.
 
 ![HN Classic](assets/screenshot.png)
 
@@ -28,8 +28,18 @@ page keeps rendering.
 | Page width | `wide` | `wide` is the centred 85% column, `full` uses the whole window (always full width under 750 px) |
 | Comment vote and flag buttons | on | prints the no-JavaScript vote and flag forms on comments, posting to `/p/hn/...`; turn off on a site without the hn plugin |
 
-Colours, fonts and corners follow **Theme > Colours and fonts** (the header bar uses the
-primary colour).
+Colours, fonts and corners follow **Theme > Colours and fonts**. The header bar uses the
+primary colour in light and dark. A custom primary keeps white bar text (`--hn-on-accent` is
+fixed), so pick a primary dark enough for white text (4.5:1). Background and Text apply to the
+light scheme; dark uses the theme's own dark palette.
+
+## Colour mode
+
+The theme follows the system (`prefers-color-scheme`) by default. The footer line
+`theme: auto | light | dark` lets a reader choose: it sets `data-hn-mode` on `<html>` and stores the
+choice in `localStorage` (key `hn-mode`). The stored choice is applied before the first paint, so
+the page does not flash. Without JavaScript the switch is hidden and the system choice applies.
+`assets/js/hn-mode.js` is the only script, loaded from the theme; there is no inline script.
 
 ## Story pages
 
@@ -60,10 +70,10 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
   `form.hn-vote-form` buttons (up and down arrows, or an `unvote` text button). The theme gives these the
   look of its own comment rows.
 - User bar (`hn_userbar`): on the pages the plugin serves, it injects `div.hn-ub` as the first section
-  of `main`, straight under the header bar. The theme zeroes the padding and rule core puts on every
-  plugin wrapper (`section.hm-section` whose class starts `hm-section--hn_`). The header has an empty
-  `div.hn-userbar` slot: with the plugin's script the bar moves into it (white text on the header bar);
-  without the script it stays at the top of `main` as a strip in the bar colour. Both positions are
+  of `main`. The theme zeroes the padding and rule core puts on every plugin wrapper
+  (`section.hm-section` whose class starts `hm-section--hn_`). The header has an empty
+  `div.hn-userbar` slot: with the plugin's script the bar moves into it, inside the header bar at the
+  right (white text, no strip); without the script it stays at the top of `main`. Both positions are
   styled. The page's `<main>` carries the entity marker the plugin's script reads.
 - Comments: `li.hn-c` with `.hn-c-row`, `.hn-vote`, `.hn-head`, `.hn-op`, `.hn-text` and `.hn-reply`;
   states `.hn-dead`, `.hn-faint` and `.hn-collapsed` go on the `li.hn-c`.
@@ -92,10 +102,9 @@ shows who is signed in with a sign-in or sign-out link instead of the name and e
 
 ## Known gaps
 
-- Dead text (`#bfbfbf` on `#f6f6ef`) is below WCAG AA by design, as in the approved look.
+- Dead text (`#bfbfbf` on `#f4f6f9` light, `#4a5263` on `#141a24` dark) and input borders are below 3:1 / AA by design, as in the approved look.
 - "discuss", "comments" and the header menu labels are English only.
 - Story rank restarts at 1 on archive pages after the first.
-- No dark mode, by design.
 
 ## Develop
 
