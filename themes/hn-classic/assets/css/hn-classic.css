@@ -102,7 +102,8 @@
 :root[data-hn-mode="light"] { color-scheme: light; }
 
 body { margin: 0; background: var(--hn-canvas); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
-.hn-w-full { --hn-width: 100%; --hn-gutter: 48px; }
+.hn-w-full { --hn-width: 100%; }
+@media (min-width: 751px) { .hn-w-full { --hn-gutter: 48px; } }
 .hn-w-full .hn-story { grid-template-columns: 34px 14px 1fr; }
 @media (max-width: 750px) { :root { --hn-width: 100%; --hn-indent: 14px; } }
 * { box-sizing: border-box; }
