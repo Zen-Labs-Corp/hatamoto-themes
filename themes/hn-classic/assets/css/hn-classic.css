@@ -312,7 +312,7 @@ div.hn-ub .hn-out button:hover, div.hn-ub .hn-out button:focus-visible { text-de
   .hn-title { font-size: 11pt; }
   .hn-sub { padding-bottom: 8px; }
   input:not([type=hidden]):not([type=checkbox]):not([type=radio]):not([type=submit]), select, textarea { font-size: 16px; min-height: 36px; }
-  button:not(.hn-vote):not(.hn-arrow):not(.hn-linkbtn):not([title]):not([data-hn-mode-set]) { min-height: 34px; padding: 1px 12px; }
+  :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit, .hn-replyform, #hm-comment-form, .hn-edit, .hm-search, .hn-search-form) button:not(.hn-vote):not(.hn-arrow):not(.hn-linkbtn):not([title]):not([data-hn-mode-set]) { min-height: 34px; padding: 1px 12px; }
   div.hn-threads .hn-vote-form button[title=upvote]::before { inset: 6px; }
   .hn-item-head { padding-left: 2px; }
   .hn-item-text { margin-left: 56px; margin-right: 8px; }
