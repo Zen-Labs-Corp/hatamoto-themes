@@ -18,8 +18,15 @@
 .hn-inline { display: inline; margin: 0; font-size: var(--hn-size-sub); color: var(--hn-muted); }
 .hn-linkbtn { border: 0; background: none; padding: 5px 0; margin: -5px 0; font: inherit; color: inherit; cursor: pointer; }
 .hn-linkbtn:hover, .hn-linkbtn:focus-visible { text-decoration: underline; }
-.hn-edit { font-size: var(--hn-size-sub); color: var(--hn-muted); }
-.hn-edit summary { cursor: pointer; }
+/* own comment: Edit and Delete read like the reply link (sub size, lowercase, underlined, same row) */
+.hn-own { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 12px; margin: 6px 0 0; font-size: var(--hn-size-sub); text-transform: lowercase; }
+.hn-own .hn-inline { color: var(--hn-text); }
+.hn-own .hn-linkbtn { text-decoration: underline; text-transform: inherit; }
+.hn-edit[open] { flex: 0 0 100%; }
+.hn-edit summary { display: block; width: fit-content; list-style: none; cursor: pointer; text-decoration: underline; }
+.hn-edit summary::-webkit-details-marker { display: none; }
+.hn-own summary, .hn-own .hn-linkbtn { padding: 4px 0; margin: 0; }
+.hn-edit form { margin: 6px 0 0; text-transform: none; }
 .hn-pager { padding: 8px 0 0 14px; }
 .hn-pager > * { margin-right: 6px; }
 .hn-pager .hn-more { padding: 0; }

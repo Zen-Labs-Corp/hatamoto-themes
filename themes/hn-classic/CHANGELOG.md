@@ -7,6 +7,7 @@
 - Spacing: tighter story rows, one left edge for titles, item text, comments and forms, the user bar inside the header bar, a canvas gap above the page.
 - The OP name colour is darker for AA contrast.
 - Tap targets are at least 24 px: vote arrows (the arrow stays small), header and footer links, the phone menu button, the sub-line links, the colour switch, buttons and the search box. Rows do not move.
+- Your own comment's Edit and Delete sit on one row under the comment and look like the reply link.
 
 ## 1.0.1
 
