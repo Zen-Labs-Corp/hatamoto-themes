@@ -1,6 +1,6 @@
-{{define "content"}}{{$e := .Entity}}{{if .Blocks}}<h1 class="hn-sr">{{if $e}}{{$e.Title}}{{else}}{{.Page.Name}}{{end}}</h1>
-{{range .Blocks}}{{template "section" .}}
-{{end}}{{else}}<div class="hn-item-head"><div class="hn-story">
+{{define "content"}}{{$e := .Entity}}{{$rest := false}}{{range .Blocks}}{{if ne .Type "hn_userbar"}}{{$rest = true}}{{end}}{{end}}{{if $rest}}<h1 class="hn-sr">{{if $e}}{{$e.Title}}{{else}}{{.Page.Name}}{{end}}</h1>
+{{range .Blocks}}{{if ne .Type "hn_userbar"}}{{template "section" .}}
+{{end}}{{end}}{{else}}<div class="hn-item-head"><div class="hn-story">
 <span class="hn-rank"></span><span class="hn-vote"></span>
 <h1 class="hn-title">{{with .Attrs.url}}<a href="{{safeHref .}}" rel="ugc nofollow">{{if $e}}{{$e.Title}}{{else}}{{$.Page.Name}}{{end}}</a>{{else}}{{if $e}}{{$e.Title}}{{else}}{{.Page.Name}}{{end}}{{end}}</h1>
 <span class="hn-sub">{{with $e}}{{with .Author}}{{if ne (print $.Attrs.kind) "job"}}by {{.Name}} {{end}}{{end}}{{if not .PublishedAt.IsZero}}<time datetime="{{formatDate .PublishedAt "2006-01-02T15:04:05Z07:00"}}">{{template "hn-ago" dict "T" .PublishedAt "Strings" $.Strings}}</time>{{end}}{{end}}{{if .Comments}} | <a href="#hm-comments">{{.CommentCount}} {{if eq .CommentCount 1}}comment{{else}}comments{{end}}</a>{{end}}</span>

@@ -1,0 +1,3 @@
+{{/* Replaces core's page-body (parsed after partials/blog.html): the hn user bar renders in the header, never in main. */}}
+{{define "page-body"}}{{$rest := false}}{{range .Blocks}}{{if ne .Type "hn_userbar"}}{{$rest = true}}{{template "section" .}}
+{{end}}{{end}}{{if and .Body (not $rest)}}<div class="hm-container hm-page-body"><div class="hm-prose hm-entry">{{.Body}}</div></div>{{end}}{{end}}
