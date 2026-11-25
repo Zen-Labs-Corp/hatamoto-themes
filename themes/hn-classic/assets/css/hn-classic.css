@@ -24,10 +24,10 @@
   --hn-on-accent: #fff;
   --hn-logo-fill: rgba(255, 255, 255, .14);
   --hn-drawer-line: rgba(255, 255, 255, .25);
-  --hn-link: #1f3a5f;
-  --hn-link-visited: #5f6b80;
+  --hn-link: var(--hn-owner-text, #1f3a5f);
+  --hn-link-visited: var(--hn-owner-visited, #5f6b80);
   --hn-ink: #2a5aa8;
-  --hn-muted: #566174;
+  --hn-muted: var(--hn-owner-muted, #566174);
   --hn-arrow: #7886a0;
   --hn-rule: var(--hn-accent);
   --hn-focus: #1f3a5f;
