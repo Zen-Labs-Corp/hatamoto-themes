@@ -7,9 +7,10 @@
    fonts keeps working; no request to another host. */
 
 :root {
-  --hm-primary: #c23b22;
-  --hm-bg: #f6f6ef;
-  --hm-text: #000;
+  color-scheme: light dark;
+  --hm-primary: #1f3a5f;
+  --hm-bg: #f4f6f9;
+  --hm-text: #171c26;
   --hm-font: Verdana, Geneva, "DejaVu Sans", sans-serif;
   --hm-font-heading: var(--hm-font);
   --hm-radius-sm: 0;
@@ -19,30 +20,86 @@
   --hn-bg: var(--hm-bg);
   --hn-text: var(--hm-text);
   --hn-font: var(--hm-font);
-  --hn-border: var(--hn-accent);
-  --hn-muted: #6b6b6b;
-  --hn-link-visited: #828282;
-  --hn-dead: #bfbfbf;
-  --hn-arrow: #9a9a9a;
-  --hn-op: #3c963c;
-  --hn-faint: #5a5a5a;
+  --hn-canvas: #fff;
   --hn-on-accent: #fff;
-  --hn-drawer-line: #a8321d;
+  --hn-logo-fill: rgba(255, 255, 255, .14);
+  --hn-drawer-line: rgba(255, 255, 255, .25);
+  --hn-link: #1f3a5f;
+  --hn-link-visited: #5f6b80;
+  --hn-ink: #2a5aa8;
+  --hn-muted: #566174;
+  --hn-arrow: #7886a0;
+  --hn-rule: var(--hn-accent);
+  --hn-focus: #1f3a5f;
+  --hn-field: #fff;
+  --hn-field-line: #8c97a8;
+  --hn-btn: #e8ecf2;
+  --hn-op: #2e7d32;
+  --hn-faint: #4f5866;
+  --hn-dead: #bfbfbf;
   --hn-mono: "Courier New", Courier, monospace;
   --hn-size: 10pt;
-  --hn-size-sub: 7pt;
+  --hn-size-sub: 7.5pt;
   --hn-size-comment: 9pt;
   --hn-indent: 40px;
   --hn-width: 85%;
+  --hn-gutter: 36px;
   /* the default theme's names, so its sections follow this palette */
-  --hm-sumi: var(--hm-text);
+  --hm-sumi: var(--hn-text);
   --hm-hai: var(--hn-muted);
   --hm-label: var(--hn-muted);
-  --hm-hair: #d8d8cc;
-  --hm-shiro: var(--hm-bg);
-  --hm-kasumi: var(--hm-bg);
-  --hm-shu: var(--hm-primary);
+  --hm-hair: #d5dbe4;
+  --hm-shiro: var(--hn-bg);
+  --hm-kasumi: var(--hn-bg);
+  --hm-shu: var(--hn-accent);
 }
+/* dark: the same list twice (system dark unless forced light; forced dark).
+   --hm-primary is not set here, so an owner primary survives (--hn-owner-primary). */
+@media (prefers-color-scheme: dark) {
+:root:not([data-hn-mode="light"]) {
+  color-scheme: dark;
+  --hm-bg: #141a24;
+  --hm-text: #e4e8ef;
+  --hn-accent: var(--hn-owner-primary, #244470);
+  --hn-canvas: #0d1118;
+  --hn-link: #c5d5ee;
+  --hn-link-visited: #8f9db4;
+  --hn-ink: #8fb4f0;
+  --hn-muted: #9ba7ba;
+  --hn-arrow: #7d8ba3;
+  --hn-rule: #3a5a88;
+  --hn-focus: #9ebcf0;
+  --hn-field: #1c2431;
+  --hn-field-line: #56627a;
+  --hn-btn: #27313f;
+  --hn-op: #7cc47c;
+  --hn-faint: #a3adbd;
+  --hn-dead: #4a5263;
+  --hm-hair: #2a3342;
+}
+}
+:root[data-hn-mode="dark"] {
+  color-scheme: dark;
+  --hm-bg: #141a24;
+  --hm-text: #e4e8ef;
+  --hn-accent: var(--hn-owner-primary, #244470);
+  --hn-canvas: #0d1118;
+  --hn-link: #c5d5ee;
+  --hn-link-visited: #8f9db4;
+  --hn-ink: #8fb4f0;
+  --hn-muted: #9ba7ba;
+  --hn-arrow: #7d8ba3;
+  --hn-rule: #3a5a88;
+  --hn-focus: #9ebcf0;
+  --hn-field: #1c2431;
+  --hn-field-line: #56627a;
+  --hn-btn: #27313f;
+  --hn-op: #7cc47c;
+  --hn-faint: #a3adbd;
+  --hn-dead: #4a5263;
+  --hm-hair: #2a3342;
+}
+:root[data-hn-mode="light"] { color-scheme: light; }
 
 body { margin: 0; background: var(--hn-bg); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
 .hn-w-full { --hn-width: 100%; }
@@ -79,7 +136,7 @@ main { padding: 6px 0 10px; }
   .hn-drawer { background: var(--hn-accent); margin: 2px -54px 0 0; padding: 4px 6px 6px; border-top: 1px solid var(--hn-drawer-line); }
   .hn-drawer a { display: inline-block; margin: 3px 10px 3px 0; }
 }
-.hn-footer { border-top: 2px solid var(--hn-border); margin-top: 10px; padding: 10px 0 14px; text-align: center; font-size: 8pt; }
+.hn-footer { border-top: 2px solid var(--hn-rule); margin-top: 10px; padding: 10px 0 14px; text-align: center; font-size: 8pt; }
 .hn-search { margin-top: 10px; color: var(--hn-muted); }
 input[type=text], input[type=email], input[type=url], textarea { font-family: var(--hn-mono); font-size: 10pt; border: 1px solid #888; padding: 1px 2px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
