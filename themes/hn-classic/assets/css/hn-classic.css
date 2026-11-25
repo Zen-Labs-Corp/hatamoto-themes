@@ -123,7 +123,7 @@ main { padding: 8px 0 10px; }
 .hn-logo { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--hn-on-accent); background: var(--hn-logo-fill); font-weight: bold; font-size: 10pt; line-height: 1; }
 .hn-logo-img { display: block; width: auto; height: 18px; max-width: 120px; object-fit: contain; }
 .hn-name { font-weight: bold; margin: 0 6px 0 0; }
-.hn-nav { flex: 1; min-width: 0; margin: -3px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hn-nav { flex: 1; min-width: 0; margin: -6px 0; padding: 3px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hn-nav a { display: inline-block; padding: 3px 0; }
 .hn-nav a + a::before, .hn-links a + a::before { content: " | "; display: inline-block; white-space: pre; text-decoration: none; }
 .hn-nav a[aria-current="page"] { font-weight: bold; text-decoration: underline; text-underline-offset: 3px; }
