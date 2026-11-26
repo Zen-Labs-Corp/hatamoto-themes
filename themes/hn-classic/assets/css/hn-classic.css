@@ -121,8 +121,8 @@ a:hover, a:focus-visible { text-decoration: underline; }
 
 /* ---- shell ---- */
 .hn-page { position: relative; display: flex; flex-direction: column; min-height: calc(100dvh - 8px); width: var(--hn-width); margin: 8px auto 0; background: var(--hn-bg); }
-.hn-page > main { flex: 1 0 auto; width: 100%; }
-main { padding: 8px 0 10px; }
+.hn-page > main { width: 100%; }
+main { padding: 8px 0 7px; }
 .hn-bar { position: relative; background: var(--hn-accent); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 24px; padding: 3px 4px 3px 2px; line-height: 18px; color: var(--hn-on-accent); }
 .hn-bar a, .hn-bar a:visited, .hn-bar summary { color: var(--hn-on-accent); }
 .hn-bar :focus-visible { outline-color: var(--hn-on-accent); }
@@ -149,7 +149,7 @@ main { padding: 8px 0 10px; }
   .hn-drawer { background: var(--hn-accent); margin: 2px -56px -5px -4px; padding: 6px 4px 4px; border-top: 1px solid var(--hn-drawer-line); }
   .hn-drawer a { display: inline-block; margin: 0 12px 0 0; padding: 4px 2px; }
 }
-.hn-footer { border-top: 2px solid var(--hn-rule); margin-top: 12px; padding: 14px 8px 18px; text-align: center; font-size: 9pt; }
+.hn-footer { border-top: 2px solid var(--hn-rule); margin-top: 0; padding: 14px 8px 18px; text-align: center; font-size: 9pt; }
 .hn-footer > * + * { margin-top: 4px; }
 .hn-links a, .hn-mode button { display: inline-block; }
 .hn-links a { padding: 5px 0; }

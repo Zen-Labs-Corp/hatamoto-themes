@@ -4,6 +4,7 @@
 
 - Story numbers have room on the left and a clear gap before the vote arrow; numbers up to "100." fit, and the title, the line under it and "More" share one left edge on desktop and phones.
 - On desktop, comments, the comment form and the comment list follow the wider title column, so comment arrows sit under the story arrow and comment text starts on the title edge.
+- The footer rule follows the content with a small gap on every page; the page background still fills the window below the footer on short pages, instead of an empty band above it.
 
 ## 1.2.0
 
