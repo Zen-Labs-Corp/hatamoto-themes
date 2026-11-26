@@ -235,6 +235,8 @@ button.hn-vote:hover::before, button.hn-vote:focus-visible::before { background:
 .hn-sub form.hn-act { display: inline; margin: 0; }
 .hn-sub .hn-act button { padding: 6px 0; border: 0; background: none; font: inherit; color: var(--hn-muted); cursor: pointer; }
 .hn-sub .hn-act button:hover, .hn-sub .hn-act button:focus-visible { text-decoration: underline; }
+/* voted in place (hn-vote.js): arrows keep their box, so nothing moves */
+.hn-voted .hn-vote-form button[title] { visibility: hidden; }
 .hn-notice { margin: 6px 0 6px var(--hn-gutter); font-weight: bold; color: var(--hn-ink); }
 .hn-heading { margin: 6px 0 6px var(--hn-gutter); font-weight: bold; }
 .hn-note { color: var(--hn-muted); max-width: 560px; margin: 10px 0 0 var(--hn-gutter); }
