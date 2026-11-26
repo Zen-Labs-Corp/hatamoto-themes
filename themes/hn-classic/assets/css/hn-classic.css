@@ -43,7 +43,7 @@
   --hn-size-comment: 9pt;
   --hn-indent: 40px;
   --hn-width: 85%;
-  --hn-gutter: 36px;
+  --hn-gutter: 56px;
   --hn-lbl-w: 7.5rem;
   --hn-fw: 20rem;
   --hn-fw-wide: 40rem;
@@ -109,8 +109,8 @@
 
 body { margin: 0; background: var(--hn-canvas); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
 .hn-w-full { --hn-width: 100%; }
-@media (min-width: 751px) { .hn-w-full { --hn-gutter: 48px; } }
-.hn-w-full .hn-story { grid-template-columns: 34px 14px 1fr; }
+@media (min-width: 751px) { .hn-w-full { --hn-gutter: 56px; } }
+.hn-w-full .hn-story { grid-template-columns: 42px 14px 1fr; }
 @media (max-width: 750px) { :root { --hn-width: 100%; --hn-indent: 14px; } }
 * { box-sizing: border-box; }
 a { color: var(--hn-text); text-decoration: none; }
@@ -187,8 +187,9 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 /* ---- story rows (list and item head) ---- */
 .hn-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 ol.hn-stories { list-style: none; margin: 0; padding: 0; }
-.hn-story { display: grid; grid-template-columns: 22px 14px 1fr; column-gap: 0; padding: 0; line-height: 1.25; }
-.hn-rank { color: var(--hn-muted); text-align: right; justify-self: end; white-space: nowrap; padding-right: 3px; line-height: 1.25; }
+/* tracks: rank (fits "100.") | vote | title; --hn-gutter = rank + vote track */
+.hn-story { display: grid; grid-template-columns: 42px 14px 1fr; column-gap: 0; padding: 0; line-height: 1.25; }
+.hn-rank { color: var(--hn-muted); text-align: right; justify-self: stretch; min-width: 0; white-space: nowrap; padding: 0 3px 0 6px; line-height: 1.25; }
 .hn-vote { width: 14px; height: 14px; margin: 2px 0 0; }
 .hn-vote svg { display: block; width: 10px; height: 10px; margin: 2px; fill: var(--hn-arrow); }
 .hn-vote.hn-voted svg { visibility: hidden; }
@@ -303,8 +304,8 @@ div.hn-ub .hn-out button:hover, div.hn-ub .hn-out button:focus-visible { text-de
   main > section.hm-section--hn_userbar > div.hn-ub { margin-top: -6px; }
   .hn-userbar div.hn-ub { height: auto; min-height: 24px; padding-right: 6px; white-space: normal; overflow-wrap: anywhere; }
   ol.hn-stories { padding-left: 2px; }
-  .hn-story, .hn-w-full .hn-story { grid-template-columns: 34px 22px 1fr; }
-  .hn-rank { padding-right: 2px; font-size: 11pt; }
+  .hn-story, .hn-w-full .hn-story { grid-template-columns: 38px 22px 1fr; }
+  .hn-rank { padding: 0 0 0 4px; font-size: 11pt; }
   .hn-story > .hn-vote { display: grid; place-items: center; width: 22px; height: 22px; margin-top: -4px; }
   .hn-vote-cell { display: block; width: 22px; }
   button.hn-vote { margin: -5px -1px -3px; }
@@ -315,8 +316,8 @@ div.hn-ub .hn-out button:hover, div.hn-ub .hn-out button:focus-visible { text-de
   :is(div.hn-login, div.hn-user, div.hn-signin, .hm-section--hn_submit, .hn-replyform, #hm-comment-form, .hn-edit, .hm-search, .hn-search-form) button:not(.hn-vote):not(.hn-arrow):not(.hn-linkbtn):not([title]):not([data-hn-mode-set]) { min-height: 34px; padding: 1px 12px; }
   div.hn-threads .hn-vote-form button[title=upvote]::before { inset: 6px; }
   .hn-item-head { padding-left: 2px; }
-  .hn-item-text { margin-left: 56px; margin-right: 8px; }
-  .hn-more { padding-left: 58px; }
+  .hn-item-text { margin-left: 62px; margin-right: 8px; }
+  .hn-more { padding-left: 62px; }
   div.hn-threads { padding-left: 2px; }
   div.hn-threads > h2, div.hn-threads > p { margin-left: 8px; }
   div.hn-threads .hn-c { padding-left: 22px; }
