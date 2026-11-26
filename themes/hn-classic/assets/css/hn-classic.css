@@ -121,7 +121,7 @@ a:hover, a:focus-visible { text-decoration: underline; }
 
 /* ---- shell ---- */
 .hn-page { position: relative; display: flex; flex-direction: column; min-height: calc(100dvh - 8px); width: var(--hn-width); margin: 8px auto 0; background: var(--hn-bg); }
-.hn-page > main { width: 100%; }
+.hn-page > main { flex: none; width: 100%; }
 main { padding: 8px 0 7px; }
 .hn-bar { position: relative; background: var(--hn-accent); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 24px; padding: 3px 4px 3px 2px; line-height: 18px; color: var(--hn-on-accent); }
 .hn-bar a, .hn-bar a:visited, .hn-bar summary { color: var(--hn-on-accent); }
