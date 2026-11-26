@@ -1,6 +1,6 @@
 {
   "name": "hn-classic",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A link-and-discussion theme: a coloured header bar, ranked story rows, threaded comments with no-JS vote and flag forms, Verdana, light and dark with a reader switch, works without JavaScript.",
   "screenshot": "assets/screenshot.png",
   "csp": {

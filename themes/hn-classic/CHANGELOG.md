@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2
+
+- Voting on a story or comment no longer reloads the page when JavaScript is on: the arrow hides in place, the list keeps its order and scroll position, and "unvote" appears in the line under the story and under comments on the story page (unvote works in place too; on comment lists such as /threads the arrows just hide). Points and order update on the next page load. Without JavaScript, or if the background request fails, the vote form posts as before.
+
 ## 1.2.1
 
 - Story numbers have room on the left and a clear gap before the vote arrow; numbers up to "100." fit, and the title, the line under it and "More" share one left edge on desktop and phones.
