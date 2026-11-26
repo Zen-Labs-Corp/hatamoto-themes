@@ -45,7 +45,7 @@ The theme follows the system (`prefers-color-scheme`) by default. The footer lin
 `theme: auto | light | dark` lets a reader choose: it sets `data-hn-mode` on `<html>` and stores the
 choice in `localStorage` (key `hn-mode`). The stored choice is applied before the first paint, so
 the page does not flash. Without JavaScript the switch is hidden and the system choice applies.
-`assets/js/hn-mode.js` is the only script this theme ships (the platform's own `hm.js` and the hn plugin's script load too); there is no inline script. It also ignores the dark choice the built-in theme's header toggle may have stored (`hm-theme`).
+`assets/js/hn-mode.js` and `assets/js/hn-vote.js` are the only scripts this theme ships (the platform's own `hm.js` and the hn plugin's script load too); there is no inline script. It also ignores the dark choice the built-in theme's header toggle may have stored (`hm-theme`).
 
 ## Story pages
 
@@ -65,6 +65,7 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
   buttons or links). The vote cell holds `form.hn-vote-form > button.hn-vote` (drawn as the grey arrow),
   an empty `span.hn-vote` or, once voted, `span.hn-vote.hn-voted` (arrow hidden). `.hn-more` is the
   "More" link, `.hn-heading` a line above the list, `.hn-notice` a status line and `.hn-note` a grey note.
+  When JavaScript is on, votes are sent in the background: the arrow hides in place, "unvote" appears, and points and order update on the next page load. Without JavaScript the vote form posts as before.
 - Item page (`hn_item`): `.hn-item-head > .hn-story`, then `.hn-item-text` with one `<p>` per paragraph.
 - Forms share one grid (label column `--hn-lbl-w`, control column `--hn-fw`, or `--hn-fw-wide` for submit and profile, button under the controls). The plugin's tables, the profile table with `<th>` labels and the bare-label claim form all become that grid in the theme; helper text lines up with the controls.
 - Submit (`hn_submit`): `table.hn-form-tbl` with `.hn-lbl` label cells, then a `.hn-note`.
