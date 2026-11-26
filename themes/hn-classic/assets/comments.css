@@ -1,5 +1,5 @@
 /* Comments: replaces the built-in comments stylesheet (markup in partials/comments-*.html). */
-.hn-comments { margin: 0; padding: 0 8px 0 22px; }
+.hn-comments { margin: 0; padding: 0 8px 0 calc(var(--hn-gutter) - 14px); }
 .hn-thread { list-style: none; margin: 0; padding: 0; }
 .hn-thread .hn-thread { padding-left: var(--hn-indent, 40px); }
 .hn-c-row { display: grid; grid-template-columns: 14px 1fr; column-gap: 0; padding: 5px 0 6px; }
