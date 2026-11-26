@@ -3,6 +3,7 @@
 ## 1.2.1
 
 - Story numbers have room on the left and a clear gap before the vote arrow; numbers up to "100." fit, and the title, the line under it and "More" share one left edge on desktop and phones.
+- On desktop, comments, the comment form and the comment list follow the wider title column, so comment arrows sit under the story arrow and comment text starts on the title edge.
 
 ## 1.2.0
 

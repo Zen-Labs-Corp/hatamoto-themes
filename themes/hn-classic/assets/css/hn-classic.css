@@ -109,8 +109,6 @@
 
 body { margin: 0; background: var(--hn-canvas); color: var(--hn-text); font-family: var(--hn-font); font-size: var(--hn-size); }
 .hn-w-full { --hn-width: 100%; }
-@media (min-width: 751px) { .hn-w-full { --hn-gutter: 56px; } }
-.hn-w-full .hn-story { grid-template-columns: 42px 14px 1fr; }
 @media (max-width: 750px) { :root { --hn-width: 100%; --hn-indent: 14px; } }
 * { box-sizing: border-box; }
 a { color: var(--hn-text); text-decoration: none; }
@@ -256,7 +254,7 @@ div.hn-user th { color: var(--hn-muted); font-weight: normal; }
 /* threads and newest comments (hn_threads): the plugin's own comment rows, with
    the look of the theme's rows. Every rule is scoped to div.hn-threads, so the
    theme's own comment rows are not touched. */
-div.hn-threads { font: var(--hn-size) var(--hn-font); padding: 0 8px 0 22px; }
+div.hn-threads { font: var(--hn-size) var(--hn-font); padding: 0 8px 0 calc(var(--hn-gutter) - 14px); }
 div.hn-threads > h2 { margin: 6px 0 6px 14px; font: bold var(--hn-size) var(--hn-font); letter-spacing: normal; }
 div.hn-threads > p { margin: 6px 0 6px 14px; }
 div.hn-threads .hn-notice { color: var(--hn-text); font-weight: bold; }
