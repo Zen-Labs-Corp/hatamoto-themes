@@ -65,7 +65,7 @@ The theme styles, but does not print, the markup of the hn plugin. Its section t
   buttons or links). The vote cell holds `form.hn-vote-form > button.hn-vote` (drawn as the grey arrow),
   an empty `span.hn-vote` or, once voted, `span.hn-vote.hn-voted` (arrow hidden). `.hn-more` is the
   "More" link, `.hn-heading` a line above the list, `.hn-notice` a status line and `.hn-note` a grey note.
-  When JavaScript is on, votes are sent in the background: the arrow hides in place, "unvote" appears, and points and order update on the next page load. Without JavaScript the vote form posts as before.
+  When JavaScript is on, votes are sent in the background: the arrow hides in place, "unvote" appears under stories and under comments on the story page, and points and order update on the next page load. Without JavaScript the vote form posts as before.
 - Item page (`hn_item`): `.hn-item-head > .hn-story`, then `.hn-item-text` with one `<p>` per paragraph.
 - Forms share one grid (label column `--hn-lbl-w`, control column `--hn-fw`, or `--hn-fw-wide` for submit and profile, button under the controls). The plugin's tables, the profile table with `<th>` labels and the bare-label claim form all become that grid in the theme; helper text lines up with the controls.
 - Submit (`hn_submit`): `table.hn-form-tbl` with `.hn-lbl` label cells, then a `.hn-note`.
